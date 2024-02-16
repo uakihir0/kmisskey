@@ -1,0 +1,119 @@
+package misskey4j.internal.api;
+
+import misskey4j.MisskeyAPI;
+import misskey4j.api.UsersResource;
+import misskey4j.api.request.users.UsersFollowersRequest;
+import misskey4j.api.request.users.UsersFollowingsRequest;
+import misskey4j.api.request.users.UsersReactionsRequest;
+import misskey4j.api.request.users.UsersRecommendationRequest;
+import misskey4j.api.request.users.UsersRelationRequest;
+import misskey4j.api.request.users.UsersSearchByUsernameAndHostRequest;
+import misskey4j.api.request.users.UsersSearchRequest;
+import misskey4j.api.request.users.UsersShowMultipleRequest;
+import misskey4j.api.request.users.UsersShowSingleRequest;
+import misskey4j.api.response.notes.UsersReactionsResponse;
+import misskey4j.api.response.users.UsersFollowersResponse;
+import misskey4j.api.response.users.UsersFollowingsResponse;
+import misskey4j.api.response.users.UsersRecommendationResponse;
+import misskey4j.api.response.users.UsersRelationResponse;
+import misskey4j.api.response.users.UsersSearchByUsernameAndHostResponse;
+import misskey4j.api.response.users.UsersSearchResponse;
+import misskey4j.api.response.users.UsersShowResponse;
+import misskey4j.entity.share.Response;
+
+public class UsersResourceImpl extends AbstractResourceImpl implements UsersResource {
+
+    public UsersResourceImpl(String uri, String i) {
+        super(uri, i);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UsersFollowersResponse[]> followers(
+            UsersFollowersRequest request) {
+        return post(UsersFollowersResponse[].class,
+                MisskeyAPI.UsersFollowers.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UsersFollowingsResponse[]> followings(
+            UsersFollowingsRequest request) {
+        return post(UsersFollowingsResponse[].class,
+                MisskeyAPI.UsersFollowing.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UsersRecommendationResponse[]> recommendation(
+            UsersRecommendationRequest request) {
+        return post(UsersRecommendationResponse[].class,
+                MisskeyAPI.UsersRecommendation.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UsersShowResponse> show(
+            UsersShowSingleRequest request) {
+        return post(UsersShowResponse.class,
+                MisskeyAPI.UsersShow.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UsersShowResponse[]> show(
+            UsersShowMultipleRequest request) {
+        return post(UsersShowResponse[].class,
+                MisskeyAPI.UsersShow.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UsersReactionsResponse[]> reactions(
+            UsersReactionsRequest request) {
+        return post(UsersReactionsResponse[].class,
+                MisskeyAPI.UsersReactions.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UsersRelationResponse[]> relation(
+            UsersRelationRequest request) {
+        return post(UsersRelationResponse[].class,
+                MisskeyAPI.UsersRelation.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UsersSearchResponse[]> search(
+            UsersSearchRequest request) {
+        return post(UsersSearchResponse[].class,
+                MisskeyAPI.UsersSearch.code(), request);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Response<UsersSearchByUsernameAndHostResponse[]> searchByUsernameAndHost(
+            UsersSearchByUsernameAndHostRequest request) {
+        return post(UsersSearchByUsernameAndHostResponse[].class,
+                MisskeyAPI.UsersSearchByUsernameAndHost.code(), request);
+    }
+}

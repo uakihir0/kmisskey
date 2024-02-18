@@ -1,6 +1,9 @@
 package misskey4j.entity
 
-class Block {
+import kotlinx.serialization.Serializable
+
+@Serializable
+open class Block {
     var id: String? = null
     var createdAt: String? = null
     var blockeeId: String? = null

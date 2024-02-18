@@ -13,7 +13,7 @@ import misskey4j.api.request.UsersListsShowRequest;
 import misskey4j.api.request.UsersListsUpdateRequest;
 import misskey4j.api.response.UsersListsListResponse;
 import misskey4j.api.response.UsersListsShowResponse;
-import misskey4j.entity.List;
+import misskey4j.entity.NoteList;
 import misskey4j.entity.share.Response;
 
 public class ListsResourceImpl extends AbstractResourceImpl implements ListsResource {
@@ -63,17 +63,17 @@ public class ListsResourceImpl extends AbstractResourceImpl implements ListsReso
     }
 
     @Override
-    public Response<List> create(@Nonnull String name) {
+    public Response<NoteList> create(@Nonnull String name) {
 
         UsersListsCreateRequest request = new UsersListsCreateRequest(name);
-        return post(List.class, MisskeyAPI.ListsCreate.code(), request);
+        return post(NoteList.class, MisskeyAPI.ListsCreate.code(), request);
     }
 
     @Override
-    public Response<List> update(@Nonnull String listId, @Nonnull String name) {
+    public Response<NoteList> update(@Nonnull String listId, @Nonnull String name) {
 
         UsersListsUpdateRequest request = new UsersListsUpdateRequest(listId, name);
-        return post(List.class, MisskeyAPI.ListsUpdate.code(), request);
+        return post(NoteList.class, MisskeyAPI.ListsUpdate.code(), request);
     }
 
     @Override

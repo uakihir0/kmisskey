@@ -7,7 +7,7 @@ import misskey4j.util.BlurHashDecoder
  * ユーザーオブジェクト
  */
 @Serializable
-class User {
+open class User {
     lateinit var id: String
     lateinit var username: String
 

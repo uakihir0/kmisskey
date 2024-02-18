@@ -3,7 +3,7 @@ package misskey4j.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Notification {
+open class Notification {
     lateinit var id: String
     lateinit var createdAt: String
     lateinit var type: String

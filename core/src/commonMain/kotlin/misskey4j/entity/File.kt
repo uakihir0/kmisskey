@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * ファイルオブジェクト
  */
 @Serializable
-class File {
+open class File {
 
     var id: String? = null
     var createdAt: String? = null

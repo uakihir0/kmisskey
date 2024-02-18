@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class Channel {
+
     lateinit var id: String
     lateinit var name: String
     lateinit var createdAt: String

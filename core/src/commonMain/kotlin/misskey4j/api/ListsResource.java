@@ -6,7 +6,7 @@ import misskey4j.api.request.UsersListsListRequest;
 import misskey4j.api.request.UsersListsShowRequest;
 import misskey4j.api.response.UsersListsListResponse;
 import misskey4j.api.response.UsersListsShowResponse;
-import misskey4j.entity.List;
+import misskey4j.entity.NoteList;
 import misskey4j.entity.share.Response;
 
 public interface ListsResource {
@@ -44,14 +44,14 @@ public interface ListsResource {
      *
      * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/create"
      */
-    Response<List> create(@Nonnull String name);
+    Response<NoteList> create(@Nonnull String name);
 
     /**
      * リストを更新します。
      *
      * @see "https://misskey.io/api-doc#tag/lists/operation/users/lists/update"
      */
-    Response<List> update(@Nonnull String listId, @Nonnull String name);
+    Response<NoteList> update(@Nonnull String listId, @Nonnull String name);
 
     /**
      * リストを削除します。

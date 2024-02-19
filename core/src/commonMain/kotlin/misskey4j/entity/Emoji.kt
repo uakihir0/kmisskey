@@ -3,7 +3,7 @@ package misskey4j.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Emoji {
+open class Emoji {
 
     /** up to v12  */
     @Deprecated("")

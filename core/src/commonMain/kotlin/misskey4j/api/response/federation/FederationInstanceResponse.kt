@@ -1,5 +1,8 @@
 package misskey4j.api.response.federation
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 class FederationInstanceResponse {
 
     var id: String? = null

@@ -3,7 +3,7 @@ package misskey4j.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Follow {
+open class Follow {
 
     var id: String? = null
     var createdAt: String? = null

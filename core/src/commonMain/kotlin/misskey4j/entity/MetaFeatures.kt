@@ -3,7 +3,7 @@ package misskey4j.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-class MetaFeatures {
+open class MetaFeatures {
 
     var registration = false
     var localTimeLine = false

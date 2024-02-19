@@ -4,7 +4,7 @@ import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Webhook {
+open class Webhook {
 
     var id: String? = null
     var createdAt: Instant? = null

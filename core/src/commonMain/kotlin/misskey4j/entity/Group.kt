@@ -3,7 +3,7 @@ package misskey4j.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Group {
+open class Group {
 
     var id: String? = null
     var createdAt: String? = null

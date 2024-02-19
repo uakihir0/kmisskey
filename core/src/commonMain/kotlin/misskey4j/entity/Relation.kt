@@ -3,7 +3,7 @@ package misskey4j.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Relation {
+open class Relation {
 
     var id: String? = null
     var hasPendingFollowRequestFromYou = false

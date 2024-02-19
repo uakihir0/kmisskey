@@ -3,7 +3,7 @@ package misskey4j.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Instance {
+open class Instance {
 
     var name: String? = null
 

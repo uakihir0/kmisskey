@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
  * 投稿オブジェクト
  */
 @Serializable
-class Note {
+open class Note {
     lateinit var id: String
     lateinit var createdAt: String
 

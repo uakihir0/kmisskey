@@ -3,7 +3,7 @@ package misskey4j.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Channel {
+open class Channel {
 
     lateinit var id: String
     lateinit var name: String

@@ -3,7 +3,7 @@ package misskey4j.entity
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Mute {
+open class Mute {
 
     var id: String? = null
     var createdAt: String? = null

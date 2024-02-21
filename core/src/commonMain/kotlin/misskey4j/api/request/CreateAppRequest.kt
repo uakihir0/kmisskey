@@ -1,5 +1,8 @@
 package misskey4j.api.request
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 class CreateAppRequest {
 
     var name: String? = null

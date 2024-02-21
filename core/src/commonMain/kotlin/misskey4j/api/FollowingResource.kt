@@ -9,11 +9,15 @@ interface FollowingResource {
      * 指定したユーザーをフォローします。
      * https://misskey.io/api-doc#operation/following/create
      */
-    fun create(request: FollowingCreateRequest?): Response<java.lang.Void?>?
+    fun create(
+        request: FollowingCreateRequest
+    ): Response<Unit>
 
     /**
      * 指定したユーザーのフォローを解除します。
      * https://misskey.io/api-doc#operation/following/delete
      */
-    fun delete(request: FollowingDeleteRequest?): Response<java.lang.Void?>?
+    fun delete(
+        request: FollowingDeleteRequest
+    ): Response<Unit>
 }

@@ -1,11 +1,13 @@
 package misskey4j.api.request.users
 
+import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
+@Serializable
 class ListUserGalleryPostsRequest(
-    i: String,
+    override var i: String,
     var userId: String,
-) : TokenRequest(i) {
+) : TokenRequest() {
 
     var limit: Long? = null
     var sinceId: String? = null

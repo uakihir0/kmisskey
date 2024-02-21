@@ -1,7 +1,7 @@
 package misskey4j.api
 
 import misskey4j.api.request.*
-import misskey4j.api.response.*
+import misskey4j.api.response.channels.*
 import misskey4j.entity.share.Response
 
 interface ChannelsResource {

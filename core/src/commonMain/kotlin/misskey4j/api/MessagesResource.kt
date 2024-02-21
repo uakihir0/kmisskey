@@ -9,35 +9,36 @@ import misskey4j.api.response.messages.MessagingMessagesResponse
 import misskey4j.entity.share.Response
 
 interface MessagesResource {
+
     /**
      * トークの履歴を取得します。
      * https://misskey.io/api-doc#operation/messaging/history
      */
     fun history(
-        request: MessagingHistoryRequest?
-    ): Response<Array<MessagingHistoryResponse?>?>?
+        request: MessagingHistoryRequest
+    ): Response<Array<MessagingHistoryResponse>>
 
     /**
      * トークメッセージ一覧を取得します。
      * https://misskey.io/api-doc#operation/messaging/messages
      */
     fun messages(
-        request: MessagingMessagesRequest?
-    ): Response<Array<MessagingMessagesResponse?>?>?
+        request: MessagingMessagesRequest
+    ): Response<Array<MessagingMessagesResponse>>
 
     /**
      * トークメッセージを送信します。
      * https://misskey.io/api-doc#operation/messaging/messages/create
      */
     fun messagesCreate(
-        request: MessagingMessagesCreateRequest?
-    ): Response<java.lang.Void?>?
+        request: MessagingMessagesCreateRequest
+    ): Response<Unit>
 
     /**
      * 指定したトークメッセージを削除します。
      * https://misskey.io/api-doc#operation/messaging/messages/delete
      */
     fun messagesDelete(
-        request: MessagingMessagesDeleteRequest?
-    ): Response<java.lang.Void?>?
+        request: MessagingMessagesDeleteRequest
+    ): Response<Unit>
 }

@@ -8,11 +8,6 @@ kotlin {
     jvmToolchain(11)
 
     jvm { withJava() }
-    js {
-        browser()
-        nodejs()
-    }
-
     iosX64()
     iosArm64()
     iosSimulatorArm64()

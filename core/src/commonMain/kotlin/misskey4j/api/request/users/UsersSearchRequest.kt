@@ -1,5 +1,8 @@
 package misskey4j.api.request.users
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 class UsersSearchRequest {
 
     var query: String? = null

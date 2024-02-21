@@ -1,11 +1,13 @@
 package misskey4j.api.request.notes
 
+import kotlinx.serialization.Serializable
 import misskey4j.api.model.PollRequest
 import misskey4j.api.model.TokenRequest
 
+@Serializable
 class NotesCreateRequest(
-    i: String
-) : TokenRequest(i) {
+    override var i: String
+) : TokenRequest() {
 
     var visibility: String? = null
     var visibleUserIds: List<String>? = null

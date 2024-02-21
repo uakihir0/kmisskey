@@ -11,17 +11,23 @@ interface MutesResource {
      * ユーザーをミュートします。
      * https://misskey.io/api-doc#operation/mute/create
      */
-    fun create(request: MutesCreateRequest?): Response<java.lang.Void?>?
+    fun create(
+        request: MutesCreateRequest
+    ): Response<Unit>
 
     /**
      * ユーザーのミュートを解除します。
      * https://misskey.io/api-doc#operation/mute/delete
      */
-    fun delete(request: MutesDeleteRequest?): Response<java.lang.Void?>?
+    fun delete(
+        request: MutesDeleteRequest
+    ): Response<Unit>
 
     /**
      * ミュートしているユーザー一覧を取得します。
      * https://misskey.io/api-doc#operation/mute/list
      */
-    fun list(request: MutesListRequest?): Response<Array<MutesListResponse?>?>?
+    fun list(
+        request: MutesListRequest
+    ): Response<Array<MutesListResponse>>
 }

@@ -1,4 +1,6 @@
 package misskey4j.api.request.hashtags
 
-class HashtagsTrendRequest {
-}
+import kotlinx.serialization.Serializable
+
+@Serializable
+class HashtagsTrendRequest

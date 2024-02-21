@@ -1,5 +1,8 @@
 package misskey4j.api.request
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 class GetMiAuthUriRequest {
 
     var sessionId: String? = null

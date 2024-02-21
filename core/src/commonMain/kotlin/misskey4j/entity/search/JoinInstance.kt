@@ -59,6 +59,7 @@ class JoinInstance {
 
     @Serializable
     class Instances {
+
         @SerialName("date")
         var timestamp: String? = null
 

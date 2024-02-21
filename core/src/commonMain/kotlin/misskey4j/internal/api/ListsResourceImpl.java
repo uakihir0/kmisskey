@@ -4,15 +4,15 @@ import javax.annotation.Nonnull;
 
 import misskey4j.MisskeyAPI;
 import misskey4j.api.ListsResource;
-import misskey4j.api.request.UsersListsCreateRequest;
-import misskey4j.api.request.UsersListsDeleteRequest;
-import misskey4j.api.request.UsersListsListRequest;
-import misskey4j.api.request.UsersListsPullRequest;
-import misskey4j.api.request.UsersListsPushRequest;
-import misskey4j.api.request.UsersListsShowRequest;
-import misskey4j.api.request.UsersListsUpdateRequest;
-import misskey4j.api.response.UsersListsListResponse;
-import misskey4j.api.response.UsersListsShowResponse;
+import misskey4j.api.request.lists.UsersListsCreateRequest;
+import misskey4j.api.request.lists.UsersListsDeleteRequest;
+import misskey4j.api.request.lists.UsersListsListRequest;
+import misskey4j.api.request.lists.UsersListsPullRequest;
+import misskey4j.api.request.lists.UsersListsPushRequest;
+import misskey4j.api.request.lists.UsersListsShowRequest;
+import misskey4j.api.request.lists.UsersListsUpdateRequest;
+import misskey4j.api.response.lists.UsersListsListResponse;
+import misskey4j.api.response.lists.UsersListsShowResponse;
 import misskey4j.entity.NoteList;
 import misskey4j.entity.share.Response;
 

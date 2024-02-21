@@ -8,5 +8,8 @@ import misskey4j.entity.share.Response
  * Federation APIs.
  */
 interface FederationResource {
-    fun showInstance(request: ShowInstanceRequest?): Response<FederationInstanceResponse?>?
+
+    fun showInstance(
+        request: ShowInstanceRequest
+    ): Response<FederationInstanceResponse>
 }

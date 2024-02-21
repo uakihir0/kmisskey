@@ -1,10 +1,12 @@
 package misskey4j.api.request.notes
 
+import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
+@Serializable
 class NotesRequest(
-    i: String
-) : TokenRequest(i) {
+    override var i: String
+) : TokenRequest() {
 
     var local: Boolean? = null
     var reply: Boolean? = null

@@ -1,10 +1,12 @@
 package misskey4j.api.request.users
 
+import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
+@Serializable
 class UsersRecommendationRequest(
-    i: String
-) : TokenRequest(i) {
+    override var i: String
+) : TokenRequest() {
 
     var limit: Long? = null
     var offset: Long? = null

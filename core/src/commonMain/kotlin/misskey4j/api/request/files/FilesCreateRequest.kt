@@ -1,10 +1,12 @@
 package misskey4j.api.request.files
 
+import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
+@Serializable
 class FilesCreateRequest(
-    i: String
-) : TokenRequest(i) {
+    override var i: String
+) : TokenRequest() {
 
     var folderId: String? = null
     var name: String? = null

@@ -1,5 +1,8 @@
 package misskey4j.api.model
 
-open class TokenRequest(
-    var i: String
-)
+import kotlinx.serialization.Serializable
+
+@Serializable
+abstract class TokenRequest {
+    abstract var i: String
+}

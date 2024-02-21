@@ -10,14 +10,14 @@ interface ReactionsResource {
      * https://misskey.io/api-doc#operation/notes/reactions/create
      */
     fun create(
-        request: ReactionsCreateRequest?
-    ): Response<java.lang.Void?>?
+        request: ReactionsCreateRequest
+    ): Response<Unit>
 
     /**
      * 指定した投稿へのリアクションを取り消します。
      * https://misskey.io/api-doc#operation/notes/reactions/delete
      */
     fun delete(
-        request: ReactionsDeleteRequest?
-    ): Response<java.lang.Void?>?
+        request: ReactionsDeleteRequest
+    ): Response<Unit>
 }

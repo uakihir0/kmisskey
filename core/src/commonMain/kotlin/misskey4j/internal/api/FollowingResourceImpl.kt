@@ -1,16 +1,27 @@
 package misskey4j.internal.api
 
 import misskey4j.MisskeyAPI
+import misskey4j.api.FollowingResource
+import misskey4j.api.request.following.FollowingCreateRequest
+import misskey4j.api.request.following.FollowingDeleteRequest
 import misskey4j.entity.share.Response
 
-class FollowingResourceImpl(uri: String, i: String?) : AbstractResourceImpl(uri, i), FollowingResource {
+class FollowingResourceImpl(
+    uri: String,
+    i: String
+) : AbstractResourceImpl(uri, i),
+    FollowingResource {
+
     /**
      * {@inheritDoc}
      */
     override fun create(
         request: FollowingCreateRequest
-    ): Response<java.lang.Void> {
-        return post(MisskeyAPI.FollowingCreate.code(), request)
+    ): Response<Unit> {
+        return post(
+            MisskeyAPI.FollowingCreate.path,
+            request
+        )
     }
 
     /**
@@ -18,7 +29,10 @@ class FollowingResourceImpl(uri: String, i: String?) : AbstractResourceImpl(uri,
      */
     override fun delete(
         request: FollowingDeleteRequest
-    ): Response<java.lang.Void> {
-        return post(MisskeyAPI.FollowingDelete.code(), request)
+    ): Response<Unit> {
+        return post(
+            MisskeyAPI.FollowingDelete.path,
+            request
+        )
     }
 }

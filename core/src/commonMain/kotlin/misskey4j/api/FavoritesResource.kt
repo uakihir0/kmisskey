@@ -5,12 +5,13 @@ import misskey4j.api.request.favorites.FavoritesDeleteRequest
 import misskey4j.entity.share.Response
 
 interface FavoritesResource {
+
     /**
      * 指定した投稿をお気に入りに登録します。
      * https://misskey.io/api-doc#operation/notes/favorites/create
      */
     fun create(
-        request: FavoritesCreateRequest?
+        request: FavoritesCreateRequest
     ): Response<Unit>
 
     /**
@@ -18,6 +19,6 @@ interface FavoritesResource {
      * https://misskey.io/api-doc#operation/notes/favorites/delete
      */
     fun delete(
-        request: FavoritesDeleteRequest?
+        request: FavoritesDeleteRequest
     ): Response<Unit>
 }

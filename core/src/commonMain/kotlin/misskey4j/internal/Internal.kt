@@ -6,9 +6,9 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import misskey4j.entity.share.Response
-import misskey4j.internal.util.AnySerializer
-import misskey4j.internal.util.DateFormatter
 import work.socialhub.khttpclient.HttpResponse
+import work.socialhub.kmpcommon.AnySerializer
+import work.socialhub.kmpcommon.DateFormatter
 
 object Internal {
 

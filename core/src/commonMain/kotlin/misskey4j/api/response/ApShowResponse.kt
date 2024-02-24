@@ -9,5 +9,5 @@ class ApShowResponse {
     var type: String? = null
     var note: Note? = null
     var user: User? = null
-    // var `object`: JsonElement? = null
+    var `object`: String? = null
 }

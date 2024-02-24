@@ -8,6 +8,11 @@ kotlin {
     jvmToolchain(11)
 
     jvm { withJava() }
+    js {
+        binaries.library()
+        browser()
+        nodejs()
+    }
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -17,9 +22,9 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.ktor.core)
+            implementation(libs.kmpcommon)
             implementation(libs.khttpclient)
             implementation(libs.datetime)
-            implementation(libs.coroutines.core)
             implementation(libs.serialization.json)
         }
 

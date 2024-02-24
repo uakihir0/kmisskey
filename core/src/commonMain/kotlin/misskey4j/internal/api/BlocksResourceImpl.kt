@@ -1,16 +1,29 @@
 package misskey4j.internal.api
 
 import misskey4j.MisskeyAPI
+import misskey4j.api.BlocksResource
+import misskey4j.api.request.blocks.BlocksCreateRequest
+import misskey4j.api.request.blocks.BlocksDeleteRequest
+import misskey4j.api.request.blocks.BlocksListRequest
+import misskey4j.api.response.blocks.BlocksListResponse
 import misskey4j.entity.share.Response
 
-class BlocksResourceImpl(uri: String, i: String?) : AbstractResourceImpl(uri, i), BlocksResource {
+class BlocksResourceImpl(
+    uri: String,
+    i: String
+) : AbstractResourceImpl(uri, i),
+    BlocksResource {
+
     /**
      * {@inheritDoc}
      */
     override fun create(
         request: BlocksCreateRequest
-    ): Response<java.lang.Void> {
-        return post(MisskeyAPI.BlocksCreate.code(), request)
+    ): Response<Unit> {
+        return post(
+            MisskeyAPI.BlocksCreate.path,
+            request
+        )
     }
 
     /**
@@ -18,8 +31,11 @@ class BlocksResourceImpl(uri: String, i: String?) : AbstractResourceImpl(uri, i)
      */
     override fun delete(
         request: BlocksDeleteRequest
-    ): Response<java.lang.Void> {
-        return post(MisskeyAPI.BlocksDelete.code(), request)
+    ): Response<Unit> {
+        return post(
+            MisskeyAPI.BlocksDelete.path,
+            request
+        )
     }
 
     /**
@@ -29,8 +45,8 @@ class BlocksResourceImpl(uri: String, i: String?) : AbstractResourceImpl(uri, i)
         request: BlocksListRequest
     ): Response<Array<BlocksListResponse>> {
         return post(
-            Array<BlocksListResponse>::class.java,
-            MisskeyAPI.BlocksList.code(), request
+            MisskeyAPI.BlocksList.path,
+            request
         )
     }
 }

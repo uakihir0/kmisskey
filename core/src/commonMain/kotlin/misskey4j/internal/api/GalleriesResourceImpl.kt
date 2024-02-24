@@ -1,60 +1,98 @@
 package misskey4j.internal.api
 
 import misskey4j.MisskeyAPI
+import misskey4j.api.GalleriesResource
+import misskey4j.api.request.gallery.*
+import misskey4j.api.request.i.IListGalleryPostsRequest
+import misskey4j.api.request.users.ListUserGalleryPostsRequest
+import misskey4j.api.response.gallery.ListGalleryPostsResponse
+import misskey4j.entity.GalleryPost
 import misskey4j.entity.share.Response
 
-class GalleriesResourceImpl(uri: String, i: String?) : AbstractResourceImpl(uri, i), GalleriesResource {
-    override fun posts(request: ListGalleryPostsRequest): Response<Array<ListGalleryPostsResponse>> {
+class GalleriesResourceImpl(
+    uri: String,
+    i: String
+) : AbstractResourceImpl(uri, i),
+    GalleriesResource {
+
+    override fun posts(
+        request: ListGalleryPostsRequest
+    ): Response<Array<ListGalleryPostsResponse>> {
         return post(
-            Array<ListGalleryPostsResponse>::class.java,
-            MisskeyAPI.GalleryPosts.code(), request
+            MisskeyAPI.GalleryPosts.path,
+            request
         )
     }
 
-    override fun posts(request: IListGalleryPostsRequest): Response<Array<ListGalleryPostsResponse>> {
+    override fun posts(
+        request: IListGalleryPostsRequest
+    ): Response<Array<ListGalleryPostsResponse>> {
         return post(
-            Array<ListGalleryPostsResponse>::class.java,
-            MisskeyAPI.IGalleryPosts.code(), request
+            MisskeyAPI.IGalleryPosts.path,
+            request
         )
     }
 
-    override fun posts(request: ListUserGalleryPostsRequest): Response<Array<ListGalleryPostsResponse>> {
+    override fun posts(
+        request: ListUserGalleryPostsRequest
+    ): Response<Array<ListGalleryPostsResponse>> {
         return post(
-            Array<ListGalleryPostsResponse>::class.java,
-            MisskeyAPI.UserGalleryPosts.code(), request
+            MisskeyAPI.UserGalleryPosts.path,
+            request
         )
     }
 
-    override fun show(request: ShowGalleryPostRequest): Response<GalleryPost> {
+    override fun show(
+        request: ShowGalleryPostRequest
+    ): Response<GalleryPost> {
         return post(
-            GalleryPost::class.java,
-            MisskeyAPI.ShowGalleryPost.code(), request
+            MisskeyAPI.ShowGalleryPost.path,
+            request
         )
     }
 
-    override fun create(request: CreateGalleryPostRequest): Response<GalleryPost> {
+    override fun create(
+        request: CreateGalleryPostRequest
+    ): Response<GalleryPost> {
         return post(
-            GalleryPost::class.java,
-            MisskeyAPI.CreateGalleryPost.code(), request
+            MisskeyAPI.CreateGalleryPost.path,
+            request
         )
     }
 
-    override fun delete(request: DeleteGalleryPostRequest): Response<java.lang.Void> {
-        return post(MisskeyAPI.DeleteGalleryPost.code(), request)
-    }
-
-    override fun update(request: UpdateGalleryPostRequest): Response<GalleryPost> {
+    override fun delete(
+        request: DeleteGalleryPostRequest
+    ): Response<Unit> {
         return post(
-            GalleryPost::class.java,
-            MisskeyAPI.UpdateGalleryPost.code(), request
+            MisskeyAPI.DeleteGalleryPost.path,
+            request
         )
     }
 
-    override fun like(request: LikeGalleryPostRequest): Response<java.lang.Void> {
-        return post(MisskeyAPI.LikeGalleryPost.code(), request)
+    override fun update(
+        request: UpdateGalleryPostRequest
+    ): Response<GalleryPost> {
+        return post(
+            MisskeyAPI.UpdateGalleryPost.path,
+            request
+        )
     }
 
-    override fun like(request: UnlikeGalleryPostRequest): Response<java.lang.Void> {
-        return post(MisskeyAPI.UnlikeGalleryPost.code(), request)
+    override fun like(
+        request: LikeGalleryPostRequest
+    ): Response<Unit> {
+        return post(
+            MisskeyAPI.LikeGalleryPost.path,
+            request
+        )
+    }
+
+    override fun like(
+        request: UnlikeGalleryPostRequest
+    ): Response<Unit> {
+        return post(
+            MisskeyAPI.UnlikeGalleryPost.path,
+            request
+        )
     }
 }

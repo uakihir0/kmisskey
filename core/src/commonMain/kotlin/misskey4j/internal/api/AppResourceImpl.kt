@@ -1,9 +1,16 @@
 package misskey4j.internal.api
 
 import misskey4j.MisskeyAPI
+import misskey4j.api.AppResource
+import misskey4j.api.request.CreateAppRequest
+import misskey4j.api.response.CreateAppResponse
 import misskey4j.entity.share.Response
 
-class AppResourceImpl(uri: String) : AbstractResourceImpl(uri, null), AppResource {
+class AppResourceImpl(
+    uri: String
+) : AbstractResourceImpl(uri, ""),
+    AppResource {
+
     /**
      * {@inheritDoc}
      */
@@ -11,8 +18,8 @@ class AppResourceImpl(uri: String) : AbstractResourceImpl(uri, null), AppResourc
         request: CreateAppRequest
     ): Response<CreateAppResponse> {
         return post(
-            CreateAppResponse::class.java,
-            MisskeyAPI.AppCreate.code(), request
+            MisskeyAPI.AppCreate.path,
+            request,
         )
     }
 }

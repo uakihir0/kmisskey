@@ -1,12 +1,12 @@
 package misskey4j
 
 import misskey4j.api.*
-import misskey4j.stream.MisskeyStream
 
 interface Misskey {
 
     fun meta(): MetaResource
     fun federation(): FederationResource
+
     fun ap(): ApResource
     fun app(): AppResource
     fun auth(): AuthResource
@@ -25,6 +25,8 @@ interface Misskey {
     fun files(): FilesResource
     fun hashtags(): HashtagsResource
     fun other(): OtherResource
+    fun webhook(): WebhooksResource
+    fun gallery(): GalleriesResource
 
     /**
      * Get host to access.
@@ -36,14 +38,5 @@ interface Misskey {
      * Get authenticate token.
      * (called "i")
      */
-    val authToken: String?
-
-    /**
-     * Stream Objects.
-     */
-    fun stream(): MisskeyStream?
-
-    fun webhook(): WebhooksResource?
-
-    fun gallery(): GalleriesResource?
+    val i: String?
 }

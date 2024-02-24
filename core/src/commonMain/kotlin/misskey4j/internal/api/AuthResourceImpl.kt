@@ -1,9 +1,20 @@
 package misskey4j.internal.api
 
+import io.ktor.http.*
 import misskey4j.MisskeyAPI
+import misskey4j.api.AuthResource
+import misskey4j.api.request.GenerateAuthSessionRequest
+import misskey4j.api.request.GetMiAuthUriRequest
+import misskey4j.api.request.UserKeyAuthSessionRequest
+import misskey4j.api.response.GenerateAuthSessionResponse
+import misskey4j.api.response.UserKeyAuthSessionResponse
 import misskey4j.entity.share.Response
 
-class AuthResourceImpl(uri: String) : AbstractResourceImpl(uri, null), AuthResource {
+class AuthResourceImpl(
+    uri: String
+) : AbstractResourceImpl(uri, ""),
+    AuthResource {
+
     /**
      * {@inheritDoc}
      */
@@ -11,8 +22,8 @@ class AuthResourceImpl(uri: String) : AbstractResourceImpl(uri, null), AuthResou
         request: GenerateAuthSessionRequest
     ): Response<GenerateAuthSessionResponse> {
         return post(
-            GenerateAuthSessionResponse::class.java,
-            MisskeyAPI.AuthSessionGenerate.code(), request
+            MisskeyAPI.AuthSessionGenerate.path,
+            request
         )
     }
 
@@ -23,8 +34,8 @@ class AuthResourceImpl(uri: String) : AbstractResourceImpl(uri, null), AuthResou
         request: UserKeyAuthSessionRequest
     ): Response<UserKeyAuthSessionResponse> {
         return post(
-            UserKeyAuthSessionResponse::class.java,
-            MisskeyAPI.AuthSessionUserkey.code(), request
+            MisskeyAPI.AuthSessionUserkey.path,
+            request
         )
     }
 
@@ -34,50 +45,27 @@ class AuthResourceImpl(uri: String) : AbstractResourceImpl(uri, null), AuthResou
     override fun getMiAuthUri(
         request: GetMiAuthUriRequest
     ): Response<String> {
-        try {
-            val url: java.net.URL = java.net.URL(uri)
+        val url = Url(uri)
+        var authUrl = "${url.protocol}://${url.host}/miauth/${request.sessionId}"
 
-            val builder: java.lang.StringBuilder = java.lang.StringBuilder()
-            builder.append(url.getProtocol())
-            builder.append("://")
-            builder.append(url.getHost())
-            builder.append("/miauth/")
-            builder.append(request.sessionId)
+        val m = mutableListOf<String>()
+        request.name?.let { m += "name=${e(it)}" }
+        request.iconUri?.let { m += "icon=${e(it)}" }
+        request.callbackUrl?.let { m += "callback=${e(it)}" }
+        request.permission?.let { m += "permission=${e(it.joinToString(","))}" }
 
-            val params: MutableList<String> = java.util.ArrayList<String>()
-            if (request.name != null) {
-                params.add("name=" + encode(request.name))
-            }
-            if (request.iconUri != null) {
-                params.add("icon=" + encode(request.iconUri))
-            }
-            if (request.callbackUrl != null) {
-                params.add("callback=" + encode(request.callbackUrl))
-            }
-            if (request.permission != null) {
-                params.add("permission=" + encode(java.lang.String.join(",", request.permission)))
-            }
-
-            if (params.size > 0) {
-                builder.append("?")
-                builder.append(java.lang.String.join("&", params))
-            }
-
-            val response = Response<String>()
-            response.set(builder.toString())
-            return response
-        } catch (e: java.lang.Exception) {
-            return null
+        if (m.isNotEmpty()) {
+            authUrl += "?${m.joinToString("&")}"
         }
+
+        return Response(authUrl, "")
     }
 
     companion object {
-        protected fun encode(str: String?): String? {
-            return try {
-                java.net.URLEncoder.encode(str, "UTF-8")
-            } catch (e: java.lang.Exception) {
-                null
-            }
+        private fun e(
+            str: String
+        ): String {
+            return str.encodeURLParameter()
         }
     }
 }

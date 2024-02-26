@@ -32,7 +32,7 @@ interface Misskey {
      * Get host to access.
      * (ex, misskey.io)
      */
-    val host: String?
+    val host: String
 
     /**
      * Get authenticate token.

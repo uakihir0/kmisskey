@@ -1,40 +1,38 @@
 package misskey4j.search
 
-import com.google.gson.Gson
 import misskey4j.entity.search.JoinInstance
+import misskey4j.internal.Internal
 import misskey4j.internal.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
+import work.socialhub.kmpcommon.runBlocking
 
 /**
  * Get Instance lists.
  */
 class SearchInstances(
-    val apiPath: String,
+    val path: String,
 ) {
     val misskeyInstanceList: JoinInstance.Instances
         get() {
-            try {
+            return runBlocking {
                 val response = HttpRequest()
-                    .url(apiPath)
+                    .url(path)
                     .accept(MediaType.JSON)
                     .get()
 
-                val gson: Gson = AbstractResourceImpl.getGsonInstance()
                 val results: JoinInstance.Instances =
-                    gson.fromJson(response.asString(), JoinInstance.Instances::class.java)
+                    Internal.fromJson(response.stringBody)
 
-                results.instances!!.forEach(java.util.function.Consumer<JoinInstance> { instance: JoinInstance ->
-                    val desc: String = instance.description
-                    if (desc != null && !desc.isEmpty()) {
-                        instance.description = desc
-                            .replace("\\<.*?\\>".toRegex(), "")
-                            .replace("\n".toRegex(), "")
+                results.also {
+                    it.instances!!.forEach { instance ->
+                        val desc = instance.description
+                        if (!desc.isNullOrEmpty()) {
+                            instance.description = desc
+                                .replace("<.*?>".toRegex(), "")
+                                .replace("\n".toRegex(), "")
+                        }
                     }
-                })
-                return results
-
-            } catch (e: Exception) {
-                throw MisskeyException(e)
+                }
             }
         }
 }

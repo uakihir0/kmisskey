@@ -26,6 +26,11 @@ kotlin {
             implementation(libs.khttpclient)
             implementation(libs.datetime)
             implementation(libs.serialization.json)
+
+            implementation(project.dependencies.platform("org.kotlincrypto.hash:bom:0.4.0"))
+            implementation("org.kotlincrypto.hash:md")
+            implementation("org.kotlincrypto.hash:sha1")
+            implementation("org.kotlincrypto.hash:sha2")
         }
 
         // for test (kotlin/jvm)

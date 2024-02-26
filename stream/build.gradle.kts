@@ -18,6 +18,7 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":core"))
             implementation(libs.ktor.core)
+            implementation(libs.kmpcommon)
             implementation(libs.khttpclient)
             implementation(libs.coroutines.core)
             implementation(libs.serialization.json)

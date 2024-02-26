@@ -1,16 +1,12 @@
 package misskey4j.stream
 
-import misskey4j.entity.Note
-import misskey4j.entity.Notification
-import misskey4j.entity.User
+import misskey4j.entity.*
 import misskey4j.internal.Internal
-import misskey4j.stream.callback.ClosedCallback
-import misskey4j.stream.callback.ErrorCallback
-import misskey4j.stream.callback.EventCallback
-import misskey4j.stream.callback.OpenedCallback
+import misskey4j.stream.callback.*
 import misskey4j.stream.model.StreamRequest
 import misskey4j.stream.model.StreamResponse
 import work.socialhub.khttpclient.websocket.WebsocketRequest
+import kotlin.random.Random.Default.nextInt
 
 class StreamClient(
     var uri: String
@@ -18,15 +14,15 @@ class StreamClient(
     var client = WebsocketRequest()
     var isOpen: Boolean = false
 
-    var eventCallback: EventCallback? = null
-    private var openedCallback: OpenedCallback? = null
-    private var closedCallback: ClosedCallback? = null
-    private var errorCallback: ErrorCallback? = null
+    var openedCallback: OpenedCallback? = null
+    var closedCallback: ClosedCallback? = null
+    var errorCallback: ErrorCallback? = null
 
-    fun eventCallback(callback: EventCallback) = also { this.eventCallback = callback }
     fun openedCallback(callback: OpenedCallback) = also { this.openedCallback = callback }
     fun closedCallback(callback: ClosedCallback) = also { this.closedCallback = callback }
     fun errorCallback(callback: ErrorCallback) = also { this.errorCallback = callback }
+
+    private var eventCallbackMap = mutableMapOf<String, MutableList<EventCallback>>()
 
     init {
         this.client.url(this.uri)
@@ -54,24 +50,30 @@ class StreamClient(
     /**
      * Add callback event handler
      */
-    fun addCallback(id: String?, callbacks: List<EventCallback>) {
-        callbackMap[id] = callbacks
+    fun addEventCallback(
+        id: String,
+        callback: EventCallback
+    ) {
+        eventCallbackMap.let { map ->
+            map[id] = (map[id] ?: mutableListOf())
+                .also { it.add(callback) }
+        }
     }
 
     /**
      * Subscribe
      */
-    suspend fun <T> subscribe(
+    private suspend fun <T> subscribe(
         type: String,
         channelType: String?,
         id: String?,
         params: T,
-        possibleCallbacks: List<EventCallback>?
+        possibleCallbacks: List<EventCallback> = listOf()
     ) {
-        val request: StreamRequest<T> = StreamRequest()
+        val request = StreamRequest<T>()
 
-        possibleCallbacks?.let {
-            addCallback(id, it)
+        possibleCallbacks.forEach { cb ->
+            id?.let { addEventCallback(it, cb) }
         }
 
         request.body.channel = channelType
@@ -86,24 +88,23 @@ class StreamClient(
     suspend fun <T> connect(
         channelType: String?,
         params: T?,
-        callbacks: List<EventCallback>?
+        callbacks: List<EventCallback> = listOf()
     ) {
-        subscribe<T?>(
+        subscribe(
             "connect",
             channelType,
-            java.util.UUID.randomUUID().toString(),
+            randomId(),
             params,
             callbacks
         )
     }
 
-    suspend fun <T> disconnect(
-        channelType: String?
+    suspend fun disconnect(
+        channelType: String
     ) {
         subscribe<Any?>(
             "disconnect",
             channelType,
-            null,
             null,
             null
         )
@@ -112,18 +113,18 @@ class StreamClient(
     suspend fun <T> subscribeToNote(
         id: String?,
         params: T?,
-        callbacks: List<EventCallback>?
+        callbacks: List<EventCallback> = listOf()
     ) {
         subscribe(
             "subNote",
             null,
             id,
             params,
-            callbacks
+            callbacks,
         )
     }
 
-    suspend fun <T> unsubscribe(
+    suspend fun unsubscribe(
         id: String?
     ) {
         subscribe<Any?>(
@@ -131,177 +132,162 @@ class StreamClient(
             null,
             id,
             null,
-            null
         )
     }
 
 
-    fun onMessage(message: String) {
-        val response : StreamResponse<Any> = Internal.fromJson(message)
+    fun onMessage(
+        message: String
+    ) {
+        val response: StreamResponse<StreamResponse.BodyOnlyType> =
+            Internal.fromJson(message)
 
-        if (generic.getType().equals("channel")) {
+        if (response.type == "channel") {
+
             // NOTE
+            if (response.body.type == "note") {
+                val noteType: StreamResponse<StreamResponse.BodyWithBody<Note>> =
+                    Internal.fromJson(message)
 
-            if (generic.getBody().getType().equals("note")) {
-                val noteType: java.lang.reflect.Type = object : TypeToken<StreamResponse<Note?>?>() {
-                }.getType()
-
-                val note: StreamResponse<Note> = gson.fromJson(message, noteType)
-                val events: List<EventCallback>? = callbackMap[generic.getBody().getId()]
-
+                val events = eventCallbackMap[noteType.body.id]
                 if (events != null && events.size > 0) {
                     for (event in events) {
                         if (event is TimelineCallback) {
-                            val body: Note = note.getBody().getBody()
-                            (event as TimelineCallback).onNoteUpdate(body)
+                            val body = noteType.body.body
+                            event.onNoteUpdate(body)
                         }
                     }
                 }
             }
 
             // REPLY
-            if (generic.getBody().getType().equals("reply")) {
-                val noteType: java.lang.reflect.Type = object : TypeToken<StreamResponse<Note?>?>() {
-                }.getType()
+            if (response.body.type == "reply") {
+                val noteType: StreamResponse<StreamResponse.BodyWithBody<Note>> =
+                    Internal.fromJson(message)
 
-                val note: StreamResponse<Note> = gson.fromJson(message, noteType)
-                val events: List<EventCallback>? = callbackMap[generic.getBody().getId()]
-
+                val events = eventCallbackMap[noteType.body.id]
                 if (events != null && events.size > 0) {
                     for (event in events) {
                         if (event is ReplayCallback) {
-                            val body: Note = note.getBody().getBody()
-                            (event as ReplayCallback).onReply(body)
+                            val body = noteType.body.body
+                            event.onReply(body)
                         }
                     }
                 }
             }
 
             // MENTION
-            if (generic.getBody().getType().equals("mention")) {
-                val noteType: java.lang.reflect.Type = object : TypeToken<StreamResponse<Note?>?>() {
-                }.getType()
+            if (response.body.type == "mention") {
+                val noteType: StreamResponse<StreamResponse.BodyWithBody<Note>> =
+                    Internal.fromJson(message)
 
-                val note: StreamResponse<Note> = gson.fromJson(message, noteType)
-                val events: List<EventCallback>? = callbackMap[generic.getBody().getId()]
-
+                val events = eventCallbackMap[noteType.body.id]
                 if (events != null && events.size > 0) {
                     for (event in events) {
                         if (event is MentionCallback) {
-                            val body: Note = note.getBody().getBody()
-                            (event as MentionCallback).onMention(body)
+                            val body = noteType.body.body
+                            event.onMention(body)
                         }
                     }
                 }
             }
 
             // RENOTE
-            if (generic.getBody().getType().equals("renote")) {
-                val noteType: java.lang.reflect.Type = object : TypeToken<StreamResponse<Note?>?>() {
-                }.getType()
+            if (response.body.type == "renote") {
+                val noteType: StreamResponse<StreamResponse.BodyWithBody<Note>> =
+                    Internal.fromJson(message)
 
-                val note: StreamResponse<Note> = gson.fromJson(message, noteType)
-                val events: List<EventCallback>? = callbackMap[generic.getBody().getId()]
-
+                val events = eventCallbackMap[noteType.body.id]
                 if (events != null && events.size > 0) {
                     for (event in events) {
                         if (event is RenoteCallback) {
-                            val body: Note = note.getBody().getBody()
-                            (event as RenoteCallback).onRenote(body)
+                            val body = noteType.body.body
+                            event.onRenote(body)
                         }
                     }
                 }
             }
 
             // FOLLOWED
-            if (generic.getBody().getType().equals("followed")) {
-                val userType: java.lang.reflect.Type = object : TypeToken<StreamResponse<User?>?>() {
-                }.getType()
+            if (response.body.type == "followed") {
+                val userType: StreamResponse<StreamResponse.BodyWithBody<User>> =
+                    Internal.fromJson(message)
 
-                val user: StreamResponse<User> = gson.fromJson(message, userType)
-                val events: List<EventCallback>? = callbackMap[generic.getBody().getId()]
-
+                val events = eventCallbackMap[userType.body.id]
                 if (events != null && events.size > 0) {
                     for (event in events) {
                         if (event is FollowedCallback) {
-                            val body: User = user.getBody().getBody()
-                            (event as FollowedCallback).onFollowed(body)
+                            val body = userType.body.body
+                            event.onFollowed(body)
                         }
                     }
                 }
             }
 
             // Notification
-            if (generic.getBody().getType().equals("notification")) {
-                val notificationType: java.lang.reflect.Type = object : TypeToken<StreamResponse<Notification?>?>() {
-                }.getType()
+            if (response.body.type == "notification") {
+                val notificationType: StreamResponse<StreamResponse.BodyWithBody<Notification>> =
+                    Internal.fromJson(message)
 
-                val notification: StreamResponse<Notification> = gson.fromJson(message, notificationType)
-                val events: List<EventCallback>? = callbackMap[generic.getBody().getId()]
-
+                val events = eventCallbackMap[notificationType.body.id]
                 if (events != null && events.size > 0) {
                     for (event in events) {
                         if (event is NotificationCallback) {
-                            val body: Notification = notification.getBody().getBody()
-                            (event as NotificationCallback).onNotification(body)
+                            val body = notificationType.body.body
+                            event.onNotification(body)
                         }
                     }
                 }
             }
-        } else if (generic.getType().equals("noteUpdated")) {
+
+        } else if (response.type == "noteUpdated") {
+
             // REACTED
+            if (response.body.type == "reacted") {
+                val reactionType: StreamResponse<StreamResponse.BodyWithBody<Reaction>> =
+                    Internal.fromJson(message)
 
-            if (generic.getBody().getType().equals("reacted")) {
-                val noteType: java.lang.reflect.Type = object : TypeToken<StreamResponse<Reaction?>?>() {
-                }.getType()
-
-                val note: StreamResponse<Reaction> = gson.fromJson(message, noteType)
-                val events: List<EventCallback>? = callbackMap[generic.getBody().getId()]
-
+                val events = eventCallbackMap[reactionType.body.id]
                 if (events != null && events.size > 0) {
                     for (event in events) {
                         if (event is NoteCallback) {
-                            val body: Reaction = note.getBody().getBody()
-                            body.noteId = generic.getBody().getId()
-                            (event as NoteCallback).onReacted(body)
+                            val body = reactionType.body.body
+                            body.noteId = response.body.id
+                            event.onReacted(body)
                         }
                     }
                 }
             }
 
             // UNREACTED
-            if (generic.getBody().getType().equals("unreacted")) {
-                val noteType: java.lang.reflect.Type = object : TypeToken<StreamResponse<Reaction?>?>() {
-                }.getType()
+            if (response.body.type == "unreacted") {
+                val reactionType: StreamResponse<StreamResponse.BodyWithBody<Reaction>> =
+                    Internal.fromJson(message)
 
-                val note: StreamResponse<Reaction> = gson.fromJson(message, noteType)
-                val events: List<EventCallback>? = callbackMap[generic.getBody().getId()]
-
+                val events = eventCallbackMap[reactionType.body.id]
                 if (events != null && events.size > 0) {
                     for (event in events) {
                         if (event is NoteCallback) {
-                            val body: Reaction = note.getBody().getBody()
-                            body.noteId = generic.getBody().getId()
-                            (event as NoteCallback).onUnreacted(body)
+                            val body = reactionType.body.body
+                            body.noteId = response.body.id
+                            event.onUnreacted(body)
                         }
                     }
                 }
             }
 
             // DELETED
-            if (generic.getBody().getType().equals("deleted")) {
-                val noteType: java.lang.reflect.Type = object : TypeToken<StreamResponse<DeletedNote?>?>() {
-                }.getType()
+            if (response.body.type == "deleted") {
+                val deleteNoteType: StreamResponse<StreamResponse.BodyWithBody<DeletedNote>> =
+                    Internal.fromJson(message)
 
-                val note: StreamResponse<DeletedNote> = gson.fromJson(message, noteType)
-                val events: List<EventCallback>? = callbackMap[generic.getBody().getId()]
-
+                val events = eventCallbackMap[deleteNoteType.body.id]
                 if (events != null && events.size > 0) {
                     for (event in events) {
                         if (event is NoteCallback) {
-                            val body: DeletedNote = note.getBody().getBody()
-                            body.id = generic.getBody().getId()
-                            (event as NoteCallback).onNoteDeleted(body)
+                            val body = deleteNoteType.body.body
+                            body.id = response.body.id
+                            event.onNoteDeleted(body)
                         }
                     }
                 }
@@ -309,50 +295,13 @@ class StreamClient(
 
             // TODO: PollVoted
         }
-
-        logger.trace(message)
     }
 
-    fun onDisconnect(code: Int, reason: String) {
-        logger.debug("Connection closed, code: $code reason: $reason")
-        this.isOpen = false
-
-        if (closedCallback != null) {
-            closedCallback.onClosed(false)
-        }
-    }
-
-    fun onError(cause: java.lang.Exception?) {
-        if (cause != null) {
-            logger.debug(
-                "Exception: " + cause.javaClass.getName()
-                        + " message: " + cause.message
-            )
-            logger.debug("Trace: ", cause)
-        }
-
-        if (errorCallback != null) {
-            errorCallback.onError(cause)
-        }
-    }
-
-    fun onMessage(data: ByteArray?) {
-    }
-
-    // region
-    fun setOpenedCallback(openedCallback: OpenedCallback?) {
-        this.openedCallback = openedCallback
-    }
-
-    fun setClosedCallback(closedCallback: ClosedCallback?) {
-        this.closedCallback = closedCallback
-    }
-
-    fun setErrorCallback(errorCallback: ErrorCallback?) {
-        this.errorCallback = errorCallback
-    } // endregion
-
-    companion object {
-        private val logger: Logger = Logger.getLogger(StreamClient::class.java)
+    private fun randomId(): String {
+        return (1..16)
+            .joinToString("") {
+                nextInt(0, 16)
+                    .toString(16)
+            }
     }
 }

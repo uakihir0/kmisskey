@@ -1,144 +1,171 @@
 package misskey4j.stream
 
-import kotlinx.coroutines.runBlocking
 import misskey4j.Misskey
 import misskey4j.stream.callback.EventCallback
-import work.socialhub.khttpclient.websocket.WebsocketRequest
+import misskey4j.stream.callback.NoteCallback
+import misskey4j.stream.callback.TimelineCallback
 
 class MisskeyStream(
-    val misskey: Misskey
+    misskey: Misskey
 ) {
     val url: String
+    val client: StreamClient
 
     init {
         val host = misskey.host
         val i = checkNotNull(misskey.i)
         url = "wss://$host/streaming?i=$i"
+        client = StreamClient(url)
     }
 
+    /**
+     * Is connection opened?
+     */
     val isOpen: Boolean
-        /**
-         * Is connection opened?
-         */
-        get() = client!!.isOpen()
+        get() = client.isOpen
 
     /**
      * Connect (nonblocking)
      */
-    fun connect() {
-        client!!.connect()
+    suspend fun open() {
+        client.open()
     }
 
     /**
      * Close
      */
     fun close() {
-        client!!.close()
+        client.close()
     }
 
     /**
      * Notifications
      */
-    fun main():StreamClient {
-        StreamClient(url)
-
+    suspend fun main(
+        callback: EventCallback
+    ) {
+        client.connect(
+            "main",
+            null,
+            listOf(callback)
+        )
     }
 
     /**
      * HomeTimeLine Events
      */
-    fun homeTimeLine(callback: TimelineCallback) {
-        client!!.connect("homeTimeline", null, listOf<Any>(callback))
+    suspend fun homeTimeLine(
+        callback: TimelineCallback
+    ) {
+        client.connect(
+            "homeTimeline",
+            null,
+            listOf(callback)
+        )
     }
 
     /**
      * LocalTimeline Events
      */
-    fun localTimeline(callback: TimelineCallback) {
-        client!!.connect("localTimeline", null, listOf<Any>(callback))
+    suspend fun localTimeline(
+        callback: TimelineCallback
+    ) {
+        client.connect(
+            "localTimeline",
+            null,
+            listOf(callback),
+        )
     }
 
     /**
      * HybridTimeline Events
      */
-    fun hybridTimeline(callback: TimelineCallback) {
-        client!!.connect("hybridTimeline", null, listOf<Any>(callback))
+    suspend fun hybridTimeline(
+        callback: TimelineCallback
+    ) {
+        client.connect(
+            "hybridTimeline",
+            null,
+            listOf(callback),
+        )
     }
 
     /**
      * GlobalTimeline Events
      */
-    fun globalTimeline(callback: TimelineCallback) {
-        client!!.connect("globalTimeline", null, listOf<Any>(callback))
+    suspend fun globalTimeline(
+        callback: TimelineCallback
+    ) {
+        client.connect(
+            "globalTimeline",
+            null,
+            listOf(callback),
+        )
     }
 
     /**
      * Listen note Events
      */
-    fun note(noteId: String?, callback: NoteCallback) {
-        client!!.subscribeToNote(noteId, null, listOf<Any>(callback))
+    suspend fun note(
+        noteId: String,
+        callback: NoteCallback
+    ) {
+        client.subscribeToNote(
+            noteId,
+            null,
+            listOf(callback),
+        )
     }
 
-    @CheckReturnValue
     fun unsubscribe(): Unsubscribe {
         return Unsubscribe(client)
     }
 
-    fun setOpenedCallback(openedCallback: OpenedCallback?) {
-        client!!.setOpenedCallback(openedCallback)
-    }
 
-    fun setClosedCallback(closedCallback: ClosedCallback?) {
-        client!!.setClosedCallback(closedCallback)
-    }
-
-    fun setErrorCallback(errorCallback: ErrorCallback?) {
-        client!!.setErrorCallback(errorCallback)
-    }
-
-    inner class Unsubscribe(client: StreamClient) {
-        private val client: StreamClient = client
+    inner class Unsubscribe(
+        val client: StreamClient
+    ) {
 
         /**
          * Notifications
          */
-        fun main() {
-            client.disconnect<Any>("main")
+        suspend fun main() {
+            client.disconnect("main")
         }
 
         /**
          * HomeTimeLine Events
          */
-        fun homeTimeLine() {
-            client.disconnect<Any>("homeTimeline")
+        suspend fun homeTimeLine() {
+            client.disconnect("homeTimeline")
         }
 
         /**
          * LocalTimeline Events
          */
-        fun localTimeline() {
-            client.disconnect<Any>("localTimeline")
+        suspend fun localTimeline() {
+            client.disconnect("localTimeline")
         }
 
         /**
          * HybridTimeline Events
          */
-        fun hybridTimeline() {
-            client.disconnect<Any>("hybridTimeline")
+        suspend fun hybridTimeline() {
+            client.disconnect("hybridTimeline")
         }
 
         /**
          * GlobalTimeline Events
          */
-        fun globalTimeline() {
-            client.disconnect<Any>("globalTimeline")
+        suspend fun globalTimeline() {
+            client.disconnect("globalTimeline")
         }
 
         /**
          * Stop listening to note Events
          */
-        fun note(noteId: String?) {
-            client.unsubscribe<Any>(noteId)
+        suspend fun note(noteId: String) {
+            client.unsubscribe(noteId)
         }
     }
 }

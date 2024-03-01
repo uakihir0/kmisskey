@@ -14,13 +14,13 @@ class StreamClient(
     var client = WebsocketRequest()
     var isOpen: Boolean = false
 
-    var openedCallback: OpenedCallback? = null
-    var closedCallback: ClosedCallback? = null
-    var errorCallback: ErrorCallback? = null
+    var openedCallback: (() -> Unit)? = null
+    var closedCallback: (() -> Unit)? = null
+    var errorCallback: ((Exception) -> Unit)? = null
 
-    fun openedCallback(callback: OpenedCallback) = also { this.openedCallback = callback }
-    fun closedCallback(callback: ClosedCallback) = also { this.closedCallback = callback }
-    fun errorCallback(callback: ErrorCallback) = also { this.errorCallback = callback }
+    fun openedCallback(callback: () -> Unit) = also { this.openedCallback = callback }
+    fun closedCallback(callback: () -> Unit) = also { this.closedCallback = callback }
+    fun errorCallback(callback: (Exception) -> Unit) = also { this.errorCallback = callback }
 
     private var eventCallbackMap = mutableMapOf<String, MutableList<EventCallback>>()
 
@@ -31,11 +31,11 @@ class StreamClient(
         }
         this.client.onOpenListener = {
             this.isOpen = true
-            this.openedCallback?.onOpened()
+            this.openedCallback?.invoke()
         }
         this.client.onCloseListener = {
             this.isOpen = false
-            this.closedCallback?.onClosed()
+            this.closedCallback?.invoke()
         }
     }
 

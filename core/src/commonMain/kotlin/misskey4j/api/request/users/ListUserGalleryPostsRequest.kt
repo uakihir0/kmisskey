@@ -5,7 +5,6 @@ import misskey4j.api.model.TokenRequest
 
 @Serializable
 class ListUserGalleryPostsRequest(
-    override var i: String,
     var userId: String,
 ) : TokenRequest() {
 

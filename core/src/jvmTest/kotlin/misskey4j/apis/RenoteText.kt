@@ -11,7 +11,7 @@ class RenoteText : AbstractTest() {
         val misskey = misskey()
 
         misskey.notes().create(
-            NotesCreateRequest(misskey.i!!).also {
+            NotesCreateRequest().also {
                 it.renoteId = ""
                 it.visibility = "home"
                 it.text = "テスト"

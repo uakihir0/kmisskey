@@ -17,7 +17,7 @@ class WebhookTest : AbstractTest() {
             WebhooksType.FOLLOW,
             WebhooksType.NOTE
         )
-        val request = CreateWebhooksRequest(misskey.i!!).also { r ->
+        val request = CreateWebhooksRequest().also { r ->
             r.name = "WebhookTest"
             r.on = on.map { it.name }
             r.secret = "qazwsx"
@@ -38,7 +38,7 @@ class WebhookTest : AbstractTest() {
             WebhooksType.NOTE,
             WebhooksType.UNFOLLOW
         )
-        val request = UpdateWebhooksRequest(misskey.i!!).also { r ->
+        val request = UpdateWebhooksRequest().also { r ->
             r.name = "WebhookTestRename"
             r.on = on.map { it.name }
             r.secret = "qazwsx"
@@ -55,7 +55,7 @@ class WebhookTest : AbstractTest() {
         misskey: Misskey,
         webhookId: String,
     ): String {
-        val request = ShowWebhooksRequest(misskey.i!!).also {
+        val request = ShowWebhooksRequest().also {
             it.webhookId = webhookId
         }
 
@@ -67,7 +67,7 @@ class WebhookTest : AbstractTest() {
     fun listWebhook(
         misskey: Misskey
     ) {
-        val request = ListWebhooksRequest(misskey.i!!)
+        val request = ListWebhooksRequest()
         val response = misskey.webhook().list(request)
 
         for (showWebhooksResponse in response.data) {
@@ -79,7 +79,7 @@ class WebhookTest : AbstractTest() {
         misskey: Misskey,
         webhookId: String
     ) {
-        val deleteRequest = DeleteWebhooksRequest(misskey.i!!).also { r ->
+        val deleteRequest = DeleteWebhooksRequest().also { r ->
             r.webhookId = webhookId
         }
         val deleteWebhooksResponse = misskey.webhook().delete(deleteRequest)

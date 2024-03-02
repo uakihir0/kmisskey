@@ -11,7 +11,7 @@ class NotificationTest : AbstractTest() {
         val misskey = misskey()
 
         misskey.accounts().iNotifications(
-            INotificationsRequest(misskey.i!!)
+            INotificationsRequest()
         )
     }
 }

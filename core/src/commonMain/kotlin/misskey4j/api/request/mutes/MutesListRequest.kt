@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class MutesListRequest(
-    override var i: String
-) : TokenRequest() {
+class MutesListRequest : TokenRequest() {
 
     var limit: Long? = null
     var sinceId: String? = null

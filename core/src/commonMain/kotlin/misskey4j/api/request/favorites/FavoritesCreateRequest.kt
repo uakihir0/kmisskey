@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class FavoritesCreateRequest(
-    override var i: String
-) : TokenRequest() {
+class FavoritesCreateRequest : TokenRequest() {
 
     var noteId: String? = null
 }

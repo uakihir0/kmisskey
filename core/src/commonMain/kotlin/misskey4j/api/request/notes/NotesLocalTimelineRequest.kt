@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class NotesLocalTimelineRequest(
-    override var i: String
-) : TokenRequest() {
+class NotesLocalTimelineRequest : TokenRequest() {
 
     var withFiles: Boolean? = null
     var fileType: List<String>? = null

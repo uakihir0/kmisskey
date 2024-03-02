@@ -11,7 +11,7 @@ class UsersTest : AbstractTest() {
     fun testUsersFollowings() {
         val misskey = misskey()
 
-        val i = misskey.accounts().i(IRequest(misskey.i!!))
+        val i = misskey.accounts().i(IRequest())
         val followings =
             misskey.users().followings(
                 UsersFollowingsRequest().also {
@@ -29,7 +29,7 @@ class UsersTest : AbstractTest() {
 
         val relations =
             misskey.users().relation(
-                UsersRelationRequest(misskey.i!!).also {
+                UsersRelationRequest().also {
                     it.userId = listOf(
                         "7rkrarq81i",
                         "7rkrg1wo1a",
@@ -60,7 +60,7 @@ class UsersTest : AbstractTest() {
         val misskey = misskey()
 
         val users = misskey.users().show(
-            UsersShowMultipleRequest(misskey.i!!).also {
+            UsersShowMultipleRequest().also {
                 it.userIds = listOf(
                     "7rkrarq81i",
                     "7rkrg1wo1a",
@@ -76,7 +76,7 @@ class UsersTest : AbstractTest() {
 
         run {
             val users = misskey.users().show(
-                UsersShowSingleRequest(misskey.i!!).also {
+                UsersShowSingleRequest().also {
                     it.userId = "7rkrarq81i"
                     it.host = "misskey.io"
                 })
@@ -85,7 +85,7 @@ class UsersTest : AbstractTest() {
 
         run {
             val users = misskey.users().show(
-                UsersShowSingleRequest(misskey.i!!).also {
+                UsersShowSingleRequest().also {
                     it.userId = "7rkrarq81i"
                 })
             println(users.data.username)

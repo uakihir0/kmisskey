@@ -86,7 +86,7 @@ class MisskeyTest : AbstractTest() {
     @Test
     fun testGetI() {
         val misskey = misskey()
-        val response = misskey.accounts().i(IRequest(misskey.i!!))
+        val response = misskey.accounts().i(IRequest())
 
         println("NAME: " + response.data.name)
     }
@@ -94,7 +94,7 @@ class MisskeyTest : AbstractTest() {
     @Test
     fun testGetIFromWebUIAccessToken() {
         val misskey = MisskeyFactory.instance(HOST!!, OWNED_USER_TOKEN!!)
-        val response = misskey.accounts().i(IRequest(misskey.i!!))
+        val response = misskey.accounts().i(IRequest())
 
         println("NAME: " + response.data.name)
     }

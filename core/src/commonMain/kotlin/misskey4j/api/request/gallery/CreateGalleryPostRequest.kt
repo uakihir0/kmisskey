@@ -5,7 +5,6 @@ import misskey4j.api.model.TokenRequest
 
 @Serializable
 class CreateGalleryPostRequest(
-    override var i: String,
     var title: String,
     var fileIds: List<String>,
 ) : TokenRequest() {

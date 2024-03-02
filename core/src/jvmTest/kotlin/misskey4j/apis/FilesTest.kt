@@ -12,7 +12,7 @@ class FilesTest : AbstractTest() {
         val stream = javaClass.getResourceAsStream("/img/misskey4j.png")
 
         misskey.files().create(
-            FilesCreateRequest(misskey.i!!).also {
+            FilesCreateRequest().also {
                 it.bytes = stream.readAllBytes()
                 it.name = "misskey4j.png"
                 it.force = true

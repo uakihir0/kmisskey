@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class BlocksDeleteRequest(
-    override var i: String
-) : TokenRequest() {
+class BlocksDeleteRequest : TokenRequest() {
 
     var userId: String? = null
 }

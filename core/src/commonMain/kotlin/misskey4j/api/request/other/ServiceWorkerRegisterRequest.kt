@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class ServiceWorkerRegisterRequest(
-    override var i: String
-) : TokenRequest() {
+class ServiceWorkerRegisterRequest : TokenRequest() {
 
     var endpoint: String? = null
     var auth: String? = null

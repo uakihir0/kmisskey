@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class ShowWebhooksRequest(
-    override var i: String
-) : TokenRequest() {
+class ShowWebhooksRequest : TokenRequest() {
 
     var webhookId: String? = null
 }

@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class UsersListsShowRequest(
-   override var i: String
-) : TokenRequest() {
+class UsersListsShowRequest : TokenRequest() {
 
     var listId: String? = null
 }

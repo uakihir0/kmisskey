@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class ChannelsTimelineRequest(
-    override var i: String
-) : TokenRequest() {
+class ChannelsTimelineRequest : TokenRequest() {
 
     var channelId: String? = null
 

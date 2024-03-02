@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class ReactionsCreateRequest(
-    override var i: String
-) : TokenRequest() {
+class ReactionsCreateRequest : TokenRequest() {
 
     var noteId: String? = null
     var reaction: String? = null

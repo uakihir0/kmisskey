@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class NotesConversationRequest(
-    override var i: String
-) : TokenRequest() {
+class NotesConversationRequest : TokenRequest() {
 
     var noteId: String? = null
     var limit: Long? = null

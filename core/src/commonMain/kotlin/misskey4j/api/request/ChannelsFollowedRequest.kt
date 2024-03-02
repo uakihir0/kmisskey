@@ -4,9 +4,7 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class ChannelsFollowedRequest(
-    override var i: String
-) : TokenRequest() {
+class ChannelsFollowedRequest : TokenRequest() {
 
     var limit: Long? = null
     var sinceId: String? = null

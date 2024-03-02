@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 class UsersSearchRequest {
 
     var query: String? = null
-
     var offset: Long? = null
     var limit: Long? = null
 

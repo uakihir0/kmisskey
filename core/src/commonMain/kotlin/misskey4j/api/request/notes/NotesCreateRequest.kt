@@ -5,9 +5,7 @@ import misskey4j.api.model.PollRequest
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class NotesCreateRequest(
-    override var i: String
-) : TokenRequest() {
+class NotesCreateRequest : TokenRequest() {
 
     var visibility: String? = null
     var visibleUserIds: List<String>? = null

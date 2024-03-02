@@ -19,7 +19,11 @@ class UsersTest : AbstractTest() {
                 })
 
         for (following in followings.data) {
-            println(following.followee!!.id + " : " + following.followee!!.name)
+            println(
+                following.followee!!.id
+                        + " : "
+                        + following.followee!!.name
+            )
         }
     }
 
@@ -51,7 +55,7 @@ class UsersTest : AbstractTest() {
             })
 
         for (user in users.data) {
-            println(user.username)
+            print(user)
         }
     }
 
@@ -67,7 +71,7 @@ class UsersTest : AbstractTest() {
                 )
             })
 
-        println(users.data[0].username)
+        print(users.data[0])
     }
 
     @Test
@@ -80,7 +84,7 @@ class UsersTest : AbstractTest() {
                     it.userId = "7rkrarq81i"
                     it.host = "misskey.io"
                 })
-            println(users.data.username)
+            print(users.data)
         }
 
         run {
@@ -88,7 +92,7 @@ class UsersTest : AbstractTest() {
                 UsersShowSingleRequest().also {
                     it.userId = "7rkrarq81i"
                 })
-            println(users.data.username)
+            print(users.data)
         }
     }
 }

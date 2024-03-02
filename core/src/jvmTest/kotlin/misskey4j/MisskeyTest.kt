@@ -80,7 +80,7 @@ class MisskeyTest : AbstractTest() {
             )
 
         println("USER TOKEN: " + response.data.accessToken)
-        println("NAME: " + response.data.user!!.name)
+        print(response.data.user!!)
     }
 
     @Test
@@ -88,7 +88,8 @@ class MisskeyTest : AbstractTest() {
         val misskey = misskey()
         val response = misskey.accounts().i(IRequest())
 
-        println("NAME: " + response.data.name)
+        println(response.json)
+        print(response.data)
     }
 
     @Test
@@ -96,7 +97,7 @@ class MisskeyTest : AbstractTest() {
         val misskey = MisskeyFactory.instance(HOST!!, OWNED_USER_TOKEN!!)
         val response = misskey.accounts().i(IRequest())
 
-        println("NAME: " + response.data.name)
+        print(response.data)
     }
 
     @Test

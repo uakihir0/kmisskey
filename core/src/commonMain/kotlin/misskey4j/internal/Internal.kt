@@ -5,7 +5,10 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.contextual
 import misskey4j.entity.share.Response
+import misskey4j.entity.user.User
+import misskey4j.util.json.UserSerializer
 import work.socialhub.khttpclient.HttpResponse
 import work.socialhub.kmpcommon.AnySerializer
 import work.socialhub.kmpcommon.DateFormatter
@@ -19,6 +22,7 @@ object Internal {
         ignoreUnknownKeys = true
         serializersModule = SerializersModule {
             contextual(Any::class, AnySerializer)
+            contextual(User::class, UserSerializer)
         }
     }
 

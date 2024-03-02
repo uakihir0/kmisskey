@@ -4,7 +4,7 @@ import kotlinx.coroutines.runBlocking
 import misskey4j.AbstractTest
 import misskey4j.entity.Note
 import misskey4j.entity.Notification
-import misskey4j.entity.User
+import misskey4j.entity.user.UserLite
 import misskey4j.stream.MisskeyStream
 import misskey4j.stream.callback.*
 import kotlin.test.Test
@@ -60,7 +60,7 @@ class StreamTest : AbstractTest() {
             println("!!onNotification!!")
         }
 
-        override fun onFollowed(user: User) {
+        override fun onFollowed(user: UserLite) {
             println("!!onFollowed!!")
         }
 

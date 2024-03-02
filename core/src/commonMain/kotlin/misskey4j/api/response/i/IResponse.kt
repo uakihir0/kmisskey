@@ -1,7 +1,5 @@
 package misskey4j.api.response.i
 
-import kotlinx.serialization.Serializable
-import misskey4j.entity.User
+import misskey4j.entity.user.User
 
-@Serializable
-class IResponse : User()
+typealias IResponse = User

@@ -2,7 +2,8 @@ package misskey4j.api.response
 
 import kotlinx.serialization.Serializable
 import misskey4j.entity.Note
-import misskey4j.entity.User
+import misskey4j.entity.user.User
+import misskey4j.entity.user.UserLite
 
 @Serializable
 class ApShowResponse {

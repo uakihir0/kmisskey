@@ -1,6 +1,7 @@
 package misskey4j.stream
 
 import misskey4j.entity.*
+import misskey4j.entity.user.User
 import misskey4j.internal.Internal
 import misskey4j.stream.callback.*
 import misskey4j.stream.model.StreamRequest

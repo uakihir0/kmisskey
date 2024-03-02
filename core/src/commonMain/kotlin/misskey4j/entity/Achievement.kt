@@ -6,5 +6,7 @@ import kotlinx.serialization.Serializable
 class Achievement {
 
     lateinit var name: String
-    lateinit var unlockedAt: String
+
+    // TODO: String literal for key 'unlockedAt' should be quoted.
+    // lateinit var unlockedAt: String
 }

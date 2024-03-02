@@ -1,6 +1,8 @@
 package misskey4j.entity
 
 import kotlinx.serialization.Serializable
+import misskey4j.entity.user.User
+import misskey4j.entity.user.UserLite
 
 @Serializable
 class Page {

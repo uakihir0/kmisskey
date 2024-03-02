@@ -2,6 +2,7 @@ package misskey4j
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import misskey4j.entity.user.User
 import misskey4j.internal.Internal.fromJson
 import java.io.FileReader
 import kotlin.test.BeforeTest
@@ -69,5 +70,26 @@ open class AbstractTest {
 
         @SerialName("owned_user_token")
         var ownedUserToken: String? = null
+    }
+
+    fun print(user: User) {
+        println("=== UserLite ===")
+        println("ID       > ${user.id}")
+        println("Name     > ${user.name}")
+        // println("UserName > ${user.username}")
+        println("")
+
+        user.asUserDetailedNotMe?.let {
+            println("> === UserDetailedNotMe ===")
+            println("> FollowingCount > ${it.followingCount}")
+            println("> FollowersCount > ${it.followersCount}")
+            println("")
+        }
+
+        user.asMeDetailed?.let {
+            println(">> === MeDetailed ===")
+            println(">> UnreadNotificationsCount > ${it.unreadNotificationsCount}")
+            println("")
+        }
     }
 }

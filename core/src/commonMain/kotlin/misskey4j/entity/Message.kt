@@ -1,6 +1,8 @@
 package misskey4j.entity
 
 import kotlinx.serialization.Serializable
+import misskey4j.entity.user.User
+import misskey4j.entity.user.UserLite
 
 @Serializable
 open class Message {
@@ -10,7 +12,7 @@ open class Message {
     var text: String? = null
 
     var userId: String? = null
-    var user: User? = null
+    var user: UserLite? = null
 
     var fileId: String? = null
     var file: File? = null

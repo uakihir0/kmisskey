@@ -4,10 +4,8 @@ import kotlinx.serialization.Serializable
 import misskey4j.api.model.TokenRequest
 
 @Serializable
-class NotesTimelineRequest(
-    override var i: String
-) : TokenRequest() {
-
+class NotesTimelineRequest : TokenRequest() {
+    
     var limit: Long? = null
     var sinceId: String? = null
     var untilId: String? = null

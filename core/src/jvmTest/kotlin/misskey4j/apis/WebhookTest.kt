@@ -1,73 +1,95 @@
 package misskey4j.apis
 
-import com.google.gson.Gson
-import misskey4j.entity.share.Response
+import misskey4j.AbstractTest
+import misskey4j.Misskey
+import misskey4j.api.request.webhooks.*
+import misskey4j.entity.contant.WebhooksType
+import misskey4j.internal.Internal
+import kotlin.test.Test
 
 class WebhookTest : AbstractTest() {
-    var gson: Gson = Gson()
 
-    fun createWebhook(misskey: Misskey): String {
-        val on: Array<WebhooksType> = arrayOf<WebhooksType>(WebhooksType.FOLLOW, WebhooksType.NOTE)
-        val request: CreateWebhooksRequest = CreateWebhooksRequest.builder()
-            .name("WebhookTest")
-            .on(on)
-            .secret("qazwsx")
-            .url("https://socialhub.work/")
-            .build()
+    fun createWebhook(
+        misskey: Misskey
+    ): String {
 
-        val response: Response<CreateWebhooksResponse> = misskey.webhook().create(request)
-        System.out.println(gson.toJson(response.get()))
-        return response.get().getId()
+        val on = arrayOf(
+            WebhooksType.FOLLOW,
+            WebhooksType.NOTE
+        )
+        val request = CreateWebhooksRequest(misskey.i!!).also { r ->
+            r.name = "WebhookTest"
+            r.on = on.map { it.name }
+            r.secret = "qazwsx"
+            r.url = "https://socialhub.work/"
+        }
+
+        val response = misskey.webhook().create(request)
+        println(Internal.toJson(response.data))
+        return response.data.id!!
     }
 
-    fun updateWebhook(misskey: Misskey, webhookId: String?) {
-        val on: Array<WebhooksType> =
-            arrayOf<WebhooksType>(WebhooksType.FOLLOW, WebhooksType.NOTE, WebhooksType.UNFOLLOW)
-        val request: UpdateWebhooksRequest = UpdateWebhooksRequest.builder()
-            .webhookId(webhookId)
-            .name("WebhookTestRename")
-            .secret("qazwsx")
-            .url("https://socialhub.work/")
-            .active(false)
-            .on(on)
-            .build()
+    fun updateWebhook(
+        misskey: Misskey,
+        webhookId: String
+    ) {
+        val on = arrayOf(
+            WebhooksType.FOLLOW,
+            WebhooksType.NOTE,
+            WebhooksType.UNFOLLOW
+        )
+        val request = UpdateWebhooksRequest(misskey.i!!).also { r ->
+            r.name = "WebhookTestRename"
+            r.on = on.map { it.name }
+            r.secret = "qazwsx"
+            r.url = "https://socialhub.work/"
+            r.webhookId = webhookId
+            r.active = false
+        }
 
-        val response: Response<UpdateWebhooksResponse> = misskey.webhook().update(request)
-        System.out.println(gson.toJson(response.get()))
+        val response = misskey.webhook().update(request)
+        println(Internal.toJson(response.data))
     }
 
-    fun showWebhook(misskey: Misskey, webhookId: String?): String {
-        val request: ShowWebhooksRequest = ShowWebhooksRequest.builder()
-            .webhookId(webhookId)
-            .build()
+    fun showWebhook(
+        misskey: Misskey,
+        webhookId: String,
+    ): String {
+        val request = ShowWebhooksRequest(misskey.i!!).also {
+            it.webhookId = webhookId
+        }
 
-        val response: Response<ShowWebhooksResponse> = misskey.webhook().show(request)
-        System.out.println(gson.toJson(response.get()))
-        return response.get().getId()
+        val response = misskey.webhook().show(request)
+        println(Internal.toJson(response.data))
+        return response.data.id!!
     }
 
-    fun listWebhook(misskey: Misskey) {
-        val request: ListWebhooksRequest = ListWebhooksRequest.builder().build()
-        val response: Response<Array<ShowWebhooksResponse>> = misskey.webhook().list(request)
+    fun listWebhook(
+        misskey: Misskey
+    ) {
+        val request = ListWebhooksRequest(misskey.i!!)
+        val response = misskey.webhook().list(request)
 
-        for (showWebhooksResponse in response.get()) {
-            System.out.println(gson.toJson(showWebhooksResponse))
+        for (showWebhooksResponse in response.data) {
+            println(Internal.toJson(showWebhooksResponse))
         }
     }
 
-    fun deleteWebhook(misskey: Misskey, webhookId: String?) {
-        val deleteRequest: DeleteWebhooksRequest = DeleteWebhooksRequest.builder()
-            .webhookId(webhookId)
-            .build()
-
-        val deleteWebhooksResponse: Response<DeleteWebhooksResponse> = misskey.webhook().delete(deleteRequest)
-        System.out.println(gson.toJson(deleteWebhooksResponse.get()))
+    fun deleteWebhook(
+        misskey: Misskey,
+        webhookId: String
+    ) {
+        val deleteRequest = DeleteWebhooksRequest(misskey.i!!).also { r ->
+            r.webhookId = webhookId
+        }
+        val deleteWebhooksResponse = misskey.webhook().delete(deleteRequest)
+        println(Internal.toJson(deleteWebhooksResponse.data))
     }
 
     @Test
     fun testWebhookScenario() {
-        val misskey: Misskey =
-            MisskeyFactory.getInstance(AbstractTest.HOST, AbstractTest.CLIENT_SECRET, AbstractTest.USER_TOKEN)
+
+        val misskey = misskey()
         var webhookId = createWebhook(misskey)
         updateWebhook(misskey, webhookId)
         webhookId = showWebhook(misskey, webhookId)

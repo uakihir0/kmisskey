@@ -78,6 +78,10 @@ object Internal {
         exception: Exception?,
         body: String? = null,
     ): RuntimeException {
-        TODO("")
+        if (exception != null) {
+            return RuntimeException(exception)
+        }
+        println(body)
+        return RuntimeException(body)
     }
 }

@@ -6,7 +6,7 @@ import misskey4j.entity.Note
 import misskey4j.entity.Page
 
 @Serializable
-open class UserDetailedNotMe : UserBasic() {
+open class UserDetailedNotMe : UserLite() {
 
     var url: String? = null
     var uri: String? = null

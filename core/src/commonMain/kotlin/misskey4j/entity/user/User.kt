@@ -22,24 +22,24 @@ abstract class User {
      * The following are the contents of UserLite.
      */
 
-    open lateinit var id: String
-    open var name: String? = null
-    // open lateinit var username: String
+    abstract var id: String
+    abstract var name: String?
+    abstract var username: String
 
     /** The local host is represented with null. */
-    open var host: String? = null
+    abstract var host: String?
 
-    open var avatarUrl: String? = null
-    open var avatarBlurhash: String? = null
-    open var avatarDecorations: List<AvatarDecoration> = listOf()
+    abstract var avatarUrl: String?
+    abstract var avatarBlurhash: String?
+    abstract var avatarDecorations: List<AvatarDecoration>
 
-    open var isBot: Boolean = false
-    open var isCat: Boolean = false
+    abstract var isBot: Boolean
+    abstract var isCat: Boolean
 
-    open var instance: Instance? = null
-    open var emojis: Emojis? = null
-    open lateinit var onlineStatus: String
-    open var badgeRoles: List<BadgeRole> = listOf()
+    abstract var instance: Instance?
+    abstract var emojis: Emojis?
+    abstract var onlineStatus: String
+    abstract var badgeRoles: List<BadgeRole>
 
     /*
      * The following are original items.

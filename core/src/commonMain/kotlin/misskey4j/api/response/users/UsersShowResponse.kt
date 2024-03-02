@@ -4,5 +4,4 @@ import kotlinx.serialization.Serializable
 import misskey4j.entity.user.User
 import misskey4j.entity.user.UserLite
 
-@Serializable
-class UsersShowResponse : User()
+typealias UsersShowResponse = User

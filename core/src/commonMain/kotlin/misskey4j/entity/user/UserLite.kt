@@ -1,18 +1,17 @@
 package misskey4j.entity.user
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import misskey4j.entity.*
-import misskey4j.util.BlurHashDecoder
+import misskey4j.entity.AvatarDecoration
+import misskey4j.entity.BadgeRole
+import misskey4j.entity.Emojis
+import misskey4j.entity.Instance
 
 @Serializable
-@Suppress("LateinitVarOverridesLateinitVar")
-open class UserLite: User() {
+open class UserLite : User() {
 
     override lateinit var id: String
-    @SerialName("name")
     override var name: String? = null
-    // override lateinit var username: String
+    override lateinit var username: String
 
     /** The local host is represented with null. */
     override var host: String? = null

@@ -41,29 +41,37 @@ abstract class AbstractResourceImpl(
 
     /**
      * API の呼び出しを行う場合
+     * 認証リクエストの場合
      */
-    protected inline fun <reified T> post(
+    protected inline fun <reified T, reified K : TokenRequest> post(
         path: String,
-        request: Any
+        request: K,
     ): Response<T> {
         return proceed {
             runBlocking {
+                HttpRequest()
+                    .url(uri + path)
+                    .json(toJson(auth(request)))
+                    .accept(MediaType.JSON)
+                    .post()
+            }
+        }
+    }
 
-                // 認証リクエストの場合
-                if (request is TokenRequest) {
-                    HttpRequest()
-                        .url(uri + path)
-                        .json(toJson(auth(request)))
-                        .accept(MediaType.JSON)
-                        .post()
-
-                } else {
-                    HttpRequest()
-                        .url(uri + path)
-                        .json(toJson(request))
-                        .accept(MediaType.JSON)
-                        .post()
-                }
+    /**
+     * API の呼び出しを行う場合
+     */
+    protected inline fun <reified T> post(
+        path: String,
+        request: Any,
+    ): Response<T> {
+        return proceed {
+            runBlocking {
+                HttpRequest()
+                    .url(uri + path)
+                    .json(toJson(request))
+                    .accept(MediaType.JSON)
+                    .post()
             }
         }
     }

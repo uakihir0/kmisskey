@@ -6,8 +6,8 @@ import misskey4j.entity.Note
 @Serializable
 class IFavoritesResponse {
 
-    var id: String? = null
-    var createdAt: String? = null
-    var noteId: String? = null
-    var note: Note? = null
+    lateinit var id: String
+    lateinit var createdAt: String
+    lateinit var noteId: String
+    lateinit var note: Note
 }

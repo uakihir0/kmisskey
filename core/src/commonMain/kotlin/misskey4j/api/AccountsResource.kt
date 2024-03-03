@@ -15,7 +15,7 @@ interface AccountsResource {
 
     /**
      * 自分のアカウント情報を取得します。
-     * https://misskey.io/api-doc#operation/i
+     * https://misskey.io/api-doc#tag/account/operation/i
      */
     fun i(
         request: IRequest
@@ -23,7 +23,7 @@ interface AccountsResource {
 
     /**
      * お気に入りに登録した投稿一覧を取得します。
-     * https://misskey.io/api-doc#operation/i/favorites
+     * https://misskey.io/api-doc#tag/account/operation/i/favorites
      */
     fun iFavorites(
         request: IFavoritesRequest

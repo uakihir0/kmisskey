@@ -3,8 +3,6 @@ package misskey4j.apis
 import misskey4j.AbstractTest
 import misskey4j.api.request.i.IFavoritesRequest
 import misskey4j.api.request.notes.NotesTimelineRequest
-import misskey4j.entity.Color
-import misskey4j.entity.File
 import misskey4j.entity.Note
 import kotlin.test.Test
 
@@ -18,6 +16,7 @@ class NotesTest : AbstractTest() {
                 it.limit = 100L
             })
 
+        println(notes.json + "\n")
         for (note in notes.data) {
             print(note)
         }
@@ -31,6 +30,7 @@ class NotesTest : AbstractTest() {
                 it.limit = 100L
             })
 
+        println(favorites.json + "\n")
         for (favorite in favorites.data) {
             print(favorite.note)
         }
@@ -39,48 +39,38 @@ class NotesTest : AbstractTest() {
 
     companion object {
         fun print(note: Note) {
+
             println("// ------------------------------ //")
             if (note.featuredId != null) {
                 println("!!!!!!!Featured!!!!!!!")
             }
 
             if (note.renote != null) {
-                println("!!Renote!!")
-                println("User: " + note.renote!!.user.name)
-                println("Text: " + note.renote!!.text)
-                printColor(note.renote!!.user.avatarColor)
+                note.renote?.let {
+                    println("!!Renote!!")
+                    println("User : ${it.user.name}")
+                    println("Text : ${it.text}")
+                    println("Color: ${it.user.avatarColor}")
+                }
             } else {
-                println("User: " + note.user.name)
-                println("Text: " + note.text)
-                printColor(note.user.avatarColor)
+                println("User : ${note.user.name}")
+                println("Text : ${note.text}")
+                println("Color: ${note.user.avatarColor}")
 
-                if (note.user.instance != null) {
-                    val instance = note.user.instance
-                    println("Instance Name: " + instance!!.name)
-                    println("Instance Color R: " + instance.themeColor!!.r)
+                note.user.instance?.let {
+                    println("Instance Name : ${it.name}")
+                    println("Instance Color: ${it.themeColorObject()}")
                 }
 
-                note.files?.forEach { e: File ->
-                    println("File OriginalURL: " + e.originalUrl)
-                    println("File URL: " + e.url())
+                note.files?.forEach {
+                    println("File URL          : ${it.url}")
+                    println("Extracted File URL: ${it.extractedUrl()}")
                 }
 
-                note.emojis?.list?.forEach { e ->
-                    println("Emoji Name: " + e.name)
-                    println("Emoji URL: " + e.url)
+                note.emojis?.list?.forEach {
+                    println("Emoji Name: ${it.name}")
+                    println("Emoji URL : ${it.url}")
                 }
-            }
-        }
-
-        private fun printColor(color: Color?) {
-            if (color != null) {
-                println(
-                    "Color: " + color.r
-                            + "," + color.g
-                            + "," + color.b
-                )
-            } else {
-                println("Color: null")
             }
         }
     }

@@ -27,7 +27,10 @@ object Internal {
     }
 
     inline fun <reified T> toJson(obj: T): String {
-        return json.encodeToString(obj)
+        return json.encodeToString(obj).let {
+            println(it)
+            it
+        }
     }
 
     inline fun <reified T> fromJson(obj: String): T {

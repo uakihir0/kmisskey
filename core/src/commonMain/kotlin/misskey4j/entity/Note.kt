@@ -2,7 +2,6 @@ package misskey4j.entity
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import misskey4j.entity.user.User
 import misskey4j.entity.user.UserLite
 
 /**
@@ -11,49 +10,57 @@ import misskey4j.entity.user.UserLite
 @Serializable
 open class Note {
     lateinit var id: String
+
     lateinit var createdAt: String
+    var deletedAt: String? = null
 
     var text: String? = null
     var cw: String? = null
 
     lateinit var userId: String
-    lateinit var user: User
+    lateinit var user: UserLite
 
     var replyId: String? = null
-    var reply: Note? = null
     var renoteId: String? = null
+
+    var reply: Note? = null
     var renote: Note? = null
 
-    var renoteCount: Long? = null
-    var repliesCount: Long? = null
-
-    var viaMobile = false
-    var hidden = false
-
-    var visibility: String? = null
-    var visibleUserIds: List<String>? = null
-    var localOnly: Boolean? = null
+    var isHidden = false
+    lateinit var visibility: String
 
     var mentions: List<String>? = null
-    var tags: List<String>? = null
+    var visibleUserIds: List<String>? = null
     var fileIds: List<String>? = null
     var files: List<File>? = null
-    var poll: Poll? = null
+    var tags: List<String>? = null
 
+    var poll: Poll? = null
     var emojis: Emojis? = null
-    var reactions: Map<String, Long>? = null
+
+    var channelId: String? = null
+    var channel: Channel? = null
+
+    var localOnly: Boolean = false
+
+    var reactionAcceptance: String? = null
     var reactionEmojis: Emojis? = null
+    var reactions: Map<String, Long> = mapOf()
+
+    var renoteCount: Long = 0
+    var repliesCount: Long = 0
+
+    var uri: String? = null
+    var url: String? = null
+
+    var reactionAndUserPairCache: List<String> = listOf()
+    var clippedCount: Long = 0
     var myReaction: String? = null
 
-    var url: String? = null
-    var uri: String? = null
 
     @SerialName("_featuredId_")
     var featuredId: String? = null
 
     @SerialName("_prId_")
     var prId: String? = null
-
-    var channelId: String? = null
-    var channel: Channel? = null
 }

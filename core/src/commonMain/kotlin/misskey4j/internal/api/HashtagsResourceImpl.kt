@@ -1,6 +1,6 @@
 package misskey4j.internal.api
 
-import misskey4j.MisskeyAPI
+import misskey4j.MisskeyAPI.HashtagsTrend
 import misskey4j.api.HashtagsResource
 import misskey4j.api.request.hashtags.HashtagsTrendRequest
 import misskey4j.api.response.hashtags.HashtagsTrendResponse
@@ -18,9 +18,6 @@ class HashtagsResourceImpl(
     override fun trend(
         request: HashtagsTrendRequest
     ): Response<Array<HashtagsTrendResponse>> {
-        return post(
-            MisskeyAPI.HashtagsTrend.path,
-            request
-        )
+        return post(HashtagsTrend.path, request)
     }
 }

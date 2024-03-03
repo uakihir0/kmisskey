@@ -2,32 +2,44 @@ package misskey4j.entity
 
 import io.ktor.http.*
 import kotlinx.serialization.Serializable
+import misskey4j.entity.user.UserLite
 
 /**
+ * DriveFile
  * ファイルオブジェクト
  */
 @Serializable
 open class File {
 
-    var id: String? = null
-    var createdAt: String? = null
-    var name: String? = null
-    var type: String? = null
-    var size: Long? = null
-    var sensitive =  false
+    lateinit var id: String
+    lateinit var createdAt: String
+
+    lateinit var name: String
+    lateinit var type: String
+    lateinit var md5: String
+
+    var size: Long = 0
+    var isSensitive: Boolean = false
     var blurhash: String? = null
 
-    var originalUrl: String? = null
-    var originalThumbnailUrl: String? = null
+    var properties: FileProperties? = null
+
+    lateinit var url: String
+    var thumbnailUrl: String? = null
 
     var comment: String? = null
     var folderId: String? = null
+    val folder: Folder? = null
     var userId: String? = null
+    var user: UserLite? = null
 
-    fun extractForwardUrl(u: String?): String? {
+    private fun extractForwardUrl(u: String?): String? {
         try {
             val structure = Url(u!!)
-            if (structure.fullPath.endsWith("image.webp")) {
+            val file = structure.fullPath
+                .split("?").first()
+
+            if (file.endsWith("image.webp")) {
                 val queries = structure.encodedQuery
                     .split("&".toRegex())
                     .dropLastWhile { it.isEmpty() }
@@ -50,11 +62,19 @@ open class File {
         }
     }
 
-    fun url(): String {
-        return extractForwardUrl(originalUrl) ?: originalUrl!!
+    fun extractedUrl(): String {
+        return extractForwardUrl(url) ?: url
     }
 
-    fun thumbnailUrl(): String {
-        return extractForwardUrl(originalThumbnailUrl) ?: originalThumbnailUrl!!
+    fun extractedThumbnailUrl(): String? {
+        return extractForwardUrl(thumbnailUrl) ?: thumbnailUrl
+    }
+
+    @Serializable
+    class FileProperties {
+        var width = 0L
+        var height = 0L
+        var orientation = 0L
+        var avgColor: String? = null
     }
 }

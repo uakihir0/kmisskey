@@ -1,0 +1,16 @@
+package work.socialhub.kmisskey.api
+
+import work.socialhub.kmisskey.api.request.other.ServiceWorkerRegisterRequest
+import work.socialhub.kmisskey.api.response.other.ServiceWorkerRegisterResponse
+import work.socialhub.kmisskey.entity.share.Response
+
+interface OtherResource {
+
+    /**
+     * サービスワーカーの通知先を登録します
+     * https://misskey.io/api-doc#operation/sw/register
+     */
+    fun serviceWorkerRegister(
+        request: ServiceWorkerRegisterRequest
+    ): Response<ServiceWorkerRegisterResponse>
+}

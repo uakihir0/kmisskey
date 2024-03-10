@@ -68,7 +68,7 @@ println("USER TOKEN: " + response.data.accessToken)
 val misskey = MisskeyFactory.instance(
     "HOST", 
     "CLIENT_SECRET", 
-    "USER_TOKEN",
+    "ACCESS_TOKEN",
 )
 
 misskey.notes().create(

@@ -1,3 +1,5 @@
+> [日本語](./docs/README_ja.md)
+
 # kmisskey
 
 ![Maven metadata URL](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Frepo.repsy.io%2Fmvn%2Fuakihir0%2Fpublic%2Fwork%2Fsocialhub%2Fkmisskey%2Fcore%2Fmaven-metadata.xml)

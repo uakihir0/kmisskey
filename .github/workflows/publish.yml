@@ -1,0 +1,40 @@
+name: Publish Package
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        target:
+          - core
+          - stream
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@v2.6.0
+        with:
+          arguments: ${{ matrix.target }}:build -x core:jvmTest
+
+      - name: Publish to Repsy
+        uses: gradle/gradle-build-action@v2.6.0
+        with:
+          arguments: ${{ matrix.target }}:publish -x core:jvmTest
+        env:
+          USERNAME: ${{ secrets.REPSY_USERNAME }}
+          PASSWORD: ${{ secrets.REPSY_PASSWORD }}

@@ -27,8 +27,8 @@ kotlin {
     cocoapods {
         name = "kmisskey"
         version = "0.0.1"
-        summary = "kbsky is Bluesky/ATProtocol library for Kotlin Multiplatform."
-        homepage = "https://github.com/uakihir0/kbsky"
+        summary = "kmisskey is Bluesky/ATProtocol library for Kotlin Multiplatform."
+        homepage = "https://github.com/uakihir0/kmisskey"
         authors = "Akihiro Urushihara"
         license = "MIT"
         framework { baseName = "kmisskey" }

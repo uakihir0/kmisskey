@@ -1,6 +1,5 @@
 package work.socialhub.kmisskey.apis
 
-import misskey4j.api.request.users.*
 import work.socialhub.kmisskey.AbstractTest
 import work.socialhub.kmisskey.api.request.i.IRequest
 import work.socialhub.kmisskey.api.request.users.*

@@ -2,6 +2,7 @@ package work.socialhub.kmisskey.apis
 
 import work.socialhub.kmisskey.AbstractTest
 import work.socialhub.kmisskey.api.request.i.IFavoritesRequest
+import work.socialhub.kmisskey.api.request.notes.NotesCreateRequest
 import work.socialhub.kmisskey.api.request.notes.NotesTimelineRequest
 import work.socialhub.kmisskey.entity.Note
 import kotlin.test.Test
@@ -36,6 +37,17 @@ class NotesTest : AbstractTest() {
         }
     }
 
+    @Test
+    fun testNotesCreate() {
+        val misskey = misskey()
+        val response = misskey.notes().create(
+            NotesCreateRequest().also {
+                it.text = "テスト"
+                it.visibility = "home"
+            })
+
+        print(response.data.createdNote)
+    }
 
     companion object {
         fun print(note: Note) {

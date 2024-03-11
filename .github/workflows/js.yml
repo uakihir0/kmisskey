@@ -18,7 +18,7 @@ jobs:
       - name: Pods XCFramework
         uses: gradle/gradle-build-action@v2.6.0
         with:
-          arguments: pods:jsBrowserDistribution -x test
+          arguments: pods:jsNodeDevelopmentLibraryDistribution -x test
 
       - name: Set Project Version
         run: |

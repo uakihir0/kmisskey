@@ -8,8 +8,8 @@ kotlin {
     jvmToolchain(11)
 
     jvm { withJava() }
-    js {
-        binaries.executable()
+    js(IR) {
+        binaries.library()
         browser()
         nodejs()
     }

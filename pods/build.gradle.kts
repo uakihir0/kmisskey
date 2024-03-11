@@ -7,8 +7,8 @@ plugins {
 }
 
 kotlin {
-    js {
-        binaries.executable()
+    js(IR) {
+        binaries.library()
         nodejs()
         browser()
     }
@@ -56,7 +56,7 @@ tasks.podPublishXCFramework {
     }
 }
 
-tasks.getByName("jsBrowserDistribution") {
+tasks.getByName("jsNodeDevelopmentLibraryDistribution") {
     doLast {
         exec {
             executable = "sh"

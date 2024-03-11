@@ -1,10 +1,8 @@
 package work.socialhub.kmisskey
 
-import kotlin.js.ExperimentalJsExport
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
-@OptIn(ExperimentalJsExport::class)
 @JsExport
 class KmisskeyFactory {
 

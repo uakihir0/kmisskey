@@ -6,6 +6,7 @@ import work.socialhub.kmisskey.api.request.users.*
 import work.socialhub.kmisskey.api.response.notes.UsersReactionsResponse
 import work.socialhub.kmisskey.api.response.users.*
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
 class UsersResourceImpl(
     uri: String,

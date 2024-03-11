@@ -9,9 +9,10 @@ kotlin {
 
     jvm { withJava() }
     js(IR) {
-        binaries.library()
-        browser()
         nodejs()
+        browser()
+        binaries.library()
+        generateTypeScriptDefinitions()
     }
     iosX64()
     iosArm64()
@@ -20,6 +21,12 @@ kotlin {
     macosArm64()
 
     sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("kotlin.js.ExperimentalJsExport")
+            }
+        }
+
         commonMain.dependencies {
             implementation(project(":core"))
             implementation(libs.ktor.core)

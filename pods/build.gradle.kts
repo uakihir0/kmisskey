@@ -8,9 +8,10 @@ plugins {
 
 kotlin {
     js(IR) {
-        binaries.library()
         nodejs()
         browser()
+        binaries.library()
+        generateTypeScriptDefinitions()
     }
 
     val xcf = XCFramework("kmisskey")
@@ -40,6 +41,11 @@ kotlin {
     }
 
     sourceSets {
+        all {
+            languageSettings.apply {
+                optIn("kotlin.js.ExperimentalJsExport")
+            }
+        }
         commonMain.dependencies {
             api(project(":core"))
             api(project(":stream"))

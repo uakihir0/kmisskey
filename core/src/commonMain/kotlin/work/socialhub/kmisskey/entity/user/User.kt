@@ -4,12 +4,14 @@ import kotlinx.serialization.Serializable
 import misskey4j.util.json.UserSerializer
 import work.socialhub.kmisskey.entity.*
 import work.socialhub.kmisskey.util.BlurHashDecoder
+import kotlin.js.JsExport
 
 /**
  * @see UserLite
  * @see UserDetailedNotMe
  * @see MeDetailed
  */
+@JsExport
 @Serializable(with = UserSerializer::class)
 abstract class User {
 

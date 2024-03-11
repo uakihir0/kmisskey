@@ -4,7 +4,10 @@ import work.socialhub.kmisskey.api.request.users.*
 import work.socialhub.kmisskey.api.response.notes.UsersReactionsResponse
 import work.socialhub.kmisskey.api.response.users.*
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
+@JsExport
 interface UsersResource {
 
     /**
@@ -35,6 +38,7 @@ interface UsersResource {
      * 指定したユーザーの情報を取得します。(単数)
      * https://misskey.io/api-doc#operation/users/show
      */
+    @JsName("showSingle")
     fun show(
         request: UsersShowSingleRequest
     ): Response<UsersShowResponse>
@@ -43,6 +47,7 @@ interface UsersResource {
      * 指定したユーザーの情報を取得します。(複数)
      * https://misskey.io/api-doc#operation/users/show
      */
+    @JsName("showMultiple")
     fun show(
         request: UsersShowMultipleRequest
     ): Response<Array<UsersShowResponse>>

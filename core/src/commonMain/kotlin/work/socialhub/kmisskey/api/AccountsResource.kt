@@ -7,17 +7,21 @@ import work.socialhub.kmisskey.api.response.i.IFavoritesResponse
 import work.socialhub.kmisskey.api.response.i.INotificationsResponse
 import work.socialhub.kmisskey.api.response.i.IResponse
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
 
 /**
  * Account APIs.
  */
+@JsExport
 interface AccountsResource {
 
     /**
      * 自分のアカウント情報を取得します。
      * https://misskey.io/api-doc#tag/account/operation/i
      */
+    @JsName("me")
     fun i(
         request: IRequest
     ): Response<IResponse>

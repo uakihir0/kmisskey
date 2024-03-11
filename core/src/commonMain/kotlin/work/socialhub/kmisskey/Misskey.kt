@@ -1,7 +1,11 @@
 package work.socialhub.kmisskey
 
 import work.socialhub.kmisskey.api.*
+import kotlin.js.ExperimentalJsExport
+import kotlin.js.JsExport
 
+@OptIn(ExperimentalJsExport::class)
+@JsExport
 interface Misskey {
 
     fun meta(): MetaResource

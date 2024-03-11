@@ -7,6 +7,11 @@ plugins {
 }
 
 kotlin {
+    js {
+        binaries.executable()
+        nodejs()
+        browser()
+    }
 
     val xcf = XCFramework("kmisskey")
     listOf(
@@ -46,7 +51,17 @@ tasks.podPublishXCFramework {
     doLast {
         exec {
             executable = "sh"
-            args = listOf("../tool/rename_podfile.sh")
+            args = listOf("../tool/setup_pods.sh")
         }
     }
 }
+
+tasks.getByName("jsBrowserDistribution") {
+    doLast {
+        exec {
+            executable = "sh"
+            args = listOf("../tool/setup_js.sh")
+        }
+    }
+}
+

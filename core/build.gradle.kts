@@ -9,7 +9,7 @@ kotlin {
 
     jvm { withJava() }
     js {
-        binaries.library()
+        binaries.executable()
         browser()
         nodejs()
     }

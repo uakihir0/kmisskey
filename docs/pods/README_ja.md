@@ -1,6 +1,6 @@
 # kmisskey cocoapods
 
-本レポジトリは、[kmisskey] の Cocoapods レポジトリです。[kmisskey] は Kotlin Multiplatform を用いて作成された Bluesky/ATProtocol クライアントライブラリです。
+本レポジトリは、[kmisskey] の Cocoapods レポジトリです。[kmisskey] は Kotlin Multiplatform を用いて作成された Misskey クライアントライブラリです。
 そのため、iOS 等の Apple Device でも使用でもビルドして使用することができます。ここでは、XCFramework としてビルドしたものを Cocoapods 経由で配布しています。
 また、このレポジトリは [kmisskey] の GitHub Actions によって自動コミットされています。issue や pull request は [kmisskey] にお願いします。
 

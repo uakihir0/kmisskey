@@ -1,6 +1,5 @@
 package work.socialhub.kmisskey
 
-import work.socialhub.kmisskey.api.AnnouncementsResource
 import work.socialhub.kmisskey.api.*
 import kotlin.js.ExperimentalJsExport
 import kotlin.js.JsExport
@@ -19,6 +18,7 @@ interface Misskey {
     fun users(): UsersResource
     fun lists(): ListsResource
     fun channels(): ChannelsResource
+    fun antennas(): AntennasResource
     fun notes(): NotesResource
     fun reactions(): ReactionsResource
     fun favorites(): FavoritesResource

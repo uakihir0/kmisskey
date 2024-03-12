@@ -122,6 +122,17 @@ enum class MisskeyAPI(
     // ChannelsFeatured("channels/featured"),
 
     // ------------------------------------------ //
+    // Antennas
+    // ------------------------------------------ //
+
+    // AntennasCreate("antennas/create"),
+    // AntennasDelete("antennas/delete"),
+    AntennasList("antennas/list"),
+    AntennasNotes("antennas/notes"),
+    // AntennasShow("antennas/show"),
+    // AntennasUpdate("antennas/update"),
+
+    // ------------------------------------------ //
     // Following
     // ------------------------------------------ //
 

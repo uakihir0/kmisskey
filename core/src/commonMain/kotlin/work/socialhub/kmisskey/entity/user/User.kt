@@ -2,7 +2,12 @@ package work.socialhub.kmisskey.entity.user
 
 import kotlinx.serialization.Serializable
 import misskey4j.util.json.UserSerializer
-import work.socialhub.kmisskey.entity.*
+import work.socialhub.kmisskey.entity.AvatarDecoration
+import work.socialhub.kmisskey.entity.BadgeRole
+import work.socialhub.kmisskey.entity.Color
+import work.socialhub.kmisskey.entity.Emojis
+import work.socialhub.kmisskey.entity.Instance
+import work.socialhub.kmisskey.entity.Role
 import work.socialhub.kmisskey.util.BlurHashDecoder
 import kotlin.js.JsExport
 
@@ -42,6 +47,7 @@ abstract class User {
     abstract var emojis: Emojis?
     abstract var onlineStatus: String
     abstract var badgeRoles: List<BadgeRole>
+    abstract var roles: List<Role>
 
     /*
      * The following are original items.

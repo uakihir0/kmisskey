@@ -1,7 +1,9 @@
 package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 open class Channel {
 
@@ -19,18 +21,18 @@ open class Channel {
 
     var userId: String? = null
     var bannerUrl: String? = null
-    var pinnedNoteIds: List<String> = listOf()
+    var pinnedNoteIds: Array<String> = arrayOf()
 
     lateinit var color: String
 
     var isArchived: Boolean = false
-    var notesCount: Long = 0
-    var usersCount: Long = 0
+    var notesCount: Int = 0
+    var usersCount: Int = 0
 
     var isSensitive: Boolean = false
     var allowRenoteToExternal: Boolean = false
     var isFollowing: Boolean = false
     var isFavorited: Boolean = false
 
-    var pinnedNotes: List<Note> = listOf()
+    var pinnedNotes: Array<Note> = arrayOf()
 }

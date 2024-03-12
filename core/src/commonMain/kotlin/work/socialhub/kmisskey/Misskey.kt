@@ -45,6 +45,4 @@ interface Misskey {
      * (called "i")
      */
     val i: String?
-
-    fun async(): MisskeyAsync
 }

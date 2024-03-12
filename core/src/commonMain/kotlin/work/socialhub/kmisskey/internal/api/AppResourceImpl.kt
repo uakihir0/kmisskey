@@ -14,7 +14,7 @@ class AppResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override suspend fun createApp(
+    override fun createApp(
         request: CreateAppRequest
     ): Response<CreateAppResponse> {
         return post(AppCreate.path, request)

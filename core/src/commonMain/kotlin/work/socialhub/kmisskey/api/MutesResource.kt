@@ -5,8 +5,11 @@ import work.socialhub.kmisskey.api.request.mutes.MutesDeleteRequest
 import work.socialhub.kmisskey.api.request.mutes.MutesListRequest
 import work.socialhub.kmisskey.api.response.mutes.MutesListResponse
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
+@JsExport
 interface MutesResource {
+
     /**
      * ユーザーをミュートします。
      * https://misskey.io/api-doc#operation/mute/create

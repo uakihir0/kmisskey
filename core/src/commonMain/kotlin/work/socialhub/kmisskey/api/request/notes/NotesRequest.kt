@@ -2,7 +2,9 @@ package work.socialhub.kmisskey.api.request.notes
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.api.model.TokenRequest
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 class NotesRequest : TokenRequest() {
 
@@ -12,7 +14,7 @@ class NotesRequest : TokenRequest() {
     var withFiles: Boolean? = null
     var poll: Boolean? = null
 
-    var limit: Long? = null
+    var limit: Int? = null
     var sinceId: String? = null
     var untilId: String? = null
 }

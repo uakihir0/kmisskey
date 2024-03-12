@@ -3,8 +3,10 @@ package work.socialhub.kmisskey.api
 import work.socialhub.kmisskey.api.request.*
 import work.socialhub.kmisskey.api.response.channels.*
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
 
+@JsExport
 interface ChannelsResource {
 
     /**

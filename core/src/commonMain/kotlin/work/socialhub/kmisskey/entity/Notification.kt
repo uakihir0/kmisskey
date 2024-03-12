@@ -2,7 +2,9 @@ package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.user.User
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 open class Notification {
     lateinit var id: String
@@ -14,7 +16,7 @@ open class Notification {
     var note: Note? = null
 
     var reaction: String? = null
-    var choice: Long? = null
+    var choice: Int? = null
 
     // TODO parse invitation object
     var body: String? = null

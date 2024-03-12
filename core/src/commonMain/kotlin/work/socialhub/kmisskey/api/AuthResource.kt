@@ -6,10 +6,12 @@ import work.socialhub.kmisskey.api.request.UserKeyAuthSessionRequest
 import work.socialhub.kmisskey.api.response.GenerateAuthSessionResponse
 import work.socialhub.kmisskey.api.response.UserKeyAuthSessionResponse
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
 /**
  * Auth APIs.
  */
+@JsExport
 interface AuthResource {
 
     /**

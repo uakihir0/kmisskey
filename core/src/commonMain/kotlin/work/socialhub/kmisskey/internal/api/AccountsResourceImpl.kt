@@ -37,7 +37,7 @@ class AccountsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun iNotifications(
+    override suspend fun iNotifications(
         request: INotificationsRequest
     ): Response<Array<INotificationsResponse>> {
         return post(MisskeyAPI.INotifications.path, request)

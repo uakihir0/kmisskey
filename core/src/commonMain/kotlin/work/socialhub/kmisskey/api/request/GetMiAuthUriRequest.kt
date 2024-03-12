@@ -1,7 +1,9 @@
 package work.socialhub.kmisskey.api.request
 
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 class GetMiAuthUriRequest {
 
@@ -9,5 +11,5 @@ class GetMiAuthUriRequest {
     var name: String? = null
     var iconUri: String? = null
     var callbackUrl: String? = null
-    var permission: List<String>? = null
+    var permission: Array<String>? = null
 }

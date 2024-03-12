@@ -5,7 +5,9 @@ import work.socialhub.kmisskey.api.response.lists.UsersListsListResponse
 import work.socialhub.kmisskey.api.response.lists.UsersListsShowResponse
 import work.socialhub.kmisskey.entity.NoteList
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
+@JsExport
 interface ListsResource {
 
     /**

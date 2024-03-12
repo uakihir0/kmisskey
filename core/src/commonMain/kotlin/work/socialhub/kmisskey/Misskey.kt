@@ -4,7 +4,6 @@ import work.socialhub.kmisskey.api.*
 import kotlin.js.ExperimentalJsExport
 import kotlin.js.JsExport
 
-@OptIn(ExperimentalJsExport::class)
 @JsExport
 interface Misskey {
 
@@ -43,4 +42,6 @@ interface Misskey {
      * (called "i")
      */
     val i: String?
+
+    fun async(): MisskeyAsync
 }

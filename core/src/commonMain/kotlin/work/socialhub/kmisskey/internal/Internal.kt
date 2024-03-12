@@ -45,7 +45,7 @@ object Internal {
         function: () -> HttpResponse
     ): Response<Unit> {
         try {
-            val response: HttpResponse = function()
+            val response = function()
             if (response.status == 200) {
                 return Response(Unit, "")
             }
@@ -63,7 +63,7 @@ object Internal {
         function: () -> HttpResponse
     ): Response<T> {
         try {
-            val response: HttpResponse = function()
+            val response = function()
             if (response.status == 200) {
                 return Response(
                     response.typedBody(json),

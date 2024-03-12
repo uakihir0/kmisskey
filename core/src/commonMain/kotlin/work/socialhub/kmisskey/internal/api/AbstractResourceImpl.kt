@@ -46,15 +46,13 @@ abstract class AbstractResourceImpl(
     protected inline fun <reified T, reified K : TokenRequest> post(
         path: String,
         request: K,
-    ): Response<T> {
-        return proceed {
-            runBlocking {
-                HttpRequest()
-                    .url(uri + path)
-                    .json(toJson(auth(request)))
-                    .accept(MediaType.JSON)
-                    .post()
-            }
+    ): Response<T> = runBlocking {
+        proceed {
+            HttpRequest()
+                .url(uri + path)
+                .json(toJson(auth(request)))
+                .accept(MediaType.JSON)
+                .post()
         }
     }
 
@@ -64,15 +62,13 @@ abstract class AbstractResourceImpl(
     protected inline fun <reified T> post(
         path: String,
         request: Any,
-    ): Response<T> {
-        return proceed {
-            runBlocking {
-                HttpRequest()
-                    .url(uri + path)
-                    .json(toJson(request))
-                    .accept(MediaType.JSON)
-                    .post()
-            }
+    ): Response<T> = runBlocking {
+        proceed {
+            HttpRequest()
+                .url(uri + path)
+                .json(toJson(request))
+                .accept(MediaType.JSON)
+                .post()
         }
     }
 
@@ -83,15 +79,13 @@ abstract class AbstractResourceImpl(
     protected inline fun <reified K : TokenRequest> postUnit(
         path: String,
         request: K,
-    ): Response<Unit> {
-        return proceedUnit {
-            runBlocking {
-                HttpRequest()
-                    .url(uri + path)
-                    .json(toJson(auth(request)))
-                    .accept(MediaType.JSON)
-                    .post()
-            }
+    ): Response<Unit> = runBlocking {
+        proceedUnit {
+            HttpRequest()
+                .url(uri + path)
+                .json(toJson(auth(request)))
+                .accept(MediaType.JSON)
+                .post()
         }
     }
 
@@ -101,15 +95,13 @@ abstract class AbstractResourceImpl(
     protected fun postUnit(
         path: String,
         request: Any,
-    ): Response<Unit> {
-        return proceedUnit {
-            runBlocking {
-                HttpRequest()
-                    .url(uri + path)
-                    .json(toJson(request))
-                    .accept(MediaType.JSON)
-                    .post()
-            }
+    ): Response<Unit> = runBlocking {
+        proceedUnit {
+            HttpRequest()
+                .url(uri + path)
+                .json(toJson(request))
+                .accept(MediaType.JSON)
+                .post()
         }
     }
 
@@ -120,21 +112,18 @@ abstract class AbstractResourceImpl(
     protected inline fun <reified T> post(
         path: String,
         params: Map<String, Any>,
-    ): Response<T> {
-        return proceed {
-            runBlocking {
-                val request = HttpRequest()
-                    .url(uri + path)
-                    .param("i", i)
+    ): Response<T> = runBlocking {
+        proceed {
+            val request = HttpRequest()
+                .url(uri + path)
+                .param("i", i)
 
-                params.forEach { (k, v) ->
-                    request.param(k, v)
-                }
-
-                request
-                    .accept(MediaType.JSON)
-                    .post()
+            params.forEach { (k, v) ->
+                request.param(k, v)
             }
+            request
+                .accept(MediaType.JSON)
+                .post()
         }
     }
 

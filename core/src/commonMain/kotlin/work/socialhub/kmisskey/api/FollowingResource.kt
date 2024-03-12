@@ -7,9 +7,12 @@ import work.socialhub.kmisskey.api.request.following.FollowingRequestsListReques
 import work.socialhub.kmisskey.api.request.following.FollowingRequestsRejectRequest
 import work.socialhub.kmisskey.api.response.following.FollowingRequestsListResponse
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
 
+@JsExport
 interface FollowingResource {
+
     /**
      * 指定したユーザーをフォローします。
      * https://misskey.io/api-doc#operation/following/create

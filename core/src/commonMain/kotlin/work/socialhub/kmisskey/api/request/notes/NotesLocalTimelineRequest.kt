@@ -2,18 +2,20 @@ package work.socialhub.kmisskey.api.request.notes
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.api.model.TokenRequest
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 class NotesLocalTimelineRequest : TokenRequest() {
 
     var withFiles: Boolean? = null
-    var fileType: List<String>? = null
+    var fileType: Array<String>? = null
 
     var excludeNsfw: Boolean? = null
-    var limit: Long? = null
+    var limit: Int? = null
 
     var sinceId: String? = null
     var untilId: String? = null
-    var sinceDate: Long? = null
-    var untilDate: Long? = null
+    var sinceDate: Int? = null
+    var untilDate: Int? = null
 }

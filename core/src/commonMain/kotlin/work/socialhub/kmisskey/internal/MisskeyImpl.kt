@@ -14,6 +14,7 @@ class MisskeyImpl(
     private val federation: FederationResource = FederationResourceImpl(host)
 
     // Needs AccessToken
+    private val announcements = AnnouncementsResourceImpl(host, i)
     private val ap: ApResource = ApResourceImpl(host, i)
     private val app: AppResource = AppResourceImpl(host)
     private val auth: AuthResource = AuthResourceImpl(host)
@@ -38,6 +39,7 @@ class MisskeyImpl(
     override fun meta() = meta
     override fun federation() = federation
 
+    override fun announcements() = announcements
     override fun ap() = ap
     override fun app() = app
     override fun auth() = auth

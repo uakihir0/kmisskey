@@ -1,5 +1,6 @@
 package work.socialhub.kmisskey
 
+import work.socialhub.kmisskey.api.AnnouncementsResource
 import work.socialhub.kmisskey.api.*
 import kotlin.js.ExperimentalJsExport
 import kotlin.js.JsExport
@@ -8,6 +9,7 @@ import kotlin.js.JsExport
 interface Misskey {
 
     fun meta(): MetaResource
+    fun announcements(): AnnouncementsResource
     fun federation(): FederationResource
 
     fun ap(): ApResource

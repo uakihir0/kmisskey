@@ -10,6 +10,12 @@ enum class MisskeyAPI(
     Emojis("emojis"),
 
     // ------------------------------------------ //
+    // Announcements
+    // ------------------------------------------ //
+    Announcements("announcements"),
+    ReadAnnouncement("i/read-announcement"),
+
+    // ------------------------------------------ //
     // Federation
     // ------------------------------------------ //
     FederationShowInstance("federation/show-instance"),

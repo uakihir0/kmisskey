@@ -19,6 +19,7 @@ interface Misskey {
     fun lists(): ListsResource
     fun channels(): ChannelsResource
     fun antennas(): AntennasResource
+    fun clips(): ClipsResource
     fun notes(): NotesResource
     fun reactions(): ReactionsResource
     fun favorites(): FavoritesResource

@@ -8,6 +8,7 @@ import work.socialhub.kmisskey.api.AppResource
 import work.socialhub.kmisskey.api.AuthResource
 import work.socialhub.kmisskey.api.BlocksResource
 import work.socialhub.kmisskey.api.ChannelsResource
+import work.socialhub.kmisskey.api.ClipsResource
 import work.socialhub.kmisskey.api.FavoritesResource
 import work.socialhub.kmisskey.api.FederationResource
 import work.socialhub.kmisskey.api.FilesResource
@@ -32,6 +33,7 @@ import work.socialhub.kmisskey.internal.api.AppResourceImpl
 import work.socialhub.kmisskey.internal.api.AuthResourceImpl
 import work.socialhub.kmisskey.internal.api.BlocksResourceImpl
 import work.socialhub.kmisskey.internal.api.ChannelsResourceImpl
+import work.socialhub.kmisskey.internal.api.ClipsResourceImpl
 import work.socialhub.kmisskey.internal.api.FavoritesResourceImpl
 import work.socialhub.kmisskey.internal.api.FederationResourceImpl
 import work.socialhub.kmisskey.internal.api.FilesResourceImpl
@@ -69,6 +71,7 @@ class MisskeyImpl(
     private val lists: ListsResource = ListsResourceImpl(host, i)
     private val channels: ChannelsResource = ChannelsResourceImpl(host, i)
     private val antennas: AntennasResource = AntennasResourceImpl(host, i)
+    private val clips: ClipsResource = ClipsResourceImpl(host, i)
     private val notes: NotesResource = NotesResourceImpl(host, i)
     private val mutes: MutesResource = MutesResourceImpl(host, i)
     private val blocks: BlocksResource = BlocksResourceImpl(host, i)
@@ -95,6 +98,7 @@ class MisskeyImpl(
     override fun lists() = lists
     override fun channels() = channels
     override fun antennas() = antennas
+    override fun clips() = clips
     override fun notes() = notes
     override fun reactions() = reactions
     override fun favorites() = favorites

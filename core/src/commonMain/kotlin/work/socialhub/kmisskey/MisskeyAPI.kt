@@ -133,6 +133,19 @@ enum class MisskeyAPI(
     // AntennasUpdate("antennas/update"),
 
     // ------------------------------------------ //
+    // Clips
+    // ------------------------------------------ //
+
+    ClipsList("clips/list"),
+    ClipsNotes("clips/notes"),
+    ClipsRemoveNote("clips/remove-note"),
+    ClipsAddNote("clips/add-note"),
+    ClipsDelete("clips/delete"),
+    ClipsCreate("clips/create"),
+    ClipsShow("clips/show"),
+    ClipsUpdate("clips/update"),
+
+    // ------------------------------------------ //
     // Following
     // ------------------------------------------ //
 

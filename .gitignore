@@ -7,3 +7,4 @@ out/
 secrets.json
 jwt.txt
 kotlin-js-store/
+/local.properties

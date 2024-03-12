@@ -7,7 +7,9 @@ import work.socialhub.kmisskey.entity.Emojis
 import work.socialhub.kmisskey.entity.Instance
 import work.socialhub.kmisskey.entity.Role
 import work.socialhub.kmisskey.entity.UserPolicies
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 open class UserLite : User() {
 
@@ -20,7 +22,7 @@ open class UserLite : User() {
 
     override var avatarUrl: String? = null
     override var avatarBlurhash: String? = null
-    override var avatarDecorations: List<AvatarDecoration> = listOf()
+    override var avatarDecorations: Array<AvatarDecoration> = arrayOf()
 
     override var isBot: Boolean = false
     override var isCat: Boolean = false
@@ -28,7 +30,8 @@ open class UserLite : User() {
     override var instance: Instance? = null
     override var emojis: Emojis? = null
     override lateinit var onlineStatus: String
-    override var badgeRoles: List<BadgeRole> = listOf()
-    override var roles: List<Role> = listOf()
+
+    override var badgeRoles: Array<BadgeRole> = arrayOf()
+    override var roles: Array<Role> = arrayOf()
     override var policies: UserPolicies? = null
 }

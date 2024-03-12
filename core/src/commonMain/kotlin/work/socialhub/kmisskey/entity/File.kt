@@ -3,11 +3,13 @@ package work.socialhub.kmisskey.entity
 import io.ktor.http.*
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.user.UserLite
+import kotlin.js.JsExport
 
 /**
  * DriveFile
  * ファイルオブジェクト
  */
+@JsExport
 @Serializable
 open class File {
 

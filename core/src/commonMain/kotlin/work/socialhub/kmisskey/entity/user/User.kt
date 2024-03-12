@@ -39,7 +39,7 @@ abstract class User {
 
     abstract var avatarUrl: String?
     abstract var avatarBlurhash: String?
-    abstract var avatarDecorations: List<AvatarDecoration>
+    abstract var avatarDecorations: Array<AvatarDecoration>
 
     abstract var isBot: Boolean
     abstract var isCat: Boolean
@@ -47,8 +47,9 @@ abstract class User {
     abstract var instance: Instance?
     abstract var emojis: Emojis?
     abstract var onlineStatus: String
-    abstract var badgeRoles: List<BadgeRole>
-    abstract var roles: List<Role>
+
+    abstract var badgeRoles: Array<BadgeRole>
+    abstract var roles: Array<Role>
     abstract var policies: UserPolicies?
 
     /*

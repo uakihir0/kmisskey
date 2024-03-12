@@ -6,6 +6,7 @@ import work.socialhub.kmisskey.entity.BadgeRole
 import work.socialhub.kmisskey.entity.Emojis
 import work.socialhub.kmisskey.entity.Instance
 import work.socialhub.kmisskey.entity.Role
+import work.socialhub.kmisskey.entity.UserPolicies
 
 @Serializable
 open class UserLite : User() {
@@ -29,4 +30,5 @@ open class UserLite : User() {
     override lateinit var onlineStatus: String
     override var badgeRoles: List<BadgeRole> = listOf()
     override var roles: List<Role> = listOf()
+    override var policies: UserPolicies? = null
 }

@@ -78,6 +78,25 @@ abstract class AbstractResourceImpl(
 
     /**
      * API の呼び出しを行う場合
+     * 認証リクエストの場合
+     */
+    protected inline fun <reified K : TokenRequest> postUnit(
+        path: String,
+        request: K,
+    ): Response<Unit> {
+        return proceedUnit {
+            runBlocking {
+                HttpRequest()
+                    .url(uri + path)
+                    .json(toJson(auth(request)))
+                    .accept(MediaType.JSON)
+                    .post()
+            }
+        }
+    }
+
+    /**
+     * API の呼び出しを行う場合
      */
     protected fun postUnit(
         path: String,
@@ -85,22 +104,11 @@ abstract class AbstractResourceImpl(
     ): Response<Unit> {
         return proceedUnit {
             runBlocking {
-
-                // 認証リクエストの場合
-                if (request is TokenRequest) {
-                    HttpRequest()
-                        .url(uri + path)
-                        .json(toJson(auth(request)))
-                        .accept(MediaType.JSON)
-                        .post()
-
-                } else {
-                    HttpRequest()
-                        .url(uri + path)
-                        .json(toJson(request))
-                        .accept(MediaType.JSON)
-                        .post()
-                }
+                HttpRequest()
+                    .url(uri + path)
+                    .json(toJson(request))
+                    .accept(MediaType.JSON)
+                    .post()
             }
         }
     }
@@ -113,7 +121,6 @@ abstract class AbstractResourceImpl(
         path: String,
         params: Map<String, Any>,
     ): Response<T> {
-
         return proceed {
             runBlocking {
                 val request = HttpRequest()

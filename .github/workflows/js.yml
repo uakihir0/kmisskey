@@ -18,7 +18,7 @@ jobs:
       - name: Pods Npm Package
         uses: gradle/gradle-build-action@v2.6.0
         with:
-          arguments: pods:jsNodeDevelopmentLibraryDistribution -x test
+          arguments: pods:jsBrowserDevelopmentLibraryDistribution -x test
 
       - name: Set Project Version
         run: |
@@ -30,7 +30,7 @@ jobs:
         run: |
           git config --global user.email "a.urusihara@gmail.com"
           git config --global user.name "Akihiro Urushihara"
-          cd ./build/js/packages/kmisskey-pods/
+          cd ./pods/build/dist/js/developmentLibrary/
           git init
           git add --all
           git commit -m "by GitHub Action CI (SHA ${GITHUB_SHA})"

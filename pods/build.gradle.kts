@@ -8,6 +8,7 @@ plugins {
 
 kotlin {
     js(IR) {
+        moduleName = "kmisskey-js"
         nodejs()
         browser()
         binaries.library()
@@ -62,7 +63,7 @@ tasks.podPublishXCFramework {
     }
 }
 
-tasks.getByName("jsNodeDevelopmentLibraryDistribution") {
+tasks.getByName("jsBrowserDevelopmentLibraryDistribution") {
     doLast {
         exec {
             executable = "sh"

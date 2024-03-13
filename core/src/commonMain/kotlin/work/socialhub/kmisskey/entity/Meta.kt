@@ -38,6 +38,7 @@ open class Meta {
     var enableServiceWorker: Boolean? = null
     var translatorAvailable: Boolean? = null
     var proxyAccountName: String? = null
+    var policies: Policies? = null
     var mediaProxy: String? = null
     var features: MetaFeatures? = null
 

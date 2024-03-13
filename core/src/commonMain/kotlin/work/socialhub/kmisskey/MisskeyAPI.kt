@@ -34,6 +34,7 @@ enum class MisskeyAPI(
     NotesShow("notes/show"),
     UsersNotes("users/notes"),
     NotesSearch("notes/search"),
+    NotesSearchByTag("notes/search-by-tag"),
     NotesReactions("notes/reactions"),
     NotesTimeline("notes/timeline"),
     NotesMentions("notes/mentions"),

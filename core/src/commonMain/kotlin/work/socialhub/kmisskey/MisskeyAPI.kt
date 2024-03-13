@@ -151,6 +151,9 @@ enum class MisskeyAPI(
 
     FollowingCreate("following/create"),
     FollowingDelete("following/delete"),
+    FollowingRequestsList("following/requests/list"),
+    FollowingRequestsAccept("following/requests/accept"),
+    FollowingRequestsReject("following/requests/reject"),
 
     // ------------------------------------------ //
     // Polls

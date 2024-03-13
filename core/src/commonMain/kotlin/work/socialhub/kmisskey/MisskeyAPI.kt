@@ -71,6 +71,8 @@ enum class MisskeyAPI(
     INotifications("i/notifications"),
     IWebhooksUpdate("i/webhooks/update"),
     IUpdate("i/update"),
+    IPin("i/pin"),
+    IUnpin("i/unpin"),
 
     // ------------------------------------------ //
     // Auth

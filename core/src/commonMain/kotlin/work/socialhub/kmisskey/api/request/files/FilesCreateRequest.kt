@@ -8,6 +8,7 @@ class FilesCreateRequest : TokenRequest() {
 
     var folderId: String? = null
     var name: String? = null
+    var comment: String? = null
     var sensitive: Boolean? = null
     var force: Boolean? = null
     var bytes: ByteArray? = null

@@ -10,6 +10,8 @@ class MisskeyException : RuntimeException {
         this.error = error
     }
 
+    constructor(message: String?) : super(message)
+
     var statusCode: Int? = null
     var error: Error? = null
 }

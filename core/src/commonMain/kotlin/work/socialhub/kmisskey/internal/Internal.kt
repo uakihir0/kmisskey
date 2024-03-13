@@ -7,6 +7,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import misskey4j.util.json.UserSerializer
 import work.socialhub.khttpclient.HttpResponse
+import work.socialhub.kmisskey.MisskeyException
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.entity.user.User
 import work.socialhub.kmpcommon.AnySerializer
@@ -83,11 +84,11 @@ object Internal {
     fun handleError(
         exception: Exception?,
         body: String? = null,
-    ): RuntimeException {
+    ): MisskeyException {
         if (exception != null) {
-            return RuntimeException(exception)
+            return MisskeyException(exception)
         }
         println(body)
-        return RuntimeException(body)
+        return MisskeyException(body)
     }
 }

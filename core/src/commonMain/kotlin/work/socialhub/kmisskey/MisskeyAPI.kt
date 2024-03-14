@@ -8,6 +8,13 @@ enum class MisskeyAPI(
     // ------------------------------------------ //
     Meta("meta"),
     Emojis("emojis"),
+    GetOnlineUsersCount("get-online-users-count"),
+
+    // ------------------------------------------ //
+    // Announcements
+    // ------------------------------------------ //
+    Announcements("announcements"),
+    ReadAnnouncement("i/read-announcement"),
 
     // ------------------------------------------ //
     // Federation
@@ -27,6 +34,7 @@ enum class MisskeyAPI(
     NotesShow("notes/show"),
     UsersNotes("users/notes"),
     NotesSearch("notes/search"),
+    NotesSearchByTag("notes/search-by-tag"),
     NotesReactions("notes/reactions"),
     NotesTimeline("notes/timeline"),
     NotesMentions("notes/mentions"),
@@ -62,6 +70,9 @@ enum class MisskeyAPI(
     IFavorites("i/favorites"),
     INotifications("i/notifications"),
     IWebhooksUpdate("i/webhooks/update"),
+    IUpdate("i/update"),
+    IPin("i/pin"),
+    IUnpin("i/unpin"),
 
     // ------------------------------------------ //
     // Auth
@@ -114,11 +125,38 @@ enum class MisskeyAPI(
     // ChannelsFeatured("channels/featured"),
 
     // ------------------------------------------ //
+    // Antennas
+    // ------------------------------------------ //
+
+    // AntennasCreate("antennas/create"),
+    // AntennasDelete("antennas/delete"),
+    AntennasList("antennas/list"),
+    AntennasNotes("antennas/notes"),
+    // AntennasShow("antennas/show"),
+    // AntennasUpdate("antennas/update"),
+
+    // ------------------------------------------ //
+    // Clips
+    // ------------------------------------------ //
+
+    ClipsList("clips/list"),
+    ClipsNotes("clips/notes"),
+    ClipsRemoveNote("clips/remove-note"),
+    ClipsAddNote("clips/add-note"),
+    ClipsDelete("clips/delete"),
+    ClipsCreate("clips/create"),
+    ClipsShow("clips/show"),
+    ClipsUpdate("clips/update"),
+
+    // ------------------------------------------ //
     // Following
     // ------------------------------------------ //
 
     FollowingCreate("following/create"),
     FollowingDelete("following/delete"),
+    FollowingRequestsList("following/requests/list"),
+    FollowingRequestsAccept("following/requests/accept"),
+    FollowingRequestsReject("following/requests/reject"),
 
     // ------------------------------------------ //
     // Polls

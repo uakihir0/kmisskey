@@ -159,6 +159,15 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
+    override fun searchByTag(
+        request: NotesSearchByTagRequest
+    ): Response<Array<NotesSearchByTagResponse>> {
+        return post(NotesSearchByTag.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     override fun userListTimeline(
         request: NotesUserListTimelineRequest
     ): Response<Array<NotesUserListTimelineResponse>> {

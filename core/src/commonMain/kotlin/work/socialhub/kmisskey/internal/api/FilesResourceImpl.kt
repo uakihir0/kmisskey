@@ -22,6 +22,7 @@ class FilesResourceImpl(
 
         val params = mutableMapOf<String, Any>()
         params.add("name", request.name)
+        params.add("comment", request.comment)
         params.add("folderId", request.folderId)
         params.add("isSensitive", request.sensitive)
         params.add("force", request.force)

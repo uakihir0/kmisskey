@@ -8,6 +8,7 @@ import kotlin.js.JsExport
 interface Misskey {
 
     fun meta(): MetaResource
+    fun announcements(): AnnouncementsResource
     fun federation(): FederationResource
 
     fun ap(): ApResource
@@ -17,6 +18,8 @@ interface Misskey {
     fun users(): UsersResource
     fun lists(): ListsResource
     fun channels(): ChannelsResource
+    fun antennas(): AntennasResource
+    fun clips(): ClipsResource
     fun notes(): NotesResource
     fun reactions(): ReactionsResource
     fun favorites(): FavoritesResource

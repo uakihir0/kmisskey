@@ -18,5 +18,6 @@ class UsersNotesRequest : TokenRequest() {
     var includeMyRenotes: Boolean? = null
     var excludeNsfw: Boolean? = null
     var withFiles: Boolean? = null
+    var withChannelNotes: Boolean? = null
     var fileType: List<String>? = null
 }

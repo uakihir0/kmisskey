@@ -135,6 +135,14 @@ interface NotesResource {
     ): Response<Array<NotesSearchResponse>>
 
     /**
+     * 指定されたハッシュタグが付けられたノートを取得します。
+     * https://misskey.io/api-doc#tag/notes/operation/notes/search-by-tag
+     */
+    fun searchByTag(
+        request: NotesSearchByTagRequest
+    ): Response<Array<NotesSearchByTagResponse>>
+
+    /**
      * 指定したユーザーリストのタイムラインを取得します。
      * https://misskey.io/api-doc#operation/notes/user-list-timeline
      */

@@ -16,4 +16,5 @@ class NotesTimelineRequest : TokenRequest() {
     var includeRenotedMyNotes: Boolean? = null
     var includeLocalRenotes: Boolean? = null
     var withFiles: Boolean? = null
+    var withReplies: Boolean? = null
 }

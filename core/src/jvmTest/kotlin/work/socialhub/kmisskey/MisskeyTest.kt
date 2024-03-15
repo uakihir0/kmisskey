@@ -18,7 +18,7 @@ class MisskeyTest : AbstractTest() {
             GetMiAuthUriRequest().also { r ->
                 r.name = "kmisskey"
                 r.callbackUrl = "https://socialhub.work/"
-                r.permission = Scope.ALL.map { it.target }
+                r.permission = Scope.ALL.map { it.target }.toTypedArray()
             }
         )
 
@@ -35,7 +35,7 @@ class MisskeyTest : AbstractTest() {
                     r.name = "kmisskey"
                     r.description = "kmisskey"
                     r.callbackUrl = "https://socialhub.work/"
-                    r.permission = Scope.ALL.map { it.target }
+                    r.permission = Scope.ALL.map { it.target }.toTypedArray()
                 }
             )
 
@@ -53,7 +53,7 @@ class MisskeyTest : AbstractTest() {
                     r.name = "kmisskey"
                     r.description = "kmisskey"
                     r.callbackUrl = "https://socialhub.work/"
-                    r.permission = Scope.ALL.map { it.target }
+                    r.permission = Scope.ALL.map { it.target }.toTypedArray()
                 }
             )
 

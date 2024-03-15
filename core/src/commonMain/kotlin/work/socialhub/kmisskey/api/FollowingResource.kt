@@ -9,7 +9,6 @@ import work.socialhub.kmisskey.api.response.following.FollowingRequestsListRespo
 import work.socialhub.kmisskey.entity.share.Response
 import kotlin.js.JsExport
 
-
 @JsExport
 interface FollowingResource {
 

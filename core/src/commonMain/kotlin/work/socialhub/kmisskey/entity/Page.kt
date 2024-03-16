@@ -2,7 +2,9 @@ package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.user.User
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 class Page {
 
@@ -36,6 +38,6 @@ class Page {
     // TODO: DriveFile?
     // var attachedFiles: List<DriveFile> = listOf()
 
-    var likedCount: Long = 0
+    var likedCount: Int = 0
     var isLiked = false
 }

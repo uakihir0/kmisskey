@@ -1,7 +1,9 @@
 package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 class Folder {
 
@@ -10,7 +12,7 @@ class Folder {
     lateinit var name: String
 
     var parentId: String? = null
-    var foldersCount: Long = 0
-    var filesCount: Long = 0
+    var foldersCount: Int = 0
+    var filesCount: Int = 0
     var parent: Folder? = null
 }

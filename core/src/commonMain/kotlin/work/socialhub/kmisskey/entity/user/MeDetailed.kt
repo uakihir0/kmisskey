@@ -3,7 +3,9 @@ package work.socialhub.kmisskey.entity.user
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.Achievement
 import work.socialhub.kmisskey.entity.SecurityKey
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 class MeDetailed : UserDetailedNotMe() {
 
@@ -39,22 +41,22 @@ class MeDetailed : UserDetailedNotMe() {
     var hasUnreadChannel: Boolean = false
     var hasUnreadNotifications: Boolean = false
     var hasPendingReceivedFollowRequest: Boolean = false
-    var unreadNotificationsCount: Long = 0
+    var unreadNotificationsCount: Int = 0
 
-    var mutedWords: List<String> = listOf()
-    var mutedInstances: List<String> = listOf()
+    var mutedWords: Array<String> = arrayOf()
+    var mutedInstances: Array<String> = arrayOf()
 
     // TODO: Object
-    // var notificationRecieveConfig: List<Any> = listOf()
+    // var notificationRecieveConfig: Array<Any> = listOf()
 
-    var emailNotificationTypes: List<String> = listOf()
-    var achievements: List<Achievement> = listOf()
-    var loggedInDays: Long = 0
+    var emailNotificationTypes: Array<String> = arrayOf()
+    var achievements: Array<Achievement> = arrayOf()
+    var loggedInDays: Int = 0
 
     // TODO: RolePolicies
     // var policies: List<RolePolicies> = listOf()
 
     var email: String? = null
     var emailVerified: Boolean = false
-    var securityKeysList: List<SecurityKey> = listOf()
+    var securityKeysList: Array<SecurityKey> = arrayOf()
 }

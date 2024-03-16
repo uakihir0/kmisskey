@@ -2,7 +2,11 @@ package work.socialhub.kmisskey.apis
 
 import work.socialhub.kmisskey.AbstractTest
 import work.socialhub.kmisskey.Misskey
-import work.socialhub.kmisskey.api.request.webhooks.*
+import work.socialhub.kmisskey.api.request.webhooks.CreateWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.DeleteWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.ListWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.ShowWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.UpdateWebhooksRequest
 import work.socialhub.kmisskey.entity.contant.WebhooksType
 import work.socialhub.kmisskey.internal.Internal
 import kotlin.test.Test
@@ -19,7 +23,7 @@ class WebhookTest : AbstractTest() {
         )
         val request = CreateWebhooksRequest().also { r ->
             r.name = "WebhookTest"
-            r.on = on.map { it.name }
+            r.on = on.map { it.name }.toTypedArray()
             r.secret = "qazwsx"
             r.url = "https://socialhub.work/"
         }
@@ -40,7 +44,7 @@ class WebhookTest : AbstractTest() {
         )
         val request = UpdateWebhooksRequest().also { r ->
             r.name = "WebhookTestRename"
-            r.on = on.map { it.name }
+            r.on = on.map { it.name }.toTypedArray()
             r.secret = "qazwsx"
             r.url = "https://socialhub.work/"
             r.webhookId = webhookId

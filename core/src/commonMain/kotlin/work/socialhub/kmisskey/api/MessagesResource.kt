@@ -6,8 +6,11 @@ import work.socialhub.kmisskey.api.request.messages.MessagingMessagesDeleteReque
 import work.socialhub.kmisskey.api.request.messages.MessagingMessagesRequest
 import work.socialhub.kmisskey.api.response.messages.MessagingHistoryResponse
 import work.socialhub.kmisskey.api.response.messages.MessagingMessagesResponse
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
+@JsExport
 interface MessagesResource {
 
     /**
@@ -32,7 +35,7 @@ interface MessagesResource {
      */
     fun messagesCreate(
         request: MessagingMessagesCreateRequest
-    ): Response<Unit>
+    ): EmptyResponse
 
     /**
      * 指定したトークメッセージを削除します。
@@ -40,5 +43,5 @@ interface MessagesResource {
      */
     fun messagesDelete(
         request: MessagingMessagesDeleteRequest
-    ): Response<Unit>
+    ): EmptyResponse
 }

@@ -3,7 +3,7 @@ package work.socialhub.kmisskey.internal.api
 import work.socialhub.kmisskey.MisskeyAPI.PollsVote
 import work.socialhub.kmisskey.api.PollsResource
 import work.socialhub.kmisskey.api.request.polls.PollsVoteRequest
-import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 
 class PollsResourceImpl(
     uri: String,
@@ -16,7 +16,7 @@ class PollsResourceImpl(
      */
     override fun pollsVote(
         request: PollsVoteRequest
-    ): Response<Unit> {
-        return post(PollsVote.path, request)
+    ): EmptyResponse {
+        return postUnit(PollsVote.path, request)
     }
 }

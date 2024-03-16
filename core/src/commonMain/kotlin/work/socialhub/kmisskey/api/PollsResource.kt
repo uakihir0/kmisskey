@@ -1,8 +1,11 @@
 package work.socialhub.kmisskey.api
 
 import work.socialhub.kmisskey.api.request.polls.PollsVoteRequest
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
+@JsExport
 interface PollsResource {
 
     /**
@@ -12,5 +15,5 @@ interface PollsResource {
      */
     fun pollsVote(
         request: PollsVoteRequest
-    ): Response<Unit>
+    ): EmptyResponse
 }

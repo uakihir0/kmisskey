@@ -1,19 +1,20 @@
 package work.socialhub.kmisskey.entity
 
-import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 open class Webhook {
 
     var id: String? = null
-    var createdAt: Instant? = null
+    var createdAt: String? = null
     var userId: String? = null
     var name: String? = null
-    var on: List<String>? = null
+    var on: Array<String>? = null
     var url: String? = null
     var secret: String? = null
     var active: Boolean? = null
-    var latestSentAt: Instant? = null
-    var latestStatus: Long? = null
+    var latestSentAt: String? = null
+    var latestStatus: Int? = null
 }

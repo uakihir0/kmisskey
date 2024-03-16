@@ -1,11 +1,14 @@
 package work.socialhub.kmisskey.internal.api
 
-import work.socialhub.kmisskey.MisskeyAPI.*
+import work.socialhub.kmisskey.MisskeyAPI.BlocksCreate
+import work.socialhub.kmisskey.MisskeyAPI.BlocksDelete
+import work.socialhub.kmisskey.MisskeyAPI.BlocksList
 import work.socialhub.kmisskey.api.BlocksResource
 import work.socialhub.kmisskey.api.request.blocks.BlocksCreateRequest
 import work.socialhub.kmisskey.api.request.blocks.BlocksDeleteRequest
 import work.socialhub.kmisskey.api.request.blocks.BlocksListRequest
 import work.socialhub.kmisskey.api.response.blocks.BlocksListResponse
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 
 class BlocksResourceImpl(
@@ -19,8 +22,8 @@ class BlocksResourceImpl(
      */
     override fun create(
         request: BlocksCreateRequest
-    ): Response<Unit> {
-        return post(BlocksCreate.path, request)
+    ): EmptyResponse {
+        return postUnit(BlocksCreate.path, request)
     }
 
     /**
@@ -28,8 +31,8 @@ class BlocksResourceImpl(
      */
     override fun delete(
         request: BlocksDeleteRequest
-    ): Response<Unit> {
-        return post(BlocksDelete.path, request)
+    ): EmptyResponse {
+        return postUnit(BlocksDelete.path, request)
     }
 
     /**

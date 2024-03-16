@@ -6,8 +6,11 @@ import work.socialhub.kmisskey.api.response.webhooks.DeleteWebhooksResponse
 import work.socialhub.kmisskey.api.response.webhooks.ShowWebhooksResponse
 import work.socialhub.kmisskey.api.response.webhooks.UpdateWebhooksResponse
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
+@JsExport
 interface WebhooksResource {
+
     /**
      * Webhook を作成します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/create

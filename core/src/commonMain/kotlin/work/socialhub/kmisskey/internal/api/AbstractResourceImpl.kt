@@ -4,6 +4,7 @@ import misskey4j.internal.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.khttpclient.HttpResponse
 import work.socialhub.kmisskey.api.model.TokenRequest
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.internal.Internal
 import work.socialhub.kmisskey.internal.Internal.toJson
@@ -25,7 +26,7 @@ abstract class AbstractResourceImpl(
      */
     protected inline fun proceedUnit(
         function: () -> HttpResponse
-    ): Response<Unit> {
+    ): EmptyResponse {
         return Internal.proceedUnit(function)
     }
 
@@ -83,7 +84,7 @@ abstract class AbstractResourceImpl(
     protected inline fun <reified K : TokenRequest> postUnit(
         path: String,
         request: K,
-    ): Response<Unit> {
+    ): EmptyResponse {
         return runBlocking {
             proceedUnit {
                 HttpRequest()
@@ -101,7 +102,7 @@ abstract class AbstractResourceImpl(
     protected fun postUnit(
         path: String,
         request: Any,
-    ): Response<Unit> {
+    ): EmptyResponse {
         return runBlocking {
             proceedUnit {
                 HttpRequest()

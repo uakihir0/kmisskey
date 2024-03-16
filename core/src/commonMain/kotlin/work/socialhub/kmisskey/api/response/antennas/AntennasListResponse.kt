@@ -1,4 +1,4 @@
-package work.socialhub.kmisskey.api.response
+package work.socialhub.kmisskey.api.response.antennas
 
 import work.socialhub.kmisskey.entity.Antenna
 

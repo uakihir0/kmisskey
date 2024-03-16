@@ -8,6 +8,7 @@ import kotlinx.serialization.modules.SerializersModule
 import misskey4j.util.json.UserSerializer
 import work.socialhub.khttpclient.HttpResponse
 import work.socialhub.kmisskey.MisskeyException
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.entity.user.User
 import work.socialhub.kmpcommon.AnySerializer
@@ -44,11 +45,11 @@ object Internal {
 
     inline fun proceedUnit(
         function: () -> HttpResponse
-    ): Response<Unit> {
+    ): EmptyResponse {
         try {
             val response = function()
             if (response.status == 200) {
-                return Response(Unit, "")
+                return EmptyResponse()
             }
 
             throw handleError(

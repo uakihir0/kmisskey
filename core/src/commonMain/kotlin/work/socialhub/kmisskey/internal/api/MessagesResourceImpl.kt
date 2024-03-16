@@ -1,6 +1,9 @@
 package work.socialhub.kmisskey.internal.api
 
-import work.socialhub.kmisskey.MisskeyAPI.*
+import work.socialhub.kmisskey.MisskeyAPI.Messages
+import work.socialhub.kmisskey.MisskeyAPI.MessagesCreate
+import work.socialhub.kmisskey.MisskeyAPI.MessagesDelete
+import work.socialhub.kmisskey.MisskeyAPI.MessagesHistory
 import work.socialhub.kmisskey.api.MessagesResource
 import work.socialhub.kmisskey.api.request.messages.MessagingHistoryRequest
 import work.socialhub.kmisskey.api.request.messages.MessagingMessagesCreateRequest

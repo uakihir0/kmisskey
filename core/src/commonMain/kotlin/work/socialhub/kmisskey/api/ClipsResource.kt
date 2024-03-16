@@ -4,15 +4,15 @@ import work.socialhub.kmisskey.api.request.clips.ClipsAddNoteRequest
 import work.socialhub.kmisskey.api.request.clips.ClipsCreateRequest
 import work.socialhub.kmisskey.api.request.clips.ClipsDeleteRequest
 import work.socialhub.kmisskey.api.request.clips.ClipsListRequest
+import work.socialhub.kmisskey.api.request.clips.ClipsNotesRequest
+import work.socialhub.kmisskey.api.request.clips.ClipsRemoveNoteRequest
+import work.socialhub.kmisskey.api.request.clips.ClipsShowRequest
+import work.socialhub.kmisskey.api.request.clips.ClipsUpdateRequest
 import work.socialhub.kmisskey.api.response.clips.ClipsCreateResponse
 import work.socialhub.kmisskey.api.response.clips.ClipsListResponse
 import work.socialhub.kmisskey.api.response.clips.ClipsNotesResponse
 import work.socialhub.kmisskey.api.response.clips.ClipsShowResponse
 import work.socialhub.kmisskey.api.response.clips.ClipsUpdateResponse
-import work.socialhub.kmisskey.api.request.clips.ClipsNotesRequest
-import work.socialhub.kmisskey.api.request.clips.ClipsRemoveNoteRequest
-import work.socialhub.kmisskey.api.request.clips.ClipsShowRequest
-import work.socialhub.kmisskey.api.request.clips.ClipsUpdateRequest
 import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import kotlin.js.JsExport
@@ -43,7 +43,7 @@ interface ClipsResource {
      * @see "https://misskey.io/api-doc.tag/account/operation/clips/remove-note"
      */
     fun removeNote(
-        request : ClipsRemoveNoteRequest
+        request: ClipsRemoveNoteRequest
     ): EmptyResponse
 
     /**

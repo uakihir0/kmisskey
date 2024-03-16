@@ -1,10 +1,20 @@
 package work.socialhub.kmisskey.internal.api
 
 import work.socialhub.kmisskey.MisskeyAPI
-import work.socialhub.kmisskey.MisskeyAPI.*
+import work.socialhub.kmisskey.MisskeyAPI.ChannelsFollowed
+import work.socialhub.kmisskey.MisskeyAPI.ChannelsMyFavorites
+import work.socialhub.kmisskey.MisskeyAPI.ChannelsOwned
 import work.socialhub.kmisskey.api.ChannelsResource
-import work.socialhub.kmisskey.api.request.*
-import work.socialhub.kmisskey.api.response.channels.*
+import work.socialhub.kmisskey.api.request.ChannelsFollowedRequest
+import work.socialhub.kmisskey.api.request.ChannelsMyFavoritesRequest
+import work.socialhub.kmisskey.api.request.ChannelsOwnedRequest
+import work.socialhub.kmisskey.api.request.ChannelsShowRequest
+import work.socialhub.kmisskey.api.request.ChannelsTimelineRequest
+import work.socialhub.kmisskey.api.response.channels.ChannelsFollowedResponse
+import work.socialhub.kmisskey.api.response.channels.ChannelsMyFavoritesResponse
+import work.socialhub.kmisskey.api.response.channels.ChannelsOwnedResponse
+import work.socialhub.kmisskey.api.response.channels.ChannelsShowResponse
+import work.socialhub.kmisskey.api.response.channels.ChannelsTimelineResponse
 import work.socialhub.kmisskey.entity.share.Response
 
 class ChannelsResourceImpl(

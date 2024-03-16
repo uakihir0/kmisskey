@@ -1,6 +1,12 @@
 package work.socialhub.kmisskey.api
 
-import work.socialhub.kmisskey.api.request.lists.*
+import work.socialhub.kmisskey.api.request.lists.UsersListsCreateRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsDeleteRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsListRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsPullRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsPushRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsShowRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsUpdateRequest
 import work.socialhub.kmisskey.api.response.lists.UsersListsListResponse
 import work.socialhub.kmisskey.api.response.lists.UsersListsShowResponse
 import work.socialhub.kmisskey.entity.NoteList

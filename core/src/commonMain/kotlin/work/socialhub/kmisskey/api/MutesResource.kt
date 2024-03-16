@@ -4,6 +4,7 @@ import work.socialhub.kmisskey.api.request.mutes.MutesCreateRequest
 import work.socialhub.kmisskey.api.request.mutes.MutesDeleteRequest
 import work.socialhub.kmisskey.api.request.mutes.MutesListRequest
 import work.socialhub.kmisskey.api.response.mutes.MutesListResponse
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import kotlin.js.JsExport
 
@@ -16,7 +17,7 @@ interface MutesResource {
      */
     fun create(
         request: MutesCreateRequest
-    ): Response<Unit>
+    ): EmptyResponse
 
     /**
      * ユーザーのミュートを解除します。
@@ -24,7 +25,7 @@ interface MutesResource {
      */
     fun delete(
         request: MutesDeleteRequest
-    ): Response<Unit>
+    ): EmptyResponse
 
     /**
      * ミュートしているユーザー一覧を取得します。

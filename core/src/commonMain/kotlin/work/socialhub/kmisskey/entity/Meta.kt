@@ -1,7 +1,9 @@
 package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 open class Meta {
 
@@ -11,7 +13,7 @@ open class Meta {
     var name: String? = null
     var uri: String? = null
     var description: String? = null
-    var langs: List<String>? = null
+    var langs: Array<String> = arrayOf()
     var tosUrl: String? = null
     var repositoryUrl: String? = null
     var feedbackUrl: String? = null
@@ -31,7 +33,7 @@ open class Meta {
     var bannerUrl: String? = null
     var errorImageUrl: String? = null
     var iconUrl: String? = null
-    var maxNoteTextLength: Long? = null
+    var maxNoteTextLength: Int? = null
 
     var requireSetup: Boolean? = null
     var enableEmail: Boolean? = null
@@ -47,5 +49,5 @@ open class Meta {
      * use /emojis endpoint.
      */
     @Deprecated("use /emojis endpoint.")
-    var emojis: List<Emoji>? = null
+    var emojis: Array<Emoji> = arrayOf()
 }

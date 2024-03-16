@@ -34,7 +34,7 @@ class UsersTest : AbstractTest() {
         val relations =
             misskey.users().relation(
                 UsersRelationRequest().also {
-                    it.userId = listOf(
+                    it.userId = arrayOf(
                         "7rkrarq81i",
                         "7rkrg1wo1a",
                     )
@@ -65,7 +65,7 @@ class UsersTest : AbstractTest() {
 
         val users = misskey.users().show(
             UsersShowMultipleRequest().also {
-                it.userIds = listOf(
+                it.userIds = arrayOf(
                     "7rkrarq81i",
                     "7rkrg1wo1a",
                 )

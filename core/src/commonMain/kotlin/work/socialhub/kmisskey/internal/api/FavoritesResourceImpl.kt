@@ -5,7 +5,7 @@ import work.socialhub.kmisskey.MisskeyAPI.FavoritesDelete
 import work.socialhub.kmisskey.api.FavoritesResource
 import work.socialhub.kmisskey.api.request.favorites.FavoritesCreateRequest
 import work.socialhub.kmisskey.api.request.favorites.FavoritesDeleteRequest
-import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 
 class FavoritesResourceImpl(
     uri: String,
@@ -18,8 +18,8 @@ class FavoritesResourceImpl(
      */
     override fun create(
         request: FavoritesCreateRequest
-    ): Response<Unit> {
-        return post(FavoritesCreate.path, request)
+    ): EmptyResponse {
+        return postUnit(FavoritesCreate.path, request)
     }
 
     /**
@@ -27,7 +27,7 @@ class FavoritesResourceImpl(
      */
     override fun delete(
         request: FavoritesDeleteRequest
-    ): Response<Unit> {
-        return post(FavoritesDelete.path, request)
+    ): EmptyResponse {
+        return postUnit(FavoritesDelete.path, request)
     }
 }

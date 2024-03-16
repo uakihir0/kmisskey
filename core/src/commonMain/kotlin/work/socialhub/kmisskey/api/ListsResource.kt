@@ -4,6 +4,7 @@ import work.socialhub.kmisskey.api.request.lists.*
 import work.socialhub.kmisskey.api.response.lists.UsersListsListResponse
 import work.socialhub.kmisskey.api.response.lists.UsersListsShowResponse
 import work.socialhub.kmisskey.entity.NoteList
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import kotlin.js.JsExport
 
@@ -33,7 +34,7 @@ interface ListsResource {
      */
     fun push(
         request: UsersListsPushRequest
-    ): Response<Unit>
+    ): EmptyResponse
 
     /**
      * 指定したユーザーをリストから削除します。
@@ -41,7 +42,7 @@ interface ListsResource {
      */
     fun pull(
         request: UsersListsPullRequest
-    ): Response<Unit>
+    ): EmptyResponse
 
     /**
      * リストを作成します。
@@ -65,5 +66,5 @@ interface ListsResource {
      */
     fun delete(
         request: UsersListsDeleteRequest
-    ): Response<Unit>
+    ): EmptyResponse
 }

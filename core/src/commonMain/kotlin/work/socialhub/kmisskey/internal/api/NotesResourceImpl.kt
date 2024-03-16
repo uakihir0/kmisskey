@@ -4,6 +4,7 @@ import work.socialhub.kmisskey.MisskeyAPI.*
 import work.socialhub.kmisskey.api.NotesResource
 import work.socialhub.kmisskey.api.request.notes.*
 import work.socialhub.kmisskey.api.response.notes.*
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 
 class NotesResourceImpl(
@@ -71,8 +72,8 @@ class NotesResourceImpl(
      */
     override fun delete(
         request: NotesDeleteRequest
-    ): Response<Unit> {
-        return post(NotesDelete.path, request)
+    ): EmptyResponse {
+        return postUnit(NotesDelete.path, request)
     }
 
     /**
@@ -179,8 +180,8 @@ class NotesResourceImpl(
      */
     override fun unrenote(
         request: NoteUnrenoteRequest
-    ): Response<Unit> {
-        return post(NotesUnrenote.path, request)
+    ): EmptyResponse {
+        return postUnit(NotesUnrenote.path, request)
     }
 
     /**

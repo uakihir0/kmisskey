@@ -1,9 +1,14 @@
 package work.socialhub.kmisskey.internal.api
 
-import work.socialhub.kmisskey.MisskeyAPI.*
+import work.socialhub.kmisskey.MisskeyAPI.MutesCreate
+import work.socialhub.kmisskey.MisskeyAPI.MutesDelete
+import work.socialhub.kmisskey.MisskeyAPI.MutesList
 import work.socialhub.kmisskey.api.MutesResource
-import work.socialhub.kmisskey.api.request.mutes.*
+import work.socialhub.kmisskey.api.request.mutes.MutesCreateRequest
+import work.socialhub.kmisskey.api.request.mutes.MutesDeleteRequest
+import work.socialhub.kmisskey.api.request.mutes.MutesListRequest
 import work.socialhub.kmisskey.api.response.mutes.MutesListResponse
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 
 class MutesResourceImpl(
@@ -17,8 +22,8 @@ class MutesResourceImpl(
      */
     override fun create(
         request: MutesCreateRequest
-    ): Response<Unit> {
-        return post(MutesCreate.path, request)
+    ): EmptyResponse {
+        return postUnit(MutesCreate.path, request)
     }
 
     /**
@@ -26,8 +31,8 @@ class MutesResourceImpl(
      */
     override fun delete(
         request: MutesDeleteRequest
-    ): Response<Unit> {
-        return post(MutesDelete.path, request)
+    ): EmptyResponse {
+        return postUnit(MutesDelete.path, request)
     }
 
     /**

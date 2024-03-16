@@ -28,20 +28,12 @@ object Internal {
     }
 
     inline fun <reified T> toJson(obj: T): String {
-        return json.encodeToString(obj).let {
-            println(it)
-            it
-        }
+        return json.encodeToString(obj)
     }
 
     inline fun <reified T> fromJson(obj: String): T {
         return json.decodeFromString(obj)
     }
-
-    val dateFormat = DateFormatter(
-        format = "yyyy-MM-ddTHH:mm:ss.SSSZ",
-        timezone = TimeZone.UTC,
-    )
 
     inline fun proceedUnit(
         function: () -> HttpResponse

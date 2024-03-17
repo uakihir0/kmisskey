@@ -16,7 +16,8 @@
 
 以下は対応するプラットフォームにおいて Gradle を用いて Kotlin で使用する際の使い方になります。
 **Apple プラットフォームで使用する場合は、 [kmisskey-cocoapods](https://github.com/uakihir0/kmisskey-cocoapods) を参照してください。**
-また、テストコードも合わせて確認してください。
+**また、JavaScript で使用する場合は、[kmsskey.js](https://github.com/uakihir0/kmisskey.js) を参照してください。**
+各 API の叩き方については、テストコードを参照してください。
 
 ```kotlin:build.gradle.kts
 repositories {

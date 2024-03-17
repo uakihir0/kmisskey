@@ -9,14 +9,17 @@
 ![badge][badge-ios]
 ![badge][badge-mac]
 
-**This library is a Misskey client library compatible with [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).**
-It depends on [khttpclient] and uses Ktor Client internally.
+**This library is a Misskey client library that supports [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html).**
+It depends on [khttpclient] and internally uses Ktor Client.
 Therefore, this library is available on Kotlin Multiplatform and platforms supported by Ktor Client.
 The behavior on each platform depends on [khttpclient].
 
 ## Usage
 
-The following is how to use it with Gradle in Kotlin for the respective platforms. **If you are using it on the Apple platform, please refer to [kmisskey-cocoapods](https://github.com/uakihir0/kmisskey-cocoapods).** Also, make sure to check the test code.
+Below is how to use it in Kotlin with Gradle on supported platforms.
+**If you want to use it on Apple platforms, please refer to [kmisskey-cocoapods](https://github.com/uakihir0/kmisskey-cocoapods).**
+**Also, for usage in JavaScript, please refer to [kmsskey.js](https://github.com/uakihir0/kmisskey.js).**
+Please refer to the test code for how to use each API.
 
 ```kotlin:build.gradle.kts
 repositories {
@@ -48,7 +51,7 @@ val response = misskey.auth().getMiAuthUri(
 println("URL:" + response.data)
 ```
 
-After the user authenticates, obtain the token from the redirected URL and get the access token as follows.
+After the user authenticates and is redirected, obtain the token from the redirected URL and get the access token as follows.
 
 ```kotlin
 val response =

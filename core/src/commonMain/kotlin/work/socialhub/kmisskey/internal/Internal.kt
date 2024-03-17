@@ -1,6 +1,5 @@
 package work.socialhub.kmisskey.internal
 
-import kotlinx.datetime.TimeZone
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -8,10 +7,10 @@ import kotlinx.serialization.modules.SerializersModule
 import misskey4j.util.json.UserSerializer
 import work.socialhub.khttpclient.HttpResponse
 import work.socialhub.kmisskey.MisskeyException
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.entity.user.User
 import work.socialhub.kmpcommon.AnySerializer
-import work.socialhub.kmpcommon.DateFormatter
 
 object Internal {
 
@@ -27,28 +26,20 @@ object Internal {
     }
 
     inline fun <reified T> toJson(obj: T): String {
-        return json.encodeToString(obj).let {
-            println(it)
-            it
-        }
+        return json.encodeToString(obj)
     }
 
     inline fun <reified T> fromJson(obj: String): T {
         return json.decodeFromString(obj)
     }
 
-    val dateFormat = DateFormatter(
-        format = "yyyy-MM-ddTHH:mm:ss.SSSZ",
-        timezone = TimeZone.UTC,
-    )
-
     inline fun proceedUnit(
         function: () -> HttpResponse
-    ): Response<Unit> {
+    ): EmptyResponse {
         try {
             val response = function()
             if (response.status == 200) {
-                return Response(Unit, "")
+                return EmptyResponse()
             }
 
             throw handleError(

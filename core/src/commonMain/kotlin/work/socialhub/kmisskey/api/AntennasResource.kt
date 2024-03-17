@@ -1,18 +1,28 @@
 package work.socialhub.kmisskey.api
 
-import work.socialhub.kmisskey.api.request.AntennasNotesRequest
-import work.socialhub.kmisskey.api.response.AntennasListResponse
-import work.socialhub.kmisskey.api.response.AntennasNotesResponse
+import work.socialhub.kmisskey.api.request.antennas.AntennasListRequest
+import work.socialhub.kmisskey.api.request.antennas.AntennasNotesRequest
+import work.socialhub.kmisskey.api.response.antennas.AntennasListResponse
+import work.socialhub.kmisskey.api.response.antennas.AntennasNotesResponse
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
+@JsExport
 interface AntennasResource {
 
     /**
      * ログイン中のユーザーが作成したアンテナの一覧を取得します。
      *
-     * @see "https://misskey.io/api-doc.tag/antennas/operation/antennas/list"
+     * https://misskey.io/api-doc#tag/antennas/operation/antennas/list
      */
-    fun list(): Response<Array<AntennasListResponse>>
+    fun list(
+        request: AntennasListRequest
+    ): Response<Array<AntennasListResponse>>
 
-    fun notes(request: AntennasNotesRequest): Response<Array<AntennasNotesResponse>>
+    /**
+     * https://misskey.io/api-doc#tag/antennas/operation/antennas/notes
+     */
+    fun notes(
+        request: AntennasNotesRequest
+    ): Response<Array<AntennasNotesResponse>>
 }

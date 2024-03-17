@@ -1,8 +1,16 @@
 package work.socialhub.kmisskey.internal.api
 
-import work.socialhub.kmisskey.MisskeyAPI.*
+import work.socialhub.kmisskey.MisskeyAPI.IWebhooksCreate
+import work.socialhub.kmisskey.MisskeyAPI.IWebhooksDelete
+import work.socialhub.kmisskey.MisskeyAPI.IWebhooksList
+import work.socialhub.kmisskey.MisskeyAPI.IWebhooksShow
+import work.socialhub.kmisskey.MisskeyAPI.IWebhooksUpdate
 import work.socialhub.kmisskey.api.WebhooksResource
-import work.socialhub.kmisskey.api.request.webhooks.*
+import work.socialhub.kmisskey.api.request.webhooks.CreateWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.DeleteWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.ListWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.ShowWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.UpdateWebhooksRequest
 import work.socialhub.kmisskey.api.response.webhooks.CreateWebhooksResponse
 import work.socialhub.kmisskey.api.response.webhooks.DeleteWebhooksResponse
 import work.socialhub.kmisskey.api.response.webhooks.ShowWebhooksResponse

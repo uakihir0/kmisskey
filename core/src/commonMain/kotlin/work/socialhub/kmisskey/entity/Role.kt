@@ -1,7 +1,9 @@
 package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 class Role {
 
@@ -9,5 +11,5 @@ class Role {
     lateinit var name: String
     var color: Color? = null
     var iconUrl: String? = null
-    var displayOrder: Long = 0
+    var displayOrder: Int = 0
 }

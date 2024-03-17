@@ -2,7 +2,9 @@ package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.util.ColorDecoder
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 open class Instance {
 

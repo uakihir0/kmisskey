@@ -3,6 +3,6 @@ package work.socialhub.kmisskey.entity.share
 import kotlin.js.JsExport
 
 @JsExport
-class ResponseUnit(
+class EmptyResponse(
     var limit: RateLimit? = null,
 )

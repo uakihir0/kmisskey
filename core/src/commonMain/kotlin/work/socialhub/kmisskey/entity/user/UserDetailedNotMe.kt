@@ -4,7 +4,9 @@ import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.Field
 import work.socialhub.kmisskey.entity.Note
 import work.socialhub.kmisskey.entity.Page
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 open class UserDetailedNotMe : UserLite() {
 
@@ -12,7 +14,7 @@ open class UserDetailedNotMe : UserLite() {
     var uri: String? = null
 
     var moveTo: String? = null
-    var alsoKnownAs: List<String>? = null
+    var alsoKnownAs: Array<String> = arrayOf()
 
     lateinit var createdAt: String
     var updatedAt: String? = null
@@ -31,15 +33,15 @@ open class UserDetailedNotMe : UserLite() {
     var birthday: String? = null
     var lang: String? = null
 
-    var fields: List<Field> = listOf()
-    var verifiedLinks: List<String> = listOf()
+    var fields: Array<Field> = arrayOf()
+    var verifiedLinks: Array<String> = arrayOf()
 
-    var followersCount: Long = 0
-    var followingCount: Long = 0
-    var notesCount: Long = 0
+    var followersCount: Int = 0
+    var followingCount: Int = 0
+    var notesCount: Int = 0
 
-    var pinnedNoteIds: List<String> = listOf()
-    var pinnedNotes: List<Note> = listOf()
+    var pinnedNoteIds: Array<String> = arrayOf()
+    var pinnedNotes: Array<Note> = arrayOf()
 
     var pinnedPageId: String? = null
     var pinnedPage: Page? = null

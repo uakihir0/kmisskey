@@ -1,6 +1,9 @@
 package work.socialhub.kmisskey.internal.api
 
-import work.socialhub.kmisskey.MisskeyAPI.*
+import work.socialhub.kmisskey.MisskeyAPI.Messages
+import work.socialhub.kmisskey.MisskeyAPI.MessagesCreate
+import work.socialhub.kmisskey.MisskeyAPI.MessagesDelete
+import work.socialhub.kmisskey.MisskeyAPI.MessagesHistory
 import work.socialhub.kmisskey.api.MessagesResource
 import work.socialhub.kmisskey.api.request.messages.MessagingHistoryRequest
 import work.socialhub.kmisskey.api.request.messages.MessagingMessagesCreateRequest
@@ -8,6 +11,7 @@ import work.socialhub.kmisskey.api.request.messages.MessagingMessagesDeleteReque
 import work.socialhub.kmisskey.api.request.messages.MessagingMessagesRequest
 import work.socialhub.kmisskey.api.response.messages.MessagingHistoryResponse
 import work.socialhub.kmisskey.api.response.messages.MessagingMessagesResponse
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 
 class MessagesResourceImpl(
@@ -39,8 +43,8 @@ class MessagesResourceImpl(
      */
     override fun messagesCreate(
         request: MessagingMessagesCreateRequest
-    ): Response<Unit> {
-        return post(MessagesCreate.path, request)
+    ): EmptyResponse {
+        return postUnit(MessagesCreate.path, request)
     }
 
     /**
@@ -48,7 +52,7 @@ class MessagesResourceImpl(
      */
     override fun messagesDelete(
         request: MessagingMessagesDeleteRequest
-    ): Response<Unit> {
-        return post(MessagesDelete.path, request)
+    ): EmptyResponse {
+        return postUnit(MessagesDelete.path, request)
     }
 }

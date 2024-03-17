@@ -8,7 +8,7 @@ class RateLimit {
 
     var limit: Int = 0
     var remaining: Int = 0
-    var reset: Instant? = null
+    var reset: String? = null
 
     companion object {
         const val X_RATELIMIT_LIMIT = "X-RateLimit-Limit"

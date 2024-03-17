@@ -6,11 +6,8 @@ import work.socialhub.kmisskey.api.response.meta.EmojisResponse
 import work.socialhub.kmisskey.api.response.meta.GetOnlineUsersCountResponse
 import work.socialhub.kmisskey.api.response.meta.MetaResponse
 import work.socialhub.kmisskey.entity.share.Response
-import kotlin.js.ExperimentalJsExport
 import kotlin.js.JsExport
 
-
-@OptIn(ExperimentalJsExport::class)
 @JsExport
 interface MetaResource {
     /**
@@ -32,5 +29,6 @@ interface MetaResource {
     /**
      * オンラインになっているユーザ数を取得します。
      */
-    fun getOnlineUsersCount(): Response<GetOnlineUsersCountResponse>
+    fun getOnlineUsersCount(
+    ): Response<GetOnlineUsersCountResponse>
 }

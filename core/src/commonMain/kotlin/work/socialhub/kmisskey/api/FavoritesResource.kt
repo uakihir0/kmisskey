@@ -2,8 +2,10 @@ package work.socialhub.kmisskey.api
 
 import work.socialhub.kmisskey.api.request.favorites.FavoritesCreateRequest
 import work.socialhub.kmisskey.api.request.favorites.FavoritesDeleteRequest
-import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.entity.share.EmptyResponse
+import kotlin.js.JsExport
 
+@JsExport
 interface FavoritesResource {
 
     /**
@@ -12,7 +14,7 @@ interface FavoritesResource {
      */
     fun create(
         request: FavoritesCreateRequest
-    ): Response<Unit>
+    ): EmptyResponse
 
     /**
      * 指定した投稿のお気に入りを解除します。
@@ -20,5 +22,5 @@ interface FavoritesResource {
      */
     fun delete(
         request: FavoritesDeleteRequest
-    ): Response<Unit>
+    ): EmptyResponse
 }

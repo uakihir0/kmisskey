@@ -1,8 +1,22 @@
 package work.socialhub.kmisskey.api
 
-import work.socialhub.kmisskey.api.request.users.*
+import work.socialhub.kmisskey.api.request.users.UsersFollowersRequest
+import work.socialhub.kmisskey.api.request.users.UsersFollowingsRequest
+import work.socialhub.kmisskey.api.request.users.UsersReactionsRequest
+import work.socialhub.kmisskey.api.request.users.UsersRecommendationRequest
+import work.socialhub.kmisskey.api.request.users.UsersRelationRequest
+import work.socialhub.kmisskey.api.request.users.UsersSearchByUsernameAndHostRequest
+import work.socialhub.kmisskey.api.request.users.UsersSearchRequest
+import work.socialhub.kmisskey.api.request.users.UsersShowMultipleRequest
+import work.socialhub.kmisskey.api.request.users.UsersShowSingleRequest
 import work.socialhub.kmisskey.api.response.notes.UsersReactionsResponse
-import work.socialhub.kmisskey.api.response.users.*
+import work.socialhub.kmisskey.api.response.users.UsersFollowersResponse
+import work.socialhub.kmisskey.api.response.users.UsersFollowingsResponse
+import work.socialhub.kmisskey.api.response.users.UsersRecommendationResponse
+import work.socialhub.kmisskey.api.response.users.UsersRelationResponse
+import work.socialhub.kmisskey.api.response.users.UsersSearchByUsernameAndHostResponse
+import work.socialhub.kmisskey.api.response.users.UsersSearchResponse
+import work.socialhub.kmisskey.api.response.users.UsersShowResponse
 import work.socialhub.kmisskey.entity.share.Response
 import kotlin.js.JsExport
 import kotlin.js.JsName

@@ -2,7 +2,9 @@ package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.user.User
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 open class GalleryPost {
 
@@ -15,12 +17,12 @@ open class GalleryPost {
     var userId: String? = null
     var user: User? = null
 
-    var fileIds: List<String>? = null
-    var files: List<File>? = null
+    var fileIds: Array<String> = arrayOf()
+    var files: Array<File> = arrayOf()
 
-    var tags: List<String>? = null
-    var sensitive: Boolean? = null
+    var tags: Array<String> = arrayOf()
+    var sensitive: Boolean = false
 
-    var liked: Boolean? = null
+    var liked: Boolean = false
     var likedCount: Int? = null
 }

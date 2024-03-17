@@ -1,7 +1,9 @@
 package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 class UserPolicies {
 
@@ -12,16 +14,16 @@ class UserPolicies {
     var canManageCustomEmojis: Boolean? = null
     var canSearchNotes: Boolean? = null
     var canHideAds: Boolean? = null
-    var driveCapacityMb: Long? = null
+    var driveCapacityMb: Int? = null
     var alwaysMarkNsfw: Boolean? = null
-    var pinLimit: Long? = null
-    var antennaLimit: Long? = null
-    var wordMuteLimit: Long? = null
-    var webhookLimit: Long? = null
-    var clipLimit: Long? = null
-    var noteEachClipsLimit: Long? = null
-    var userListLimit: Long? = null
-    var userEachUserListsLimit: Long? = null
+    var pinLimit: Int? = null
+    var antennaLimit: Int? = null
+    var wordMuteLimit: Int? = null
+    var webhookLimit: Int? = null
+    var clipLimit: Int? = null
+    var noteEachClipsLimit: Int? = null
+    var userListLimit: Int? = null
+    var userEachUserListsLimit: Int? = null
 
     var rateLimitFactor: Double? = null
 }

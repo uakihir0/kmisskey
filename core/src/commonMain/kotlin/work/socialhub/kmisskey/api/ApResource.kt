@@ -3,7 +3,9 @@ package work.socialhub.kmisskey.api
 import work.socialhub.kmisskey.api.request.ApShowRequest
 import work.socialhub.kmisskey.api.response.ApShowResponse
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
+@JsExport
 interface ApResource {
 
     /**

@@ -2,8 +2,10 @@ package work.socialhub.kmisskey.api
 
 import work.socialhub.kmisskey.api.request.reactions.ReactionsCreateRequest
 import work.socialhub.kmisskey.api.request.reactions.ReactionsDeleteRequest
-import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.entity.share.EmptyResponse
+import kotlin.js.JsExport
 
+@JsExport
 interface ReactionsResource {
     /**
      * 指定した投稿にリアクションします。
@@ -11,7 +13,7 @@ interface ReactionsResource {
      */
     fun create(
         request: ReactionsCreateRequest
-    ): Response<Unit>
+    ): EmptyResponse
 
     /**
      * 指定した投稿へのリアクションを取り消します。
@@ -19,5 +21,5 @@ interface ReactionsResource {
      */
     fun delete(
         request: ReactionsDeleteRequest
-    ): Response<Unit>
+    ): EmptyResponse
 }

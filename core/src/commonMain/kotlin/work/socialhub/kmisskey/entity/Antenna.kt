@@ -1,22 +1,28 @@
 package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 class Antenna {
 
-    var id = ""
-    var createdAt = ""
-    var name = ""
-    var keywords: List<List<String>> = emptyList()
-    var excludeKeywords: List<List<String>> = emptyList()
-    var src = "all"
-    var userListId: String? = ""
-    var users: List<String> = emptyList()
-    var caseSensitive = false
-    var notify = false
-    var withReplies = false
-    var withFile = false
-    var isActive = false
-    var hasUnreadNote = false
+    lateinit var id: String
+    lateinit var createdAt: String
+    lateinit var name: String
+
+    var keywords: Array<Array<String>> = arrayOf()
+    var excludeKeywords: Array<Array<String>> = arrayOf()
+    var src: String = "all"
+
+    var userListId: String? = null
+    var users: Array<String> = arrayOf()
+
+    var caseSensitive: Boolean = false
+    var localOnly: Boolean = false
+    var notify: Boolean = false
+    var withReplies: Boolean = false
+    var withFile: Boolean = false
+    var isActive: Boolean = false
+    var hasUnreadNote: Boolean = false
 }

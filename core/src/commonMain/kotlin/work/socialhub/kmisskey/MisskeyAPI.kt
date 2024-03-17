@@ -1,7 +1,7 @@
 package work.socialhub.kmisskey
 
 enum class MisskeyAPI(
-     val path: String
+    val path: String
 ) {
     // ------------------------------------------ //
     // Meta

@@ -1,11 +1,24 @@
 package work.socialhub.kmisskey.internal.api
 
-import work.socialhub.kmisskey.MisskeyAPI.*
+import work.socialhub.kmisskey.MisskeyAPI.Lists
+import work.socialhub.kmisskey.MisskeyAPI.ListsCreate
+import work.socialhub.kmisskey.MisskeyAPI.ListsDelete
+import work.socialhub.kmisskey.MisskeyAPI.ListsPull
+import work.socialhub.kmisskey.MisskeyAPI.ListsPush
+import work.socialhub.kmisskey.MisskeyAPI.ListsShow
+import work.socialhub.kmisskey.MisskeyAPI.ListsUpdate
 import work.socialhub.kmisskey.api.ListsResource
-import work.socialhub.kmisskey.api.request.lists.*
+import work.socialhub.kmisskey.api.request.lists.UsersListsCreateRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsDeleteRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsListRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsPullRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsPushRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsShowRequest
+import work.socialhub.kmisskey.api.request.lists.UsersListsUpdateRequest
 import work.socialhub.kmisskey.api.response.lists.UsersListsListResponse
 import work.socialhub.kmisskey.api.response.lists.UsersListsShowResponse
 import work.socialhub.kmisskey.entity.NoteList
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 
 class ListsResourceImpl(
@@ -37,8 +50,8 @@ class ListsResourceImpl(
      */
     override fun push(
         request: UsersListsPushRequest
-    ): Response<Unit> {
-        return post(ListsPush.path, request)
+    ): EmptyResponse {
+        return postUnit(ListsPush.path, request)
     }
 
     /**
@@ -46,8 +59,8 @@ class ListsResourceImpl(
      */
     override fun pull(
         request: UsersListsPullRequest
-    ): Response<Unit> {
-        return post(ListsPull.path, request)
+    ): EmptyResponse {
+        return postUnit(ListsPull.path, request)
     }
 
     /**
@@ -73,7 +86,7 @@ class ListsResourceImpl(
      */
     override fun delete(
         request: UsersListsDeleteRequest
-    ): Response<Unit> {
-        return post(ListsDelete.path, request)
+    ): EmptyResponse {
+        return postUnit(ListsDelete.path, request)
     }
 }

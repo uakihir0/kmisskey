@@ -3,11 +3,13 @@ package work.socialhub.kmisskey.entity
 import io.ktor.http.*
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.user.UserLite
+import kotlin.js.JsExport
 
 /**
  * DriveFile
  * ファイルオブジェクト
  */
+@JsExport
 @Serializable
 open class File {
 
@@ -18,7 +20,7 @@ open class File {
     lateinit var type: String
     lateinit var md5: String
 
-    var size: Long = 0
+    var size: Int = 0
     var isSensitive: Boolean = false
     var blurhash: String? = null
 
@@ -69,12 +71,13 @@ open class File {
     fun extractedThumbnailUrl(): String? {
         return extractForwardUrl(thumbnailUrl) ?: thumbnailUrl
     }
+}
 
-    @Serializable
-    class FileProperties {
-        var width = 0L
-        var height = 0L
-        var orientation = 0L
-        var avgColor: String? = null
-    }
+@JsExport
+@Serializable
+class FileProperties {
+    var width: Int = 0
+    var height: Int = 0
+    var orientation: Int = 0
+    var avgColor: String? = null
 }

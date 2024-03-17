@@ -3,7 +3,9 @@ package work.socialhub.kmisskey.api.request.i
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.api.model.TokenRequest
 import work.socialhub.kmisskey.entity.Field
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 class IUpdateRequest : TokenRequest() {
 
@@ -14,7 +16,7 @@ class IUpdateRequest : TokenRequest() {
     var lang: String? = null
     var avatarId: String? = null
     var bannerId: String? = null
-    var fields: List<Field>? = null
+    var fields: Array<Field> = arrayOf()
     var isLocked: Boolean? = null
     var isExplorable: Boolean? = null
     var hideOnlineStatus: Boolean? = null
@@ -31,9 +33,9 @@ class IUpdateRequest : TokenRequest() {
     var autoSensitive: Boolean? = null
     var ffVisibility: String? = null
     var pinnedPageId: String? = null
-    var mutedWords: List<List<String>>? = null
-    var mutedInstances: List<String>? = null
-    var mutingNotificationTypes: List<String>? = null
-    var emailNotificationTypes: List<String>? = null
-    var alsoKnownAs: List<String>? = null
+    var mutedWords: Array<Array<String>> = arrayOf()
+    var mutedInstances: Array<String> = arrayOf()
+    var mutingNotificationTypes: Array<String> = arrayOf()
+    var emailNotificationTypes: Array<String> = arrayOf()
+    var alsoKnownAs: Array<String> = arrayOf()
 }

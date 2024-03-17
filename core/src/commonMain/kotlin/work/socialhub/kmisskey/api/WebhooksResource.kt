@@ -1,13 +1,20 @@
 package work.socialhub.kmisskey.api
 
-import work.socialhub.kmisskey.api.request.webhooks.*
+import work.socialhub.kmisskey.api.request.webhooks.CreateWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.DeleteWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.ListWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.ShowWebhooksRequest
+import work.socialhub.kmisskey.api.request.webhooks.UpdateWebhooksRequest
 import work.socialhub.kmisskey.api.response.webhooks.CreateWebhooksResponse
 import work.socialhub.kmisskey.api.response.webhooks.DeleteWebhooksResponse
 import work.socialhub.kmisskey.api.response.webhooks.ShowWebhooksResponse
 import work.socialhub.kmisskey.api.response.webhooks.UpdateWebhooksResponse
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
+@JsExport
 interface WebhooksResource {
+
     /**
      * Webhook を作成します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/create

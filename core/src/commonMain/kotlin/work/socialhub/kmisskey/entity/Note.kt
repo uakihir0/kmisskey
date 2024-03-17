@@ -3,10 +3,12 @@ package work.socialhub.kmisskey.entity
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.user.UserLite
+import kotlin.js.JsExport
 
 /**
  * 投稿オブジェクト
  */
+@JsExport
 @Serializable
 open class Note {
     lateinit var id: String
@@ -29,11 +31,11 @@ open class Note {
     var isHidden = false
     lateinit var visibility: String
 
-    var mentions: List<String>? = null
-    var visibleUserIds: List<String>? = null
-    var fileIds: List<String>? = null
-    var files: List<File>? = null
-    var tags: List<String>? = null
+    var mentions: Array<String>? = null
+    var visibleUserIds: Array<String>? = null
+    var fileIds: Array<String>? = null
+    var files: Array<File>? = null
+    var tags: Array<String>? = null
 
     var poll: Poll? = null
     var emojis: Emojis? = null
@@ -45,16 +47,18 @@ open class Note {
 
     var reactionAcceptance: String? = null
     var reactionEmojis: Emojis? = null
-    var reactions: Map<String, Long> = mapOf()
 
-    var renoteCount: Long = 0
-    var repliesCount: Long = 0
+    @Suppress("NON_EXPORTABLE_TYPE")
+    var reactions: Map<String, Int> = mapOf()
+
+    var renoteCount: Int = 0
+    var repliesCount: Int = 0
 
     var uri: String? = null
     var url: String? = null
 
-    var reactionAndUserPairCache: List<String> = listOf()
-    var clippedCount: Long = 0
+    var reactionAndUserPairCache: Array<String> = arrayOf()
+    var clippedCount: Int = 0
     var myReaction: String? = null
 
 

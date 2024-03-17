@@ -1,12 +1,21 @@
 package work.socialhub.kmisskey.api
 
-import work.socialhub.kmisskey.api.request.gallery.*
+import work.socialhub.kmisskey.api.request.gallery.CreateGalleryPostRequest
+import work.socialhub.kmisskey.api.request.gallery.DeleteGalleryPostRequest
+import work.socialhub.kmisskey.api.request.gallery.LikeGalleryPostRequest
+import work.socialhub.kmisskey.api.request.gallery.ListGalleryPostsRequest
+import work.socialhub.kmisskey.api.request.gallery.ShowGalleryPostRequest
+import work.socialhub.kmisskey.api.request.gallery.UnlikeGalleryPostRequest
+import work.socialhub.kmisskey.api.request.gallery.UpdateGalleryPostRequest
 import work.socialhub.kmisskey.api.request.i.IListGalleryPostsRequest
 import work.socialhub.kmisskey.api.request.users.ListUserGalleryPostsRequest
 import work.socialhub.kmisskey.api.response.gallery.ListGalleryPostsResponse
 import work.socialhub.kmisskey.entity.GalleryPost
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
+import kotlin.js.JsExport
 
+@JsExport
 interface GalleriesResource {
 
     /**
@@ -21,7 +30,7 @@ interface GalleriesResource {
      * Get my gallery posts.
      * @see "https://misskey.io/api-doc.operation/i/gallery/posts"
      */
-    fun posts(
+    fun myPosts(
         request: IListGalleryPostsRequest
     ): Response<Array<ListGalleryPostsResponse>>
 
@@ -29,7 +38,7 @@ interface GalleriesResource {
      * Get user's gallery posts.
      * @see "https://misskey.io/api-doc.operation/users/gallery/posts"
      */
-    fun posts(
+    fun usersPosts(
         request: ListUserGalleryPostsRequest
     ): Response<Array<ListGalleryPostsResponse>>
 
@@ -56,7 +65,7 @@ interface GalleriesResource {
      */
     fun delete(
         request: DeleteGalleryPostRequest
-    ): Response<Unit>
+    ): EmptyResponse
 
     /**
      * Update a gallery post.
@@ -72,14 +81,14 @@ interface GalleriesResource {
      */
     fun like(
         request: LikeGalleryPostRequest
-    ): Response<Unit>
+    ): EmptyResponse
 
     /**
      * Unlike a gallery post.
      *
      * @see "https://misskey.io/api-doc.operation/gallery/posts/unlike"
      */
-    fun like(
+    fun unlike(
         request: UnlikeGalleryPostRequest
-    ): Response<Unit>
+    ): EmptyResponse
 }

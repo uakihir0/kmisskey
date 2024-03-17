@@ -53,7 +53,9 @@ interface AccountsResource {
      *
      * https://misskey.io/api-doc#tag/account/operation/i/update
      */
-    fun iUpdate(request: IUpdateRequest): Response<IUpdateResponse>
+    fun iUpdate(
+        request: IUpdateRequest
+    ): Response<IUpdateResponse>
 
 
     /**
@@ -61,12 +63,16 @@ interface AccountsResource {
      *
      * https://misskey.io/api-doc#tag/account/operation/i/pin
      */
-    fun pinNote(request: IPinRequest): Response<IPinResponse>
+    fun pinNote(
+        request: IPinRequest
+    ): Response<IPinResponse>
 
     /**
      * 指定したノートをピン留めから削除します。
      *
      * https://misskey.io/api-doc#tag/account/operation/i/unpin
      */
-    fun unpinNote(request: IUnpinRequest): Response<IUnpinResponse>
+    fun unpinNote(
+        request: IUnpinRequest
+    ): Response<IUnpinResponse>
 }

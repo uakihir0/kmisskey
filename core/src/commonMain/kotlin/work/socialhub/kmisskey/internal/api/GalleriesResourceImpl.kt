@@ -1,12 +1,27 @@
 package work.socialhub.kmisskey.internal.api
 
-import work.socialhub.kmisskey.MisskeyAPI.*
+import work.socialhub.kmisskey.MisskeyAPI.CreateGalleryPost
+import work.socialhub.kmisskey.MisskeyAPI.DeleteGalleryPost
+import work.socialhub.kmisskey.MisskeyAPI.GalleryPosts
+import work.socialhub.kmisskey.MisskeyAPI.IGalleryPosts
+import work.socialhub.kmisskey.MisskeyAPI.LikeGalleryPost
+import work.socialhub.kmisskey.MisskeyAPI.ShowGalleryPost
+import work.socialhub.kmisskey.MisskeyAPI.UnlikeGalleryPost
+import work.socialhub.kmisskey.MisskeyAPI.UpdateGalleryPost
+import work.socialhub.kmisskey.MisskeyAPI.UserGalleryPosts
 import work.socialhub.kmisskey.api.GalleriesResource
-import work.socialhub.kmisskey.api.request.gallery.*
+import work.socialhub.kmisskey.api.request.gallery.CreateGalleryPostRequest
+import work.socialhub.kmisskey.api.request.gallery.DeleteGalleryPostRequest
+import work.socialhub.kmisskey.api.request.gallery.LikeGalleryPostRequest
+import work.socialhub.kmisskey.api.request.gallery.ListGalleryPostsRequest
+import work.socialhub.kmisskey.api.request.gallery.ShowGalleryPostRequest
+import work.socialhub.kmisskey.api.request.gallery.UnlikeGalleryPostRequest
+import work.socialhub.kmisskey.api.request.gallery.UpdateGalleryPostRequest
 import work.socialhub.kmisskey.api.request.i.IListGalleryPostsRequest
 import work.socialhub.kmisskey.api.request.users.ListUserGalleryPostsRequest
 import work.socialhub.kmisskey.api.response.gallery.ListGalleryPostsResponse
 import work.socialhub.kmisskey.entity.GalleryPost
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 
 class GalleriesResourceImpl(
@@ -21,13 +36,13 @@ class GalleriesResourceImpl(
         return post(GalleryPosts.path, request)
     }
 
-    override fun posts(
+    override fun myPosts(
         request: IListGalleryPostsRequest
     ): Response<Array<ListGalleryPostsResponse>> {
         return post(IGalleryPosts.path, request)
     }
 
-    override fun posts(
+    override fun usersPosts(
         request: ListUserGalleryPostsRequest
     ): Response<Array<ListGalleryPostsResponse>> {
         return post(UserGalleryPosts.path, request)
@@ -47,8 +62,8 @@ class GalleriesResourceImpl(
 
     override fun delete(
         request: DeleteGalleryPostRequest
-    ): Response<Unit> {
-        return post(DeleteGalleryPost.path, request)
+    ): EmptyResponse {
+        return postUnit(DeleteGalleryPost.path, request)
     }
 
     override fun update(
@@ -59,13 +74,13 @@ class GalleriesResourceImpl(
 
     override fun like(
         request: LikeGalleryPostRequest
-    ): Response<Unit> {
-        return post(LikeGalleryPost.path, request)
+    ): EmptyResponse {
+        return postUnit(LikeGalleryPost.path, request)
     }
 
-    override fun like(
+    override fun unlike(
         request: UnlikeGalleryPostRequest
-    ): Response<Unit> {
-        return post(UnlikeGalleryPost.path, request)
+    ): EmptyResponse {
+        return postUnit(UnlikeGalleryPost.path, request)
     }
 }

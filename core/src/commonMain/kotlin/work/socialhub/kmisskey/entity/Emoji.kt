@@ -1,7 +1,9 @@
 package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 open class Emoji {
 
@@ -17,10 +19,10 @@ open class Emoji {
     lateinit var url: String
     lateinit var category: String
 
-    var aliases: List<String>? = null
+    var aliases: Array<String>? = null
 
     /** added in calckey.jp/Misskey v14.0.0-rc-ni-jp1)  */
-    var width: Long? = null
-    var height: Long? = null
+    var width: Int? = null
+    var height: Int? = null
 }
 

@@ -14,7 +14,7 @@ class NotesTest : AbstractTest() {
         val misskey = misskey()
         val notes = misskey.notes().timeline(
             NotesTimelineRequest().also {
-                it.limit = 100L
+                it.limit = 100
             })
 
         println(notes.json + "\n")
@@ -28,7 +28,7 @@ class NotesTest : AbstractTest() {
         val misskey = misskey()
         val favorites = misskey.accounts().iFavorites(
             IFavoritesRequest().also {
-                it.limit = 100L
+                it.limit = 100
             })
 
         println(favorites.json + "\n")

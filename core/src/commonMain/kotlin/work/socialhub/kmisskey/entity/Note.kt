@@ -47,6 +47,8 @@ open class Note {
 
     var reactionAcceptance: String? = null
     var reactionEmojis: Emojis? = null
+
+    @Suppress("NON_EXPORTABLE_TYPE")
     var reactions: Map<String, Int> = mapOf()
 
     var renoteCount: Int = 0

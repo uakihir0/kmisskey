@@ -46,7 +46,7 @@ class MisskeyStream(
     ) {
         client.connect(
             "main",
-            null,
+            null as String?,
             listOf(callback)
         )
     }
@@ -59,7 +59,7 @@ class MisskeyStream(
     ) {
         client.connect(
             "homeTimeline",
-            null,
+            null as String?,
             listOf(callback)
         )
     }
@@ -72,7 +72,7 @@ class MisskeyStream(
     ) {
         client.connect(
             "localTimeline",
-            null,
+            null as String?,
             listOf(callback),
         )
     }
@@ -85,7 +85,7 @@ class MisskeyStream(
     ) {
         client.connect(
             "hybridTimeline",
-            null,
+            null as String?,
             listOf(callback),
         )
     }
@@ -98,7 +98,7 @@ class MisskeyStream(
     ) {
         client.connect(
             "globalTimeline",
-            null,
+            null as String?,
             listOf(callback),
         )
     }
@@ -112,7 +112,7 @@ class MisskeyStream(
     ) {
         client.subscribeToNote(
             noteId,
-            null,
+            null as String?,
             listOf(callback),
         )
     }

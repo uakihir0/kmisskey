@@ -16,6 +16,7 @@ import work.socialhub.kmisskey.stream.callback.RenoteCallback
 import work.socialhub.kmisskey.stream.callback.ReplayCallback
 import work.socialhub.kmisskey.stream.callback.TimelineCallback
 import work.socialhub.kmisskey.stream.model.StreamRequest
+import work.socialhub.kmisskey.stream.model.StreamRequest.Body
 import work.socialhub.kmisskey.stream.model.StreamResponse
 import kotlin.random.Random.Default.nextInt
 
@@ -74,36 +75,39 @@ class StreamClient(
     /**
      * Subscribe
      */
-    private suspend fun <T> subscribe(
+    suspend inline fun <reified T> subscribe(
         type: String,
-        channelType: String?,
-        id: String?,
+        channel: String,
+        id: String,
         params: T,
-        possibleCallbacks: List<EventCallback> = listOf()
+        callbacks: List<EventCallback> = listOf()
     ) {
-        val request = StreamRequest<T>()
+        val request = StreamRequest(
+            type = type,
+            body = Body(
+                id = id,
+                channel = channel,
+                params = params,
+            )
+        )
 
-        possibleCallbacks.forEach { cb ->
-            id?.let { addEventCallback(it, cb) }
+        callbacks.forEach { cb ->
+             addEventCallback(id, cb)
         }
 
-        request.body.channel = channelType
-        request.body.params = params
-        request.body.id = id
-        request.type = type
-
         val text = Internal.toJson(request)
+        println(text)
         client.sendText(text)
     }
 
-    suspend fun <T> connect(
-        channelType: String?,
-        params: T?,
+    suspend inline fun <reified T> connect(
+        channel: String,
+        params: T,
         callbacks: List<EventCallback> = listOf()
     ) {
         subscribe(
             "connect",
-            channelType,
+            channel,
             randomId(),
             params,
             callbacks
@@ -111,24 +115,24 @@ class StreamClient(
     }
 
     suspend fun disconnect(
-        channelType: String
+        channel: String
     ) {
         subscribe<Any?>(
             "disconnect",
-            channelType,
-            null,
-            null
+            channel,
+            "",
+            ""
         )
     }
 
-    suspend fun <T> subscribeToNote(
-        id: String?,
-        params: T?,
+    suspend inline fun <reified T> subscribeToNote(
+        id: String,
+        params: T,
         callbacks: List<EventCallback> = listOf()
     ) {
         subscribe(
             "subNote",
-            null,
+            "",
             id,
             params,
             callbacks,
@@ -136,13 +140,13 @@ class StreamClient(
     }
 
     suspend fun unsubscribe(
-        id: String?
+        id: String
     ) {
-        subscribe<Any?>(
+        subscribe(
             "unsubNote",
-            null,
+            "",
             id,
-            null,
+            "",
         )
     }
 
@@ -308,7 +312,7 @@ class StreamClient(
         }
     }
 
-    private fun randomId(): String {
+    fun randomId(): String {
         return (1..16)
             .joinToString("") {
                 nextInt(0, 16)

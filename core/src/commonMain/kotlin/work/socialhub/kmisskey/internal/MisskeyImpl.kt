@@ -1,5 +1,6 @@
 package work.socialhub.kmisskey.internal
 
+import io.ktor.http.*
 import work.socialhub.kmisskey.Misskey
 import work.socialhub.kmisskey.api.AccountsResource
 import work.socialhub.kmisskey.api.AntennasResource
@@ -53,38 +54,38 @@ import work.socialhub.kmisskey.internal.api.WebhooksResourceImpl
 
 
 class MisskeyImpl(
-    override val host: String,
+    override val uri: String,
     override val i: String = "",
 ) : Misskey {
 
     // No Need AccessToken
-    private val meta: MetaResource = MetaResourceImpl(host)
-    private val federation: FederationResource = FederationResourceImpl(host)
+    private val meta: MetaResource = MetaResourceImpl(uri)
+    private val federation: FederationResource = FederationResourceImpl(uri)
 
     // Needs AccessToken
-    private val announcements = AnnouncementsResourceImpl(host, i)
-    private val ap: ApResource = ApResourceImpl(host, i)
-    private val app: AppResource = AppResourceImpl(host)
-    private val auth: AuthResource = AuthResourceImpl(host)
-    private val accounts: AccountsResource = AccountsResourceImpl(host, i)
-    private val users: UsersResource = UsersResourceImpl(host, i)
-    private val lists: ListsResource = ListsResourceImpl(host, i)
-    private val channels: ChannelsResource = ChannelsResourceImpl(host, i)
-    private val antennas: AntennasResource = AntennasResourceImpl(host, i)
-    private val clips: ClipsResource = ClipsResourceImpl(host, i)
-    private val notes: NotesResource = NotesResourceImpl(host, i)
-    private val mutes: MutesResource = MutesResourceImpl(host, i)
-    private val blocks: BlocksResource = BlocksResourceImpl(host, i)
-    private val reactions: ReactionsResource = ReactionsResourceImpl(host, i)
-    private val favorites: FavoritesResource = FavoritesResourceImpl(host, i)
-    private val following: FollowingResource = FollowingResourceImpl(host, i)
-    private val polls: PollsResource = PollsResourceImpl(host, i)
-    private val messages: MessagesResource = MessagesResourceImpl(host, i)
-    private val files: FilesResource = FilesResourceImpl(host, i)
-    private val hashtags: HashtagsResource = HashtagsResourceImpl(host, i)
-    private val webhooks: WebhooksResource = WebhooksResourceImpl(host, i)
-    private val galleries: GalleriesResource = GalleriesResourceImpl(host, i)
-    private val other: OtherResource = OtherResourceImpl(host, i)
+    private val announcements = AnnouncementsResourceImpl(uri, i)
+    private val ap: ApResource = ApResourceImpl(uri, i)
+    private val app: AppResource = AppResourceImpl(uri)
+    private val auth: AuthResource = AuthResourceImpl(uri)
+    private val accounts: AccountsResource = AccountsResourceImpl(uri, i)
+    private val users: UsersResource = UsersResourceImpl(uri, i)
+    private val lists: ListsResource = ListsResourceImpl(uri, i)
+    private val channels: ChannelsResource = ChannelsResourceImpl(uri, i)
+    private val antennas: AntennasResource = AntennasResourceImpl(uri, i)
+    private val clips: ClipsResource = ClipsResourceImpl(uri, i)
+    private val notes: NotesResource = NotesResourceImpl(uri, i)
+    private val mutes: MutesResource = MutesResourceImpl(uri, i)
+    private val blocks: BlocksResource = BlocksResourceImpl(uri, i)
+    private val reactions: ReactionsResource = ReactionsResourceImpl(uri, i)
+    private val favorites: FavoritesResource = FavoritesResourceImpl(uri, i)
+    private val following: FollowingResource = FollowingResourceImpl(uri, i)
+    private val polls: PollsResource = PollsResourceImpl(uri, i)
+    private val messages: MessagesResource = MessagesResourceImpl(uri, i)
+    private val files: FilesResource = FilesResourceImpl(uri, i)
+    private val hashtags: HashtagsResource = HashtagsResourceImpl(uri, i)
+    private val webhooks: WebhooksResource = WebhooksResourceImpl(uri, i)
+    private val galleries: GalleriesResource = GalleriesResourceImpl(uri, i)
+    private val other: OtherResource = OtherResourceImpl(uri, i)
 
     override fun meta() = meta
     override fun federation() = federation
@@ -112,4 +113,7 @@ class MisskeyImpl(
     override fun other() = other
     override fun webhook() = webhooks
     override fun gallery() = galleries
+
+    override val host: String
+        get() = Url(uri).host
 }

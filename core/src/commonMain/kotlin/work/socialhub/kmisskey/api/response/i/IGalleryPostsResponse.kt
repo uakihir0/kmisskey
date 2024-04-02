@@ -1,4 +1,4 @@
-package misskey4j.api.response.i
+package work.socialhub.kmisskey.api.response.i
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.GalleryPost

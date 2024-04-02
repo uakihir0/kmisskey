@@ -2,13 +2,14 @@ package work.socialhub.kmisskey.api.request.following
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.api.model.TokenRequest
+import work.socialhub.kmisskey.api.request.protocol.PagingBuilder
 import kotlin.js.JsExport
 
 @JsExport
 @Serializable
-class FollowingRequestsListRequest : TokenRequest() {
+class FollowingRequestsListRequest : PagingBuilder, TokenRequest() {
 
-    var sinceId: String? = null
-    var untilId: String? = null
-    var limit: Int? = null
+    override var limit: Int? = null
+    override var sinceId: String? = null
+    override var untilId: String? = null
 }

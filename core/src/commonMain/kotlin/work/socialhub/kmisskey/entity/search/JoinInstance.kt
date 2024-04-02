@@ -1,4 +1,4 @@
-package misskey4j.entity.search
+package work.socialhub.kmisskey.entity.search
 
 import io.ktor.http.*
 import kotlinx.serialization.SerialName

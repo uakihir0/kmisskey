@@ -1,4 +1,4 @@
-package misskey4j.entity.contant
+package work.socialhub.kmisskey.entity.contant
 
 enum class NotificationType(
     val code: String

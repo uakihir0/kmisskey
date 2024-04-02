@@ -1,4 +1,4 @@
-package misskey4j.internal.util
+package work.socialhub.kmisskey.internal.util
 
 import io.ktor.http.*
 

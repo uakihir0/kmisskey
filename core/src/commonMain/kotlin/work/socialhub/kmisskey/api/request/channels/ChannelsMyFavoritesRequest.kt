@@ -1,4 +1,4 @@
-package work.socialhub.kmisskey.api.request
+package work.socialhub.kmisskey.api.request.channels
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.api.model.TokenRequest

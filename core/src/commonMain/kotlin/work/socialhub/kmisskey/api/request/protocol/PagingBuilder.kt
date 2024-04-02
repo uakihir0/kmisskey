@@ -1,7 +1,7 @@
-package misskey4j.api.request.protocol
+package work.socialhub.kmisskey.api.request.protocol
 
-interface PagingBuilder<T> {
-    fun limit(limit: Long?): T
-    fun sinceId(sinceId: String?): T
-    fun untilId(untilId: String?): T
+interface PagingBuilder {
+    var limit: Int?
+    var sinceId: String?
+    var untilId: String?
 }

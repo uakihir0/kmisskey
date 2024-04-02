@@ -2,18 +2,18 @@ package work.socialhub.kmisskey.api.request.notes
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.api.model.TokenRequest
+import work.socialhub.kmisskey.api.request.protocol.FullPagingBuilder
 import kotlin.js.JsExport
 
 @JsExport
 @Serializable
-class NotesGlobalTimelineRequest : TokenRequest() {
+class NotesGlobalTimelineRequest : FullPagingBuilder, TokenRequest() {
 
     var withFiles: Boolean? = null
-    var limit: Int? = null
 
-    var sinceId: String? = null
-    var untilId: String? = null
-
-    var sinceDate: Int? = null
-    var untilDate: Int? = null
+    override var limit: Int? = null
+    override var sinceId: String? = null
+    override var untilId: String? = null
+    override var sinceDate: Int? = null
+    override var untilDate: Int? = null
 }

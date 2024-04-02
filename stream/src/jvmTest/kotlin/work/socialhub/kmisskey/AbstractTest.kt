@@ -25,7 +25,7 @@ open class AbstractTest {
     /**
      * Read File
      */
-    private fun readFile(file: String): String? {
+    private fun readFile(file: String): String {
         return FileReader(file).readText()
     }
 
@@ -34,7 +34,7 @@ open class AbstractTest {
         try {
             // Get account handle and password.
             val json = readFile("../secrets.json")
-            val props = Internal.fromJson<Secrets>(json!!)
+            val props = Internal.fromJson<Secrets>(json)
             val param = props.params[0]
 
             HOST = param.host

@@ -1,12 +1,19 @@
 package work.socialhub.kmisskey.apis
 
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import work.socialhub.kmisskey.AbstractTest
 import work.socialhub.kmisskey.entity.Note
 import work.socialhub.kmisskey.entity.Notification
 import work.socialhub.kmisskey.entity.user.User
 import work.socialhub.kmisskey.stream.MisskeyStream
-import work.socialhub.kmisskey.stream.callback.*
+import work.socialhub.kmisskey.stream.callback.FollowedCallback
+import work.socialhub.kmisskey.stream.callback.MentionCallback
+import work.socialhub.kmisskey.stream.callback.NotificationCallback
+import work.socialhub.kmisskey.stream.callback.RenoteCallback
+import work.socialhub.kmisskey.stream.callback.ReplayCallback
+import work.socialhub.kmisskey.stream.callback.TimelineCallback
 import kotlin.test.Test
 
 class StreamTest : AbstractTest() {
@@ -17,11 +24,14 @@ class StreamTest : AbstractTest() {
             val stream = MisskeyStream(misskey())
 
             stream.client.openedCallback {
-                runBlocking { stream.main(Callback()) }
+                println("opened.")
             }
 
-            stream.open()
-            Thread.sleep(1000 * 1000L)
+            launch { stream.open() }
+
+            delay(10 * 1000L)
+            stream.main(Callback())
+            delay(1000 * 1000L)
         }
     }
 
@@ -31,11 +41,13 @@ class StreamTest : AbstractTest() {
             val stream = MisskeyStream(misskey())
 
             stream.client.openedCallback {
-                runBlocking { stream.homeTimeLine(Callback()) }
+                println("opened.")
             }
 
-            stream.open()
-            Thread.sleep(100 * 1000L)
+            launch { stream.open() }
+            delay(10 * 1000L)
+            launch { stream.homeTimeLine(Callback()) }
+            delay(1000 * 1000L)
         }
     }
 
@@ -45,11 +57,13 @@ class StreamTest : AbstractTest() {
             val stream = MisskeyStream(misskey())
 
             stream.client.openedCallback {
-                runBlocking { stream.globalTimeline(Callback()) }
+                println("opened.")
             }
 
-            stream.open()
-            Thread.sleep(100 * 1000L)
+            launch { stream.open() }
+            delay(10 * 1000L)
+            launch { stream.globalTimeline(Callback()) }
+            delay(1000 * 1000L)
         }
     }
 
@@ -83,6 +97,7 @@ class StreamTest : AbstractTest() {
 
         override fun onNoteUpdate(note: Note) {
             println("!!onNoteUpdate!!")
+            println(note.text)
         }
     }
 }

@@ -1,7 +1,7 @@
 package work.socialhub.kmisskey.search
 
-import misskey4j.entity.search.JoinInstance
-import misskey4j.internal.util.MediaType
+import work.socialhub.kmisskey.entity.search.JoinInstance
+import work.socialhub.kmisskey.internal.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.kmisskey.internal.Internal
 import work.socialhub.kmpcommon.runBlocking

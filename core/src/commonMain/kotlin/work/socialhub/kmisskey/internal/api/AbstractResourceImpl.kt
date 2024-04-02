@@ -1,6 +1,6 @@
 package work.socialhub.kmisskey.internal.api
 
-import misskey4j.internal.util.MediaType
+import work.socialhub.kmisskey.internal.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.khttpclient.HttpResponse
 import work.socialhub.kmisskey.api.model.TokenRequest

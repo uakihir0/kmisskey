@@ -1,10 +1,10 @@
 package work.socialhub.kmisskey.api
 
-import work.socialhub.kmisskey.api.request.ChannelsFollowedRequest
-import work.socialhub.kmisskey.api.request.ChannelsMyFavoritesRequest
-import work.socialhub.kmisskey.api.request.ChannelsOwnedRequest
-import work.socialhub.kmisskey.api.request.ChannelsShowRequest
-import work.socialhub.kmisskey.api.request.ChannelsTimelineRequest
+import work.socialhub.kmisskey.api.request.channels.ChannelsFollowedRequest
+import work.socialhub.kmisskey.api.request.channels.ChannelsMyFavoritesRequest
+import work.socialhub.kmisskey.api.request.channels.ChannelsOwnedRequest
+import work.socialhub.kmisskey.api.request.channels.ChannelsShowRequest
+import work.socialhub.kmisskey.api.request.channels.ChannelsTimelineRequest
 import work.socialhub.kmisskey.api.response.channels.ChannelsFollowedResponse
 import work.socialhub.kmisskey.api.response.channels.ChannelsMyFavoritesResponse
 import work.socialhub.kmisskey.api.response.channels.ChannelsOwnedResponse

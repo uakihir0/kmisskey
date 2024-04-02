@@ -1,4 +1,4 @@
-package misskey4j.util.json
+package work.socialhub.kmisskey.util.json
 
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.json.JsonContentPolymorphicSerializer

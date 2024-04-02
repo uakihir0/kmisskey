@@ -1,6 +1,6 @@
-package misskey4j.api.request.protocol
+package work.socialhub.kmisskey.api.request.protocol
 
-interface FullPagingBuilder<T> : PagingBuilder<T> {
-    fun sinceDate(sinceDate: Long?): T
-    fun untilDate(untilDate: Long?): T
+interface FullPagingBuilder : PagingBuilder {
+    var sinceDate: Int?
+    var untilDate: Int?
 }

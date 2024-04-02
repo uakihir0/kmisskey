@@ -102,6 +102,6 @@ class MisskeyTest : AbstractTest() {
 
     @Test
     fun testGetHost() {
-        println("NAME: " + misskey().host)
+        println("NAME: " + misskey().uri)
     }
 }

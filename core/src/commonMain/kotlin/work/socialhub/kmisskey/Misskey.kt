@@ -58,6 +58,12 @@ interface Misskey {
     fun gallery(): GalleriesResource
 
     /**
+     * Get uri to access.
+     * (ex, https://misskey.io/api)
+     */
+    val uri: String
+
+    /**
      * Get host to access.
      * (ex, misskey.io)
      */

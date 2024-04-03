@@ -6,7 +6,7 @@ build:
 
 pods:
 	./gradlew \
-	pods:assembleKbskyXCFramework \
+	pods:assembleKmisskeyXCFramework \
 	pods:podPublishXCFramework \
 	-x test --refresh-dependencies
 

@@ -1,9 +1,11 @@
 package work.socialhub.kmisskey.entity.user
 
 import kotlinx.serialization.Serializable
+import work.socialhub.kmisskey.entity.Color
 import work.socialhub.kmisskey.entity.Field
 import work.socialhub.kmisskey.entity.Note
 import work.socialhub.kmisskey.entity.Page
+import work.socialhub.kmisskey.util.BlurHashDecoder
 import kotlin.js.JsExport
 
 @JsExport
@@ -75,4 +77,29 @@ open class UserDetailedNotMe : UserLite() {
 
     var notify: String? = null
     var withReplies: Boolean = false
+
+    /*
+     * The following are original items.
+     * 以下、独自項目
+     */
+    var bannerColor: Color? = null
+        get() {
+            if (field == null) {
+                val decoder = BlurHashDecoder.instance
+                val ary = decoder.decode(
+                    bannerBlurhash,
+                    1,
+                    1,
+                    1F,
+                    false
+                ) ?: return null
+
+                val color = Color()
+                color.r = ary[0][0][0]
+                color.g = ary[0][0][1]
+                color.b = ary[0][0][2]
+                return color
+            }
+            return field
+        }
 }

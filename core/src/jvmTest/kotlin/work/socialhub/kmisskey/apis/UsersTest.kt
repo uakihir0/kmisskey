@@ -2,7 +2,11 @@ package work.socialhub.kmisskey.apis
 
 import work.socialhub.kmisskey.AbstractTest
 import work.socialhub.kmisskey.api.request.i.IRequest
-import work.socialhub.kmisskey.api.request.users.*
+import work.socialhub.kmisskey.api.request.users.UsersFollowingsRequest
+import work.socialhub.kmisskey.api.request.users.UsersRelationRequest
+import work.socialhub.kmisskey.api.request.users.UsersSearchRequest
+import work.socialhub.kmisskey.api.request.users.UsersShowMultipleRequest
+import work.socialhub.kmisskey.api.request.users.UsersShowSingleRequest
 import kotlin.test.Test
 
 class UsersTest : AbstractTest() {
@@ -19,11 +23,7 @@ class UsersTest : AbstractTest() {
                 })
 
         for (following in followings.data) {
-            println(
-                following.followee!!.id
-                        + " : "
-                        + following.followee!!.name
-            )
+            println("${following.followee!!.id} : ${following.followee!!.name}")
         }
     }
 
@@ -39,7 +39,7 @@ class UsersTest : AbstractTest() {
                 })
 
         for (relation in relations.data) {
-            println(relation.id + " : " + relation.isFollowing)
+            println("${relation.id} : ${relation.isFollowing}")
         }
     }
 

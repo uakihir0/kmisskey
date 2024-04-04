@@ -9,7 +9,8 @@ class Role {
 
     lateinit var id: String
     lateinit var name: String
-    var color: Color? = null
+
+    var color: String? = null
     var iconUrl: String? = null
     var displayOrder: Int = 0
 }

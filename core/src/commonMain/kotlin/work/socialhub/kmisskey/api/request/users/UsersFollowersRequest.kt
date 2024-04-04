@@ -6,7 +6,7 @@ import kotlin.js.JsExport
 
 @JsExport
 @Serializable
-class UsersFollowersRequest: PagingRequest() {
+class UsersFollowersRequest : PagingRequest() {
 
     var userId: String? = null
     var username: String? = null

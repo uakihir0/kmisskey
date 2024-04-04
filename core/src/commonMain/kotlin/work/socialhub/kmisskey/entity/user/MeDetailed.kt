@@ -58,5 +58,4 @@ class MeDetailed : UserDetailedNotMe() {
 
     var email: String? = null
     var emailVerified: Boolean = false
-    var securityKeysList: Array<SecurityKey> = arrayOf()
 }

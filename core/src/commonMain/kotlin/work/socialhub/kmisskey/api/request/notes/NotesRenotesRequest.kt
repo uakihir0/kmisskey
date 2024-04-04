@@ -1,17 +1,12 @@
 package work.socialhub.kmisskey.api.request.notes
 
 import kotlinx.serialization.Serializable
-import work.socialhub.kmisskey.api.model.TokenRequest
-import work.socialhub.kmisskey.api.request.protocol.PagingBuilder
+import work.socialhub.kmisskey.api.request.protocol.PagingTokenRequest
 import kotlin.js.JsExport
 
 @JsExport
 @Serializable
-class NotesRenotesRequest : PagingBuilder, TokenRequest() {
+class NotesRenotesRequest : PagingTokenRequest() {
 
     var noteId: String? = null
-
-    override var limit: Int? = null
-    override var sinceId: String? = null
-    override var untilId: String? = null
 }

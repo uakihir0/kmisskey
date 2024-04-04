@@ -2,16 +2,13 @@ package work.socialhub.kmisskey.api.request.users
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.api.model.TokenRequest
-import work.socialhub.kmisskey.api.request.protocol.PagingBuilder
+import work.socialhub.kmisskey.api.request.protocol.PagingRequest
+import work.socialhub.kmisskey.api.request.protocol.PagingTokenRequest
 import kotlin.js.JsExport
 
 @JsExport
 @Serializable
-class UsersReactionsRequest : PagingBuilder, TokenRequest() {
+class UsersReactionsRequest : PagingTokenRequest() {
 
     var userId: String? = null
-
-    override var limit: Int? = null
-    override var sinceId: String? = null
-    override var untilId: String? = null
 }

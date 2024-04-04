@@ -29,10 +29,8 @@ class UsersTest : AbstractTest() {
 
     @Test
     fun testUsersRelation() {
-        val misskey = misskey()
-
         val relations =
-            misskey.users().relation(
+            misskey().users().relation(
                 UsersRelationRequest().also {
                     it.userId = arrayOf(
                         "7rkrarq81i",

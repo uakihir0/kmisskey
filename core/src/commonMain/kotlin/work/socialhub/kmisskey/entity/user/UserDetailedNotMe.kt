@@ -16,7 +16,7 @@ open class UserDetailedNotMe : UserLite() {
     var uri: String? = null
 
     var moveTo: String? = null
-    var alsoKnownAs: Array<String> = arrayOf()
+    var alsoKnownAs: Array<String>? = null
 
     lateinit var createdAt: String
     var updatedAt: String? = null

@@ -2,7 +2,6 @@ package work.socialhub.kmisskey.entity.user
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.Achievement
-import work.socialhub.kmisskey.entity.SecurityKey
 import kotlin.js.JsExport
 
 @JsExport
@@ -58,5 +57,4 @@ class MeDetailed : UserDetailedNotMe() {
 
     var email: String? = null
     var emailVerified: Boolean = false
-    var securityKeysList: Array<SecurityKey> = arrayOf()
 }

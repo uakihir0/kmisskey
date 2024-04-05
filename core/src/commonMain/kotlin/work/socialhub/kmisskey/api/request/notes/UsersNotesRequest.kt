@@ -1,13 +1,12 @@
 package work.socialhub.kmisskey.api.request.notes
 
 import kotlinx.serialization.Serializable
-import work.socialhub.kmisskey.api.model.TokenRequest
-import work.socialhub.kmisskey.api.request.protocol.FullPagingBuilder
+import work.socialhub.kmisskey.api.request.protocol.FullPagingTokenRequest
 import kotlin.js.JsExport
 
 @JsExport
 @Serializable
-class UsersNotesRequest : FullPagingBuilder, TokenRequest() {
+class UsersNotesRequest : FullPagingTokenRequest() {
 
     var userId: String? = null
 
@@ -17,10 +16,4 @@ class UsersNotesRequest : FullPagingBuilder, TokenRequest() {
     var withFiles: Boolean? = null
     var withChannelNotes: Boolean? = null
     var fileType: Array<String>? = null
-
-    override var limit: Int? = null
-    override var sinceId: String? = null
-    override var untilId: String? = null
-    override var sinceDate: Int? = null
-    override var untilDate: Int? = null
 }

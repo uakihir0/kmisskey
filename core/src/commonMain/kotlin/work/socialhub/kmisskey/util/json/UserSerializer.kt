@@ -20,13 +20,11 @@ object UserSerializer :
 
         val isDeleted = element.jsonObject["isDeleted"]
         if (isDeleted != null) {
-            println("HAS isDeleted")
             return MeDetailed.serializer()
         }
 
         val createdAt = element.jsonObject["createdAt"]
         if (createdAt != null) {
-            println("HAS createdAt")
             return UserDetailedNotMe.serializer()
         }
 

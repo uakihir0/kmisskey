@@ -1,6 +1,5 @@
 package work.socialhub.kmisskey.internal.api
 
-import work.socialhub.kmisskey.internal.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.khttpclient.HttpResponse
 import work.socialhub.kmisskey.api.model.TokenRequest
@@ -8,6 +7,7 @@ import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.internal.Internal
 import work.socialhub.kmisskey.internal.Internal.toJson
+import work.socialhub.kmisskey.internal.util.MediaType
 import work.socialhub.kmpcommon.runBlocking
 
 abstract class AbstractResourceImpl(
@@ -62,9 +62,9 @@ abstract class AbstractResourceImpl(
     /**
      * API の呼び出しを行う場合
      */
-    protected inline fun <reified T> post(
+    protected inline fun <reified T, reified J : Any> post(
         path: String,
-        request: Any,
+        request: J,
     ): Response<T> {
         return runBlocking {
             proceed<T> {

@@ -8,10 +8,11 @@ class NotificationTest : AbstractTest() {
 
     @Test
     fun testNotification() {
-        val misskey = misskey()
+        val notifications = misskey().accounts()
+            .iNotifications(INotificationsRequest())
 
-        misskey.accounts().iNotifications(
-            INotificationsRequest()
-        )
+        for (notification in notifications.data) {
+            println(notification.id)
+        }
     }
 }

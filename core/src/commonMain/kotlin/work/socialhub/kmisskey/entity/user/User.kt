@@ -1,7 +1,6 @@
 package work.socialhub.kmisskey.entity.user
 
 import kotlinx.serialization.Serializable
-import work.socialhub.kmisskey.util.json.UserSerializer
 import work.socialhub.kmisskey.entity.AvatarDecoration
 import work.socialhub.kmisskey.entity.BadgeRole
 import work.socialhub.kmisskey.entity.Color
@@ -10,6 +9,7 @@ import work.socialhub.kmisskey.entity.Instance
 import work.socialhub.kmisskey.entity.Role
 import work.socialhub.kmisskey.entity.UserPolicies
 import work.socialhub.kmisskey.util.BlurHashDecoder
+import work.socialhub.kmisskey.util.json.UserSerializer
 import kotlin.js.JsExport
 
 /**

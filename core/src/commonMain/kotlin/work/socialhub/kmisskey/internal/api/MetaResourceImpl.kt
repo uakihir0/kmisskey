@@ -1,6 +1,5 @@
 package work.socialhub.kmisskey.internal.api
 
-import work.socialhub.kmisskey.internal.util.MediaType
 import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.kmisskey.MisskeyAPI
 import work.socialhub.kmisskey.MisskeyAPI.Meta
@@ -11,6 +10,7 @@ import work.socialhub.kmisskey.api.response.meta.EmojisResponse
 import work.socialhub.kmisskey.api.response.meta.GetOnlineUsersCountResponse
 import work.socialhub.kmisskey.api.response.meta.MetaResponse
 import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.internal.util.MediaType
 import work.socialhub.kmpcommon.runBlocking
 
 class MetaResourceImpl(

@@ -1,6 +1,5 @@
 package work.socialhub.kmisskey.entity.share
 
-import kotlinx.datetime.Instant
 import kotlin.js.JsExport
 
 @JsExport

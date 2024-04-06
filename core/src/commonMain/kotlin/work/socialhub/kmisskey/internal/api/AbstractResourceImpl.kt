@@ -7,6 +7,7 @@ import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.internal.Internal
 import work.socialhub.kmisskey.internal.Internal.toJson
+import work.socialhub.kmisskey.internal.model.BytesFile
 import work.socialhub.kmisskey.internal.util.MediaType
 import work.socialhub.kmpcommon.runBlocking
 
@@ -118,7 +119,7 @@ abstract class AbstractResourceImpl(
      * API の呼び出しを行う場合
      * (ファイル付きの POST を行う場合)
      */
-    protected inline fun <reified T> post(
+    protected inline fun <reified T> postWithFile(
         path: String,
         params: Map<String, Any>,
     ): Response<T> {
@@ -129,7 +130,11 @@ abstract class AbstractResourceImpl(
                     .param("i", i)
 
                 params.forEach { (k, v) ->
-                    request.param(k, v)
+                    if (v is BytesFile) {
+                        request.file(k, v.name, v.bytes)
+                    } else {
+                        request.param(k, v)
+                    }
                 }
                 request
                     .accept(MediaType.JSON)

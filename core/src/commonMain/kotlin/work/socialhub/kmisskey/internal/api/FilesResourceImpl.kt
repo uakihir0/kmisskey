@@ -34,6 +34,6 @@ class FilesResourceImpl(
             )
         )
 
-        return post(FilesCreate.path, params)
+        return postWithFile(FilesCreate.path, params)
     }
 }

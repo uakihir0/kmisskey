@@ -4,12 +4,12 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
-import work.socialhub.kmisskey.util.json.UserSerializer
 import work.socialhub.khttpclient.HttpResponse
 import work.socialhub.kmisskey.MisskeyException
 import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.entity.user.User
+import work.socialhub.kmisskey.util.json.UserSerializer
 import work.socialhub.kmpcommon.AnySerializer
 
 object Internal {
@@ -42,12 +42,9 @@ object Internal {
                 return EmptyResponse()
             }
 
-            throw handleError(
-                exception = null,
-                body = response.stringBody
-            )
+            throw handleError(response = response)
         } catch (e: Exception) {
-            throw handleError(e)
+            throw handleError(exception = e)
         }
     }
 
@@ -63,23 +60,28 @@ object Internal {
                 )
             }
 
-            throw handleError(
-                exception = null,
-                body = response.stringBody
-            )
+            throw handleError(response = response)
         } catch (e: Exception) {
-            throw handleError(e)
+            throw handleError(exception = e)
         }
     }
 
     fun handleError(
-        exception: Exception?,
-        body: String? = null,
+        exception: Exception? = null,
+        response: HttpResponse? = null,
     ): MisskeyException {
+
         if (exception != null) {
             return MisskeyException(exception)
         }
-        println(body)
-        return MisskeyException(body)
+
+        if (response != null) {
+            return MisskeyException(
+                response.status,
+                response.stringBody
+            )
+        }
+
+        return MisskeyException("Unknown Error")
     }
 }

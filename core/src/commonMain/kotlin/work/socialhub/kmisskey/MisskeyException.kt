@@ -5,14 +5,12 @@ class MisskeyException : RuntimeException {
 
     constructor(e: Exception) : super(e)
 
-    constructor(statusCode: Int, error: Error) {
+    constructor(statusCode: Int, message: String) : super(message) {
         this.statusCode = statusCode
-        this.error = error
     }
 
     constructor(message: String?) : super(message)
 
     var statusCode: Int? = null
-    var error: Error? = null
 }
 

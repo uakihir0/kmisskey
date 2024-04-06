@@ -1,7 +1,8 @@
 package work.socialhub.kmisskey.internal.api
 
 import work.socialhub.khttpclient.HttpRequest
-import work.socialhub.kmisskey.MisskeyAPI
+import work.socialhub.kmisskey.MisskeyAPI.Emojis
+import work.socialhub.kmisskey.MisskeyAPI.GetOnlineUsersCount
 import work.socialhub.kmisskey.MisskeyAPI.Meta
 import work.socialhub.kmisskey.api.MetaResource
 import work.socialhub.kmisskey.api.request.meta.EmojisRequest
@@ -24,7 +25,7 @@ class MetaResourceImpl(
     override fun meta(
         request: MetaRequest
     ): Response<MetaResponse> {
-        return post(Meta.path, request)
+        return postAny(Meta.path, request)
     }
 
     /**
@@ -33,7 +34,7 @@ class MetaResourceImpl(
     override fun emojis(
         request: EmojisRequest
     ): Response<EmojisResponse> {
-        return post(MisskeyAPI.Emojis.path, request)
+        return postAny(Emojis.path, request)
     }
 
     /**
@@ -45,11 +46,10 @@ class MetaResourceImpl(
         return proceed {
             runBlocking {
                 HttpRequest()
-                    .url(uri + MisskeyAPI.GetOnlineUsersCount.path)
+                    .url(uri + GetOnlineUsersCount.path)
                     .accept(MediaType.JSON)
                     .post()
             }
         }
-
     }
 }

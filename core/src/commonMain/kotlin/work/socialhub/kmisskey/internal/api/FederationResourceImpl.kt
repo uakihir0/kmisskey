@@ -17,6 +17,6 @@ class FederationResourceImpl(
     override fun showInstance(
         request: ShowInstanceRequest
     ): Response<FederationInstanceResponse> {
-        return post(FederationShowInstance.path, request)
+        return postAny(FederationShowInstance.path, request)
     }
 }

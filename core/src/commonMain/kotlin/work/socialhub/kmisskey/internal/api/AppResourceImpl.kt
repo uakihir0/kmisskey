@@ -17,6 +17,6 @@ class AppResourceImpl(
     override fun createApp(
         request: CreateAppRequest
     ): Response<CreateAppResponse> {
-        return post(AppCreate.path, request)
+        return postAny(AppCreate.path, request)
     }
 }

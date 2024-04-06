@@ -18,6 +18,6 @@ class HashtagsResourceImpl(
     override fun trend(
         request: HashtagsTrendRequest
     ): Response<Array<HashtagsTrendResponse>> {
-        return post(HashtagsTrend.path, request)
+        return postAny(HashtagsTrend.path, request)
     }
 }

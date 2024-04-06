@@ -62,7 +62,7 @@ abstract class AbstractResourceImpl(
     /**
      * API の呼び出しを行う場合
      */
-    protected inline fun <reified T, reified J : Any> post(
+    protected inline fun <reified T, reified J : Any> postAny(
         path: String,
         request: J,
     ): Response<T> {
@@ -99,9 +99,9 @@ abstract class AbstractResourceImpl(
     /**
      * API の呼び出しを行う場合
      */
-    protected fun postUnit(
+    protected inline fun <reified J : Any> postUnitAny(
         path: String,
-        request: Any,
+        request: J,
     ): EmptyResponse {
         return runBlocking {
             proceedUnit {

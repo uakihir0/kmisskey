@@ -1,9 +1,10 @@
 package work.socialhub.kmisskey.internal.api
 
-import work.socialhub.kmisskey.MisskeyAPI
 import work.socialhub.kmisskey.MisskeyAPI.ChannelsFollowed
 import work.socialhub.kmisskey.MisskeyAPI.ChannelsMyFavorites
 import work.socialhub.kmisskey.MisskeyAPI.ChannelsOwned
+import work.socialhub.kmisskey.MisskeyAPI.ChannelsShow
+import work.socialhub.kmisskey.MisskeyAPI.ChannelsTimeline
 import work.socialhub.kmisskey.api.ChannelsResource
 import work.socialhub.kmisskey.api.request.channels.ChannelsFollowedRequest
 import work.socialhub.kmisskey.api.request.channels.ChannelsMyFavoritesRequest
@@ -56,10 +57,7 @@ class ChannelsResourceImpl(
     override fun timeline(
         request: ChannelsTimelineRequest
     ): Response<Array<ChannelsTimelineResponse>> {
-        return post(
-            MisskeyAPI.ChannelsTimeline.path,
-            request
-        )
+        return post(ChannelsTimeline.path, request)
     }
 
     /**
@@ -68,9 +66,6 @@ class ChannelsResourceImpl(
     override fun show(
         request: ChannelsShowRequest
     ): Response<ChannelsShowResponse> {
-        return post(
-            MisskeyAPI.ChannelsShow.path,
-            request
-        )
+        return post(ChannelsShow.path, request)
     }
 }

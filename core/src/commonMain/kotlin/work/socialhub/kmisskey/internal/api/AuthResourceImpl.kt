@@ -22,7 +22,7 @@ class AuthResourceImpl(
     override fun sessionGenerate(
         request: GenerateAuthSessionRequest
     ): Response<GenerateAuthSessionResponse> {
-        return post(AuthSessionGenerate.path, request)
+        return postAny(AuthSessionGenerate.path, request)
     }
 
     /**
@@ -31,7 +31,7 @@ class AuthResourceImpl(
     override fun sessionUserKey(
         request: UserKeyAuthSessionRequest
     ): Response<UserKeyAuthSessionResponse> {
-        return post(AuthSessionUserkey.path, request)
+        return postAny(AuthSessionUserkey.path, request)
     }
 
     /**

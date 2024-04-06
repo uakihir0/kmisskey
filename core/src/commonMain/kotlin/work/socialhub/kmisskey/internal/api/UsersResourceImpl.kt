@@ -40,7 +40,7 @@ class UsersResourceImpl(
     override fun followers(
         request: UsersFollowersRequest
     ): Response<Array<UsersFollowersResponse>> {
-        return post(UsersFollowers.path, request)
+        return postAny(UsersFollowers.path, request)
     }
 
     /**
@@ -49,7 +49,7 @@ class UsersResourceImpl(
     override fun followings(
         request: UsersFollowingsRequest
     ): Response<Array<UsersFollowingsResponse>> {
-        return post(UsersFollowing.path, request)
+        return postAny(UsersFollowing.path, request)
     }
 
     /**
@@ -103,7 +103,7 @@ class UsersResourceImpl(
     override fun search(
         request: UsersSearchRequest
     ): Response<Array<UsersSearchResponse>> {
-        return post(UsersSearch.path, request)
+        return postAny(UsersSearch.path, request)
     }
 
     /**
@@ -112,6 +112,6 @@ class UsersResourceImpl(
     override fun searchByUsernameAndHost(
         request: UsersSearchByUsernameAndHostRequest
     ): Response<Array<UsersSearchByUsernameAndHostResponse>> {
-        return post(UsersSearchByUsernameAndHost.path, request)
+        return postAny(UsersSearchByUsernameAndHost.path, request)
     }
 }

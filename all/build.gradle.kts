@@ -1,9 +1,9 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
-    kotlin("multiplatform") version "1.9.23"
-    kotlin("native.cocoapods") version "1.9.23"
-    kotlin("plugin.serialization") version "1.9.23"
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.cocoapods)
 }
 
 kotlin {
@@ -34,7 +34,7 @@ kotlin {
     cocoapods {
         name = "kmisskey"
         version = "0.0.1"
-        summary = "kmisskey is Bluesky/ATProtocol library for Kotlin Multiplatform."
+        summary = "kmisskey is Misskey library for Kotlin Multiplatform."
         homepage = "https://github.com/uakihir0/kmisskey"
         authors = "Akihiro Urushihara"
         license = "MIT"

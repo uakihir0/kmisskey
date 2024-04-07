@@ -1,5 +1,6 @@
 [versions]
 kotest = "5.8.1"
+kotlin = "1.9.23"
 
 [libraries]
 kmpcommon = "work.socialhub:kmpcommon:0.0.1-SNAPSHOT"
@@ -11,3 +12,8 @@ serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3"
 serialization-cbor = "org.jetbrains.kotlinx:kotlinx-serialization-cbor:1.6.3"
 kotest-junit5 = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
 kotest-assertions = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }

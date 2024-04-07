@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit
 BASE_PATH=$(pwd)
-BUILD_PATH=../pods/build/dist/js/developmentLibrary
+BUILD_PATH=../all/build/dist/js/developmentLibrary
 
 # Make Ignore Files
 # cd "$BASE_PATH" || exit

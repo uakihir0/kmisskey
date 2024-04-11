@@ -38,7 +38,17 @@ It can be used in Objective-C as well, but here's how to use it in Swift.
 Please also refer to the README of [kmisskey] for detailed usage.
 
 ```swift
-WIP
+import kmisskey
+...
+
+let misskey = KmisskeyFactory().instance(
+  uri: "https://misskey.io",
+  clientSecret: "CLIENT_SECRET",
+  userAccessToken: "ACCESS_TOKEN"
+)
+
+let response = misskey.accounts().i(request: CoreIRequest())
+print(response.json)
 ```
 
 ## License

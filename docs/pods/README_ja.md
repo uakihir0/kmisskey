@@ -11,7 +11,7 @@
 Podfile に以下のように記載してください。
 本レポジトリにはバージョンは存在せず、[kmisskey] のバージョンと一致するブランチが存在します。
 どのバージョンの [kmisskey] を使用するかは、本レポジトリのブランチを指定することで決定します。
-[ブランチ一覧](https://github.com/uakihir0/kbsky-cocoapods/branches) からバージョンに対応するブランチを確認してください。
+[ブランチ一覧](https://github.com/uakihir0/kmisskey-cocoapods/branches) からバージョンに対応するブランチを確認してください。
 また、Debug ビルドと Release ビルドでは異なるものを使用しています。
 
 ```ruby

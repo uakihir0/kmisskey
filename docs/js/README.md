@@ -12,7 +12,7 @@ Additionally, this repository is automatically committed by GitHub Actions of [k
 
 If you're managing with npm, you can add it to your application using the following command.
 There are no versions in this repository, but there are branches corresponding to [kmisskey] versions.
-Please check the branches on the [branch list](https://github.com/uakihir0/kbsky-cocoapods/branches) to find the branch corresponding to the version you want to use.
+Please check the branches on the [branch list](https://github.com/uakihir0/kmisskey-cocoapods/branches) to find the branch corresponding to the version you want to use.
 
 ```shell
 npm add uakihir0/kmisskey.js

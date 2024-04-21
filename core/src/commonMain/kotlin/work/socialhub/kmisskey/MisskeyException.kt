@@ -1,16 +1,18 @@
 package work.socialhub.kmisskey
 
-
 class MisskeyException : RuntimeException {
+    var status: Int? = null
+    var body: String? = null
 
+    constructor(m: String) : super(m)
     constructor(e: Exception) : super(e)
 
-    constructor(statusCode: Int, message: String) : super(message) {
-        this.statusCode = statusCode
+    constructor(
+        status: Int,
+        body: String
+    ) : super("status code: $status, body: $body") {
+        this.status = status
+        this.body = body
     }
-
-    constructor(message: String?) : super(message)
-
-    var statusCode: Int? = null
 }
 

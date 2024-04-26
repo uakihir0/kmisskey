@@ -4,7 +4,7 @@ import kotlin.js.JsExport
 import kotlin.js.JsName
 
 @JsExport
-class KmisskeyFactory {
+object KmisskeyFactory {
 
     fun instance(
         uri: String,

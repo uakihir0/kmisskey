@@ -44,7 +44,8 @@ object Internal {
 
             throw handleError(response = response)
         } catch (e: Exception) {
-            throw handleError(exception = e)
+            throw e as? MisskeyException
+                ?: handleError(exception = e)
         }
     }
 
@@ -62,7 +63,8 @@ object Internal {
 
             throw handleError(response = response)
         } catch (e: Exception) {
-            throw handleError(exception = e)
+            throw e as? MisskeyException
+                ?: handleError(exception = e)
         }
     }
 

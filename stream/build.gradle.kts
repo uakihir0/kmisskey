@@ -34,7 +34,6 @@ kotlin {
             implementation(libs.khttpclient)
             implementation(libs.coroutines.core)
             implementation(libs.serialization.json)
-            implementation(libs.serialization.cbor)
         }
 
         // for test (kotlin/jvm)

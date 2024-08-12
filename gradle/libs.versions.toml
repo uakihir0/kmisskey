@@ -1,6 +1,6 @@
 [versions]
 kotest = "5.9.1"
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 
 [libraries]
 kmpcommon = "work.socialhub:kmpcommon:0.0.1-SNAPSHOT"

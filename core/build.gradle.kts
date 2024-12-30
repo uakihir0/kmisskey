@@ -34,7 +34,7 @@ kotlin {
             implementation(libs.datetime)
             implementation(libs.serialization.json)
 
-            implementation(project.dependencies.platform("org.kotlincrypto.hash:bom:0.5.3"))
+            implementation(project.dependencies.platform("org.kotlincrypto.hash:bom:0.5.6"))
             implementation("org.kotlincrypto.hash:md")
             implementation("org.kotlincrypto.hash:sha1")
             implementation("org.kotlincrypto.hash:sha2")

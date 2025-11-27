@@ -8,7 +8,7 @@ plugins {
 
 kotlin {
     js(IR) {
-        moduleName = "kmisskey-js"
+        compilerOptions.moduleName = "kmisskey-js"
         nodejs()
         browser()
         binaries.library()

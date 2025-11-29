@@ -38,7 +38,7 @@ object Internal {
     ): EmptyResponse {
         try {
             val response = function()
-            if (response.status == 200) {
+            if (response.status in 200..299) {
                 return EmptyResponse()
             }
 
@@ -54,7 +54,7 @@ object Internal {
     ): Response<T> {
         try {
             val response = function()
-            if (response.status == 200) {
+            if (response.status in 200..299) {
                 return Response(
                     response.typedBody(json),
                     response.stringBody,

@@ -42,7 +42,8 @@ class MeDetailed : UserDetailedNotMe() {
     var hasPendingReceivedFollowRequest: Boolean = false
     var unreadNotificationsCount: Int = 0
 
-    var mutedWords: Array<String> = arrayOf()
+    var mutedWords: Array<Array<String>> = arrayOf()
+    var hardMutedWords: Array<Array<String>> = arrayOf()
     var mutedInstances: Array<String> = arrayOf()
 
     // TODO: Object

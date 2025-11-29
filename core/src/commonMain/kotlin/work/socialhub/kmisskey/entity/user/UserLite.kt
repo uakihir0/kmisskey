@@ -29,7 +29,7 @@ open class UserLite : User() {
 
     override var instance: Instance? = null
     override var emojis: Emojis? = null
-    override lateinit var onlineStatus: String
+    override var onlineStatus: String? = null
 
     override var badgeRoles: Array<BadgeRole> = arrayOf()
     override var roles: Array<Role> = arrayOf()

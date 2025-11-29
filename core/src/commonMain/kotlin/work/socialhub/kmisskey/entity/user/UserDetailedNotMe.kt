@@ -50,8 +50,8 @@ open class UserDetailedNotMe : UserLite() {
 
     var publicReactions: Boolean = false
 
-    lateinit var followingVisibility: String
-    lateinit var followersVisibility: String
+    var followingVisibility: String? = null
+    var followersVisibility: String? = null
 
     var twoFactorEnabled: Boolean = false
     var usePasswordLessLogin: Boolean = false

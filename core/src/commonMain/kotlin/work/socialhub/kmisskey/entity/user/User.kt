@@ -46,7 +46,7 @@ abstract class User {
 
     abstract var instance: Instance?
     abstract var emojis: Emojis?
-    abstract var onlineStatus: String
+    abstract var onlineStatus: String?
 
     abstract var badgeRoles: Array<BadgeRole>
     abstract var roles: Array<Role>

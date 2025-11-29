@@ -17,7 +17,7 @@ open class Emoji {
 
     lateinit var name: String
     lateinit var url: String
-    lateinit var category: String
+    var category: String? = null
 
     var aliases: Array<String>? = null
 

@@ -1,6 +1,7 @@
 package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
+import work.socialhub.kmisskey.util.ColorDecoder
 import kotlin.js.JsExport
 
 @JsExport
@@ -13,4 +14,8 @@ class Role {
     var color: String? = null
     var iconUrl: String? = null
     var displayOrder: Int = 0
+
+    val colorObject: Color? = color?.let {
+        ColorDecoder.decode(it)
+    }
 }

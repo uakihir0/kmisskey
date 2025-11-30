@@ -41,7 +41,7 @@ class AuthResourceImpl(
         request: GetMiAuthUriRequest
     ): Response<String> {
         val url = Url(uri)
-        var authUrl = "${url.protocol}://${url.host}/miauth/${request.sessionId}"
+        var authUrl = "${url.protocol.name}://${url.host}/miauth/${request.sessionId}"
 
         val m = mutableListOf<String>()
         request.name?.let { m += "name=${e(it)}" }

@@ -21,7 +21,11 @@ interface ChannelsResource {
      * 管理しているチャンネル一覧を取得します。
      * @see "https://misskey.io/api-doc.tag/channels/operation/channels/owned"
      */
-    fun owned(
+    suspend fun owned(
+        request: ChannelsOwnedRequest
+    ): Response<Array<ChannelsOwnedResponse>>
+
+    fun ownedBlocking(
         request: ChannelsOwnedRequest
     ): Response<Array<ChannelsOwnedResponse>>
 
@@ -29,7 +33,11 @@ interface ChannelsResource {
      * お気に入りのチャンネル一覧を取得します。
      * @see "https://misskey.io/api-doc.tag/channels/operation/channels/my-favorites"
      */
-    fun myFavorites(
+    suspend fun myFavorites(
+        request: ChannelsMyFavoritesRequest
+    ): Response<Array<ChannelsMyFavoritesResponse>>
+
+    fun myFavoritesBlocking(
         request: ChannelsMyFavoritesRequest
     ): Response<Array<ChannelsMyFavoritesResponse>>
 
@@ -37,7 +45,11 @@ interface ChannelsResource {
      * フォローしているチャンネル一覧を取得します。
      * @see "https://misskey.io/api-doc.tag/channels/operation/channels/followed"
      */
-    fun followed(
+    suspend fun followed(
+        request: ChannelsFollowedRequest
+    ): Response<Array<ChannelsFollowedResponse>>
+
+    fun followedBlocking(
         request: ChannelsFollowedRequest
     ): Response<Array<ChannelsFollowedResponse>>
 
@@ -45,7 +57,11 @@ interface ChannelsResource {
      * 指定したチャンネルのタイムラインを取得します。
      * @see "https://misskey.io/api-doc.tag/notes/operation/channels/timeline"
      */
-    fun timeline(
+    suspend fun timeline(
+        request: ChannelsTimelineRequest
+    ): Response<Array<ChannelsTimelineResponse>>
+
+    fun timelineBlocking(
         request: ChannelsTimelineRequest
     ): Response<Array<ChannelsTimelineResponse>>
 
@@ -53,7 +69,11 @@ interface ChannelsResource {
      * 指定したチャンネルの情報を取得します。
      * @see "https://misskey.io/api-doc.tag/notes/operation/channels/show"
      */
-    fun show(
+    suspend fun show(
+        request: ChannelsShowRequest
+    ): Response<ChannelsShowResponse>
+
+    fun showBlocking(
         request: ChannelsShowRequest
     ): Response<ChannelsShowResponse>
 }

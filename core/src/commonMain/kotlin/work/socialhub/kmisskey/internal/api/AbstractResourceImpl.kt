@@ -9,7 +9,6 @@ import work.socialhub.kmisskey.internal.Internal
 import work.socialhub.kmisskey.internal.Internal.toJson
 import work.socialhub.kmisskey.internal.model.BytesFile
 import work.socialhub.kmisskey.internal.util.MediaType
-import work.socialhub.kmpcommon.runBlocking
 
 abstract class AbstractResourceImpl(
     val uri: String,
@@ -45,36 +44,32 @@ abstract class AbstractResourceImpl(
      * API の呼び出しを行う場合
      * 認証リクエストの場合
      */
-    protected inline fun <reified T, reified K : TokenRequest> post(
+    protected suspend inline fun <reified T, reified K : TokenRequest> post(
         path: String,
         request: K,
     ): Response<T> {
-        return runBlocking {
-            proceed<T> {
-                HttpRequest()
-                    .url(uri + path)
-                    .json(toJson(auth(request)))
-                    .accept(MediaType.JSON)
-                    .post()
-            }
+        return proceed<T> {
+            HttpRequest()
+                .url(uri + path)
+                .json(toJson(auth(request)))
+                .accept(MediaType.JSON)
+                .post()
         }
     }
 
     /**
      * API の呼び出しを行う場合
      */
-    protected inline fun <reified T, reified J : Any> postAny(
+    protected suspend inline fun <reified T, reified J : Any> postAny(
         path: String,
         request: J,
     ): Response<T> {
-        return runBlocking {
-            proceed<T> {
-                HttpRequest()
-                    .url(uri + path)
-                    .json(toJson(request))
-                    .accept(MediaType.JSON)
-                    .post()
-            }
+        return proceed<T> {
+            HttpRequest()
+                .url(uri + path)
+                .json(toJson(request))
+                .accept(MediaType.JSON)
+                .post()
         }
     }
 
@@ -82,36 +77,32 @@ abstract class AbstractResourceImpl(
      * API の呼び出しを行う場合
      * 認証リクエストの場合
      */
-    protected inline fun <reified K : TokenRequest> postUnit(
+    protected suspend inline fun <reified K : TokenRequest> postUnit(
         path: String,
         request: K,
     ): EmptyResponse {
-        return runBlocking {
-            proceedUnit {
-                HttpRequest()
-                    .url(uri + path)
-                    .json(toJson(auth(request)))
-                    .accept(MediaType.JSON)
-                    .post()
-            }
+        return proceedUnit {
+            HttpRequest()
+                .url(uri + path)
+                .json(toJson(auth(request)))
+                .accept(MediaType.JSON)
+                .post()
         }
     }
 
     /**
      * API の呼び出しを行う場合
      */
-    protected inline fun <reified J : Any> postUnitAny(
+    protected suspend inline fun <reified J : Any> postUnitAny(
         path: String,
         request: J,
     ): EmptyResponse {
-        return runBlocking {
-            proceedUnit {
-                HttpRequest()
-                    .url(uri + path)
-                    .json(toJson(request))
-                    .accept(MediaType.JSON)
-                    .post()
-            }
+        return proceedUnit {
+            HttpRequest()
+                .url(uri + path)
+                .json(toJson(request))
+                .accept(MediaType.JSON)
+                .post()
         }
     }
 
@@ -119,27 +110,25 @@ abstract class AbstractResourceImpl(
      * API の呼び出しを行う場合
      * (ファイル付きの POST を行う場合)
      */
-    protected inline fun <reified T> postWithFile(
+    protected suspend inline fun <reified T> postWithFile(
         path: String,
         params: Map<String, Any>,
     ): Response<T> {
-        return runBlocking {
-            proceed<T> {
-                val request = HttpRequest()
-                    .url(uri + path)
-                    .param("i", i)
+        return proceed<T> {
+            val request = HttpRequest()
+                .url(uri + path)
+                .param("i", i)
 
-                params.forEach { (k, v) ->
-                    if (v is BytesFile) {
-                        request.file(k, v.name, v.bytes)
-                    } else {
-                        request.param(k, v)
-                    }
+            params.forEach { (k, v) ->
+                if (v is BytesFile) {
+                    request.file(k, v.name, v.bytes)
+                } else {
+                    request.param(k, v)
                 }
-                request
-                    .accept(MediaType.JSON)
-                    .post()
             }
+            request
+                .accept(MediaType.JSON)
+                .post()
         }
     }
 

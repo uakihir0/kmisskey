@@ -18,7 +18,11 @@ interface AnnouncementsResource {
      *
      * https://misskey.io/api-doc#tag/meta/operation/announcements
      */
-    fun announcements(
+    suspend fun announcements(
+        request: AnnouncementsRequest
+    ): Response<Array<AnnouncementsResponse>>
+
+    fun announcementsBlocking(
         request: AnnouncementsRequest
     ): Response<Array<AnnouncementsResponse>>
 
@@ -27,7 +31,11 @@ interface AnnouncementsResource {
      *
      * https://misskey.io/api-doc#tag/account/operation/i/read-announcement
      */
-    fun readAnnouncement(
+    suspend fun readAnnouncement(
+        request: ReadAnnouncementRequest
+    ): EmptyResponse
+
+    fun readAnnouncementBlocking(
         request: ReadAnnouncementRequest
     ): EmptyResponse
 }

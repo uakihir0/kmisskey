@@ -16,6 +16,7 @@ import work.socialhub.kmisskey.api.response.webhooks.DeleteWebhooksResponse
 import work.socialhub.kmisskey.api.response.webhooks.ShowWebhooksResponse
 import work.socialhub.kmisskey.api.response.webhooks.UpdateWebhooksResponse
 import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.util.toBlocking
 
 class WebhooksResourceImpl(
     uri: String,
@@ -26,7 +27,7 @@ class WebhooksResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun create(
+    override suspend fun create(
         request: CreateWebhooksRequest
     ): Response<CreateWebhooksResponse> {
         return post(IWebhooksCreate.path, request)
@@ -35,7 +36,18 @@ class WebhooksResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun delete(
+    override fun createBlocking(
+        request: CreateWebhooksRequest
+    ): Response<CreateWebhooksResponse> {
+        return toBlocking {
+            create(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun delete(
         request: DeleteWebhooksRequest
     ): Response<DeleteWebhooksResponse> {
         return post(IWebhooksDelete.path, request)
@@ -44,7 +56,18 @@ class WebhooksResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun list(
+    override fun deleteBlocking(
+        request: DeleteWebhooksRequest
+    ): Response<DeleteWebhooksResponse> {
+        return toBlocking {
+            delete(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun list(
         request: ListWebhooksRequest
     ): Response<Array<ShowWebhooksResponse>> {
         return post(IWebhooksList.path, request)
@@ -53,7 +76,18 @@ class WebhooksResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun show(
+    override fun listBlocking(
+        request: ListWebhooksRequest
+    ): Response<Array<ShowWebhooksResponse>> {
+        return toBlocking {
+            list(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun show(
         request: ShowWebhooksRequest
     ): Response<ShowWebhooksResponse> {
         return post(IWebhooksShow.path, request)
@@ -62,9 +96,31 @@ class WebhooksResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun update(
+    override fun showBlocking(
+        request: ShowWebhooksRequest
+    ): Response<ShowWebhooksResponse> {
+        return toBlocking {
+            show(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun update(
         request: UpdateWebhooksRequest
     ): Response<UpdateWebhooksResponse> {
         return post(IWebhooksUpdate.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun updateBlocking(
+        request: UpdateWebhooksRequest
+    ): Response<UpdateWebhooksResponse> {
+        return toBlocking {
+            update(request)
+        }
     }
 }

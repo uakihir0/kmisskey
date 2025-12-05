@@ -21,7 +21,11 @@ interface ListsResource {
      * 認証ユーザーの作成したユーザーリスト一覧を取得します。
      * @see "https://misskey.io/api-doc.operation/users/lists/list"
      */
-    fun list(
+    suspend fun list(
+        request: UsersListsListRequest
+    ): Response<Array<UsersListsListResponse>>
+
+    fun listBlocking(
         request: UsersListsListRequest
     ): Response<Array<UsersListsListResponse>>
 
@@ -30,7 +34,11 @@ interface ListsResource {
      *
      * @see "https://misskey.io/api-doc.operation/users/lists/show"
      */
-    fun show(
+    suspend fun show(
+        request: UsersListsShowRequest
+    ): Response<UsersListsShowResponse>
+
+    fun showBlocking(
         request: UsersListsShowRequest
     ): Response<UsersListsShowResponse>
 
@@ -38,7 +46,11 @@ interface ListsResource {
      * 指定したユーザーをリストに追加します。
      * @see "https://misskey.io/api-doc.tag/lists/operation/users/lists/push"
      */
-    fun push(
+    suspend fun push(
+        request: UsersListsPushRequest
+    ): EmptyResponse
+
+    fun pushBlocking(
         request: UsersListsPushRequest
     ): EmptyResponse
 
@@ -46,7 +58,11 @@ interface ListsResource {
      * 指定したユーザーをリストから削除します。
      * @see "https://misskey.io/api-doc.tag/lists/operation/users/lists/pull"
      */
-    fun pull(
+    suspend fun pull(
+        request: UsersListsPullRequest
+    ): EmptyResponse
+
+    fun pullBlocking(
         request: UsersListsPullRequest
     ): EmptyResponse
 
@@ -54,7 +70,11 @@ interface ListsResource {
      * リストを作成します。
      * @see "https://misskey.io/api-doc.tag/lists/operation/users/lists/create"
      */
-    fun create(
+    suspend fun create(
+        request: UsersListsCreateRequest
+    ): Response<NoteList>
+
+    fun createBlocking(
         request: UsersListsCreateRequest
     ): Response<NoteList>
 
@@ -62,7 +82,11 @@ interface ListsResource {
      * リストを更新します。
      * @see "https://misskey.io/api-doc.tag/lists/operation/users/lists/update"
      */
-    fun update(
+    suspend fun update(
+        request: UsersListsUpdateRequest
+    ): Response<NoteList>
+
+    fun updateBlocking(
         request: UsersListsUpdateRequest
     ): Response<NoteList>
 
@@ -70,7 +94,11 @@ interface ListsResource {
      * リストを削除します。
      * @see "https://misskey.io/api-doc.tag/lists/operation/users/lists/delete"
      */
-    fun delete(
+    suspend fun delete(
+        request: UsersListsDeleteRequest
+    ): EmptyResponse
+
+    fun deleteBlocking(
         request: UsersListsDeleteRequest
     ): EmptyResponse
 }

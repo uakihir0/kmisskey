@@ -28,7 +28,11 @@ interface AccountsResource {
      * https://misskey.io/api-doc#tag/account/operation/i
      */
     @JsName("me")
-    fun i(
+    suspend fun i(
+        request: IRequest
+    ): Response<IResponse>
+
+    fun iBlocking(
         request: IRequest
     ): Response<IResponse>
 
@@ -36,7 +40,11 @@ interface AccountsResource {
      * お気に入りに登録した投稿一覧を取得します。
      * https://misskey.io/api-doc#tag/account/operation/i/favorites
      */
-    fun iFavorites(
+    suspend fun iFavorites(
+        request: IFavoritesRequest
+    ): Response<Array<IFavoritesResponse>>
+
+    fun iFavoritesBlocking(
         request: IFavoritesRequest
     ): Response<Array<IFavoritesResponse>>
 
@@ -44,7 +52,11 @@ interface AccountsResource {
      * 通知一覧を取得します。
      * https://misskey.io/api-doc#operation/i/notifications
      */
-    fun iNotifications(
+    suspend fun iNotifications(
+        request: INotificationsRequest
+    ): Response<Array<INotificationsResponse>>
+
+    fun iNotificationsBlocking(
         request: INotificationsRequest
     ): Response<Array<INotificationsResponse>>
 
@@ -53,17 +65,24 @@ interface AccountsResource {
      *
      * https://misskey.io/api-doc#tag/account/operation/i/update
      */
-    fun iUpdate(
+    suspend fun iUpdate(
         request: IUpdateRequest
     ): Response<IUpdateResponse>
 
+    fun iUpdateBlocking(
+        request: IUpdateRequest
+    ): Response<IUpdateResponse>
 
     /**
      * 指定したノートをピン留めに登録します。
      *
      * https://misskey.io/api-doc#tag/account/operation/i/pin
      */
-    fun pinNote(
+    suspend fun pinNote(
+        request: IPinRequest
+    ): Response<IPinResponse>
+
+    fun pinNoteBlocking(
         request: IPinRequest
     ): Response<IPinResponse>
 
@@ -72,7 +91,11 @@ interface AccountsResource {
      *
      * https://misskey.io/api-doc#tag/account/operation/i/unpin
      */
-    fun unpinNote(
+    suspend fun unpinNote(
+        request: IUnpinRequest
+    ): Response<IUnpinResponse>
+
+    fun unpinNoteBlocking(
         request: IUnpinRequest
     ): Response<IUnpinResponse>
 }

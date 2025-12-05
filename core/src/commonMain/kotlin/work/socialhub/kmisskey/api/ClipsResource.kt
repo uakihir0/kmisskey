@@ -26,14 +26,22 @@ interface ClipsResource {
      *
      * https://misskey.io/api-doc#tag/clips/operation/clips/list
      */
-    fun list(
+    suspend fun list(
+        request: ClipsListRequest
+    ): Response<Array<ClipsListResponse>>
+
+    fun listBlocking(
         request: ClipsListRequest
     ): Response<Array<ClipsListResponse>>
 
     /**
      * クリップに含まれるノートを取得します。
      */
-    fun notes(
+    suspend fun notes(
+        request: ClipsNotesRequest
+    ): Response<Array<ClipsNotesResponse>>
+
+    fun notesBlocking(
         request: ClipsNotesRequest
     ): Response<Array<ClipsNotesResponse>>
 
@@ -42,7 +50,11 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/account/operation/clips/remove-note"
      */
-    fun removeNote(
+    suspend fun removeNote(
+        request: ClipsRemoveNoteRequest
+    ): EmptyResponse
+
+    fun removeNoteBlocking(
         request: ClipsRemoveNoteRequest
     ): EmptyResponse
 
@@ -51,7 +63,11 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/account/operation/clips/add-note"
      */
-    fun addNote(
+    suspend fun addNote(
+        request: ClipsAddNoteRequest
+    ): EmptyResponse
+
+    fun addNoteBlocking(
         request: ClipsAddNoteRequest
     ): EmptyResponse
 
@@ -60,7 +76,11 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/clips/operation/clips/delete"
      */
-    fun deleteClip(
+    suspend fun deleteClip(
+        request: ClipsDeleteRequest
+    ): EmptyResponse
+
+    fun deleteClipBlocking(
         request: ClipsDeleteRequest
     ): EmptyResponse
 
@@ -69,7 +89,11 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/clips/operation/clips/create"
      */
-    fun create(
+    suspend fun create(
+        request: ClipsCreateRequest
+    ): Response<ClipsCreateResponse>
+
+    fun createBlocking(
         request: ClipsCreateRequest
     ): Response<ClipsCreateResponse>
 
@@ -78,7 +102,11 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/clips/operation/clips/show"
      */
-    fun show(
+    suspend fun show(
+        request: ClipsShowRequest
+    ): Response<ClipsShowResponse>
+
+    fun showBlocking(
         request: ClipsShowRequest
     ): Response<ClipsShowResponse>
 
@@ -87,7 +115,11 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/clips/operation/clips/update"
      */
-    fun update(
+    suspend fun update(
+        request: ClipsUpdateRequest
+    ): Response<ClipsUpdateResponse>
+
+    fun updateBlocking(
         request: ClipsUpdateRequest
     ): Response<ClipsUpdateResponse>
 }

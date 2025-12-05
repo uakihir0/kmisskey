@@ -28,7 +28,11 @@ interface UsersResource {
      * 指定したユーザーのフォロワー一覧を取得します。
      * https://misskey.io/api-doc#operation/users/followers
      */
-    fun followers(
+    suspend fun followers(
+        request: UsersFollowersRequest
+    ): Response<Array<UsersFollowersResponse>>
+
+    fun followersBlocking(
         request: UsersFollowersRequest
     ): Response<Array<UsersFollowersResponse>>
 
@@ -36,7 +40,11 @@ interface UsersResource {
      * 指定したユーザーのフォロー一覧を取得します。
      * https://misskey.io/api-doc#operation/users/following
      */
-    fun followings(
+    suspend fun followings(
+        request: UsersFollowingsRequest
+    ): Response<Array<UsersFollowingsResponse>>
+
+    fun followingsBlocking(
         request: UsersFollowingsRequest
     ): Response<Array<UsersFollowingsResponse>>
 
@@ -44,7 +52,11 @@ interface UsersResource {
      * おすすめのユーザーを取得します。
      * https://misskey.io/api-doc#operation/users/recommendation
      */
-    fun recommendation(
+    suspend fun recommendation(
+        request: UsersRecommendationRequest
+    ): Response<Array<UsersRecommendationResponse>>
+
+    fun recommendationBlocking(
         request: UsersRecommendationRequest
     ): Response<Array<UsersRecommendationResponse>>
 
@@ -53,7 +65,12 @@ interface UsersResource {
      * https://misskey.io/api-doc#operation/users/show
      */
     @JsName("showSingle")
-    fun show(
+    suspend fun show(
+        request: UsersShowSingleRequest
+    ): Response<UsersShowResponse>
+
+    @JsName("showSingleBlocking")
+    fun showBlocking(
         request: UsersShowSingleRequest
     ): Response<UsersShowResponse>
 
@@ -62,7 +79,12 @@ interface UsersResource {
      * https://misskey.io/api-doc#operation/users/show
      */
     @JsName("showMultiple")
-    fun show(
+    suspend fun show(
+        request: UsersShowMultipleRequest
+    ): Response<Array<UsersShowResponse>>
+
+    @JsName("showMultipleBlocking")
+    fun showBlocking(
         request: UsersShowMultipleRequest
     ): Response<Array<UsersShowResponse>>
 
@@ -70,7 +92,11 @@ interface UsersResource {
      * ユーザーがつけたリアクションを取得します。
      * https://misskey.io/api-doc#operation/users/reactions
      */
-    fun reactions(
+    suspend fun reactions(
+        request: UsersReactionsRequest
+    ): Response<Array<UsersReactionsResponse>>
+
+    fun reactionsBlocking(
         request: UsersReactionsRequest
     ): Response<Array<UsersReactionsResponse>>
 
@@ -78,7 +104,11 @@ interface UsersResource {
      * ユーザー間のリレーションを取得します。
      * https://misskey.io/api-doc#operation/users/relation
      */
-    fun relation(
+    suspend fun relation(
+        request: UsersRelationRequest
+    ): Response<Array<UsersRelationResponse>>
+
+    fun relationBlocking(
         request: UsersRelationRequest
     ): Response<Array<UsersRelationResponse>>
 
@@ -86,7 +116,11 @@ interface UsersResource {
      * ユーザーを検索します。
      * https://misskey.io/api-doc#operation/users/search
      */
-    fun search(
+    suspend fun search(
+        request: UsersSearchRequest
+    ): Response<Array<UsersSearchResponse>>
+
+    fun searchBlocking(
         request: UsersSearchRequest
     ): Response<Array<UsersSearchResponse>>
 
@@ -94,7 +128,11 @@ interface UsersResource {
      * ユーザー名・ホスト名からユーザーを検索します。
      * https://misskey.io/api-doc#operation/users/search-by-username-and-host
      */
-    fun searchByUsernameAndHost(
+    suspend fun searchByUsernameAndHost(
+        request: UsersSearchByUsernameAndHostRequest
+    ): Response<Array<UsersSearchByUsernameAndHostResponse>>
+
+    fun searchByUsernameAndHostBlocking(
         request: UsersSearchByUsernameAndHostRequest
     ): Response<Array<UsersSearchByUsernameAndHostResponse>>
 }

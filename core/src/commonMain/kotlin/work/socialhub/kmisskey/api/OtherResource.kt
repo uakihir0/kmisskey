@@ -12,7 +12,11 @@ interface OtherResource {
      * サービスワーカーの通知先を登録します
      * https://misskey.io/api-doc#operation/sw/register
      */
-    fun serviceWorkerRegister(
+    suspend fun serviceWorkerRegister(
+        request: ServiceWorkerRegisterRequest
+    ): Response<ServiceWorkerRegisterResponse>
+
+    fun serviceWorkerRegisterBlocking(
         request: ServiceWorkerRegisterRequest
     ): Response<ServiceWorkerRegisterResponse>
 }

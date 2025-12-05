@@ -67,8 +67,8 @@ println("USER TOKEN: " + response.data.accessToken)
 
 ```kotlin
 val misskey = MisskeyFactory.instance(
-    "HOST", 
-    "CLIENT_SECRET", 
+    "HOST",
+    "CLIENT_SECRET",
     "ACCESS_TOKEN",
 )
 
@@ -89,6 +89,7 @@ MIT License
 
 [khttpclient]: https://github.com/uakihir0/khttpclient
 [badge-android]: http://img.shields.io/badge/-android-6EDB8D.svg
+
 [badge-android-native]: http://img.shields.io/badge/support-[AndroidNative]-6EDB8D.svg
 [badge-wearos]: http://img.shields.io/badge/-wearos-8ECDA0.svg
 [badge-jvm]: http://img.shields.io/badge/-jvm-DB413D.svg

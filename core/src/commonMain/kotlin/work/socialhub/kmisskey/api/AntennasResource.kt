@@ -15,14 +15,22 @@ interface AntennasResource {
      *
      * https://misskey.io/api-doc#tag/antennas/operation/antennas/list
      */
-    fun list(
+    suspend fun list(
+        request: AntennasListRequest
+    ): Response<Array<AntennasListResponse>>
+
+    fun listBlocking(
         request: AntennasListRequest
     ): Response<Array<AntennasListResponse>>
 
     /**
      * https://misskey.io/api-doc#tag/antennas/operation/antennas/notes
      */
-    fun notes(
+    suspend fun notes(
+        request: AntennasNotesRequest
+    ): Response<Array<AntennasNotesResponse>>
+
+    fun notesBlocking(
         request: AntennasNotesRequest
     ): Response<Array<AntennasNotesResponse>>
 }

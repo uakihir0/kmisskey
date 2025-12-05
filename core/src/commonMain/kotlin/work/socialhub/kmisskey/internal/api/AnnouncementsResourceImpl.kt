@@ -8,6 +8,7 @@ import work.socialhub.kmisskey.api.request.ReadAnnouncementRequest
 import work.socialhub.kmisskey.api.response.AnnouncementsResponse
 import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.util.toBlocking
 
 class AnnouncementsResourceImpl(
     uri: String,
@@ -18,7 +19,7 @@ class AnnouncementsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun announcements(
+    override suspend fun announcements(
         request: AnnouncementsRequest
     ): Response<Array<AnnouncementsResponse>> {
         return post(Announcements.path, request)
@@ -27,9 +28,31 @@ class AnnouncementsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun readAnnouncement(
+    override fun announcementsBlocking(
+        request: AnnouncementsRequest
+    ): Response<Array<AnnouncementsResponse>> {
+        return toBlocking {
+            announcements(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun readAnnouncement(
         request: ReadAnnouncementRequest
     ): EmptyResponse {
         return postUnit(ReadAnnouncement.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun readAnnouncementBlocking(
+        request: ReadAnnouncementRequest
+    ): EmptyResponse {
+        return toBlocking {
+            readAnnouncement(request)
+        }
     }
 }

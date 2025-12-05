@@ -27,6 +27,7 @@ import work.socialhub.kmisskey.api.response.users.UsersSearchByUsernameAndHostRe
 import work.socialhub.kmisskey.api.response.users.UsersSearchResponse
 import work.socialhub.kmisskey.api.response.users.UsersShowResponse
 import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.util.toBlocking
 
 class UsersResourceImpl(
     uri: String,
@@ -37,7 +38,7 @@ class UsersResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun followers(
+    override suspend fun followers(
         request: UsersFollowersRequest
     ): Response<Array<UsersFollowersResponse>> {
         return postAny(UsersFollowers.path, request)
@@ -46,7 +47,18 @@ class UsersResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun followings(
+    override fun followersBlocking(
+        request: UsersFollowersRequest
+    ): Response<Array<UsersFollowersResponse>> {
+        return toBlocking {
+            followers(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun followings(
         request: UsersFollowingsRequest
     ): Response<Array<UsersFollowingsResponse>> {
         return postAny(UsersFollowing.path, request)
@@ -55,7 +67,18 @@ class UsersResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun recommendation(
+    override fun followingsBlocking(
+        request: UsersFollowingsRequest
+    ): Response<Array<UsersFollowingsResponse>> {
+        return toBlocking {
+            followings(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun recommendation(
         request: UsersRecommendationRequest
     ): Response<Array<UsersRecommendationResponse>> {
         return post(UsersRecommendation.path, request)
@@ -64,7 +87,18 @@ class UsersResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun show(
+    override fun recommendationBlocking(
+        request: UsersRecommendationRequest
+    ): Response<Array<UsersRecommendationResponse>> {
+        return toBlocking {
+            recommendation(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun show(
         request: UsersShowSingleRequest
     ): Response<UsersShowResponse> {
         return post(UsersShow.path, request)
@@ -73,7 +107,18 @@ class UsersResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun show(
+    override fun showBlocking(
+        request: UsersShowSingleRequest
+    ): Response<UsersShowResponse> {
+        return toBlocking {
+            show(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun show(
         request: UsersShowMultipleRequest
     ): Response<Array<UsersShowResponse>> {
         return post(UsersShow.path, request)
@@ -82,7 +127,18 @@ class UsersResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun reactions(
+    override fun showBlocking(
+        request: UsersShowMultipleRequest
+    ): Response<Array<UsersShowResponse>> {
+        return toBlocking {
+            show(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun reactions(
         request: UsersReactionsRequest
     ): Response<Array<UsersReactionsResponse>> {
         return post(UsersReactions.path, request)
@@ -91,7 +147,18 @@ class UsersResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun relation(
+    override fun reactionsBlocking(
+        request: UsersReactionsRequest
+    ): Response<Array<UsersReactionsResponse>> {
+        return toBlocking {
+            reactions(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun relation(
         request: UsersRelationRequest
     ): Response<Array<UsersRelationResponse>> {
         return post(UsersRelation.path, request)
@@ -100,7 +167,18 @@ class UsersResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun search(
+    override fun relationBlocking(
+        request: UsersRelationRequest
+    ): Response<Array<UsersRelationResponse>> {
+        return toBlocking {
+            relation(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun search(
         request: UsersSearchRequest
     ): Response<Array<UsersSearchResponse>> {
         return postAny(UsersSearch.path, request)
@@ -109,9 +187,31 @@ class UsersResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun searchByUsernameAndHost(
+    override fun searchBlocking(
+        request: UsersSearchRequest
+    ): Response<Array<UsersSearchResponse>> {
+        return toBlocking {
+            search(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun searchByUsernameAndHost(
         request: UsersSearchByUsernameAndHostRequest
     ): Response<Array<UsersSearchByUsernameAndHostResponse>> {
         return postAny(UsersSearchByUsernameAndHost.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun searchByUsernameAndHostBlocking(
+        request: UsersSearchByUsernameAndHostRequest
+    ): Response<Array<UsersSearchByUsernameAndHostResponse>> {
+        return toBlocking {
+            searchByUsernameAndHost(request)
+        }
     }
 }

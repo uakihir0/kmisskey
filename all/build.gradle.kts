@@ -4,16 +4,13 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.cocoapods)
+    alias(libs.plugins.swiftpackage)
+    id("module.publications")
 }
 
 kotlin {
-    js(IR) {
-        compilerOptions.moduleName = "kmisskey-js"
-        nodejs()
-        browser()
-        binaries.library()
-        generateTypeScriptDefinitions()
-    }
+    jvmToolchain(11)
+    jvm()
 
     val xcf = XCFramework("kmisskey")
     listOf(
@@ -54,6 +51,22 @@ kotlin {
     }
 }
 
+multiplatformSwiftPackage {
+    swiftToolsVersion("5.7")
+    targetPlatforms {
+        // baseline 2020
+        iOS { v("15") }
+        macOS { v("12.0") }
+    }
+}
+
+tasks.configureEach {
+    // Fix implicit dependency between XCFramework and FatFramework tasks
+    if (name.contains("assembleKbsky") && name.contains("XCFramework")) {
+        mustRunAfter(tasks.matching { it.name.contains("FatFramework") })
+    }
+}
+
 tasks.podPublishXCFramework {
     doLast {
         exec {
@@ -62,13 +75,3 @@ tasks.podPublishXCFramework {
         }
     }
 }
-
-tasks.getByName("jsBrowserDevelopmentLibraryDistribution") {
-    doLast {
-        exec {
-            executable = "sh"
-            args = listOf("../tool/setup_js.sh")
-        }
-    }
-}
-

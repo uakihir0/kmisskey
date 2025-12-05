@@ -12,7 +12,11 @@ interface FavoritesResource {
      * 指定した投稿をお気に入りに登録します。
      * https://misskey.io/api-doc#operation/notes/favorites/create
      */
-    fun create(
+    suspend fun create(
+        request: FavoritesCreateRequest
+    ): EmptyResponse
+
+    fun createBlocking(
         request: FavoritesCreateRequest
     ): EmptyResponse
 
@@ -20,7 +24,11 @@ interface FavoritesResource {
      * 指定した投稿のお気に入りを解除します。
      * https://misskey.io/api-doc#operation/notes/favorites/delete
      */
-    fun delete(
+    suspend fun delete(
+        request: FavoritesDeleteRequest
+    ): EmptyResponse
+
+    fun deleteBlocking(
         request: FavoritesDeleteRequest
     ): EmptyResponse
 }

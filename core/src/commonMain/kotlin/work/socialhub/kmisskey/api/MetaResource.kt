@@ -14,7 +14,11 @@ interface MetaResource {
      * インスタンス情報を取得します。
      * https://misskey.io/api-doc#operation/meta
      */
-    fun meta(
+    suspend fun meta(
+        request: MetaRequest
+    ): Response<MetaResponse>
+
+    fun metaBlocking(
         request: MetaRequest
     ): Response<MetaResponse>
 
@@ -22,13 +26,20 @@ interface MetaResource {
      * (from v13)
      * 絵文字情報を取得します。
      */
-    fun emojis(
+    suspend fun emojis(
+        request: EmojisRequest
+    ): Response<EmojisResponse>
+
+    fun emojisBlocking(
         request: EmojisRequest
     ): Response<EmojisResponse>
 
     /**
      * オンラインになっているユーザ数を取得します。
      */
-    fun getOnlineUsersCount(
+    suspend fun getOnlineUsersCount(
+    ): Response<GetOnlineUsersCountResponse>
+
+    fun getOnlineUsersCountBlocking(
     ): Response<GetOnlineUsersCountResponse>
 }

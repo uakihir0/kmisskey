@@ -11,7 +11,11 @@ import kotlin.js.JsExport
 @JsExport
 interface FederationResource {
 
-    fun showInstance(
+    suspend fun showInstance(
+        request: ShowInstanceRequest
+    ): Response<FederationInstanceResponse>
+
+    fun showInstanceBlocking(
         request: ShowInstanceRequest
     ): Response<FederationInstanceResponse>
 }

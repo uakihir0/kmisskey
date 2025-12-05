@@ -17,7 +17,11 @@ interface FollowingResource {
      * 指定したユーザーをフォローします。
      * https://misskey.io/api-doc#operation/following/create
      */
-    fun create(
+    suspend fun create(
+        request: FollowingCreateRequest
+    ): EmptyResponse
+
+    fun createBlocking(
         request: FollowingCreateRequest
     ): EmptyResponse
 
@@ -25,7 +29,11 @@ interface FollowingResource {
      * 指定したユーザーのフォローを解除します。
      * https://misskey.io/api-doc#operation/following/delete
      */
-    fun delete(
+    suspend fun delete(
+        request: FollowingDeleteRequest
+    ): EmptyResponse
+
+    fun deleteBlocking(
         request: FollowingDeleteRequest
     ): EmptyResponse
 
@@ -33,7 +41,11 @@ interface FollowingResource {
      * フォローリクエストの一覧を取得します。
      * https://misskey.io/api-doc#tag/following/operation/following/requests/list
      */
-    fun requestsList(
+    suspend fun requestsList(
+        request: FollowingRequestsListRequest
+    ): Response<Array<FollowingRequestsListResponse>>
+
+    fun requestsListBlocking(
         request: FollowingRequestsListRequest
     ): Response<Array<FollowingRequestsListResponse>>
 
@@ -41,7 +53,11 @@ interface FollowingResource {
      * フォローを許可します。
      * https://misskey.io/api-doc#tag/following/operation/following/requests/accept
      */
-    fun acceptRequest(
+    suspend fun acceptRequest(
+        request: FollowingRequestsAcceptRequest
+    ): EmptyResponse
+
+    fun acceptRequestBlocking(
         request: FollowingRequestsAcceptRequest
     ): EmptyResponse
 
@@ -49,7 +65,11 @@ interface FollowingResource {
      * フォローを拒否します。
      * https://misskey.io/api-doc#tag/following/operation/following/requests/reject
      */
-    fun rejectRequest(
+    suspend fun rejectRequest(
+        request: FollowingRequestsRejectRequest
+    ): EmptyResponse
+
+    fun rejectRequestBlocking(
         request: FollowingRequestsRejectRequest
     ): EmptyResponse
 }

@@ -10,6 +10,7 @@ import work.socialhub.kmisskey.api.request.blocks.BlocksListRequest
 import work.socialhub.kmisskey.api.response.blocks.BlocksListResponse
 import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.util.toBlocking
 
 class BlocksResourceImpl(
     uri: String,
@@ -20,7 +21,7 @@ class BlocksResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun create(
+    override suspend fun create(
         request: BlocksCreateRequest
     ): EmptyResponse {
         return postUnit(BlocksCreate.path, request)
@@ -29,7 +30,18 @@ class BlocksResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun delete(
+    override fun createBlocking(
+        request: BlocksCreateRequest
+    ): EmptyResponse {
+        return toBlocking {
+            create(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun delete(
         request: BlocksDeleteRequest
     ): EmptyResponse {
         return postUnit(BlocksDelete.path, request)
@@ -38,9 +50,31 @@ class BlocksResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun list(
+    override fun deleteBlocking(
+        request: BlocksDeleteRequest
+    ): EmptyResponse {
+        return toBlocking {
+            delete(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun list(
         request: BlocksListRequest
     ): Response<Array<BlocksListResponse>> {
         return post(BlocksList.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun listBlocking(
+        request: BlocksListRequest
+    ): Response<Array<BlocksListResponse>> {
+        return toBlocking {
+            list(request)
+        }
     }
 }

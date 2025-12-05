@@ -49,7 +49,11 @@ interface NotesResource {
      * 指定したユーザーのタイムラインを取得します。
      * https://misskey.io/api-doc#operation/users/notes
      */
-    fun users(
+    suspend fun users(
+        request: UsersNotesRequest
+    ): Response<Array<UsersNotesResponse>>
+
+    fun usersBlocking(
         request: UsersNotesRequest
     ): Response<Array<UsersNotesResponse>>
 
@@ -57,7 +61,11 @@ interface NotesResource {
      * 投稿を取得します。
      * https://misskey.io/api-doc#operation/notes
      */
-    fun notes(
+    suspend fun notes(
+        request: NotesRequest
+    ): Response<Array<NotesResponse>>
+
+    fun notesBlocking(
         request: NotesRequest
     ): Response<Array<NotesResponse>>
 
@@ -65,7 +73,11 @@ interface NotesResource {
      * 指定した投稿への返信/引用を取得します。
      * https://misskey.io/api-doc#operation/notes/children
      */
-    fun children(
+    suspend fun children(
+        request: NotesChildrenRequest
+    ): Response<Array<NotesChildrenResponse>>
+
+    fun childrenBlocking(
         request: NotesChildrenRequest
     ): Response<Array<NotesChildrenResponse>>
 
@@ -73,7 +85,11 @@ interface NotesResource {
      * 指定した投稿への返信を取得します。
      * https://misskey.io/api-doc#operation/notes/replies
      */
-    fun replies(
+    suspend fun replies(
+        request: NotesRepliesRequest
+    ): Response<Array<NotesRepliesResponse>>
+
+    fun repliesBlocking(
         request: NotesRepliesRequest
     ): Response<Array<NotesRepliesResponse>>
 
@@ -81,7 +97,11 @@ interface NotesResource {
      * 指定した投稿の文脈を取得します。
      * https://misskey.io/api-doc#operation/notes/conversation
      */
-    fun conversation(
+    suspend fun conversation(
+        request: NotesConversationRequest
+    ): Response<Array<NotesConversationResponse>>
+
+    fun conversationBlocking(
         request: NotesConversationRequest
     ): Response<Array<NotesConversationResponse>>
 
@@ -89,7 +109,11 @@ interface NotesResource {
      * 投稿します。
      * https://misskey.io/api-doc#operation/notes/create
      */
-    fun create(
+    suspend fun create(
+        request: NotesCreateRequest
+    ): Response<NotesCreateResponse>
+
+    fun createBlocking(
         request: NotesCreateRequest
     ): Response<NotesCreateResponse>
 
@@ -97,7 +121,11 @@ interface NotesResource {
      * 指定した投稿を削除します。
      * https://misskey.io/api-doc#operation/notes/delete
      */
-    fun delete(
+    suspend fun delete(
+        request: NotesDeleteRequest
+    ): EmptyResponse
+
+    fun deleteBlocking(
         request: NotesDeleteRequest
     ): EmptyResponse
 
@@ -105,7 +133,11 @@ interface NotesResource {
      * 自分に言及している投稿の一覧を取得します。
      * https://misskey.io/api-doc#operation/notes/mentions
      */
-    fun mentions(
+    suspend fun mentions(
+        request: NotesMentionsRequest
+    ): Response<Array<NotesMentionsResponse>>
+
+    fun mentionsBlocking(
         request: NotesMentionsRequest
     ): Response<Array<NotesMentionsResponse>>
 
@@ -113,7 +145,11 @@ interface NotesResource {
      * Featured な投稿を取得します。
      * https://misskey.io/api-doc#operation/notes/featured
      */
-    fun featured(
+    suspend fun featured(
+        request: NotesFeaturedRequest
+    ): Response<Array<NotesFeaturedResponse>>
+
+    fun featuredBlocking(
         request: NotesFeaturedRequest
     ): Response<Array<NotesFeaturedResponse>>
 
@@ -121,7 +157,11 @@ interface NotesResource {
      * グローバルタイムラインを取得します。
      * https://misskey.io/api-doc#operation/notes/global-timeline
      */
-    fun globalTimeline(
+    suspend fun globalTimeline(
+        request: NotesGlobalTimelineRequest
+    ): Response<Array<NotesGlobalTimelineResponse>>
+
+    fun globalTimelineBlocking(
         request: NotesGlobalTimelineRequest
     ): Response<Array<NotesGlobalTimelineResponse>>
 
@@ -129,7 +169,11 @@ interface NotesResource {
      * ソーシャルタイムラインを取得します。
      * https://misskey.io/api-doc#operation/notes/hybrid-timeline
      */
-    fun hybridTimeline(
+    suspend fun hybridTimeline(
+        request: NotesHybridTimelineRequest
+    ): Response<Array<NotesHybridTimelineResponse>>
+
+    fun hybridTimelineBlocking(
         request: NotesHybridTimelineRequest
     ): Response<Array<NotesHybridTimelineResponse>>
 
@@ -137,7 +181,11 @@ interface NotesResource {
      * ローカルタイムラインを取得します。
      * https://misskey.io/api-doc#operation/notes/local-timeline
      */
-    fun localTimeline(
+    suspend fun localTimeline(
+        request: NotesLocalTimelineRequest
+    ): Response<Array<NotesLocalTimelineResponse>>
+
+    fun localTimelineBlocking(
         request: NotesLocalTimelineRequest
     ): Response<Array<NotesLocalTimelineResponse>>
 
@@ -145,7 +193,11 @@ interface NotesResource {
      * ノートのリアクションを取得します。
      * https://misskey.io/api-doc#tag/notes/operation/notes/reactions
      */
-    fun reactions(
+    suspend fun reactions(
+        request: NotesReactionsRequest
+    ): Response<Array<NotesReactionsResponse>>
+
+    fun reactionsBlocking(
         request: NotesReactionsRequest
     ): Response<Array<NotesReactionsResponse>>
 
@@ -153,7 +205,11 @@ interface NotesResource {
      * タイムラインを取得します。
      * https://misskey.io/api-doc#operation/notes/timeline
      */
-    fun timeline(
+    suspend fun timeline(
+        request: NotesTimelineRequest
+    ): Response<Array<NotesTimelineResponse>>
+
+    fun timelineBlocking(
         request: NotesTimelineRequest
     ): Response<Array<NotesTimelineResponse>>
 
@@ -161,7 +217,11 @@ interface NotesResource {
      * 指定した投稿を取得します。
      * https://misskey.io/api-doc#operation/notes/show
      */
-    fun show(
+    suspend fun show(
+        request: NotesShowRequest
+    ): Response<NotesShowResponse>
+
+    fun showBlocking(
         request: NotesShowRequest
     ): Response<NotesShowResponse>
 
@@ -169,7 +229,11 @@ interface NotesResource {
      * 投稿を検索します。
      * https://misskey.io/api-doc#operation/notes/search
      */
-    fun search(
+    suspend fun search(
+        request: NotesSearchRequest
+    ): Response<Array<NotesSearchResponse>>
+
+    fun searchBlocking(
         request: NotesSearchRequest
     ): Response<Array<NotesSearchResponse>>
 
@@ -177,7 +241,11 @@ interface NotesResource {
      * 指定されたハッシュタグが付けられたノートを取得します。
      * https://misskey.io/api-doc#tag/notes/operation/notes/search-by-tag
      */
-    fun searchByTag(
+    suspend fun searchByTag(
+        request: NotesSearchByTagRequest
+    ): Response<Array<NotesSearchByTagResponse>>
+
+    fun searchByTagBlocking(
         request: NotesSearchByTagRequest
     ): Response<Array<NotesSearchByTagResponse>>
 
@@ -185,7 +253,11 @@ interface NotesResource {
      * 指定したユーザーリストのタイムラインを取得します。
      * https://misskey.io/api-doc#operation/notes/user-list-timeline
      */
-    fun userListTimeline(
+    suspend fun userListTimeline(
+        request: NotesUserListTimelineRequest
+    ): Response<Array<NotesUserListTimelineResponse>>
+
+    fun userListTimelineBlocking(
         request: NotesUserListTimelineRequest
     ): Response<Array<NotesUserListTimelineResponse>>
 
@@ -193,7 +265,11 @@ interface NotesResource {
      * 指定した投稿のRenoteを解除します。
      * https://misskey.io/api-doc#operation/notes/unrenote
      */
-    fun unrenote(
+    suspend fun unrenote(
+        request: NoteUnrenoteRequest
+    ): EmptyResponse
+
+    fun unrenoteBlocking(
         request: NoteUnrenoteRequest
     ): EmptyResponse
 
@@ -201,7 +277,11 @@ interface NotesResource {
      * ノートに対するRenote一覧を取得します。
      * @see "https://misskey.io/api-doc.tag/notes/operation/notes/renotes"
      */
-    fun renotes(
+    suspend fun renotes(
+        request: NotesRenotesRequest
+    ): Response<Array<NotesRenotesResponse>>
+
+    fun renotesBlocking(
         request: NotesRenotesRequest
     ): Response<Array<NotesRenotesResponse>>
 }

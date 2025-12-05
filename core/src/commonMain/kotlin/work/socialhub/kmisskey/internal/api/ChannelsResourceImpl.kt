@@ -17,6 +17,7 @@ import work.socialhub.kmisskey.api.response.channels.ChannelsOwnedResponse
 import work.socialhub.kmisskey.api.response.channels.ChannelsShowResponse
 import work.socialhub.kmisskey.api.response.channels.ChannelsTimelineResponse
 import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.util.toBlocking
 
 class ChannelsResourceImpl(
     uri: String,
@@ -27,7 +28,7 @@ class ChannelsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun owned(
+    override suspend fun owned(
         request: ChannelsOwnedRequest
     ): Response<Array<ChannelsOwnedResponse>> {
         return post(ChannelsOwned.path, request)
@@ -36,7 +37,18 @@ class ChannelsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun myFavorites(
+    override fun ownedBlocking(
+        request: ChannelsOwnedRequest
+    ): Response<Array<ChannelsOwnedResponse>> {
+        return toBlocking {
+            owned(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun myFavorites(
         request: ChannelsMyFavoritesRequest
     ): Response<Array<ChannelsMyFavoritesResponse>> {
         return post(ChannelsMyFavorites.path, request)
@@ -45,7 +57,18 @@ class ChannelsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun followed(
+    override fun myFavoritesBlocking(
+        request: ChannelsMyFavoritesRequest
+    ): Response<Array<ChannelsMyFavoritesResponse>> {
+        return toBlocking {
+            myFavorites(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun followed(
         request: ChannelsFollowedRequest
     ): Response<Array<ChannelsFollowedResponse>> {
         return post(ChannelsFollowed.path, request)
@@ -54,7 +77,18 @@ class ChannelsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun timeline(
+    override fun followedBlocking(
+        request: ChannelsFollowedRequest
+    ): Response<Array<ChannelsFollowedResponse>> {
+        return toBlocking {
+            followed(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun timeline(
         request: ChannelsTimelineRequest
     ): Response<Array<ChannelsTimelineResponse>> {
         return post(ChannelsTimeline.path, request)
@@ -63,9 +97,31 @@ class ChannelsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun show(
+    override fun timelineBlocking(
+        request: ChannelsTimelineRequest
+    ): Response<Array<ChannelsTimelineResponse>> {
+        return toBlocking {
+            timeline(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun show(
         request: ChannelsShowRequest
     ): Response<ChannelsShowResponse> {
         return post(ChannelsShow.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun showBlocking(
+        request: ChannelsShowRequest
+    ): Response<ChannelsShowResponse> {
+        return toBlocking {
+            show(request)
+        }
     }
 }

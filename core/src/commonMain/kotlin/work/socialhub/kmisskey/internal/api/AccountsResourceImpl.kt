@@ -15,6 +15,7 @@ import work.socialhub.kmisskey.api.response.i.IResponse
 import work.socialhub.kmisskey.api.response.i.IUnpinResponse
 import work.socialhub.kmisskey.api.response.i.IUpdateResponse
 import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.util.toBlocking
 
 class AccountsResourceImpl(
     uri: String,
@@ -25,7 +26,7 @@ class AccountsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun i(
+    override suspend fun i(
         request: IRequest
     ): Response<IResponse> {
         return post(MisskeyAPI.I.path, request)
@@ -34,7 +35,18 @@ class AccountsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun iFavorites(
+    override fun iBlocking(
+        request: IRequest
+    ): Response<IResponse> {
+        return toBlocking {
+            i(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun iFavorites(
         request: IFavoritesRequest
     ): Response<Array<IFavoritesResponse>> {
         return post(MisskeyAPI.IFavorites.path, request)
@@ -43,7 +55,18 @@ class AccountsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun iNotifications(
+    override fun iFavoritesBlocking(
+        request: IFavoritesRequest
+    ): Response<Array<IFavoritesResponse>> {
+        return toBlocking {
+            iFavorites(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun iNotifications(
         request: INotificationsRequest
     ): Response<Array<INotificationsResponse>> {
         return post(MisskeyAPI.INotifications.path, request)
@@ -52,21 +75,71 @@ class AccountsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun iUpdate(request: IUpdateRequest): Response<IUpdateResponse> {
+    override fun iNotificationsBlocking(
+        request: INotificationsRequest
+    ): Response<Array<INotificationsResponse>> {
+        return toBlocking {
+            iNotifications(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun iUpdate(
+        request: IUpdateRequest
+    ): Response<IUpdateResponse> {
         return post(MisskeyAPI.IUpdate.path, request)
     }
 
     /**
      * {@inheritDoc}
      */
-    override fun pinNote(request: IPinRequest): Response<IPinResponse> {
+    override fun iUpdateBlocking(
+        request: IUpdateRequest
+    ): Response<IUpdateResponse> {
+        return toBlocking {
+            iUpdate(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun pinNote(
+        request: IPinRequest
+    ): Response<IPinResponse> {
         return post(MisskeyAPI.IPin.path, request)
     }
 
     /**
      * {@inheritDoc}
      */
-    override fun unpinNote(request: IUnpinRequest): Response<IUnpinResponse> {
+    override fun pinNoteBlocking(
+        request: IPinRequest
+    ): Response<IPinResponse> {
+        return toBlocking {
+            pinNote(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun unpinNote(
+        request: IUnpinRequest
+    ): Response<IUnpinResponse> {
         return post(MisskeyAPI.IUnpin.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun unpinNoteBlocking(
+        request: IUnpinRequest
+    ): Response<IUnpinResponse> {
+        return toBlocking {
+            unpinNote(request)
+        }
     }
 }

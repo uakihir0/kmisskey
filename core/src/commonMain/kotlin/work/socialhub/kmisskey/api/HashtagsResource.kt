@@ -12,7 +12,11 @@ interface HashtagsResource {
      * ハッシュタグのトレンドを取得します。
      * https://misskey.io/api-doc#operation/hashtags/trend
      */
-    fun trend(
+    suspend fun trend(
+        request: HashtagsTrendRequest
+    ): Response<Array<HashtagsTrendResponse>>
+
+    fun trendBlocking(
         request: HashtagsTrendRequest
     ): Response<Array<HashtagsTrendResponse>>
 }

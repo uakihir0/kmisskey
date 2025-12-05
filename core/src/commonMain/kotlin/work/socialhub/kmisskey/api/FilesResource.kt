@@ -12,7 +12,11 @@ interface FilesResource {
      * ドライブにファイルをアップロードします。
      * https://misskey.io/api-doc#operation/drive/files/create
      */
-    fun create(
+    suspend fun create(
+        request: FilesCreateRequest
+    ): Response<FilesCreateResponse>
+
+    fun createBlocking(
         request: FilesCreateRequest
     ): Response<FilesCreateResponse>
 }

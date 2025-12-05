@@ -5,6 +5,7 @@ import work.socialhub.kmisskey.api.FederationResource
 import work.socialhub.kmisskey.api.request.federation.ShowInstanceRequest
 import work.socialhub.kmisskey.api.response.federation.FederationInstanceResponse
 import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.util.toBlocking
 
 class FederationResourceImpl(
     uri: String
@@ -14,9 +15,20 @@ class FederationResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun showInstance(
+    override suspend fun showInstance(
         request: ShowInstanceRequest
     ): Response<FederationInstanceResponse> {
         return postAny(FederationShowInstance.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun showInstanceBlocking(
+        request: ShowInstanceRequest
+    ): Response<FederationInstanceResponse> {
+        return toBlocking {
+            showInstance(request)
+        }
     }
 }

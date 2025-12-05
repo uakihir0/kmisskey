@@ -6,6 +6,7 @@ import work.socialhub.kmisskey.api.request.ApShowRequest
 import work.socialhub.kmisskey.api.response.ApShowResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.internal.Internal.fromJson
+import work.socialhub.kmisskey.util.toBlocking
 
 class ApResourceImpl(
     uri: String,
@@ -16,7 +17,7 @@ class ApResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun show(
+    override suspend fun show(
         request: ApShowRequest
     ): Response<ApShowResponse> {
 
@@ -40,5 +41,16 @@ class ApResourceImpl(
         }
 
         return response
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun showBlocking(
+        request: ApShowRequest
+    ): Response<ApShowResponse> {
+        return toBlocking {
+            show(request)
+        }
     }
 }

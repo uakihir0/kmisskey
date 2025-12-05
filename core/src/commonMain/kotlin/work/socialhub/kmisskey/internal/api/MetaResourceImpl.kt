@@ -12,7 +12,7 @@ import work.socialhub.kmisskey.api.response.meta.GetOnlineUsersCountResponse
 import work.socialhub.kmisskey.api.response.meta.MetaResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.internal.util.MediaType
-import work.socialhub.kmpcommon.runBlocking
+import work.socialhub.kmisskey.util.toBlocking
 
 class MetaResourceImpl(
     uri: String
@@ -22,7 +22,7 @@ class MetaResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun meta(
+    override suspend fun meta(
         request: MetaRequest
     ): Response<MetaResponse> {
         return postAny(Meta.path, request)
@@ -31,7 +31,18 @@ class MetaResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun emojis(
+    override fun metaBlocking(
+        request: MetaRequest
+    ): Response<MetaResponse> {
+        return toBlocking {
+            meta(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun emojis(
         request: EmojisRequest
     ): Response<EmojisResponse> {
         return postAny(Emojis.path, request)
@@ -40,16 +51,33 @@ class MetaResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun getOnlineUsersCount(): Response<GetOnlineUsersCountResponse> {
+    override fun emojisBlocking(
+        request: EmojisRequest
+    ): Response<EmojisResponse> {
+        return toBlocking {
+            emojis(request)
+        }
+    }
 
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun getOnlineUsersCount(): Response<GetOnlineUsersCountResponse> {
         // simple get request
         return proceed {
-            runBlocking {
-                HttpRequest()
-                    .url(uri + GetOnlineUsersCount.path)
-                    .accept(MediaType.JSON)
-                    .post()
-            }
+            HttpRequest()
+                .url(uri + GetOnlineUsersCount.path)
+                .accept(MediaType.JSON)
+                .post()
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun getOnlineUsersCountBlocking(): Response<GetOnlineUsersCountResponse> {
+        return toBlocking {
+            getOnlineUsersCount()
         }
     }
 }

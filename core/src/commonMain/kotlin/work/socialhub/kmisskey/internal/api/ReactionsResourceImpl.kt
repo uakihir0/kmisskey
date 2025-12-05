@@ -6,6 +6,7 @@ import work.socialhub.kmisskey.api.ReactionsResource
 import work.socialhub.kmisskey.api.request.reactions.ReactionsCreateRequest
 import work.socialhub.kmisskey.api.request.reactions.ReactionsDeleteRequest
 import work.socialhub.kmisskey.entity.share.EmptyResponse
+import work.socialhub.kmisskey.util.toBlocking
 
 class ReactionsResourceImpl(
     uri: String,
@@ -16,7 +17,7 @@ class ReactionsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun create(
+    override suspend fun create(
         request: ReactionsCreateRequest
     ): EmptyResponse {
         return postUnit(ReactionsCreate.path, request)
@@ -25,9 +26,31 @@ class ReactionsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun delete(
+    override fun createBlocking(
+        request: ReactionsCreateRequest
+    ): EmptyResponse {
+        return toBlocking {
+            create(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun delete(
         request: ReactionsDeleteRequest
     ): EmptyResponse {
         return postUnit(ReactionsDelete.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun deleteBlocking(
+        request: ReactionsDeleteRequest
+    ): EmptyResponse {
+        return toBlocking {
+            delete(request)
+        }
     }
 }

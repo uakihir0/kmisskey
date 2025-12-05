@@ -20,6 +20,7 @@ import work.socialhub.kmisskey.api.response.lists.UsersListsShowResponse
 import work.socialhub.kmisskey.entity.NoteList
 import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.util.toBlocking
 
 class ListsResourceImpl(
     uri: String,
@@ -30,7 +31,7 @@ class ListsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun list(
+    override suspend fun list(
         request: UsersListsListRequest
     ): Response<Array<UsersListsListResponse>> {
         return post(Lists.path, request)
@@ -39,7 +40,18 @@ class ListsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun show(
+    override fun listBlocking(
+        request: UsersListsListRequest
+    ): Response<Array<UsersListsListResponse>> {
+        return toBlocking {
+            list(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun show(
         request: UsersListsShowRequest
     ): Response<UsersListsShowResponse> {
         return post(ListsShow.path, request)
@@ -48,7 +60,18 @@ class ListsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun push(
+    override fun showBlocking(
+        request: UsersListsShowRequest
+    ): Response<UsersListsShowResponse> {
+        return toBlocking {
+            show(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun push(
         request: UsersListsPushRequest
     ): EmptyResponse {
         return postUnit(ListsPush.path, request)
@@ -57,7 +80,18 @@ class ListsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun pull(
+    override fun pushBlocking(
+        request: UsersListsPushRequest
+    ): EmptyResponse {
+        return toBlocking {
+            push(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun pull(
         request: UsersListsPullRequest
     ): EmptyResponse {
         return postUnit(ListsPull.path, request)
@@ -66,7 +100,18 @@ class ListsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun create(
+    override fun pullBlocking(
+        request: UsersListsPullRequest
+    ): EmptyResponse {
+        return toBlocking {
+            pull(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun create(
         request: UsersListsCreateRequest
     ): Response<NoteList> {
         return post(ListsCreate.path, request)
@@ -75,7 +120,18 @@ class ListsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun update(
+    override fun createBlocking(
+        request: UsersListsCreateRequest
+    ): Response<NoteList> {
+        return toBlocking {
+            create(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun update(
         request: UsersListsUpdateRequest
     ): Response<NoteList> {
         return post(ListsUpdate.path, request)
@@ -84,9 +140,31 @@ class ListsResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun delete(
+    override fun updateBlocking(
+        request: UsersListsUpdateRequest
+    ): Response<NoteList> {
+        return toBlocking {
+            update(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun delete(
         request: UsersListsDeleteRequest
     ): EmptyResponse {
         return postUnit(ListsDelete.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun deleteBlocking(
+        request: UsersListsDeleteRequest
+    ): EmptyResponse {
+        return toBlocking {
+            delete(request)
+        }
     }
 }

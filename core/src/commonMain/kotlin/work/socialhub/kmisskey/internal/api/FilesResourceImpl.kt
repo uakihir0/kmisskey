@@ -6,6 +6,7 @@ import work.socialhub.kmisskey.api.request.files.FilesCreateRequest
 import work.socialhub.kmisskey.api.response.files.FilesCreateResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.internal.model.BytesFile
+import work.socialhub.kmisskey.util.toBlocking
 
 class FilesResourceImpl(
     uri: String,
@@ -16,7 +17,7 @@ class FilesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun create(
+    override suspend fun create(
         request: FilesCreateRequest
     ): Response<FilesCreateResponse> {
 
@@ -35,5 +36,16 @@ class FilesResourceImpl(
         )
 
         return postWithFile(FilesCreate.path, params)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun createBlocking(
+        request: FilesCreateRequest
+    ): Response<FilesCreateResponse> {
+        return toBlocking {
+            create(request)
+        }
     }
 }

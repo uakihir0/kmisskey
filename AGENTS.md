@@ -39,7 +39,7 @@ Main endpoint categories:
 3. After user authentication, get the token from the callback
 4. Get the access token with `auth().sessionUserKey()`
 
-**Application Authentication**: Generate a SHA256 hash from clientSecret and userToken
+**Application Authentication**: Generate a SHA256 hash from appSecret and userToken
 
 **Web UI Token**: Use the token issued from Misskey's settings page directly
 

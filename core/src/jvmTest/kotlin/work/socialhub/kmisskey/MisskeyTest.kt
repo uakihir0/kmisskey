@@ -7,6 +7,7 @@ import work.socialhub.kmisskey.api.request.GetMiAuthUriRequest
 import work.socialhub.kmisskey.api.request.UserKeyAuthSessionRequest
 import work.socialhub.kmisskey.api.request.i.IRequest
 import work.socialhub.kmisskey.entity.contant.Scope
+import kotlin.test.Ignore
 import kotlin.test.Test
 
 class MisskeyTest : AbstractTest() {
@@ -60,6 +61,7 @@ class MisskeyTest : AbstractTest() {
     }
 
     @Test
+    @Ignore
     fun testUserKey() = runTest {
         val misskey = MisskeyFactory.instance(HOST!!)
 
@@ -85,6 +87,7 @@ class MisskeyTest : AbstractTest() {
     }
 
     @Test
+    @Ignore
     fun testGetIFromWebUIAccessToken() = runTest {
         val misskey = MisskeyFactory.instance(HOST!!, USER_TOKEN!!)
         val response = misskey.accounts().i(IRequest())

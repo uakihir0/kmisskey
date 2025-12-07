@@ -11,6 +11,7 @@ class FilesTest : AbstractTest() {
     fun testCreateFile() = runTest {
         val misskey = misskey()
         val stream = javaClass.getResourceAsStream("/icon.png")
+            ?: throw IllegalStateException("icon file load failed.")
 
         misskey.files().create(
             FilesCreateRequest().also {

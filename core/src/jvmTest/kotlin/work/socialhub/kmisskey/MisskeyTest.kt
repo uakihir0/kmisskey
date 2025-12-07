@@ -18,6 +18,7 @@ class MisskeyTest : AbstractTest() {
         val response = misskey.auth().getMiAuthUri(
             GetMiAuthUriRequest().also { r ->
                 r.name = "kmisskey"
+                r.sessionId = "kmisskeySession"
                 r.callbackUrl = "https://socialhub.work/"
                 r.permission = Scope.ALL.map { it.toString() }.toTypedArray()
             }

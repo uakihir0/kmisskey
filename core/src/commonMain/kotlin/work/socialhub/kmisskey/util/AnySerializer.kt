@@ -54,11 +54,11 @@ object AnySerializer : KSerializer<Any> {
             is Double -> encoder.encodeDouble(value)
             is String -> encoder.encodeString(value)
             is Boolean -> encoder.encodeBoolean(value)
-            is Enum<*> -> encoder.encodeString(this.toString())
+            is Enum<*> -> encoder.encodeString(value.toString())
 
             else -> {
                 if (!additionalSerializer(encoder, value)) {
-                    println("Can't serialize unknown type: ${value::class}")
+                    error("Can't serialize unknown type: ${value::class}")
                 }
             }
         }

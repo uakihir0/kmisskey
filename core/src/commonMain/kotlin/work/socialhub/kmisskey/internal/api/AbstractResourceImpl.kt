@@ -1,5 +1,7 @@
 package work.socialhub.kmisskey.internal.api
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.khttpclient.HttpResponse
 import work.socialhub.kmisskey.api.model.TokenRequest
@@ -48,12 +50,14 @@ abstract class AbstractResourceImpl(
         path: String,
         request: K,
     ): Response<T> {
-        return proceed<T> {
-            HttpRequest()
-                .url(uri + path)
-                .json(toJson(auth(request)))
-                .accept(MediaType.JSON)
-                .post()
+        return withContext(Dispatchers.Default) {
+            proceed<T> {
+                HttpRequest()
+                    .url(uri + path)
+                    .json(toJson(auth(request)))
+                    .accept(MediaType.JSON)
+                    .post()
+            }
         }
     }
 
@@ -64,12 +68,14 @@ abstract class AbstractResourceImpl(
         path: String,
         request: J,
     ): Response<T> {
-        return proceed<T> {
-            HttpRequest()
-                .url(uri + path)
-                .json(toJson(request))
-                .accept(MediaType.JSON)
-                .post()
+        return withContext(Dispatchers.Default) {
+            proceed<T> {
+                HttpRequest()
+                    .url(uri + path)
+                    .json(toJson(request))
+                    .accept(MediaType.JSON)
+                    .post()
+            }
         }
     }
 
@@ -81,12 +87,14 @@ abstract class AbstractResourceImpl(
         path: String,
         request: K,
     ): EmptyResponse {
-        return proceedUnit {
-            HttpRequest()
-                .url(uri + path)
-                .json(toJson(auth(request)))
-                .accept(MediaType.JSON)
-                .post()
+        return withContext(Dispatchers.Default) {
+            proceedUnit {
+                HttpRequest()
+                    .url(uri + path)
+                    .json(toJson(auth(request)))
+                    .accept(MediaType.JSON)
+                    .post()
+            }
         }
     }
 
@@ -97,12 +105,14 @@ abstract class AbstractResourceImpl(
         path: String,
         request: J,
     ): EmptyResponse {
-        return proceedUnit {
-            HttpRequest()
-                .url(uri + path)
-                .json(toJson(request))
-                .accept(MediaType.JSON)
-                .post()
+        return withContext(Dispatchers.Default) {
+            proceedUnit {
+                HttpRequest()
+                    .url(uri + path)
+                    .json(toJson(request))
+                    .accept(MediaType.JSON)
+                    .post()
+            }
         }
     }
 
@@ -114,21 +124,23 @@ abstract class AbstractResourceImpl(
         path: String,
         params: Map<String, Any>,
     ): Response<T> {
-        return proceed<T> {
-            val request = HttpRequest()
-                .url(uri + path)
-                .param("i", i)
+        return withContext(Dispatchers.Default) {
+            proceed<T> {
+                val request = HttpRequest()
+                    .url(uri + path)
+                    .param("i", i)
 
-            params.forEach { (k, v) ->
-                if (v is BytesFile) {
-                    request.file(k, v.name, v.bytes)
-                } else {
-                    request.param(k, v)
+                params.forEach { (k, v) ->
+                    if (v is BytesFile) {
+                        request.file(k, v.name, v.bytes)
+                    } else {
+                        request.param(k, v)
+                    }
                 }
+                request
+                    .accept(MediaType.JSON)
+                    .post()
             }
-            request
-                .accept(MediaType.JSON)
-                .post()
         }
     }
 

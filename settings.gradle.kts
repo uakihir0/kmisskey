@@ -13,12 +13,9 @@ rootProject.name = "kmisskey"
 
 include("core")
 include("stream")
-include("all")
-
-
 // exclude "all" on Windows OS
 val osName = System.getProperty("os.name").lowercase(Locale.getDefault())
-if (osName.contains("mac")) {
+if (!osName.contains("windows")) {
     include("all")
 }
 

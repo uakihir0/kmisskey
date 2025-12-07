@@ -46,7 +46,7 @@ publishing {
             }
 
             scm {
-                url.set("https://github.com/uakihir0/kbsky")
+                url.set("https://github.com/uakihir0/kmisskey")
             }
         }
     }

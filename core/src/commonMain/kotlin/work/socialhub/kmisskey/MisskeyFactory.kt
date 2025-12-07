@@ -18,10 +18,10 @@ object MisskeyFactory {
      */
     fun instance(
         uri: String,
-        appSecret: String,
+        clientSecret: String,
         userAccessToken: String,
     ): Misskey {
-        val str = (userAccessToken + appSecret)
+        val str = (userAccessToken + clientSecret)
         val result = SHA256().digest(str.toByteArray())
 
         var hex = result.toHexString()

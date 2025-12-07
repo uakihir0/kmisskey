@@ -103,4 +103,3 @@ MIT License
 [badge-ios]: http://img.shields.io/badge/-ios-CDCDCD.svg
 [badge-mac]: http://img.shields.io/badge/-macos-111111.svg
 [badge-watchos]: http://img.shields.io/badge/-watchos-C0C0C0.svg
-[badge-tvos]: http://img.shields.io/badge/-tvos-808080.svg

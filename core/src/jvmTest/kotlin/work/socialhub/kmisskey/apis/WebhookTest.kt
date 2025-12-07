@@ -1,5 +1,6 @@
 package work.socialhub.kmisskey.apis
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kmisskey.AbstractTest
 import work.socialhub.kmisskey.Misskey
 import work.socialhub.kmisskey.api.request.webhooks.CreateWebhooksRequest
@@ -13,7 +14,7 @@ import kotlin.test.Test
 
 class WebhookTest : AbstractTest() {
 
-    fun createWebhook(
+    suspend fun createWebhook(
         misskey: Misskey
     ): String {
 
@@ -33,7 +34,7 @@ class WebhookTest : AbstractTest() {
         return response.data.id!!
     }
 
-    fun updateWebhook(
+    suspend fun updateWebhook(
         misskey: Misskey,
         webhookId: String
     ) {
@@ -55,7 +56,7 @@ class WebhookTest : AbstractTest() {
         println(Internal.toJson(response.data))
     }
 
-    fun showWebhook(
+    suspend fun showWebhook(
         misskey: Misskey,
         webhookId: String,
     ): String {
@@ -68,7 +69,7 @@ class WebhookTest : AbstractTest() {
         return response.data.id!!
     }
 
-    fun listWebhook(
+    suspend fun listWebhook(
         misskey: Misskey
     ) {
         val request = ListWebhooksRequest()
@@ -79,7 +80,7 @@ class WebhookTest : AbstractTest() {
         }
     }
 
-    fun deleteWebhook(
+    suspend fun deleteWebhook(
         misskey: Misskey,
         webhookId: String
     ) {
@@ -91,7 +92,7 @@ class WebhookTest : AbstractTest() {
     }
 
     @Test
-    fun testWebhookScenario() {
+    fun testWebhookScenario() = runTest {
 
         val misskey = misskey()
         var webhookId = createWebhook(misskey)

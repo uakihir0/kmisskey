@@ -1,5 +1,6 @@
 package work.socialhub.kmisskey
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kmisskey.api.request.CreateAppRequest
 import work.socialhub.kmisskey.api.request.GenerateAuthSessionRequest
 import work.socialhub.kmisskey.api.request.GetMiAuthUriRequest
@@ -11,14 +12,14 @@ import kotlin.test.Test
 class MisskeyTest : AbstractTest() {
 
     @Test
-    fun testGetMiAuthUri() {
+    fun testGetMiAuthUri() = runTest {
         val misskey = MisskeyFactory.instance(HOST!!)
 
         val response = misskey.auth().getMiAuthUri(
             GetMiAuthUriRequest().also { r ->
                 r.name = "kmisskey"
                 r.callbackUrl = "https://socialhub.work/"
-                r.permission = Scope.ALL.map { it.target }.toTypedArray()
+                r.permission = Scope.ALL.map { it.toString() }.toTypedArray()
             }
         )
 
@@ -26,7 +27,7 @@ class MisskeyTest : AbstractTest() {
     }
 
     @Test
-    fun testCreateApp() {
+    fun testCreateApp() = runTest {
         val misskey = MisskeyFactory.instance(HOST!!)
 
         val response =
@@ -35,7 +36,7 @@ class MisskeyTest : AbstractTest() {
                     r.name = "kmisskey"
                     r.description = "kmisskey"
                     r.callbackUrl = "https://socialhub.work/"
-                    r.permission = Scope.ALL.map { it.target }.toTypedArray()
+                    r.permission = Scope.ALL.map { it.toString() }.toTypedArray()
                 }
             )
 
@@ -44,23 +45,13 @@ class MisskeyTest : AbstractTest() {
     }
 
     @Test
-    fun testGenerateSession() {
+    fun testGenerateSession() = runTest {
         val misskey = MisskeyFactory.instance(HOST!!)
-
-        val createAppResponse =
-            misskey.app().createApp(
-                CreateAppRequest().also { r ->
-                    r.name = "kmisskey"
-                    r.description = "kmisskey"
-                    r.callbackUrl = "https://socialhub.work/"
-                    r.permission = Scope.ALL.map { it.target }.toTypedArray()
-                }
-            )
 
         val generateAuthResponse =
             misskey.auth().sessionGenerate(
                 GenerateAuthSessionRequest().also {
-                    it.appSecret = createAppResponse.data.secret
+                    it.appSecret = APP_SECRET
                 }
             )
 
@@ -68,14 +59,14 @@ class MisskeyTest : AbstractTest() {
     }
 
     @Test
-    fun testUserKey() {
+    fun testUserKey() = runTest {
         val misskey = MisskeyFactory.instance(HOST!!)
 
         val response =
             misskey.auth().sessionUserKey(
                 UserKeyAuthSessionRequest().also {
                     it.token = "VERIFY TOKEN"
-                    it.appSecret = CLIENT_SECRET
+                    it.appSecret = APP_SECRET
                 }
             )
 
@@ -84,7 +75,7 @@ class MisskeyTest : AbstractTest() {
     }
 
     @Test
-    fun testGetI() {
+    fun testGetI() = runTest {
         val misskey = misskey()
         val response = misskey.accounts().i(IRequest())
 
@@ -93,8 +84,8 @@ class MisskeyTest : AbstractTest() {
     }
 
     @Test
-    fun testGetIFromWebUIAccessToken() {
-        val misskey = MisskeyFactory.instance(HOST!!, OWNED_USER_TOKEN!!)
+    fun testGetIFromWebUIAccessToken() = runTest {
+        val misskey = MisskeyFactory.instance(HOST!!, USER_TOKEN!!)
         val response = misskey.accounts().i(IRequest())
 
         print(response.data)

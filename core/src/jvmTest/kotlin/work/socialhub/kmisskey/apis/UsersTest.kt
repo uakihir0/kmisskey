@@ -29,7 +29,7 @@ class UsersTest : AbstractTest() {
     }
 
     @Test
-    fun testUsersRelation() {
+    fun testUsersRelation() = runTest {
         val relations =
             misskey().users().relation(
                 UsersRelationRequest().also {
@@ -45,7 +45,7 @@ class UsersTest : AbstractTest() {
     }
 
     @Test
-    fun testUsersSearch() {
+    fun testUsersSearch() = runTest {
         val misskey = misskey()
 
         val users = misskey.users().search(
@@ -59,7 +59,7 @@ class UsersTest : AbstractTest() {
     }
 
     @Test
-    fun testShowUsers() {
+    fun testShowUsers() = runTest {
         val misskey = misskey()
 
         val users = misskey.users().show(
@@ -74,7 +74,7 @@ class UsersTest : AbstractTest() {
     }
 
     @Test
-    fun testShowUser() {
+    fun testShowUser() = runTest {
         val misskey = misskey()
 
         run {

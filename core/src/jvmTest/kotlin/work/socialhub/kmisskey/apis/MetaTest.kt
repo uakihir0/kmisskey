@@ -1,5 +1,6 @@
 package work.socialhub.kmisskey.apis
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kmisskey.AbstractTest
 import work.socialhub.kmisskey.api.request.meta.EmojisRequest
 import work.socialhub.kmisskey.api.request.meta.MetaRequest
@@ -8,7 +9,7 @@ import kotlin.test.Test
 class MetaTest : AbstractTest() {
 
     @Test
-    fun testGetMeta() {
+    fun testGetMeta() = runTest {
         val misskey = misskey()
         misskey.meta().meta(MetaRequest().also {
             it.detail = true
@@ -16,7 +17,7 @@ class MetaTest : AbstractTest() {
     }
 
     @Test
-    fun testGetEmojis() {
+    fun testGetEmojis() = runTest {
         val misskey = misskey()
         val response = misskey.meta().emojis(EmojisRequest())
 

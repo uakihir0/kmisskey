@@ -58,7 +58,7 @@ Refer to the Misskey API documentation when implementing:
     - `request/` - Request objects organized by category
     - `response/` - Response objects organized by category
   - `entity/` - Data models (Note, User, etc.)
-    - `contant/` - Constants and enums (`Visibility`, `NotificationType`, etc.)
+    - `constant/` - Constants and enums (`Visibility`, `NotificationType`, etc.)
     - `user/` - User-related entities (`User`, `UserLite`, `UserDetailedNotMe`, `MeDetailed`)
     - `share/` - Shared response models (`Response`, `RateLimit`, `EmptyResponse`)
     - `search/` - Search-related entities

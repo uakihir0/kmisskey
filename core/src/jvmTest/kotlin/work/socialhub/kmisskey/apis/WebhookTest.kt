@@ -8,7 +8,7 @@ import work.socialhub.kmisskey.api.request.webhooks.DeleteWebhooksRequest
 import work.socialhub.kmisskey.api.request.webhooks.ListWebhooksRequest
 import work.socialhub.kmisskey.api.request.webhooks.ShowWebhooksRequest
 import work.socialhub.kmisskey.api.request.webhooks.UpdateWebhooksRequest
-import work.socialhub.kmisskey.entity.contant.WebhooksType
+import work.socialhub.kmisskey.entity.constant.WebhooksType
 import work.socialhub.kmisskey.internal.Internal
 import kotlin.test.Test
 

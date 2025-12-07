@@ -58,7 +58,7 @@ Misskey API はすべて **POST リクエスト** で、エンドポイントは
     - `request/` - カテゴリ別のリクエストオブジェクト
     - `response/` - カテゴリ別のレスポンスオブジェクト
   - `entity/` - データモデル（Note, User など）
-    - `contant/` - 定数と Enum（`Visibility`, `NotificationType` など）
+    - `constant/` - 定数と Enum（`Visibility`, `NotificationType` など）
     - `user/` - ユーザー関連エンティティ（`User`, `UserLite`, `UserDetailedNotMe`, `MeDetailed`）
     - `share/` - 共有レスポンスモデル（`Response`, `RateLimit`, `EmptyResponse`）
     - `search/` - 検索関連エンティティ

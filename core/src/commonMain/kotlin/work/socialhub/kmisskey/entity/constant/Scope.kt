@@ -1,4 +1,4 @@
-package work.socialhub.kmisskey.entity.contant
+package work.socialhub.kmisskey.entity.constant
 
 /**
  * 認可スコープを表現するクラス

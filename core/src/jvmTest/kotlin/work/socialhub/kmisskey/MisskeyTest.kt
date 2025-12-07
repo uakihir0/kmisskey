@@ -6,7 +6,7 @@ import work.socialhub.kmisskey.api.request.GenerateAuthSessionRequest
 import work.socialhub.kmisskey.api.request.GetMiAuthUriRequest
 import work.socialhub.kmisskey.api.request.UserKeyAuthSessionRequest
 import work.socialhub.kmisskey.api.request.i.IRequest
-import work.socialhub.kmisskey.entity.contant.Scope
+import work.socialhub.kmisskey.entity.constant.Scope
 import kotlin.test.Ignore
 import kotlin.test.Test
 

@@ -26,8 +26,8 @@ repositories {
 }
 
 dependencies {
-+   implementation("work.socialhub.kmisskey:core:0.0.1-SNAPSHOT")
-+   implementation("work.socialhub.kmisskey:stream:0.0.1-SNAPSHOT")
++   implementation("work.socialhub.kmisskey:core:0.1.0-SNAPSHOT")
++   implementation("work.socialhub.kmisskey:stream:0.1.0-SNAPSHOT")
 }
 ```
 

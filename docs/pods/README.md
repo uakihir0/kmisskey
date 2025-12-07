@@ -39,11 +39,10 @@ Please also refer to the README of [kmisskey] for detailed usage.
 
 ```swift
 import kmisskey
-...
 
-let misskey = KmisskeyFactory().instance(
+let misskey = KmisskeyFactory.shared.instance(
   uri: "https://misskey.io",
-  clientSecret: "CLIENT_SECRET",
+  appSecret: "APP_SECRET",
   userAccessToken: "ACCESS_TOKEN"
 )
 

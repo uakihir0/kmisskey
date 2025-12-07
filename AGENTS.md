@@ -25,7 +25,10 @@ Main endpoint categories:
 - `following/*` - Follow related
 - `drive/*` - File related
 - `channels/*` - Channel related
-- `messaging/*` - Direct message related
+- `clips/*` - Clip related
+- `gallery/*` - Gallery related
+- `messaging/*` - Direct message related (deprecated in newer versions)
+- `mute/*`, `blocking/*` - Mute/Block related
 
 ### Authentication Methods
 
@@ -50,14 +53,29 @@ Refer to the Misskey API documentation when implementing:
 ## Directory Structure
 
 - **`core/`**: Core library for REST API
-  - `api/` - API resource interfaces and implementations
-  - `api/request/` - Request objects
-  - `api/response/` - Response objects
+  - `api/` - API resource interfaces
+    - `model/` - Shared request models (`TokenRequest`, `PollRequest`)
+    - `request/` - Request objects organized by category
+    - `response/` - Response objects organized by category
   - `entity/` - Data models (Note, User, etc.)
+    - `contant/` - Constants and enums (`Visibility`, `NotificationType`, etc.)
+    - `user/` - User-related entities (`User`, `UserLite`, `UserDetailedNotMe`, `MeDetailed`)
+    - `share/` - Shared response models (`Response`, `RateLimit`, `EmptyResponse`)
+    - `search/` - Search-related entities
   - `internal/` - Internal implementations
+    - `api/` - Resource implementation classes
+    - `model/` - Internal models
+    - `util/` - Internal utilities
+  - `util/` - Utility classes
+    - `json/` - Custom JSON serializers
+  - `search/` - Instance search functionality
 - **`stream/`**: WebSocket streaming functionality
+  - `callback/` - Callback interfaces for streaming events
+  - `model/` - Streaming request/response models
 - **`all/`**: Package containing all modules (for CocoaPods)
 - **`plugins/`**: Gradle build configuration
+- **`docs/`**: Documentation
+- **`tool/`**: Setup scripts for JS and CocoaPods
 
 ## Testing
 
@@ -69,6 +87,10 @@ Run the following tests after making changes:
 
 # Run specific test
 ./gradlew :core:jvmTest --tests "work.socialhub.kmisskey.MisskeyTest"
+
+# Run tests for a specific API
+./gradlew :core:jvmTest --tests "work.socialhub.kmisskey.apis.NotesTest"
+./gradlew :core:jvmTest --tests "work.socialhub.kmisskey.apis.UsersTest"
 ```
 
 If network access is not available, verify that the build succeeds:
@@ -77,16 +99,15 @@ If network access is not available, verify that the build succeeds:
 ./gradlew jvmJar
 ```
 
-If authentication credentials are required for testing, create `secrets.json`:
+If authentication credentials are required for testing, create `secrets.json` (refer to `secrets.json.default`):
 
 ```json
 {
   "params": [
     {
       "host": "https://misskey.io/api/",
-      "client_secret": "YOUR_CLIENT_SECRET",
-      "user_token": "YOUR_USER_TOKEN",
-      "owned_user_token": "YOUR_OWNED_ACCESS_TOKEN"
+      "app_secret": "YOUR_APP_SECRET",
+      "user_token": "YOUR_USER_TOKEN"
     }
   ]
 }
@@ -101,14 +122,16 @@ Misskey API paths correspond to the package structure:
 - `notes/create` → `api/request/notes/NotesCreateRequest.kt`
 - `users/show` → `api/request/users/UsersShowRequest.kt`
 - `i/favorites` → `api/request/i/IFavoritesRequest.kt`
+- `clips/list` → `api/request/clips/ClipsListRequest.kt`
+- `gallery/posts/create` → `api/request/gallery/CreateGalleryPostRequest.kt`
 
 ### Steps to Add a New API
 
 1. Add the endpoint path to **`MisskeyAPI.kt`**
 2. Create the **request class** in `api/request/{category}/`
-3. Create the **response class** in `api/response/{category}/`
+3. Create the **response class** in `api/response/{category}/` (if needed)
 4. Add the method to the **resource interface** (`api/{Category}Resource.kt`)
-5. Update the **internal implementation** (`internal/{Category}ResourceImpl.kt`)
+5. Update the **internal implementation** (`internal/api/{Category}ResourceImpl.kt`)
 
 ### Verify Consistency with API Documentation
 
@@ -152,6 +175,36 @@ class NotesCreateRequest : TokenRequest() {
 
 ## Important Implementation Notes
 
+### Available Resource Types
+
+The `Misskey` interface provides access to the following resources:
+
+- `meta()` - Instance metadata
+- `announcements()` - Announcements
+- `federation()` - Federation information
+- `ap()` - ActivityPub
+- `app()` - Application management
+- `auth()` - Authentication
+- `accounts()` - Account operations (`i/*`)
+- `users()` - User operations
+- `lists()` - User lists
+- `channels()` - Channels
+- `antennas()` - Antennas
+- `clips()` - Clips
+- `notes()` - Notes (posts)
+- `reactions()` - Reactions
+- `favorites()` - Favorites
+- `following()` - Follow operations
+- `mutes()` - Mute operations
+- `blocks()` - Block operations
+- `polls()` - Poll voting
+- `messages()` - Direct messages
+- `files()` - File/Drive operations
+- `hashtags()` - Hashtag trends
+- `other()` - Other APIs (e.g., service worker)
+- `webhook()` - Webhook management
+- `gallery()` - Gallery posts
+
 ### Special Requirements for Streaming API
 
 Note the following for APIs in the `stream` module:
@@ -170,6 +223,20 @@ Note the following for APIs in the `stream` module:
 - `hybridTimeline` - Social timeline
 - `globalTimeline` - Global timeline
 
+**Callback types:**
+
+- `NoteCallback` - Note events
+- `NotificationCallback` - Notification events
+- `TimelineCallback` - Timeline events
+- `MentionCallback` - Mention events
+- `FollowedCallback` - Follow events
+- `RenoteCallback` - Renote events
+- `ReplayCallback` - Reply events
+- `OpenedCallback` - Connection opened
+- `ClosedCallback` - Connection closed
+- `ErrorCallback` - Error events
+- `EventCallback` - Generic events
+
 ### Platform-Specific Limitations
 
 - **`all` module**: Can only be built on macOS (CocoaPods related)
@@ -187,6 +254,6 @@ Endpoints that are commented out in `MisskeyAPI.kt` are unimplemented. When impl
 | API endpoint definitions   | `core/src/commonMain/kotlin/work/socialhub/kmisskey/MisskeyAPI.kt`             |
 | Main interface             | `core/src/commonMain/kotlin/work/socialhub/kmisskey/Misskey.kt`                |
 | Factory                    | `core/src/commonMain/kotlin/work/socialhub/kmisskey/MisskeyFactory.kt`         |
-| API usage examples         | `core/src/jvmTest/kotlin/work/socialhub/kmisskey/`                             |
+| API usage examples         | `core/src/jvmTest/kotlin/work/socialhub/kmisskey/apis/`                        |
 | Streaming API              | `stream/src/commonMain/kotlin/work/socialhub/kmisskey/stream/MisskeyStream.kt` |
-
+| Streaming callbacks        | `stream/src/commonMain/kotlin/work/socialhub/kmisskey/stream/callback/`        |

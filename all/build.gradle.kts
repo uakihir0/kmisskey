@@ -12,6 +12,15 @@ kotlin {
     jvmToolchain(11)
     jvm()
 
+    js(IR) {
+        nodejs()
+        browser()
+        binaries.library()
+        compilerOptions {
+            generateTypeScriptDefinitions()
+        }
+    }
+
     val xcf = XCFramework("kmisskey")
     listOf(
         iosX64(),

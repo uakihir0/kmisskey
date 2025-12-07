@@ -25,7 +25,10 @@ Misskey API はすべて **POST リクエスト** で、エンドポイントは
 - `following/*` - フォロー関連
 - `drive/*` - ファイル関連
 - `channels/*` - チャンネル関連
-- `messaging/*` - ダイレクトメッセージ関連
+- `clips/*` - クリップ関連
+- `gallery/*` - ギャラリー関連
+- `messaging/*` - ダイレクトメッセージ関連（新しいバージョンでは非推奨）
+- `mute/*`, `blocking/*` - ミュート/ブロック関連
 
 ### 認証方式
 
@@ -50,14 +53,29 @@ Misskey API はすべて **POST リクエスト** で、エンドポイントは
 ## ディレクトリ構成
 
 - **`core/`**: REST API のコアライブラリ
-  - `api/` - API リソースインターフェースと実装
-  - `api/request/` - リクエストオブジェクト
-  - `api/response/` - レスポンスオブジェクト
+  - `api/` - API リソースインターフェース
+    - `model/` - 共有リクエストモデル（`TokenRequest`, `PollRequest`）
+    - `request/` - カテゴリ別のリクエストオブジェクト
+    - `response/` - カテゴリ別のレスポンスオブジェクト
   - `entity/` - データモデル（Note, User など）
+    - `contant/` - 定数と Enum（`Visibility`, `NotificationType` など）
+    - `user/` - ユーザー関連エンティティ（`User`, `UserLite`, `UserDetailedNotMe`, `MeDetailed`）
+    - `share/` - 共有レスポンスモデル（`Response`, `RateLimit`, `EmptyResponse`）
+    - `search/` - 検索関連エンティティ
   - `internal/` - 内部実装
+    - `api/` - リソース実装クラス
+    - `model/` - 内部モデル
+    - `util/` - 内部ユーティリティ
+  - `util/` - ユーティリティクラス
+    - `json/` - カスタム JSON シリアライザー
+  - `search/` - インスタンス検索機能
 - **`stream/`**: WebSocket ストリーミング機能
+  - `callback/` - ストリーミングイベント用コールバックインターフェース
+  - `model/` - ストリーミングリクエスト/レスポンスモデル
 - **`all/`**: 全モジュールを含むパッケージ（CocoaPods 用）
 - **`plugins/`**: Gradle ビルド設定
+- **`docs/`**: ドキュメント
+- **`tool/`**: JS および CocoaPods 用セットアップスクリプト
 
 ## テスト方法
 
@@ -69,6 +87,10 @@ Misskey API はすべて **POST リクエスト** で、エンドポイントは
 
 # 特定のテストを実行
 ./gradlew :core:jvmTest --tests "work.socialhub.kmisskey.MisskeyTest"
+
+# 特定のAPI用テストを実行
+./gradlew :core:jvmTest --tests "work.socialhub.kmisskey.apis.NotesTest"
+./gradlew :core:jvmTest --tests "work.socialhub.kmisskey.apis.UsersTest"
 ```
 
 ネットワークアクセスができない場合は、ビルドの成功を確認：
@@ -77,16 +99,15 @@ Misskey API はすべて **POST リクエスト** で、エンドポイントは
 ./gradlew jvmJar
 ```
 
-テストに認証情報が必要な場合は、`secrets.json` を作成：
+テストに認証情報が必要な場合は、`secrets.json` を作成（`secrets.json.default` を参照）：
 
 ```json
 {
   "params": [
     {
       "host": "https://misskey.io/api/",
-      "client_secret": "YOUR_CLIENT_SECRET",
-      "user_token": "YOUR_USER_TOKEN",
-      "owned_user_token": "YOUR_OWNED_ACCESS_TOKEN"
+      "app_secret": "YOUR_APP_SECRET",
+      "user_token": "YOUR_USER_TOKEN"
     }
   ]
 }
@@ -101,14 +122,16 @@ Misskey API のパスはパッケージ構造に対応します：
 - `notes/create` → `api/request/notes/NotesCreateRequest.kt`
 - `users/show` → `api/request/users/UsersShowRequest.kt`
 - `i/favorites` → `api/request/i/IFavoritesRequest.kt`
+- `clips/list` → `api/request/clips/ClipsListRequest.kt`
+- `gallery/posts/create` → `api/request/gallery/CreateGalleryPostRequest.kt`
 
 ### 新しい API の追加手順
 
 1. **`MisskeyAPI.kt`** にエンドポイントパスを追加
 2. **リクエストクラス**を `api/request/{category}/` に作成
-3. **レスポンスクラス**を `api/response/{category}/` に作成
+3. **レスポンスクラス**を `api/response/{category}/` に作成（必要な場合）
 4. **リソースインターフェース**にメソッドを追加（`api/{Category}Resource.kt`）
-5. **内部実装**を更新（`internal/{Category}ResourceImpl.kt`）
+5. **内部実装**を更新（`internal/api/{Category}ResourceImpl.kt`）
 
 ### API ドキュメントとの整合性確認
 
@@ -152,6 +175,36 @@ class NotesCreateRequest : TokenRequest() {
 
 ## 重要な実装上の注意事項
 
+### 利用可能なリソースタイプ
+
+`Misskey` インターフェースは以下のリソースへのアクセスを提供します：
+
+- `meta()` - インスタンスメタデータ
+- `announcements()` - お知らせ
+- `federation()` - 連合情報
+- `ap()` - ActivityPub
+- `app()` - アプリケーション管理
+- `auth()` - 認証
+- `accounts()` - アカウント操作（`i/*`）
+- `users()` - ユーザー操作
+- `lists()` - ユーザーリスト
+- `channels()` - チャンネル
+- `antennas()` - アンテナ
+- `clips()` - クリップ
+- `notes()` - ノート（投稿）
+- `reactions()` - リアクション
+- `favorites()` - お気に入り
+- `following()` - フォロー操作
+- `mutes()` - ミュート操作
+- `blocks()` - ブロック操作
+- `polls()` - アンケート投票
+- `messages()` - ダイレクトメッセージ
+- `files()` - ファイル/ドライブ操作
+- `hashtags()` - ハッシュタグトレンド
+- `other()` - その他の API（例：サービスワーカー）
+- `webhook()` - Webhook 管理
+- `gallery()` - ギャラリー投稿
+
 ### ストリーミング API の特別な要件
 
 `stream` モジュールの API は以下の点に注意：
@@ -170,6 +223,20 @@ class NotesCreateRequest : TokenRequest() {
 - `hybridTimeline` - ソーシャルタイムライン
 - `globalTimeline` - グローバルタイムライン
 
+**コールバック種別：**
+
+- `NoteCallback` - ノートイベント
+- `NotificationCallback` - 通知イベント
+- `TimelineCallback` - タイムラインイベント
+- `MentionCallback` - メンションイベント
+- `FollowedCallback` - フォローイベント
+- `RenoteCallback` - リノートイベント
+- `ReplayCallback` - リプライイベント
+- `OpenedCallback` - 接続開始
+- `ClosedCallback` - 接続終了
+- `ErrorCallback` - エラーイベント
+- `EventCallback` - 汎用イベント
+
 ### プラットフォーム固有の制限
 
 - **`all` モジュール**: macOS でのみビルド可能（CocoaPods 関連）
@@ -182,10 +249,11 @@ class NotesCreateRequest : TokenRequest() {
 
 ## 主要なファイル参照
 
-| 目的                   | ファイルパス                                                                   |
-| ---------------------- | ------------------------------------------------------------------------------ |
-| API エンドポイント定義 | `core/src/commonMain/kotlin/work/socialhub/kmisskey/MisskeyAPI.kt`             |
-| メインインターフェース | `core/src/commonMain/kotlin/work/socialhub/kmisskey/Misskey.kt`                |
-| ファクトリ             | `core/src/commonMain/kotlin/work/socialhub/kmisskey/MisskeyFactory.kt`         |
-| API 使用例             | `core/src/jvmTest/kotlin/work/socialhub/kmisskey/`                             |
-| ストリーミング API     | `stream/src/commonMain/kotlin/work/socialhub/kmisskey/stream/MisskeyStream.kt` |
+| 目的                       | ファイルパス                                                                   |
+| -------------------------- | ------------------------------------------------------------------------------ |
+| API エンドポイント定義     | `core/src/commonMain/kotlin/work/socialhub/kmisskey/MisskeyAPI.kt`             |
+| メインインターフェース     | `core/src/commonMain/kotlin/work/socialhub/kmisskey/Misskey.kt`                |
+| ファクトリ                 | `core/src/commonMain/kotlin/work/socialhub/kmisskey/MisskeyFactory.kt`         |
+| API 使用例                 | `core/src/jvmTest/kotlin/work/socialhub/kmisskey/apis/`                        |
+| ストリーミング API         | `stream/src/commonMain/kotlin/work/socialhub/kmisskey/stream/MisskeyStream.kt` |
+| ストリーミングコールバック | `stream/src/commonMain/kotlin/work/socialhub/kmisskey/stream/callback/`        |

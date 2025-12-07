@@ -21,8 +21,8 @@ object KmisskeyFactory {
     @JsName("instanceUserAccessToken")
     fun instance(
         uri: String,
-        clientSecret: String,
+        appSecret: String,
         userAccessToken: String,
     ) = MisskeyFactory
-        .instance(uri, clientSecret, userAccessToken)
+        .instance(uri, appSecret, userAccessToken)
 }

@@ -18,7 +18,7 @@ jobs:
       - name: Pods XCFramework
         uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: all:assembleKmisskeyXCFramework all:podPublishXCFramework -x test
+          arguments: all:assembleKmisskeyXCFramework all:podPublishXCFramework -x check
 
       - name: Set Project Version
         run: |

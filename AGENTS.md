@@ -237,6 +237,31 @@ Note the following for APIs in the `stream` module:
 - `ErrorCallback` - Error events
 - `EventCallback` - Generic events
 
+### JavaScript Promise Extensions
+
+For JavaScript usage, Promise-based extension functions are provided in `core/src/jsMain/kotlin/work/socialhub/kmisskey/api/`.
+
+Since `suspend` functions and `*Blocking` functions cannot be directly used from JavaScript, each Resource interface has corresponding Promise extension functions:
+
+**Extension file naming:** `{Resource}Ext.kt` (e.g., `NotesResourceExt.kt`, `UsersResourceExt.kt`)
+
+**Usage example:**
+
+```kotlin
+// Original suspend function (marked with @JsExport.Ignore)
+suspend fun create(request: NotesCreateRequest): Response<NotesCreateResponse>
+
+// Promise extension function (available for JavaScript)
+fun NotesResource.createPromise(request: NotesCreateRequest): Promise<Response<NotesCreateResponse>>
+```
+
+**From JavaScript:**
+
+```javascript
+// Use the Promise extension function
+const response = await misskey.notes().createPromise(request);
+```
+
 ### Platform-Specific Limitations
 
 - **`all` module**: Can only be built on macOS (CocoaPods related)
@@ -257,3 +282,4 @@ Endpoints that are commented out in `MisskeyAPI.kt` are unimplemented. When impl
 | API usage examples         | `core/src/jvmTest/kotlin/work/socialhub/kmisskey/apis/`                        |
 | Streaming API              | `stream/src/commonMain/kotlin/work/socialhub/kmisskey/stream/MisskeyStream.kt` |
 | Streaming callbacks        | `stream/src/commonMain/kotlin/work/socialhub/kmisskey/stream/callback/`        |
+| JS Promise extensions      | `core/src/jsMain/kotlin/work/socialhub/kmisskey/api/*Ext.kt`                   |

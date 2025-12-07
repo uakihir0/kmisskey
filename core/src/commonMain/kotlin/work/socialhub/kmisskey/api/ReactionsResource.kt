@@ -11,10 +11,12 @@ interface ReactionsResource {
      * 指定した投稿にリアクションします。
      * https://misskey.io/api-doc#operation/notes/reactions/create
      */
+    @JsExport.Ignore
     suspend fun create(
         request: ReactionsCreateRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun createBlocking(
         request: ReactionsCreateRequest
     ): EmptyResponse
@@ -23,10 +25,12 @@ interface ReactionsResource {
      * 指定した投稿へのリアクションを取り消します。
      * https://misskey.io/api-doc#operation/notes/reactions/delete
      */
+    @JsExport.Ignore
     suspend fun delete(
         request: ReactionsDeleteRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun deleteBlocking(
         request: ReactionsDeleteRequest
     ): EmptyResponse

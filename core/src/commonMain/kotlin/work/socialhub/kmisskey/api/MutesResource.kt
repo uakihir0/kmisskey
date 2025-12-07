@@ -15,10 +15,12 @@ interface MutesResource {
      * ユーザーをミュートします。
      * https://misskey.io/api-doc#operation/mute/create
      */
+    @JsExport.Ignore
     suspend fun create(
         request: MutesCreateRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun createBlocking(
         request: MutesCreateRequest
     ): EmptyResponse
@@ -27,10 +29,12 @@ interface MutesResource {
      * ユーザーのミュートを解除します。
      * https://misskey.io/api-doc#operation/mute/delete
      */
+    @JsExport.Ignore
     suspend fun delete(
         request: MutesDeleteRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun deleteBlocking(
         request: MutesDeleteRequest
     ): EmptyResponse
@@ -39,10 +43,12 @@ interface MutesResource {
      * ミュートしているユーザー一覧を取得します。
      * https://misskey.io/api-doc#operation/mute/list
      */
+    @JsExport.Ignore
     suspend fun list(
         request: MutesListRequest
     ): Response<Array<MutesListResponse>>
 
+    @JsExport.Ignore
     fun listBlocking(
         request: MutesListRequest
     ): Response<Array<MutesListResponse>>

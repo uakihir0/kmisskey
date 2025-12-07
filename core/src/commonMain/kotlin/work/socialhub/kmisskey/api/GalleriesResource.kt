@@ -22,10 +22,12 @@ interface GalleriesResource {
      * Get gallery posts.
      * @see "https://misskey.io/api-doc.operation/gallery/posts"
      */
+    @JsExport.Ignore
     suspend fun posts(
         request: ListGalleryPostsRequest
     ): Response<Array<ListGalleryPostsResponse>>
 
+    @JsExport.Ignore
     fun postsBlocking(
         request: ListGalleryPostsRequest
     ): Response<Array<ListGalleryPostsResponse>>
@@ -34,10 +36,12 @@ interface GalleriesResource {
      * Get my gallery posts.
      * @see "https://misskey.io/api-doc.operation/i/gallery/posts"
      */
+    @JsExport.Ignore
     suspend fun myPosts(
         request: IListGalleryPostsRequest
     ): Response<Array<ListGalleryPostsResponse>>
 
+    @JsExport.Ignore
     fun myPostsBlocking(
         request: IListGalleryPostsRequest
     ): Response<Array<ListGalleryPostsResponse>>
@@ -46,10 +50,12 @@ interface GalleriesResource {
      * Get user's gallery posts.
      * @see "https://misskey.io/api-doc.operation/users/gallery/posts"
      */
+    @JsExport.Ignore
     suspend fun usersPosts(
         request: ListUserGalleryPostsRequest
     ): Response<Array<ListGalleryPostsResponse>>
 
+    @JsExport.Ignore
     fun usersPostsBlocking(
         request: ListUserGalleryPostsRequest
     ): Response<Array<ListGalleryPostsResponse>>
@@ -58,10 +64,12 @@ interface GalleriesResource {
      * Show a gallery post.
      * @see "https://misskey.io/api-doc.operation/gallery/posts/show"
      */
+    @JsExport.Ignore
     suspend fun show(
         request: ShowGalleryPostRequest
     ): Response<GalleryPost>
 
+    @JsExport.Ignore
     fun showBlocking(
         request: ShowGalleryPostRequest
     ): Response<GalleryPost>
@@ -70,10 +78,12 @@ interface GalleriesResource {
      * Create a gallery post.
      * @see "https://misskey.io/api-doc.operation/gallery/posts/create"
      */
+    @JsExport.Ignore
     suspend fun create(
         request: CreateGalleryPostRequest
     ): Response<GalleryPost>
 
+    @JsExport.Ignore
     fun createBlocking(
         request: CreateGalleryPostRequest
     ): Response<GalleryPost>
@@ -83,10 +93,12 @@ interface GalleriesResource {
      *
      * @see "https://misskey.io/api-doc.operation/gallery/posts/delete"
      */
+    @JsExport.Ignore
     suspend fun delete(
         request: DeleteGalleryPostRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun deleteBlocking(
         request: DeleteGalleryPostRequest
     ): EmptyResponse
@@ -95,10 +107,12 @@ interface GalleriesResource {
      * Update a gallery post.
      * @see "https://misskey.io/api-doc.operation/gallery/posts/delete"
      */
+    @JsExport.Ignore
     suspend fun update(
         request: UpdateGalleryPostRequest
     ): Response<GalleryPost>
 
+    @JsExport.Ignore
     fun updateBlocking(
         request: UpdateGalleryPostRequest
     ): Response<GalleryPost>
@@ -107,10 +121,12 @@ interface GalleriesResource {
      * Like a gallery post.
      * @see "https://misskey.io/api-doc.operation/gallery/posts/like"
      */
+    @JsExport.Ignore
     suspend fun like(
         request: LikeGalleryPostRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun likeBlocking(
         request: LikeGalleryPostRequest
     ): EmptyResponse
@@ -120,10 +136,12 @@ interface GalleriesResource {
      *
      * @see "https://misskey.io/api-doc.operation/gallery/posts/unlike"
      */
+    @JsExport.Ignore
     suspend fun unlike(
         request: UnlikeGalleryPostRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun unlikeBlocking(
         request: UnlikeGalleryPostRequest
     ): EmptyResponse

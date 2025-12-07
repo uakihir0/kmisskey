@@ -10,6 +10,11 @@ kotlin {
     jvmToolchain(11)
     jvm()
 
+    js(IR) {
+        nodejs()
+        browser()
+    }
+
     if (HostManager.hostIsMac) {
         iosX64()
         iosArm64()
@@ -33,6 +38,7 @@ kotlin {
             implementation(libs.khttpclient)
             implementation(libs.datetime)
             implementation(libs.serialization.json)
+            implementation(libs.coroutines.core)
 
             implementation(project.dependencies.platform("org.kotlincrypto.hash:bom:0.5.3"))
             implementation("org.kotlincrypto.hash:md")

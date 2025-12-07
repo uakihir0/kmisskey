@@ -49,10 +49,12 @@ interface NotesResource {
      * 指定したユーザーのタイムラインを取得します。
      * https://misskey.io/api-doc#operation/users/notes
      */
+    @JsExport.Ignore
     suspend fun users(
         request: UsersNotesRequest
     ): Response<Array<UsersNotesResponse>>
 
+    @JsExport.Ignore
     fun usersBlocking(
         request: UsersNotesRequest
     ): Response<Array<UsersNotesResponse>>
@@ -61,10 +63,12 @@ interface NotesResource {
      * 投稿を取得します。
      * https://misskey.io/api-doc#operation/notes
      */
+    @JsExport.Ignore
     suspend fun notes(
         request: NotesRequest
     ): Response<Array<NotesResponse>>
 
+    @JsExport.Ignore
     fun notesBlocking(
         request: NotesRequest
     ): Response<Array<NotesResponse>>
@@ -73,10 +77,12 @@ interface NotesResource {
      * 指定した投稿への返信/引用を取得します。
      * https://misskey.io/api-doc#operation/notes/children
      */
+    @JsExport.Ignore
     suspend fun children(
         request: NotesChildrenRequest
     ): Response<Array<NotesChildrenResponse>>
 
+    @JsExport.Ignore
     fun childrenBlocking(
         request: NotesChildrenRequest
     ): Response<Array<NotesChildrenResponse>>
@@ -85,10 +91,12 @@ interface NotesResource {
      * 指定した投稿への返信を取得します。
      * https://misskey.io/api-doc#operation/notes/replies
      */
+    @JsExport.Ignore
     suspend fun replies(
         request: NotesRepliesRequest
     ): Response<Array<NotesRepliesResponse>>
 
+    @JsExport.Ignore
     fun repliesBlocking(
         request: NotesRepliesRequest
     ): Response<Array<NotesRepliesResponse>>
@@ -97,10 +105,12 @@ interface NotesResource {
      * 指定した投稿の文脈を取得します。
      * https://misskey.io/api-doc#operation/notes/conversation
      */
+    @JsExport.Ignore
     suspend fun conversation(
         request: NotesConversationRequest
     ): Response<Array<NotesConversationResponse>>
 
+    @JsExport.Ignore
     fun conversationBlocking(
         request: NotesConversationRequest
     ): Response<Array<NotesConversationResponse>>
@@ -109,10 +119,12 @@ interface NotesResource {
      * 投稿します。
      * https://misskey.io/api-doc#operation/notes/create
      */
+    @JsExport.Ignore
     suspend fun create(
         request: NotesCreateRequest
     ): Response<NotesCreateResponse>
 
+    @JsExport.Ignore
     fun createBlocking(
         request: NotesCreateRequest
     ): Response<NotesCreateResponse>
@@ -121,10 +133,12 @@ interface NotesResource {
      * 指定した投稿を削除します。
      * https://misskey.io/api-doc#operation/notes/delete
      */
+    @JsExport.Ignore
     suspend fun delete(
         request: NotesDeleteRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun deleteBlocking(
         request: NotesDeleteRequest
     ): EmptyResponse
@@ -133,10 +147,12 @@ interface NotesResource {
      * 自分に言及している投稿の一覧を取得します。
      * https://misskey.io/api-doc#operation/notes/mentions
      */
+    @JsExport.Ignore
     suspend fun mentions(
         request: NotesMentionsRequest
     ): Response<Array<NotesMentionsResponse>>
 
+    @JsExport.Ignore
     fun mentionsBlocking(
         request: NotesMentionsRequest
     ): Response<Array<NotesMentionsResponse>>
@@ -145,10 +161,12 @@ interface NotesResource {
      * Featured な投稿を取得します。
      * https://misskey.io/api-doc#operation/notes/featured
      */
+    @JsExport.Ignore
     suspend fun featured(
         request: NotesFeaturedRequest
     ): Response<Array<NotesFeaturedResponse>>
 
+    @JsExport.Ignore
     fun featuredBlocking(
         request: NotesFeaturedRequest
     ): Response<Array<NotesFeaturedResponse>>
@@ -157,10 +175,12 @@ interface NotesResource {
      * グローバルタイムラインを取得します。
      * https://misskey.io/api-doc#operation/notes/global-timeline
      */
+    @JsExport.Ignore
     suspend fun globalTimeline(
         request: NotesGlobalTimelineRequest
     ): Response<Array<NotesGlobalTimelineResponse>>
 
+    @JsExport.Ignore
     fun globalTimelineBlocking(
         request: NotesGlobalTimelineRequest
     ): Response<Array<NotesGlobalTimelineResponse>>
@@ -169,10 +189,12 @@ interface NotesResource {
      * ソーシャルタイムラインを取得します。
      * https://misskey.io/api-doc#operation/notes/hybrid-timeline
      */
+    @JsExport.Ignore
     suspend fun hybridTimeline(
         request: NotesHybridTimelineRequest
     ): Response<Array<NotesHybridTimelineResponse>>
 
+    @JsExport.Ignore
     fun hybridTimelineBlocking(
         request: NotesHybridTimelineRequest
     ): Response<Array<NotesHybridTimelineResponse>>
@@ -181,10 +203,12 @@ interface NotesResource {
      * ローカルタイムラインを取得します。
      * https://misskey.io/api-doc#operation/notes/local-timeline
      */
+    @JsExport.Ignore
     suspend fun localTimeline(
         request: NotesLocalTimelineRequest
     ): Response<Array<NotesLocalTimelineResponse>>
 
+    @JsExport.Ignore
     fun localTimelineBlocking(
         request: NotesLocalTimelineRequest
     ): Response<Array<NotesLocalTimelineResponse>>
@@ -193,10 +217,12 @@ interface NotesResource {
      * ノートのリアクションを取得します。
      * https://misskey.io/api-doc#tag/notes/operation/notes/reactions
      */
+    @JsExport.Ignore
     suspend fun reactions(
         request: NotesReactionsRequest
     ): Response<Array<NotesReactionsResponse>>
 
+    @JsExport.Ignore
     fun reactionsBlocking(
         request: NotesReactionsRequest
     ): Response<Array<NotesReactionsResponse>>
@@ -205,10 +231,12 @@ interface NotesResource {
      * タイムラインを取得します。
      * https://misskey.io/api-doc#operation/notes/timeline
      */
+    @JsExport.Ignore
     suspend fun timeline(
         request: NotesTimelineRequest
     ): Response<Array<NotesTimelineResponse>>
 
+    @JsExport.Ignore
     fun timelineBlocking(
         request: NotesTimelineRequest
     ): Response<Array<NotesTimelineResponse>>
@@ -217,10 +245,12 @@ interface NotesResource {
      * 指定した投稿を取得します。
      * https://misskey.io/api-doc#operation/notes/show
      */
+    @JsExport.Ignore
     suspend fun show(
         request: NotesShowRequest
     ): Response<NotesShowResponse>
 
+    @JsExport.Ignore
     fun showBlocking(
         request: NotesShowRequest
     ): Response<NotesShowResponse>
@@ -229,10 +259,12 @@ interface NotesResource {
      * 投稿を検索します。
      * https://misskey.io/api-doc#operation/notes/search
      */
+    @JsExport.Ignore
     suspend fun search(
         request: NotesSearchRequest
     ): Response<Array<NotesSearchResponse>>
 
+    @JsExport.Ignore
     fun searchBlocking(
         request: NotesSearchRequest
     ): Response<Array<NotesSearchResponse>>
@@ -241,10 +273,12 @@ interface NotesResource {
      * 指定されたハッシュタグが付けられたノートを取得します。
      * https://misskey.io/api-doc#tag/notes/operation/notes/search-by-tag
      */
+    @JsExport.Ignore
     suspend fun searchByTag(
         request: NotesSearchByTagRequest
     ): Response<Array<NotesSearchByTagResponse>>
 
+    @JsExport.Ignore
     fun searchByTagBlocking(
         request: NotesSearchByTagRequest
     ): Response<Array<NotesSearchByTagResponse>>
@@ -253,10 +287,12 @@ interface NotesResource {
      * 指定したユーザーリストのタイムラインを取得します。
      * https://misskey.io/api-doc#operation/notes/user-list-timeline
      */
+    @JsExport.Ignore
     suspend fun userListTimeline(
         request: NotesUserListTimelineRequest
     ): Response<Array<NotesUserListTimelineResponse>>
 
+    @JsExport.Ignore
     fun userListTimelineBlocking(
         request: NotesUserListTimelineRequest
     ): Response<Array<NotesUserListTimelineResponse>>
@@ -265,10 +301,12 @@ interface NotesResource {
      * 指定した投稿のRenoteを解除します。
      * https://misskey.io/api-doc#operation/notes/unrenote
      */
+    @JsExport.Ignore
     suspend fun unrenote(
         request: NoteUnrenoteRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun unrenoteBlocking(
         request: NoteUnrenoteRequest
     ): EmptyResponse
@@ -277,10 +315,12 @@ interface NotesResource {
      * ノートに対するRenote一覧を取得します。
      * @see "https://misskey.io/api-doc.tag/notes/operation/notes/renotes"
      */
+    @JsExport.Ignore
     suspend fun renotes(
         request: NotesRenotesRequest
     ): Response<Array<NotesRenotesResponse>>
 
+    @JsExport.Ignore
     fun renotesBlocking(
         request: NotesRenotesRequest
     ): Response<Array<NotesRenotesResponse>>

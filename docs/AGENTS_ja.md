@@ -237,6 +237,31 @@ class NotesCreateRequest : TokenRequest() {
 - `ErrorCallback` - エラーイベント
 - `EventCallback` - 汎用イベント
 
+### JavaScript Promise 拡張関数
+
+JavaScript から利用するために、Promise ベースの拡張関数が `core/src/jsMain/kotlin/work/socialhub/kmisskey/api/` に提供されています。
+
+`suspend` 関数と `*Blocking` 関数は JavaScript から直接使用できないため、各 Resource インターフェースに対応する Promise 拡張関数が用意されています：
+
+**拡張ファイルの命名規則:** `{Resource}Ext.kt`（例：`NotesResourceExt.kt`, `UsersResourceExt.kt`）
+
+**使用例:**
+
+```kotlin
+// オリジナルの suspend 関数（@JsExport.Ignore でマーク）
+suspend fun create(request: NotesCreateRequest): Response<NotesCreateResponse>
+
+// Promise 拡張関数（JavaScript で利用可能）
+fun NotesResource.createPromise(request: NotesCreateRequest): Promise<Response<NotesCreateResponse>>
+```
+
+**JavaScript からの呼び出し:**
+
+```javascript
+// Promise 拡張関数を使用
+const response = await misskey.notes().createPromise(request);
+```
+
 ### プラットフォーム固有の制限
 
 - **`all` モジュール**: macOS でのみビルド可能（CocoaPods 関連）
@@ -257,3 +282,4 @@ class NotesCreateRequest : TokenRequest() {
 | API 使用例                 | `core/src/jvmTest/kotlin/work/socialhub/kmisskey/apis/`                        |
 | ストリーミング API         | `stream/src/commonMain/kotlin/work/socialhub/kmisskey/stream/MisskeyStream.kt` |
 | ストリーミングコールバック | `stream/src/commonMain/kotlin/work/socialhub/kmisskey/stream/callback/`        |
+| JS Promise 拡張            | `core/src/jsMain/kotlin/work/socialhub/kmisskey/api/*Ext.kt`                   |

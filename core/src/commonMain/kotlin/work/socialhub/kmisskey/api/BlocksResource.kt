@@ -15,10 +15,12 @@ interface BlocksResource {
      * 指定したユーザーをブロックします。
      * https://misskey.io/api-doc#operation/blocking/create
      */
+    @JsExport.Ignore
     suspend fun create(
         request: BlocksCreateRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun createBlocking(
         request: BlocksCreateRequest
     ): EmptyResponse
@@ -27,10 +29,12 @@ interface BlocksResource {
      * 指定したユーザーのブロックを解除します。
      * https://misskey.io/api-doc#operation/blocking/delete
      */
+    @JsExport.Ignore
     suspend fun delete(
         request: BlocksDeleteRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun deleteBlocking(
         request: BlocksDeleteRequest
     ): EmptyResponse
@@ -39,10 +43,12 @@ interface BlocksResource {
      * ブロックしているユーザー一覧を取得します。
      * https://misskey.io/api-doc#operation/blocking/list
      */
+    @JsExport.Ignore
     suspend fun list(
         request: BlocksListRequest
     ): Response<Array<BlocksListResponse>>
 
+    @JsExport.Ignore
     fun listBlocking(
         request: BlocksListRequest
     ): Response<Array<BlocksListResponse>>

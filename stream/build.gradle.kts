@@ -10,6 +10,11 @@ kotlin {
     jvmToolchain(11)
     jvm()
 
+    js(IR) {
+        nodejs()
+        browser()
+    }
+
     if (HostManager.hostIsMac) {
         iosX64()
         iosArm64()

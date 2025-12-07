@@ -26,10 +26,12 @@ interface ClipsResource {
      *
      * https://misskey.io/api-doc#tag/clips/operation/clips/list
      */
+    @JsExport.Ignore
     suspend fun list(
         request: ClipsListRequest
     ): Response<Array<ClipsListResponse>>
 
+    @JsExport.Ignore
     fun listBlocking(
         request: ClipsListRequest
     ): Response<Array<ClipsListResponse>>
@@ -37,10 +39,12 @@ interface ClipsResource {
     /**
      * クリップに含まれるノートを取得します。
      */
+    @JsExport.Ignore
     suspend fun notes(
         request: ClipsNotesRequest
     ): Response<Array<ClipsNotesResponse>>
 
+    @JsExport.Ignore
     fun notesBlocking(
         request: ClipsNotesRequest
     ): Response<Array<ClipsNotesResponse>>
@@ -50,10 +54,12 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/account/operation/clips/remove-note"
      */
+    @JsExport.Ignore
     suspend fun removeNote(
         request: ClipsRemoveNoteRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun removeNoteBlocking(
         request: ClipsRemoveNoteRequest
     ): EmptyResponse
@@ -63,10 +69,12 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/account/operation/clips/add-note"
      */
+    @JsExport.Ignore
     suspend fun addNote(
         request: ClipsAddNoteRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun addNoteBlocking(
         request: ClipsAddNoteRequest
     ): EmptyResponse
@@ -76,10 +84,12 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/clips/operation/clips/delete"
      */
+    @JsExport.Ignore
     suspend fun deleteClip(
         request: ClipsDeleteRequest
     ): EmptyResponse
 
+    @JsExport.Ignore
     fun deleteClipBlocking(
         request: ClipsDeleteRequest
     ): EmptyResponse
@@ -89,10 +99,12 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/clips/operation/clips/create"
      */
+    @JsExport.Ignore
     suspend fun create(
         request: ClipsCreateRequest
     ): Response<ClipsCreateResponse>
 
+    @JsExport.Ignore
     fun createBlocking(
         request: ClipsCreateRequest
     ): Response<ClipsCreateResponse>
@@ -102,10 +114,12 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/clips/operation/clips/show"
      */
+    @JsExport.Ignore
     suspend fun show(
         request: ClipsShowRequest
     ): Response<ClipsShowResponse>
 
+    @JsExport.Ignore
     fun showBlocking(
         request: ClipsShowRequest
     ): Response<ClipsShowResponse>
@@ -115,10 +129,12 @@ interface ClipsResource {
      *
      * @see "https://misskey.io/api-doc.tag/clips/operation/clips/update"
      */
+    @JsExport.Ignore
     suspend fun update(
         request: ClipsUpdateRequest
     ): Response<ClipsUpdateResponse>
 
+    @JsExport.Ignore
     fun updateBlocking(
         request: ClipsUpdateRequest
     ): Response<ClipsUpdateResponse>

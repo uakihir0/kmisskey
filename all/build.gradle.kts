@@ -78,9 +78,9 @@ tasks.configureEach {
 
 tasks.podPublishXCFramework {
     doLast {
-        exec {
+        providers.exec {
             executable = "sh"
-            args = listOf("../tool/setup_pods.sh")
-        }
+            args = listOf(project.projectDir.path + "/../tool/rename_podfile.sh")
+        }.standardOutput.asText.get()
     }
 }

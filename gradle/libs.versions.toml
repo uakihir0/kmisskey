@@ -1,14 +1,14 @@
 [versions]
-kotest = "5.9.1"
-kotlin = "2.2.0"
+kotest = "6.0.7"
+kotlin = "2.2.21"
 
 [libraries]
 kmpcommon = "work.socialhub:kmpcommon:0.0.1-SNAPSHOT"
 khttpclient = "work.socialhub:khttpclient:0.0.8"
-ktor-core = "io.ktor:ktor-client-core:2.3.12"
-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.1"
-coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0"
-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3"
+ktor-core = "io.ktor:ktor-client-core:3.3.3"
+datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.7.1-0.6.x-compat"
+coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2"
+serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0"
 kotest-junit5 = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
 kotest-assertions = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
 

@@ -40,7 +40,7 @@ kotlin {
             implementation(libs.serialization.json)
             implementation(libs.coroutines.core)
 
-            implementation(project.dependencies.platform("org.kotlincrypto.hash:bom:0.5.3"))
+            implementation(project.dependencies.platform("org.kotlincrypto.hash:bom:0.8.0"))
             implementation("org.kotlincrypto.hash:md")
             implementation("org.kotlincrypto.hash:sha1")
             implementation("org.kotlincrypto.hash:sha2")

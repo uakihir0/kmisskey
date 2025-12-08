@@ -12,7 +12,13 @@ interface FilesResource {
      * ドライブにファイルをアップロードします。
      * https://misskey.io/api-doc#operation/drive/files/create
      */
-    fun create(
+    @JsExport.Ignore
+    suspend fun create(
+        request: FilesCreateRequest
+    ): Response<FilesCreateResponse>
+
+    @JsExport.Ignore
+    fun createBlocking(
         request: FilesCreateRequest
     ): Response<FilesCreateResponse>
 }

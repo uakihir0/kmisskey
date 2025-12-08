@@ -17,7 +17,13 @@ interface FollowingResource {
      * 指定したユーザーをフォローします。
      * https://misskey.io/api-doc#operation/following/create
      */
-    fun create(
+    @JsExport.Ignore
+    suspend fun create(
+        request: FollowingCreateRequest
+    ): EmptyResponse
+
+    @JsExport.Ignore
+    fun createBlocking(
         request: FollowingCreateRequest
     ): EmptyResponse
 
@@ -25,7 +31,13 @@ interface FollowingResource {
      * 指定したユーザーのフォローを解除します。
      * https://misskey.io/api-doc#operation/following/delete
      */
-    fun delete(
+    @JsExport.Ignore
+    suspend fun delete(
+        request: FollowingDeleteRequest
+    ): EmptyResponse
+
+    @JsExport.Ignore
+    fun deleteBlocking(
         request: FollowingDeleteRequest
     ): EmptyResponse
 
@@ -33,7 +45,13 @@ interface FollowingResource {
      * フォローリクエストの一覧を取得します。
      * https://misskey.io/api-doc#tag/following/operation/following/requests/list
      */
-    fun requestsList(
+    @JsExport.Ignore
+    suspend fun requestsList(
+        request: FollowingRequestsListRequest
+    ): Response<Array<FollowingRequestsListResponse>>
+
+    @JsExport.Ignore
+    fun requestsListBlocking(
         request: FollowingRequestsListRequest
     ): Response<Array<FollowingRequestsListResponse>>
 
@@ -41,7 +59,13 @@ interface FollowingResource {
      * フォローを許可します。
      * https://misskey.io/api-doc#tag/following/operation/following/requests/accept
      */
-    fun acceptRequest(
+    @JsExport.Ignore
+    suspend fun acceptRequest(
+        request: FollowingRequestsAcceptRequest
+    ): EmptyResponse
+
+    @JsExport.Ignore
+    fun acceptRequestBlocking(
         request: FollowingRequestsAcceptRequest
     ): EmptyResponse
 
@@ -49,7 +73,13 @@ interface FollowingResource {
      * フォローを拒否します。
      * https://misskey.io/api-doc#tag/following/operation/following/requests/reject
      */
-    fun rejectRequest(
+    @JsExport.Ignore
+    suspend fun rejectRequest(
+        request: FollowingRequestsRejectRequest
+    ): EmptyResponse
+
+    @JsExport.Ignore
+    fun rejectRequestBlocking(
         request: FollowingRequestsRejectRequest
     ): EmptyResponse
 }

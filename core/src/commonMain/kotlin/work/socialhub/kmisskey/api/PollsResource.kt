@@ -12,7 +12,13 @@ interface PollsResource {
      * (注釈：複数回答が可能な投票については回答毎にこの API をコールする)
      * https://misskey.io/api-doc#operation/notes/polls/vote
      */
-    fun pollsVote(
+    @JsExport.Ignore
+    suspend fun pollsVote(
+        request: PollsVoteRequest
+    ): EmptyResponse
+
+    @JsExport.Ignore
+    fun pollsVoteBlocking(
         request: PollsVoteRequest
     ): EmptyResponse
 }

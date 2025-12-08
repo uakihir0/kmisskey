@@ -4,15 +4,21 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.cocoapods)
+    alias(libs.plugins.swiftpackage)
+    id("module.publications")
 }
 
 kotlin {
+    jvmToolchain(11)
+    jvm()
+
     js(IR) {
-        compilerOptions.moduleName = "kmisskey-js"
         nodejs()
         browser()
         binaries.library()
-        generateTypeScriptDefinitions()
+        compilerOptions {
+            generateTypeScriptDefinitions()
+        }
     }
 
     val xcf = XCFramework("kmisskey")
@@ -54,21 +60,27 @@ kotlin {
     }
 }
 
+multiplatformSwiftPackage {
+    swiftToolsVersion("5.7")
+    targetPlatforms {
+        // baseline 2020
+        iOS { v("15") }
+        macOS { v("12.0") }
+    }
+}
+
+tasks.configureEach {
+    // Fix implicit dependency between XCFramework and FatFramework tasks
+    if (name.contains("assembleKmisskey") && name.contains("XCFramework")) {
+        mustRunAfter(tasks.matching { it.name.contains("FatFramework") })
+    }
+}
+
 tasks.podPublishXCFramework {
     doLast {
-        exec {
+        providers.exec {
             executable = "sh"
-            args = listOf("../tool/setup_pods.sh")
-        }
+            args = listOf(project.projectDir.path + "/../tool/rename_podfile.sh")
+        }.standardOutput.asText.get()
     }
 }
-
-tasks.getByName("jsBrowserDevelopmentLibraryDistribution") {
-    doLast {
-        exec {
-            executable = "sh"
-            args = listOf("../tool/setup_js.sh")
-        }
-    }
-}
-

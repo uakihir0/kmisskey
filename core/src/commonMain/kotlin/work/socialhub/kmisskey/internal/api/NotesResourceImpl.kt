@@ -61,6 +61,7 @@ import work.socialhub.kmisskey.api.response.notes.NotesUserListTimelineResponse
 import work.socialhub.kmisskey.api.response.notes.UsersNotesResponse
 import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.util.toBlocking
 
 class NotesResourceImpl(
     uri: String,
@@ -71,7 +72,7 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun users(
+    override suspend fun users(
         request: UsersNotesRequest
     ): Response<Array<UsersNotesResponse>> {
         return post(UsersNotes.path, request)
@@ -80,7 +81,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun notes(
+    override fun usersBlocking(
+        request: UsersNotesRequest
+    ): Response<Array<UsersNotesResponse>> {
+        return toBlocking {
+            users(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun notes(
         request: NotesRequest
     ): Response<Array<NotesResponse>> {
         return post(Notes.path, request)
@@ -89,7 +101,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun children(
+    override fun notesBlocking(
+        request: NotesRequest
+    ): Response<Array<NotesResponse>> {
+        return toBlocking {
+            notes(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun children(
         request: NotesChildrenRequest
     ): Response<Array<NotesChildrenResponse>> {
         return post(NotesChildren.path, request)
@@ -98,7 +121,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun replies(
+    override fun childrenBlocking(
+        request: NotesChildrenRequest
+    ): Response<Array<NotesChildrenResponse>> {
+        return toBlocking {
+            children(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun replies(
         request: NotesRepliesRequest
     ): Response<Array<NotesRepliesResponse>> {
         return post(NotesReplies.path, request)
@@ -107,7 +141,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun conversation(
+    override fun repliesBlocking(
+        request: NotesRepliesRequest
+    ): Response<Array<NotesRepliesResponse>> {
+        return toBlocking {
+            replies(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun conversation(
         request: NotesConversationRequest
     ): Response<Array<NotesConversationResponse>> {
         return post(NotesConversation.path, request)
@@ -116,7 +161,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun create(
+    override fun conversationBlocking(
+        request: NotesConversationRequest
+    ): Response<Array<NotesConversationResponse>> {
+        return toBlocking {
+            conversation(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun create(
         request: NotesCreateRequest
     ): Response<NotesCreateResponse> {
         return post(NotesCreate.path, request)
@@ -125,7 +181,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun delete(
+    override fun createBlocking(
+        request: NotesCreateRequest
+    ): Response<NotesCreateResponse> {
+        return toBlocking {
+            create(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun delete(
         request: NotesDeleteRequest
     ): EmptyResponse {
         return postUnit(NotesDelete.path, request)
@@ -134,7 +201,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun mentions(
+    override fun deleteBlocking(
+        request: NotesDeleteRequest
+    ): EmptyResponse {
+        return toBlocking {
+            delete(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun mentions(
         request: NotesMentionsRequest
     ): Response<Array<NotesMentionsResponse>> {
         return post(NotesMentions.path, request)
@@ -143,7 +221,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun featured(
+    override fun mentionsBlocking(
+        request: NotesMentionsRequest
+    ): Response<Array<NotesMentionsResponse>> {
+        return toBlocking {
+            mentions(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun featured(
         request: NotesFeaturedRequest
     ): Response<Array<NotesFeaturedResponse>> {
         return post(NotesFeatured.path, request)
@@ -152,7 +241,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun globalTimeline(
+    override fun featuredBlocking(
+        request: NotesFeaturedRequest
+    ): Response<Array<NotesFeaturedResponse>> {
+        return toBlocking {
+            featured(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun globalTimeline(
         request: NotesGlobalTimelineRequest
     ): Response<Array<NotesGlobalTimelineResponse>> {
         return post(NotesGlobalTimeline.path, request)
@@ -161,7 +261,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun hybridTimeline(
+    override fun globalTimelineBlocking(
+        request: NotesGlobalTimelineRequest
+    ): Response<Array<NotesGlobalTimelineResponse>> {
+        return toBlocking {
+            globalTimeline(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun hybridTimeline(
         request: NotesHybridTimelineRequest
     ): Response<Array<NotesHybridTimelineResponse>> {
         return post(NotesHybridTimeline.path, request)
@@ -170,7 +281,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun localTimeline(
+    override fun hybridTimelineBlocking(
+        request: NotesHybridTimelineRequest
+    ): Response<Array<NotesHybridTimelineResponse>> {
+        return toBlocking {
+            hybridTimeline(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun localTimeline(
         request: NotesLocalTimelineRequest
     ): Response<Array<NotesLocalTimelineResponse>> {
         return post(NotesLocalTimeline.path, request)
@@ -179,7 +301,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun reactions(
+    override fun localTimelineBlocking(
+        request: NotesLocalTimelineRequest
+    ): Response<Array<NotesLocalTimelineResponse>> {
+        return toBlocking {
+            localTimeline(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun reactions(
         request: NotesReactionsRequest
     ): Response<Array<NotesReactionsResponse>> {
         return post(NotesReactions.path, request)
@@ -188,7 +321,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun timeline(
+    override fun reactionsBlocking(
+        request: NotesReactionsRequest
+    ): Response<Array<NotesReactionsResponse>> {
+        return toBlocking {
+            reactions(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun timeline(
         request: NotesTimelineRequest
     ): Response<Array<NotesTimelineResponse>> {
         return post(NotesTimeline.path, request)
@@ -197,7 +341,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun show(
+    override fun timelineBlocking(
+        request: NotesTimelineRequest
+    ): Response<Array<NotesTimelineResponse>> {
+        return toBlocking {
+            timeline(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun show(
         request: NotesShowRequest
     ): Response<NotesShowResponse> {
         return post(NotesShow.path, request)
@@ -206,7 +361,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun search(
+    override fun showBlocking(
+        request: NotesShowRequest
+    ): Response<NotesShowResponse> {
+        return toBlocking {
+            show(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun search(
         request: NotesSearchRequest
     ): Response<Array<NotesSearchResponse>> {
         return post(NotesSearch.path, request)
@@ -215,7 +381,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun searchByTag(
+    override fun searchBlocking(
+        request: NotesSearchRequest
+    ): Response<Array<NotesSearchResponse>> {
+        return toBlocking {
+            search(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun searchByTag(
         request: NotesSearchByTagRequest
     ): Response<Array<NotesSearchByTagResponse>> {
         return post(NotesSearchByTag.path, request)
@@ -224,7 +401,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun userListTimeline(
+    override fun searchByTagBlocking(
+        request: NotesSearchByTagRequest
+    ): Response<Array<NotesSearchByTagResponse>> {
+        return toBlocking {
+            searchByTag(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun userListTimeline(
         request: NotesUserListTimelineRequest
     ): Response<Array<NotesUserListTimelineResponse>> {
         return post(NotesUserListTimeline.path, request)
@@ -233,7 +421,18 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun unrenote(
+    override fun userListTimelineBlocking(
+        request: NotesUserListTimelineRequest
+    ): Response<Array<NotesUserListTimelineResponse>> {
+        return toBlocking {
+            userListTimeline(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun unrenote(
         request: NoteUnrenoteRequest
     ): EmptyResponse {
         return postUnit(NotesUnrenote.path, request)
@@ -242,9 +441,31 @@ class NotesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun renotes(
+    override fun unrenoteBlocking(
+        request: NoteUnrenoteRequest
+    ): EmptyResponse {
+        return toBlocking {
+            unrenote(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun renotes(
         request: NotesRenotesRequest
     ): Response<Array<NotesRenotesResponse>> {
         return post(NotesRenotes.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun renotesBlocking(
+        request: NotesRenotesRequest
+    ): Response<Array<NotesRenotesResponse>> {
+        return toBlocking {
+            renotes(request)
+        }
     }
 }

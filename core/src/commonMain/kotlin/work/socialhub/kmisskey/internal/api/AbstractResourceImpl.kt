@@ -1,5 +1,7 @@
 package work.socialhub.kmisskey.internal.api
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import work.socialhub.khttpclient.HttpRequest
 import work.socialhub.khttpclient.HttpResponse
 import work.socialhub.kmisskey.api.model.TokenRequest
@@ -9,7 +11,6 @@ import work.socialhub.kmisskey.internal.Internal
 import work.socialhub.kmisskey.internal.Internal.toJson
 import work.socialhub.kmisskey.internal.model.BytesFile
 import work.socialhub.kmisskey.internal.util.MediaType
-import work.socialhub.kmpcommon.runBlocking
 
 abstract class AbstractResourceImpl(
     val uri: String,
@@ -45,11 +46,11 @@ abstract class AbstractResourceImpl(
      * API の呼び出しを行う場合
      * 認証リクエストの場合
      */
-    protected inline fun <reified T, reified K : TokenRequest> post(
+    protected suspend inline fun <reified T, reified K : TokenRequest> post(
         path: String,
         request: K,
     ): Response<T> {
-        return runBlocking {
+        return withContext(Dispatchers.Default) {
             proceed<T> {
                 HttpRequest()
                     .url(uri + path)
@@ -63,11 +64,11 @@ abstract class AbstractResourceImpl(
     /**
      * API の呼び出しを行う場合
      */
-    protected inline fun <reified T, reified J : Any> postAny(
+    protected suspend inline fun <reified T, reified J : Any> postAny(
         path: String,
         request: J,
     ): Response<T> {
-        return runBlocking {
+        return withContext(Dispatchers.Default) {
             proceed<T> {
                 HttpRequest()
                     .url(uri + path)
@@ -82,11 +83,11 @@ abstract class AbstractResourceImpl(
      * API の呼び出しを行う場合
      * 認証リクエストの場合
      */
-    protected inline fun <reified K : TokenRequest> postUnit(
+    protected suspend inline fun <reified K : TokenRequest> postUnit(
         path: String,
         request: K,
     ): EmptyResponse {
-        return runBlocking {
+        return withContext(Dispatchers.Default) {
             proceedUnit {
                 HttpRequest()
                     .url(uri + path)
@@ -100,11 +101,11 @@ abstract class AbstractResourceImpl(
     /**
      * API の呼び出しを行う場合
      */
-    protected inline fun <reified J : Any> postUnitAny(
+    protected suspend inline fun <reified J : Any> postUnitAny(
         path: String,
         request: J,
     ): EmptyResponse {
-        return runBlocking {
+        return withContext(Dispatchers.Default) {
             proceedUnit {
                 HttpRequest()
                     .url(uri + path)
@@ -119,11 +120,11 @@ abstract class AbstractResourceImpl(
      * API の呼び出しを行う場合
      * (ファイル付きの POST を行う場合)
      */
-    protected inline fun <reified T> postWithFile(
+    protected suspend inline fun <reified T> postWithFile(
         path: String,
         params: Map<String, Any>,
     ): Response<T> {
-        return runBlocking {
+        return withContext(Dispatchers.Default) {
             proceed<T> {
                 val request = HttpRequest()
                     .url(uri + path)

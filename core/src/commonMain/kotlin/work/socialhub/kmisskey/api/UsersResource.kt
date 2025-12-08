@@ -28,7 +28,13 @@ interface UsersResource {
      * 指定したユーザーのフォロワー一覧を取得します。
      * https://misskey.io/api-doc#operation/users/followers
      */
-    fun followers(
+    @JsExport.Ignore
+    suspend fun followers(
+        request: UsersFollowersRequest
+    ): Response<Array<UsersFollowersResponse>>
+
+    @JsExport.Ignore
+    fun followersBlocking(
         request: UsersFollowersRequest
     ): Response<Array<UsersFollowersResponse>>
 
@@ -36,7 +42,13 @@ interface UsersResource {
      * 指定したユーザーのフォロー一覧を取得します。
      * https://misskey.io/api-doc#operation/users/following
      */
-    fun followings(
+    @JsExport.Ignore
+    suspend fun followings(
+        request: UsersFollowingsRequest
+    ): Response<Array<UsersFollowingsResponse>>
+
+    @JsExport.Ignore
+    fun followingsBlocking(
         request: UsersFollowingsRequest
     ): Response<Array<UsersFollowingsResponse>>
 
@@ -44,7 +56,13 @@ interface UsersResource {
      * おすすめのユーザーを取得します。
      * https://misskey.io/api-doc#operation/users/recommendation
      */
-    fun recommendation(
+    @JsExport.Ignore
+    suspend fun recommendation(
+        request: UsersRecommendationRequest
+    ): Response<Array<UsersRecommendationResponse>>
+
+    @JsExport.Ignore
+    fun recommendationBlocking(
         request: UsersRecommendationRequest
     ): Response<Array<UsersRecommendationResponse>>
 
@@ -53,7 +71,14 @@ interface UsersResource {
      * https://misskey.io/api-doc#operation/users/show
      */
     @JsName("showSingle")
-    fun show(
+    @JsExport.Ignore
+    suspend fun show(
+        request: UsersShowSingleRequest
+    ): Response<UsersShowResponse>
+
+    @JsName("showSingleBlocking")
+    @JsExport.Ignore
+    fun showBlocking(
         request: UsersShowSingleRequest
     ): Response<UsersShowResponse>
 
@@ -62,7 +87,14 @@ interface UsersResource {
      * https://misskey.io/api-doc#operation/users/show
      */
     @JsName("showMultiple")
-    fun show(
+    @JsExport.Ignore
+    suspend fun show(
+        request: UsersShowMultipleRequest
+    ): Response<Array<UsersShowResponse>>
+
+    @JsName("showMultipleBlocking")
+    @JsExport.Ignore
+    fun showBlocking(
         request: UsersShowMultipleRequest
     ): Response<Array<UsersShowResponse>>
 
@@ -70,7 +102,13 @@ interface UsersResource {
      * ユーザーがつけたリアクションを取得します。
      * https://misskey.io/api-doc#operation/users/reactions
      */
-    fun reactions(
+    @JsExport.Ignore
+    suspend fun reactions(
+        request: UsersReactionsRequest
+    ): Response<Array<UsersReactionsResponse>>
+
+    @JsExport.Ignore
+    fun reactionsBlocking(
         request: UsersReactionsRequest
     ): Response<Array<UsersReactionsResponse>>
 
@@ -78,7 +116,13 @@ interface UsersResource {
      * ユーザー間のリレーションを取得します。
      * https://misskey.io/api-doc#operation/users/relation
      */
-    fun relation(
+    @JsExport.Ignore
+    suspend fun relation(
+        request: UsersRelationRequest
+    ): Response<Array<UsersRelationResponse>>
+
+    @JsExport.Ignore
+    fun relationBlocking(
         request: UsersRelationRequest
     ): Response<Array<UsersRelationResponse>>
 
@@ -86,7 +130,13 @@ interface UsersResource {
      * ユーザーを検索します。
      * https://misskey.io/api-doc#operation/users/search
      */
-    fun search(
+    @JsExport.Ignore
+    suspend fun search(
+        request: UsersSearchRequest
+    ): Response<Array<UsersSearchResponse>>
+
+    @JsExport.Ignore
+    fun searchBlocking(
         request: UsersSearchRequest
     ): Response<Array<UsersSearchResponse>>
 
@@ -94,7 +144,13 @@ interface UsersResource {
      * ユーザー名・ホスト名からユーザーを検索します。
      * https://misskey.io/api-doc#operation/users/search-by-username-and-host
      */
-    fun searchByUsernameAndHost(
+    @JsExport.Ignore
+    suspend fun searchByUsernameAndHost(
+        request: UsersSearchByUsernameAndHostRequest
+    ): Response<Array<UsersSearchByUsernameAndHostResponse>>
+
+    @JsExport.Ignore
+    fun searchByUsernameAndHostBlocking(
         request: UsersSearchByUsernameAndHostRequest
     ): Response<Array<UsersSearchByUsernameAndHostResponse>>
 }

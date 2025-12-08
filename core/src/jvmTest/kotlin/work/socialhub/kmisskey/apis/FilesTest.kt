@@ -1,5 +1,6 @@
 package work.socialhub.kmisskey.apis
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kmisskey.AbstractTest
 import work.socialhub.kmisskey.api.request.files.FilesCreateRequest
 import kotlin.test.Test
@@ -7,9 +8,10 @@ import kotlin.test.Test
 class FilesTest : AbstractTest() {
 
     @Test
-    fun testCreateFile() {
+    fun testCreateFile() = runTest {
         val misskey = misskey()
         val stream = javaClass.getResourceAsStream("/icon.png")
+            ?: throw IllegalStateException("icon file load failed.")
 
         misskey.files().create(
             FilesCreateRequest().also {

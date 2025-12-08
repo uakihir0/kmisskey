@@ -21,7 +21,13 @@ interface ChannelsResource {
      * 管理しているチャンネル一覧を取得します。
      * @see "https://misskey.io/api-doc.tag/channels/operation/channels/owned"
      */
-    fun owned(
+    @JsExport.Ignore
+    suspend fun owned(
+        request: ChannelsOwnedRequest
+    ): Response<Array<ChannelsOwnedResponse>>
+
+    @JsExport.Ignore
+    fun ownedBlocking(
         request: ChannelsOwnedRequest
     ): Response<Array<ChannelsOwnedResponse>>
 
@@ -29,7 +35,13 @@ interface ChannelsResource {
      * お気に入りのチャンネル一覧を取得します。
      * @see "https://misskey.io/api-doc.tag/channels/operation/channels/my-favorites"
      */
-    fun myFavorites(
+    @JsExport.Ignore
+    suspend fun myFavorites(
+        request: ChannelsMyFavoritesRequest
+    ): Response<Array<ChannelsMyFavoritesResponse>>
+
+    @JsExport.Ignore
+    fun myFavoritesBlocking(
         request: ChannelsMyFavoritesRequest
     ): Response<Array<ChannelsMyFavoritesResponse>>
 
@@ -37,7 +49,13 @@ interface ChannelsResource {
      * フォローしているチャンネル一覧を取得します。
      * @see "https://misskey.io/api-doc.tag/channels/operation/channels/followed"
      */
-    fun followed(
+    @JsExport.Ignore
+    suspend fun followed(
+        request: ChannelsFollowedRequest
+    ): Response<Array<ChannelsFollowedResponse>>
+
+    @JsExport.Ignore
+    fun followedBlocking(
         request: ChannelsFollowedRequest
     ): Response<Array<ChannelsFollowedResponse>>
 
@@ -45,7 +63,13 @@ interface ChannelsResource {
      * 指定したチャンネルのタイムラインを取得します。
      * @see "https://misskey.io/api-doc.tag/notes/operation/channels/timeline"
      */
-    fun timeline(
+    @JsExport.Ignore
+    suspend fun timeline(
+        request: ChannelsTimelineRequest
+    ): Response<Array<ChannelsTimelineResponse>>
+
+    @JsExport.Ignore
+    fun timelineBlocking(
         request: ChannelsTimelineRequest
     ): Response<Array<ChannelsTimelineResponse>>
 
@@ -53,7 +77,13 @@ interface ChannelsResource {
      * 指定したチャンネルの情報を取得します。
      * @see "https://misskey.io/api-doc.tag/notes/operation/channels/show"
      */
-    fun show(
+    @JsExport.Ignore
+    suspend fun show(
+        request: ChannelsShowRequest
+    ): Response<ChannelsShowResponse>
+
+    @JsExport.Ignore
+    fun showBlocking(
         request: ChannelsShowRequest
     ): Response<ChannelsShowResponse>
 }

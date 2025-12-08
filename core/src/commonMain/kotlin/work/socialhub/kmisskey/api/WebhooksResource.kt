@@ -19,7 +19,13 @@ interface WebhooksResource {
      * Webhook を作成します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/create
      */
-    fun create(
+    @JsExport.Ignore
+    suspend fun create(
+        request: CreateWebhooksRequest
+    ): Response<CreateWebhooksResponse>
+
+    @JsExport.Ignore
+    fun createBlocking(
         request: CreateWebhooksRequest
     ): Response<CreateWebhooksResponse>
 
@@ -27,7 +33,13 @@ interface WebhooksResource {
      * Webhook を削除します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/delete
      */
-    fun delete(
+    @JsExport.Ignore
+    suspend fun delete(
+        request: DeleteWebhooksRequest
+    ): Response<DeleteWebhooksResponse>
+
+    @JsExport.Ignore
+    fun deleteBlocking(
         request: DeleteWebhooksRequest
     ): Response<DeleteWebhooksResponse>
 
@@ -35,7 +47,13 @@ interface WebhooksResource {
      * ログイン中のユーザーが設定している Webhook の一覧を取得します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/list
      */
-    fun list(
+    @JsExport.Ignore
+    suspend fun list(
+        request: ListWebhooksRequest
+    ): Response<Array<ShowWebhooksResponse>>
+
+    @JsExport.Ignore
+    fun listBlocking(
         request: ListWebhooksRequest
     ): Response<Array<ShowWebhooksResponse>>
 
@@ -43,7 +61,13 @@ interface WebhooksResource {
      * 与えられた id に対応する Webhook を取得します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/show
      */
-    fun show(
+    @JsExport.Ignore
+    suspend fun show(
+        request: ShowWebhooksRequest
+    ): Response<ShowWebhooksResponse>
+
+    @JsExport.Ignore
+    fun showBlocking(
         request: ShowWebhooksRequest
     ): Response<ShowWebhooksResponse>
 
@@ -51,7 +75,13 @@ interface WebhooksResource {
      * Webhook の設定を更新します。
      * https://misskey.io/api-doc#tag/webhooks/operation/i/webhooks/update
      */
-    fun update(
+    @JsExport.Ignore
+    suspend fun update(
+        request: UpdateWebhooksRequest
+    ): Response<UpdateWebhooksResponse>
+
+    @JsExport.Ignore
+    fun updateBlocking(
         request: UpdateWebhooksRequest
     ): Response<UpdateWebhooksResponse>
 }

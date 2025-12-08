@@ -14,7 +14,6 @@ import work.socialhub.kmisskey.api.response.i.IUnpinResponse
 import work.socialhub.kmisskey.api.response.i.IUpdateResponse
 import work.socialhub.kmisskey.entity.share.Response
 import kotlin.js.JsExport
-import kotlin.js.JsName
 
 
 /**
@@ -27,8 +26,13 @@ interface AccountsResource {
      * 自分のアカウント情報を取得します。
      * https://misskey.io/api-doc#tag/account/operation/i
      */
-    @JsName("me")
-    fun i(
+    @JsExport.Ignore
+    suspend fun i(
+        request: IRequest
+    ): Response<IResponse>
+
+    @JsExport.Ignore
+    fun iBlocking(
         request: IRequest
     ): Response<IResponse>
 
@@ -36,7 +40,13 @@ interface AccountsResource {
      * お気に入りに登録した投稿一覧を取得します。
      * https://misskey.io/api-doc#tag/account/operation/i/favorites
      */
-    fun iFavorites(
+    @JsExport.Ignore
+    suspend fun iFavorites(
+        request: IFavoritesRequest
+    ): Response<Array<IFavoritesResponse>>
+
+    @JsExport.Ignore
+    fun iFavoritesBlocking(
         request: IFavoritesRequest
     ): Response<Array<IFavoritesResponse>>
 
@@ -44,7 +54,13 @@ interface AccountsResource {
      * 通知一覧を取得します。
      * https://misskey.io/api-doc#operation/i/notifications
      */
-    fun iNotifications(
+    @JsExport.Ignore
+    suspend fun iNotifications(
+        request: INotificationsRequest
+    ): Response<Array<INotificationsResponse>>
+
+    @JsExport.Ignore
+    fun iNotificationsBlocking(
         request: INotificationsRequest
     ): Response<Array<INotificationsResponse>>
 
@@ -53,17 +69,28 @@ interface AccountsResource {
      *
      * https://misskey.io/api-doc#tag/account/operation/i/update
      */
-    fun iUpdate(
+    @JsExport.Ignore
+    suspend fun iUpdate(
         request: IUpdateRequest
     ): Response<IUpdateResponse>
 
+    @JsExport.Ignore
+    fun iUpdateBlocking(
+        request: IUpdateRequest
+    ): Response<IUpdateResponse>
 
     /**
      * 指定したノートをピン留めに登録します。
      *
      * https://misskey.io/api-doc#tag/account/operation/i/pin
      */
-    fun pinNote(
+    @JsExport.Ignore
+    suspend fun pinNote(
+        request: IPinRequest
+    ): Response<IPinResponse>
+
+    @JsExport.Ignore
+    fun pinNoteBlocking(
         request: IPinRequest
     ): Response<IPinResponse>
 
@@ -72,7 +99,13 @@ interface AccountsResource {
      *
      * https://misskey.io/api-doc#tag/account/operation/i/unpin
      */
-    fun unpinNote(
+    @JsExport.Ignore
+    suspend fun unpinNote(
+        request: IUnpinRequest
+    ): Response<IUnpinResponse>
+
+    @JsExport.Ignore
+    fun unpinNoteBlocking(
         request: IUnpinRequest
     ): Response<IUnpinResponse>
 }

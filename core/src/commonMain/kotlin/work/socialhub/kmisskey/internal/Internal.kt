@@ -1,7 +1,6 @@
 package work.socialhub.kmisskey.internal
 
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import work.socialhub.khttpclient.HttpResponse
@@ -9,8 +8,8 @@ import work.socialhub.kmisskey.MisskeyException
 import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.entity.user.User
+import work.socialhub.kmisskey.util.AnySerializer
 import work.socialhub.kmisskey.util.json.UserSerializer
-import work.socialhub.kmpcommon.AnySerializer
 
 object Internal {
 

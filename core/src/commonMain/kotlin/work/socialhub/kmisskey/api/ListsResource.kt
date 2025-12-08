@@ -21,7 +21,13 @@ interface ListsResource {
      * 認証ユーザーの作成したユーザーリスト一覧を取得します。
      * @see "https://misskey.io/api-doc.operation/users/lists/list"
      */
-    fun list(
+    @JsExport.Ignore
+    suspend fun list(
+        request: UsersListsListRequest
+    ): Response<Array<UsersListsListResponse>>
+
+    @JsExport.Ignore
+    fun listBlocking(
         request: UsersListsListRequest
     ): Response<Array<UsersListsListResponse>>
 
@@ -30,7 +36,13 @@ interface ListsResource {
      *
      * @see "https://misskey.io/api-doc.operation/users/lists/show"
      */
-    fun show(
+    @JsExport.Ignore
+    suspend fun show(
+        request: UsersListsShowRequest
+    ): Response<UsersListsShowResponse>
+
+    @JsExport.Ignore
+    fun showBlocking(
         request: UsersListsShowRequest
     ): Response<UsersListsShowResponse>
 
@@ -38,7 +50,13 @@ interface ListsResource {
      * 指定したユーザーをリストに追加します。
      * @see "https://misskey.io/api-doc.tag/lists/operation/users/lists/push"
      */
-    fun push(
+    @JsExport.Ignore
+    suspend fun push(
+        request: UsersListsPushRequest
+    ): EmptyResponse
+
+    @JsExport.Ignore
+    fun pushBlocking(
         request: UsersListsPushRequest
     ): EmptyResponse
 
@@ -46,7 +64,13 @@ interface ListsResource {
      * 指定したユーザーをリストから削除します。
      * @see "https://misskey.io/api-doc.tag/lists/operation/users/lists/pull"
      */
-    fun pull(
+    @JsExport.Ignore
+    suspend fun pull(
+        request: UsersListsPullRequest
+    ): EmptyResponse
+
+    @JsExport.Ignore
+    fun pullBlocking(
         request: UsersListsPullRequest
     ): EmptyResponse
 
@@ -54,7 +78,13 @@ interface ListsResource {
      * リストを作成します。
      * @see "https://misskey.io/api-doc.tag/lists/operation/users/lists/create"
      */
-    fun create(
+    @JsExport.Ignore
+    suspend fun create(
+        request: UsersListsCreateRequest
+    ): Response<NoteList>
+
+    @JsExport.Ignore
+    fun createBlocking(
         request: UsersListsCreateRequest
     ): Response<NoteList>
 
@@ -62,7 +92,13 @@ interface ListsResource {
      * リストを更新します。
      * @see "https://misskey.io/api-doc.tag/lists/operation/users/lists/update"
      */
-    fun update(
+    @JsExport.Ignore
+    suspend fun update(
+        request: UsersListsUpdateRequest
+    ): Response<NoteList>
+
+    @JsExport.Ignore
+    fun updateBlocking(
         request: UsersListsUpdateRequest
     ): Response<NoteList>
 
@@ -70,7 +106,13 @@ interface ListsResource {
      * リストを削除します。
      * @see "https://misskey.io/api-doc.tag/lists/operation/users/lists/delete"
      */
-    fun delete(
+    @JsExport.Ignore
+    suspend fun delete(
+        request: UsersListsDeleteRequest
+    ): EmptyResponse
+
+    @JsExport.Ignore
+    fun deleteBlocking(
         request: UsersListsDeleteRequest
     ): EmptyResponse
 }

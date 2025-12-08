@@ -18,7 +18,7 @@ jobs:
       - name: Pods Npm Package
         uses: gradle/actions/setup-gradle@v3
         with:
-          arguments: all:jsBrowserDevelopmentLibraryDistribution -x test
+          arguments: all:jsBrowserProductionLibraryDistribution -x check
 
       - name: Set Project Version
         run: |
@@ -30,7 +30,7 @@ jobs:
         run: |
           git config --global user.email "a.urusihara@gmail.com"
           git config --global user.name "Akihiro Urushihara"
-          cd ./all/build/dist/js/developmentLibrary/
+          cd ./all/build/dist/js/productionLibrary/
           git init
           git add --all
           git commit -m "by GitHub Action CI (SHA ${GITHUB_SHA})"

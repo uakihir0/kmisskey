@@ -38,11 +38,10 @@ Objective-C でも使用可能ですが、以下に Swift での使用方法を�
 
 ```swift
 import kmisskey
-...
 
-let misskey = KmisskeyFactory().instance(
+let misskey = KmisskeyFactory.shared.instance(
   uri: "https://misskey.io",
-  clientSecret: "CLIENT_SECRET",
+  appSecret: "APP_SECRET",
   userAccessToken: "ACCESS_TOKEN"
 )
 

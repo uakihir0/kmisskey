@@ -17,7 +17,13 @@ interface MessagesResource {
      * トークの履歴を取得します。
      * https://misskey.io/api-doc#operation/messaging/history
      */
-    fun history(
+    @JsExport.Ignore
+    suspend fun history(
+        request: MessagingHistoryRequest
+    ): Response<Array<MessagingHistoryResponse>>
+
+    @JsExport.Ignore
+    fun historyBlocking(
         request: MessagingHistoryRequest
     ): Response<Array<MessagingHistoryResponse>>
 
@@ -25,7 +31,13 @@ interface MessagesResource {
      * トークメッセージ一覧を取得します。
      * https://misskey.io/api-doc#operation/messaging/messages
      */
-    fun messages(
+    @JsExport.Ignore
+    suspend fun messages(
+        request: MessagingMessagesRequest
+    ): Response<Array<MessagingMessagesResponse>>
+
+    @JsExport.Ignore
+    fun messagesBlocking(
         request: MessagingMessagesRequest
     ): Response<Array<MessagingMessagesResponse>>
 
@@ -33,7 +45,13 @@ interface MessagesResource {
      * トークメッセージを送信します。
      * https://misskey.io/api-doc#operation/messaging/messages/create
      */
-    fun messagesCreate(
+    @JsExport.Ignore
+    suspend fun messagesCreate(
+        request: MessagingMessagesCreateRequest
+    ): EmptyResponse
+
+    @JsExport.Ignore
+    fun messagesCreateBlocking(
         request: MessagingMessagesCreateRequest
     ): EmptyResponse
 
@@ -41,7 +59,13 @@ interface MessagesResource {
      * 指定したトークメッセージを削除します。
      * https://misskey.io/api-doc#operation/messaging/messages/delete
      */
-    fun messagesDelete(
+    @JsExport.Ignore
+    suspend fun messagesDelete(
+        request: MessagingMessagesDeleteRequest
+    ): EmptyResponse
+
+    @JsExport.Ignore
+    fun messagesDeleteBlocking(
         request: MessagingMessagesDeleteRequest
     ): EmptyResponse
 }

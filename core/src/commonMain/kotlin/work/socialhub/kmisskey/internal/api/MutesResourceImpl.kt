@@ -10,6 +10,7 @@ import work.socialhub.kmisskey.api.request.mutes.MutesListRequest
 import work.socialhub.kmisskey.api.response.mutes.MutesListResponse
 import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
+import work.socialhub.kmisskey.util.toBlocking
 
 class MutesResourceImpl(
     uri: String,
@@ -20,7 +21,7 @@ class MutesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun create(
+    override suspend fun create(
         request: MutesCreateRequest
     ): EmptyResponse {
         return postUnit(MutesCreate.path, request)
@@ -29,7 +30,18 @@ class MutesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun delete(
+    override fun createBlocking(
+        request: MutesCreateRequest
+    ): EmptyResponse {
+        return toBlocking {
+            create(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun delete(
         request: MutesDeleteRequest
     ): EmptyResponse {
         return postUnit(MutesDelete.path, request)
@@ -38,9 +50,31 @@ class MutesResourceImpl(
     /**
      * {@inheritDoc}
      */
-    override fun list(
+    override fun deleteBlocking(
+        request: MutesDeleteRequest
+    ): EmptyResponse {
+        return toBlocking {
+            delete(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun list(
         request: MutesListRequest
     ): Response<Array<MutesListResponse>> {
         return post(MutesList.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun listBlocking(
+        request: MutesListRequest
+    ): Response<Array<MutesListResponse>> {
+        return toBlocking {
+            list(request)
+        }
     }
 }

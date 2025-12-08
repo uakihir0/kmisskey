@@ -1,5 +1,6 @@
 package work.socialhub.kmisskey.apis
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kmisskey.AbstractTest
 import work.socialhub.kmisskey.api.request.i.IRequest
 import work.socialhub.kmisskey.api.request.users.UsersFollowingsRequest
@@ -12,7 +13,7 @@ import kotlin.test.Test
 class UsersTest : AbstractTest() {
 
     @Test
-    fun testUsersFollowings() {
+    fun testUsersFollowings() = runTest {
         val misskey = misskey()
 
         val i = misskey.accounts().i(IRequest())
@@ -28,7 +29,7 @@ class UsersTest : AbstractTest() {
     }
 
     @Test
-    fun testUsersRelation() {
+    fun testUsersRelation() = runTest {
         val relations =
             misskey().users().relation(
                 UsersRelationRequest().also {
@@ -44,7 +45,7 @@ class UsersTest : AbstractTest() {
     }
 
     @Test
-    fun testUsersSearch() {
+    fun testUsersSearch() = runTest {
         val misskey = misskey()
 
         val users = misskey.users().search(
@@ -58,7 +59,7 @@ class UsersTest : AbstractTest() {
     }
 
     @Test
-    fun testShowUsers() {
+    fun testShowUsers() = runTest {
         val misskey = misskey()
 
         val users = misskey.users().show(
@@ -73,7 +74,7 @@ class UsersTest : AbstractTest() {
     }
 
     @Test
-    fun testShowUser() {
+    fun testShowUser() = runTest {
         val misskey = misskey()
 
         run {

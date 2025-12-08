@@ -1,0 +1,72 @@
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinMultiplatform
+
+plugins {
+    id("maven-publish")
+    id("signing")
+
+    id("org.jetbrains.dokka")
+    id("org.jetbrains.dokka-javadoc")
+    id("com.vanniktech.maven.publish")
+}
+
+publishing {
+    repositories {
+        maven {
+            url = uri("https://repo.repsy.io/mvn/uakihir0/public")
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("PASSWORD")
+            }
+        }
+    }
+
+    // Configure all publications
+    publications.withType<MavenPublication> {
+
+        // Provide artifacts information required by Maven Central
+        pom {
+            name.set("kmisskey")
+            description.set("Kotlin multiplatform Misskey core library.")
+            url.set("https://github.com/uakihir0/kmisskey")
+
+            licenses {
+                license {
+                    name.set("MIT License")
+                    url.set("https://opensource.org/licenses/MIT")
+                }
+            }
+
+            developers {
+                developer {
+                    id.set("uakihir0")
+                    name.set("URUSHIHARA Akihiro")
+                    email.set("a.urusihara@gmail.com")
+                }
+            }
+
+            scm {
+                url.set("https://github.com/uakihir0/kmisskey")
+            }
+        }
+    }
+}
+
+mavenPublishing {
+    configure(
+        KotlinMultiplatform(
+            javadocJar = JavadocJar.Dokka("dokkaGeneratePublicationHtml")
+        )
+    )
+
+    if (project.hasProperty("mavenCentralUsername") ||
+        System.getenv("ORG_GRADLE_PROJECT_mavenCentralUsername") != null
+    ) signAllPublications()
+}
+
+signing {
+    if (project.hasProperty("mavenCentralUsername") ||
+        System.getenv("ORG_GRADLE_PROJECT_mavenCentralUsername") != null
+    ) useGpgCmd()
+}
+

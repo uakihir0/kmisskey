@@ -1,5 +1,6 @@
 package work.socialhub.kmisskey.apis
 
+import kotlinx.coroutines.test.runTest
 import work.socialhub.kmisskey.AbstractTest
 import work.socialhub.kmisskey.api.request.i.IFavoritesRequest
 import work.socialhub.kmisskey.api.request.notes.NotesCreateRequest
@@ -10,7 +11,7 @@ import kotlin.test.Test
 class NotesTest : AbstractTest() {
 
     @Test
-    fun testTimeline() {
+    fun testTimeline() = runTest {
         val misskey = misskey()
         val notes = misskey.notes().timeline(
             NotesTimelineRequest().also {
@@ -24,7 +25,7 @@ class NotesTest : AbstractTest() {
     }
 
     @Test
-    fun testFavorites() {
+    fun testFavorites() = runTest {
         val misskey = misskey()
         val favorites = misskey.accounts().iFavorites(
             IFavoritesRequest().also {
@@ -38,7 +39,7 @@ class NotesTest : AbstractTest() {
     }
 
     @Test
-    fun testNotesCreate() {
+    fun testNotesCreate() = runTest {
         val misskey = misskey()
         val response = misskey.notes().create(
             NotesCreateRequest().also {

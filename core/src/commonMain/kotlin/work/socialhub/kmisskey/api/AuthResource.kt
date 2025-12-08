@@ -18,7 +18,13 @@ interface AuthResource {
      * アプリを認証するためのトークンを作成します。
      * https://misskey.io/api-doc#operation/auth/session/generate
      */
-    fun sessionGenerate(
+    @JsExport.Ignore
+    suspend fun sessionGenerate(
+        request: GenerateAuthSessionRequest
+    ): Response<GenerateAuthSessionResponse>
+
+    @JsExport.Ignore
+    fun sessionGenerateBlocking(
         request: GenerateAuthSessionRequest
     ): Response<GenerateAuthSessionResponse>
 
@@ -26,14 +32,26 @@ interface AuthResource {
      * ユーザーのアクセストークンを発行します。
      * https://misskey.io/api-doc#operation/auth/session/userkey
      */
-    fun sessionUserKey(
+    @JsExport.Ignore
+    suspend fun sessionUserKey(
+        request: UserKeyAuthSessionRequest
+    ): Response<UserKeyAuthSessionResponse>
+
+    @JsExport.Ignore
+    fun sessionUserKeyBlocking(
         request: UserKeyAuthSessionRequest
     ): Response<UserKeyAuthSessionResponse>
 
     /**
      * MiAuth の認証ページのアドレスを生成します。
      */
-    fun getMiAuthUri(
+    @JsExport.Ignore
+    suspend fun getMiAuthUri(
+        request: GetMiAuthUriRequest
+    ): Response<String>
+
+    @JsExport.Ignore
+    fun getMiAuthUriBlocking(
         request: GetMiAuthUriRequest
     ): Response<String>
 }

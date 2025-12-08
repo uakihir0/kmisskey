@@ -26,8 +26,8 @@ repositories {
 }
 
 dependencies {
-+   implementation("work.socialhub.kmisskey:core:0.0.1-SNAPSHOT")
-+   implementation("work.socialhub.kmisskey:stream:0.0.1-SNAPSHOT")
++   implementation("work.socialhub.kmisskey:core:0.1.0-SNAPSHOT")
++   implementation("work.socialhub.kmisskey:stream:0.1.0-SNAPSHOT")
 }
 ```
 
@@ -67,8 +67,8 @@ println("USER TOKEN: " + response.data.accessToken)
 
 ```kotlin
 val misskey = MisskeyFactory.instance(
-    "HOST", 
-    "CLIENT_SECRET", 
+    "HOST",
+    "CLIENT_SECRET",
     "ACCESS_TOKEN",
 )
 
@@ -89,6 +89,7 @@ MIT License
 
 [khttpclient]: https://github.com/uakihir0/khttpclient
 [badge-android]: http://img.shields.io/badge/-android-6EDB8D.svg
+
 [badge-android-native]: http://img.shields.io/badge/support-[AndroidNative]-6EDB8D.svg
 [badge-wearos]: http://img.shields.io/badge/-wearos-8ECDA0.svg
 [badge-jvm]: http://img.shields.io/badge/-jvm-DB413D.svg
@@ -102,4 +103,3 @@ MIT License
 [badge-ios]: http://img.shields.io/badge/-ios-CDCDCD.svg
 [badge-mac]: http://img.shields.io/badge/-macos-111111.svg
 [badge-watchos]: http://img.shields.io/badge/-watchos-C0C0C0.svg
-[badge-tvos]: http://img.shields.io/badge/-tvos-808080.svg

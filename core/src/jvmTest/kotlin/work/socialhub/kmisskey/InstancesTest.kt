@@ -1,14 +1,15 @@
 package work.socialhub.kmisskey
 
+import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 
 class InstancesTest {
 
     @Test
-    fun testGetInstances() {
+    fun testGetInstances() = runTest {
 
         val search = MisskeyFactory.searchInstances
-        val instances = search.misskeyInstanceList
+        val instances = search.getInstances()
 
         for (joinInstance in instances.instances!!) {
             println("======================================")

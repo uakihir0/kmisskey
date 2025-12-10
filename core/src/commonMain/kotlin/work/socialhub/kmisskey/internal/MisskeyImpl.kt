@@ -13,6 +13,7 @@ import work.socialhub.kmisskey.api.ClipsResource
 import work.socialhub.kmisskey.api.FavoritesResource
 import work.socialhub.kmisskey.api.FederationResource
 import work.socialhub.kmisskey.api.FilesResource
+import work.socialhub.kmisskey.api.FoldersResource
 import work.socialhub.kmisskey.api.FollowingResource
 import work.socialhub.kmisskey.api.GalleriesResource
 import work.socialhub.kmisskey.api.HashtagsResource
@@ -22,8 +23,10 @@ import work.socialhub.kmisskey.api.MetaResource
 import work.socialhub.kmisskey.api.MutesResource
 import work.socialhub.kmisskey.api.NotesResource
 import work.socialhub.kmisskey.api.OtherResource
+import work.socialhub.kmisskey.api.PagesResource
 import work.socialhub.kmisskey.api.PollsResource
 import work.socialhub.kmisskey.api.ReactionsResource
+import work.socialhub.kmisskey.api.RolesResource
 import work.socialhub.kmisskey.api.UsersResource
 import work.socialhub.kmisskey.api.WebhooksResource
 import work.socialhub.kmisskey.internal.api.AccountsResourceImpl
@@ -38,6 +41,7 @@ import work.socialhub.kmisskey.internal.api.ClipsResourceImpl
 import work.socialhub.kmisskey.internal.api.FavoritesResourceImpl
 import work.socialhub.kmisskey.internal.api.FederationResourceImpl
 import work.socialhub.kmisskey.internal.api.FilesResourceImpl
+import work.socialhub.kmisskey.internal.api.FoldersResourceImpl
 import work.socialhub.kmisskey.internal.api.FollowingResourceImpl
 import work.socialhub.kmisskey.internal.api.GalleriesResourceImpl
 import work.socialhub.kmisskey.internal.api.HashtagsResourceImpl
@@ -47,8 +51,10 @@ import work.socialhub.kmisskey.internal.api.MetaResourceImpl
 import work.socialhub.kmisskey.internal.api.MutesResourceImpl
 import work.socialhub.kmisskey.internal.api.NotesResourceImpl
 import work.socialhub.kmisskey.internal.api.OtherResourceImpl
+import work.socialhub.kmisskey.internal.api.PagesResourceImpl
 import work.socialhub.kmisskey.internal.api.PollsResourceImpl
 import work.socialhub.kmisskey.internal.api.ReactionsResourceImpl
+import work.socialhub.kmisskey.internal.api.RolesResourceImpl
 import work.socialhub.kmisskey.internal.api.UsersResourceImpl
 import work.socialhub.kmisskey.internal.api.WebhooksResourceImpl
 
@@ -86,6 +92,9 @@ class MisskeyImpl(
     private val webhooks: WebhooksResource = WebhooksResourceImpl(uri, i)
     private val galleries: GalleriesResource = GalleriesResourceImpl(uri, i)
     private val other: OtherResource = OtherResourceImpl(uri, i)
+    private val folders: FoldersResource = FoldersResourceImpl(uri, i)
+    private val roles: RolesResource = RolesResourceImpl(uri, i)
+    private val pages: PagesResource = PagesResourceImpl(uri, i)
 
     override fun meta() = meta
     override fun federation() = federation
@@ -113,6 +122,9 @@ class MisskeyImpl(
     override fun other() = other
     override fun webhook() = webhooks
     override fun gallery() = galleries
+    override fun folders() = folders
+    override fun roles() = roles
+    override fun pages() = pages
 
     override val host: String
         get() = Url(uri).host

@@ -208,6 +208,34 @@ enum class MisskeyAPI(
     // ------------------------------------------ //
 
     FilesCreate("drive/files/create"),
+    Files("drive/files"),
+    FilesShow("drive/files/show"),
+    FilesFind("drive/files/find"),
+    FilesDelete("drive/files/delete"),
+    FilesUpdate("drive/files/update"),
+
+    Folders("drive/folders"),
+    FoldersShow("drive/folders/show"),
+    FoldersDelete("drive/folders/delete"),
+    FoldersUpdate("drive/folders/update"),
+    FoldersCreate("drive/folders/create"),
+
+    // ------------------------------------------ //
+    // Roles
+    // ------------------------------------------ //
+
+    RolesList("roles/list"),
+    RolesShow("roles/show"),
+    RolesUsers("roles/users"),
+
+    // ------------------------------------------ //
+    // Pages
+    // ------------------------------------------ //
+
+    PagesCreate("pages/create"),
+    PagesDelete("pages/delete"),
+    PagesShow("pages/show"),
+    PagesUpdate("pages/update"),
 
     // ------------------------------------------ //
     // Hashtags

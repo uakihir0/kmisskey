@@ -12,6 +12,7 @@ import work.socialhub.kmisskey.api.ClipsResource
 import work.socialhub.kmisskey.api.FavoritesResource
 import work.socialhub.kmisskey.api.FederationResource
 import work.socialhub.kmisskey.api.FilesResource
+import work.socialhub.kmisskey.api.FoldersResource
 import work.socialhub.kmisskey.api.FollowingResource
 import work.socialhub.kmisskey.api.GalleriesResource
 import work.socialhub.kmisskey.api.HashtagsResource
@@ -21,8 +22,10 @@ import work.socialhub.kmisskey.api.MetaResource
 import work.socialhub.kmisskey.api.MutesResource
 import work.socialhub.kmisskey.api.NotesResource
 import work.socialhub.kmisskey.api.OtherResource
+import work.socialhub.kmisskey.api.PagesResource
 import work.socialhub.kmisskey.api.PollsResource
 import work.socialhub.kmisskey.api.ReactionsResource
+import work.socialhub.kmisskey.api.RolesResource
 import work.socialhub.kmisskey.api.UsersResource
 import work.socialhub.kmisskey.api.WebhooksResource
 import kotlin.js.JsExport
@@ -56,6 +59,9 @@ interface Misskey {
     fun other(): OtherResource
     fun webhook(): WebhooksResource
     fun gallery(): GalleriesResource
+    fun folders(): FoldersResource
+    fun roles(): RolesResource
+    fun pages(): PagesResource
 
     /**
      * Get uri to access.

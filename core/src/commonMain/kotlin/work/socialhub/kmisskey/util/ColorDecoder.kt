@@ -9,9 +9,9 @@ object ColorDecoder {
      */
     fun decode(color: String): Color {
 
-        // #RRGGBB
-        if (color.startsWith("#")) {
-            val hex = color.replace("#", "")
+        // #RRGGBB または RRGGBB (6文字の16進数)
+        if (color.startsWith("#") || (color.length == 6 && color.all { it.isHexDigit() })) {
+            val hex = color.removePrefix("#")
             val r = hex.substring(0, 2).toInt(16)
             val g = hex.substring(2, 4).toInt(16)
             val b = hex.substring(4, 6).toInt(16)
@@ -47,5 +47,12 @@ object ColorDecoder {
             this.g = g
             this.b = b
         }
+    }
+
+    /**
+     * 文字が16進数の文字かどうかを判定する
+     */
+    private fun Char.isHexDigit(): Boolean {
+        return this in '0'..'9' || this in 'a'..'f' || this in 'A'..'F'
     }
 }

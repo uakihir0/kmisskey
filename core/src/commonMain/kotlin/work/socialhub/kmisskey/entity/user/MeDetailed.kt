@@ -2,6 +2,7 @@ package work.socialhub.kmisskey.entity.user
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.Achievement
+import work.socialhub.kmisskey.entity.MutedWordItem
 import kotlin.js.JsExport
 
 @JsExport
@@ -42,8 +43,8 @@ class MeDetailed : UserDetailedNotMe() {
     var hasPendingReceivedFollowRequest: Boolean = false
     var unreadNotificationsCount: Int = 0
 
-    var mutedWords: Array<Array<String>> = arrayOf()
-    var hardMutedWords: Array<Array<String>> = arrayOf()
+    var mutedWords: List<MutedWordItem> = listOf()
+    var hardMutedWords: List<MutedWordItem> = listOf()
     var mutedInstances: Array<String> = arrayOf()
 
     // TODO: Object

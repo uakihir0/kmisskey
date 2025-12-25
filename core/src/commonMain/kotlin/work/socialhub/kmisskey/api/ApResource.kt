@@ -12,7 +12,6 @@ interface ApResource {
      * 指定した uri の Note または User を取得します。
      * @see "https://misskey.io/api-doc.operation/ap/show"
      */
-    @JsExport.Ignore
     suspend fun show(
         request: ApShowRequest
     ): Response<ApShowResponse>

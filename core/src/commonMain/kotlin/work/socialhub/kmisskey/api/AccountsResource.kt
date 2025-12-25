@@ -26,7 +26,6 @@ interface AccountsResource {
      * 自分のアカウント情報を取得します。
      * https://misskey.io/api-doc#tag/account/operation/i
      */
-    @JsExport.Ignore
     suspend fun i(
         request: IRequest
     ): Response<IResponse>
@@ -40,7 +39,6 @@ interface AccountsResource {
      * お気に入りに登録した投稿一覧を取得します。
      * https://misskey.io/api-doc#tag/account/operation/i/favorites
      */
-    @JsExport.Ignore
     suspend fun iFavorites(
         request: IFavoritesRequest
     ): Response<Array<IFavoritesResponse>>
@@ -54,7 +52,6 @@ interface AccountsResource {
      * 通知一覧を取得します。
      * https://misskey.io/api-doc#operation/i/notifications
      */
-    @JsExport.Ignore
     suspend fun iNotifications(
         request: INotificationsRequest
     ): Response<Array<INotificationsResponse>>
@@ -69,7 +66,6 @@ interface AccountsResource {
      *
      * https://misskey.io/api-doc#tag/account/operation/i/update
      */
-    @JsExport.Ignore
     suspend fun iUpdate(
         request: IUpdateRequest
     ): Response<IUpdateResponse>
@@ -84,7 +80,6 @@ interface AccountsResource {
      *
      * https://misskey.io/api-doc#tag/account/operation/i/pin
      */
-    @JsExport.Ignore
     suspend fun pinNote(
         request: IPinRequest
     ): Response<IPinResponse>
@@ -99,7 +94,6 @@ interface AccountsResource {
      *
      * https://misskey.io/api-doc#tag/account/operation/i/unpin
      */
-    @JsExport.Ignore
     suspend fun unpinNote(
         request: IUnpinRequest
     ): Response<IUnpinResponse>

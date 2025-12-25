@@ -26,6 +26,10 @@ kotlin {
     mingwX64()
     linuxX64()
 
+    compilerOptions {
+        freeCompilerArgs.add("-Xenable-suspend-function-exporting")
+    }
+
     sourceSets {
         all {
             languageSettings.apply {

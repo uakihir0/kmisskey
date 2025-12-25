@@ -21,7 +21,6 @@ interface ChannelsResource {
      * 管理しているチャンネル一覧を取得します。
      * @see "https://misskey.io/api-doc.tag/channels/operation/channels/owned"
      */
-    @JsExport.Ignore
     suspend fun owned(
         request: ChannelsOwnedRequest
     ): Response<Array<ChannelsOwnedResponse>>
@@ -35,7 +34,6 @@ interface ChannelsResource {
      * お気に入りのチャンネル一覧を取得します。
      * @see "https://misskey.io/api-doc.tag/channels/operation/channels/my-favorites"
      */
-    @JsExport.Ignore
     suspend fun myFavorites(
         request: ChannelsMyFavoritesRequest
     ): Response<Array<ChannelsMyFavoritesResponse>>
@@ -49,7 +47,6 @@ interface ChannelsResource {
      * フォローしているチャンネル一覧を取得します。
      * @see "https://misskey.io/api-doc.tag/channels/operation/channels/followed"
      */
-    @JsExport.Ignore
     suspend fun followed(
         request: ChannelsFollowedRequest
     ): Response<Array<ChannelsFollowedResponse>>
@@ -63,7 +60,6 @@ interface ChannelsResource {
      * 指定したチャンネルのタイムラインを取得します。
      * @see "https://misskey.io/api-doc.tag/notes/operation/channels/timeline"
      */
-    @JsExport.Ignore
     suspend fun timeline(
         request: ChannelsTimelineRequest
     ): Response<Array<ChannelsTimelineResponse>>
@@ -77,7 +73,6 @@ interface ChannelsResource {
      * 指定したチャンネルの情報を取得します。
      * @see "https://misskey.io/api-doc.tag/notes/operation/channels/show"
      */
-    @JsExport.Ignore
     suspend fun show(
         request: ChannelsShowRequest
     ): Response<ChannelsShowResponse>

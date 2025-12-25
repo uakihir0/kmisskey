@@ -12,7 +12,6 @@ interface OtherResource {
      * サービスワーカーの通知先を登録します
      * https://misskey.io/api-doc#operation/sw/register
      */
-    @JsExport.Ignore
     suspend fun serviceWorkerRegister(
         request: ServiceWorkerRegisterRequest
     ): Response<ServiceWorkerRegisterResponse>

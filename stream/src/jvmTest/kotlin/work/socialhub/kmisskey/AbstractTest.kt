@@ -10,15 +10,14 @@ open class AbstractTest {
 
     companion object {
         var HOST: String? = "https://misskey.io/api/"
-        var CLIENT_ID: String? = null
-        var CLIENT_SECRET: String? = null
+        var APP_SECRET: String? = null
         var USER_TOKEN: String? = null
         var OWNED_USER_TOKEN: String? = null
     }
 
     fun misskey(): Misskey {
         return MisskeyFactory.instance(
-            HOST!!, CLIENT_SECRET!!, USER_TOKEN!!
+            HOST!!, APP_SECRET!!, USER_TOKEN!!
         )
     }
 
@@ -38,8 +37,7 @@ open class AbstractTest {
             val param = props.params[0]
 
             HOST = param.host
-            CLIENT_ID = param.clientId
-            CLIENT_SECRET = param.clientSecret
+            APP_SECRET = param.appSecret
             USER_TOKEN = param.userToken
             OWNED_USER_TOKEN = param.ownedUserToken
 
@@ -58,11 +56,8 @@ open class AbstractTest {
     class SecretParams {
         var host: String? = null
 
-        @SerialName("client_id")
-        var clientId: String? = null
-
-        @SerialName("client_secret")
-        var clientSecret: String? = null
+        @SerialName("app_secret")
+        var appSecret: String? = null
 
         @SerialName("user_token")
         var userToken: String? = null

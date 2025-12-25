@@ -39,7 +39,7 @@ Misskey API はすべて **POST リクエスト** で、エンドポイントは
 3. ユーザーが認証後、コールバックからトークンを取得
 4. `auth().sessionUserKey()` でアクセストークンを取得
 
-**アプリケーション認証**: clientSecret と userToken から SHA256 ハッシュを生成
+**アプリケーション認証**: appSecret と userToken から SHA256 ハッシュを生成
 
 **Web UI トークン**: Misskey の設定画面で発行したトークンをそのまま使用
 

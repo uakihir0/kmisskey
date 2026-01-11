@@ -15,7 +15,6 @@ interface AppResource {
      * アプリを作成します。
      * https://misskey.io/api-doc#operation/app/create
      */
-    @JsExport.Ignore
     suspend fun createApp(
         request: CreateAppRequest
     ): Response<CreateAppResponse>

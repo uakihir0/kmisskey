@@ -15,7 +15,6 @@ interface AntennasResource {
      *
      * https://misskey.io/api-doc#tag/antennas/operation/antennas/list
      */
-    @JsExport.Ignore
     suspend fun list(
         request: AntennasListRequest
     ): Response<Array<AntennasListResponse>>
@@ -28,7 +27,6 @@ interface AntennasResource {
     /**
      * https://misskey.io/api-doc#tag/antennas/operation/antennas/notes
      */
-    @JsExport.Ignore
     suspend fun notes(
         request: AntennasNotesRequest
     ): Response<Array<AntennasNotesResponse>>

@@ -2,7 +2,9 @@ package work.socialhub.kmisskey.entity
 
 import kotlinx.serialization.Serializable
 import work.socialhub.kmisskey.entity.user.User
+import kotlin.js.JsExport
 
+@JsExport
 @Serializable
 open class Message {
 

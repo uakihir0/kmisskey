@@ -18,7 +18,6 @@ interface AnnouncementsResource {
      *
      * https://misskey.io/api-doc#tag/meta/operation/announcements
      */
-    @JsExport.Ignore
     suspend fun announcements(
         request: AnnouncementsRequest
     ): Response<Array<AnnouncementsResponse>>
@@ -33,7 +32,6 @@ interface AnnouncementsResource {
      *
      * https://misskey.io/api-doc#tag/account/operation/i/read-announcement
      */
-    @JsExport.Ignore
     suspend fun readAnnouncement(
         request: ReadAnnouncementRequest
     ): EmptyResponse

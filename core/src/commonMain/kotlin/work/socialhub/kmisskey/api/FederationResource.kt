@@ -11,7 +11,6 @@ import kotlin.js.JsExport
 @JsExport
 interface FederationResource {
 
-    @JsExport.Ignore
     suspend fun showInstance(
         request: ShowInstanceRequest
     ): Response<FederationInstanceResponse>

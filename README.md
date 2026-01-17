@@ -17,7 +17,7 @@ The behavior on each platform depends on [khttpclient].
 ## Usage
 
 Below is how to use it in Kotlin with Gradle on supported platforms.
-**If you want to use it on Apple platforms, please refer to [kmisskey-cocoapods](https://github.com/uakihir0/kmisskey-cocoapods).**
+**If you want to use it on Apple platforms, please refer to [kmisskey-spm](https://github.com/uakihir0/kmisskey-spm) or [kmisskey-cocoapods](https://github.com/uakihir0/kmisskey-cocoapods).**
 **Also, for usage in JavaScript, please refer to [kmsskey.js](https://github.com/uakihir0/kmisskey.js).**
 Please refer to the test code for how to use each API.
 
@@ -69,8 +69,8 @@ println("USER TOKEN: " + response.data.accessToken)
 
 ```kotlin
 val misskey = MisskeyFactory.instance(
-    "HOST", 
-    "CLIENT_SECRET", 
+    "HOST",
+    "CLIENT_SECRET",
     "ACCESS_TOKEN",
 )
 
@@ -91,6 +91,7 @@ MIT License
 
 [khttpclient]: https://github.com/uakihir0/khttpclient
 [badge-android]: http://img.shields.io/badge/-android-6EDB8D.svg
+
 [badge-android-native]: http://img.shields.io/badge/support-[AndroidNative]-6EDB8D.svg
 [badge-wearos]: http://img.shields.io/badge/-wearos-8ECDA0.svg
 [badge-jvm]: http://img.shields.io/badge/-jvm-DB413D.svg

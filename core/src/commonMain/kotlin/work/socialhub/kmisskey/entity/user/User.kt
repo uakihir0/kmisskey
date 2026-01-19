@@ -9,6 +9,7 @@ import work.socialhub.kmisskey.entity.Instance
 import work.socialhub.kmisskey.entity.Role
 import work.socialhub.kmisskey.entity.UserPolicies
 import work.socialhub.kmisskey.util.BlurHashDecoder
+import work.socialhub.kmisskey.util.ColorDecoder
 import work.socialhub.kmisskey.util.json.UserSerializer
 import kotlin.js.JsExport
 
@@ -56,24 +57,33 @@ abstract class User {
      * The following are original items.
      * 以下、独自項目
      */
-    var avatarColor: Color? = null
-        get() {
-            if (field == null) {
-                val decoder = BlurHashDecoder.instance
-                val ary = decoder.decode(
-                    avatarBlurhash,
-                    1,
-                    1,
-                    1F,
-                    false
-                ) ?: return null
 
-                val color = Color()
-                color.r = ary[0][0][0]
-                color.g = ary[0][0][1]
-                color.b = ary[0][0][2]
-                return color
+    // サーバーから返される色文字列 (例: "rgb(169,122,93)", "#86b300")
+    var avatarColor: String? = null
+
+    // avatarColor を Color オブジェクトとして取得
+    // avatarColor が null の場合は avatarBlurhash から計算
+    val avatarColorObject: Color?
+        get() {
+            // avatarColor が設定されている場合はそれをデコード
+            avatarColor?.let {
+                return ColorDecoder.decode(it)
             }
-            return field
+
+            // avatarBlurhash からフォールバック計算
+            val decoder = BlurHashDecoder.instance
+            val ary = decoder.decode(
+                avatarBlurhash,
+                1,
+                1,
+                1F,
+                false
+            ) ?: return null
+
+            val color = Color()
+            color.r = ary[0][0][0]
+            color.g = ary[0][0][1]
+            color.b = ary[0][0][2]
+            return color
         }
 }

@@ -27,9 +27,9 @@ object ColorDecoder {
             val rgb = color
                 .replace("rgb(", "")
                 .replace(")", "").split(",")
-            val r = rgb[0].toInt()
-            val g = rgb[1].toInt()
-            val b = rgb[2].toInt()
+            val r = rgb[0].trim().toInt()
+            val g = rgb[1].trim().toInt()
+            val b = rgb[2].trim().toInt()
             return Color().apply {
                 this.r = r
                 this.g = g
@@ -39,9 +39,9 @@ object ColorDecoder {
 
         // R,G,B
         val rgb = color.split(",")
-        val r = rgb[0].toInt()
-        val g = rgb[1].toInt()
-        val b = rgb[2].toInt()
+        val r = rgb[0].trim().toInt()
+        val g = rgb[1].trim().toInt()
+        val b = rgb[2].trim().toInt()
         return Color().apply {
             this.r = r
             this.g = g

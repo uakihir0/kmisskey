@@ -6,6 +6,7 @@ import work.socialhub.kmisskey.entity.Field
 import work.socialhub.kmisskey.entity.Note
 import work.socialhub.kmisskey.entity.Page
 import work.socialhub.kmisskey.util.BlurHashDecoder
+import work.socialhub.kmisskey.util.ColorDecoder
 import kotlin.js.JsExport
 
 @JsExport
@@ -82,24 +83,33 @@ open class UserDetailedNotMe : UserLite() {
      * The following are original items.
      * 以下、独自項目
      */
-    var bannerColor: Color? = null
-        get() {
-            if (field == null) {
-                val decoder = BlurHashDecoder.instance
-                val ary = decoder.decode(
-                    bannerBlurhash,
-                    1,
-                    1,
-                    1F,
-                    false
-                ) ?: return null
 
-                val color = Color()
-                color.r = ary[0][0][0]
-                color.g = ary[0][0][1]
-                color.b = ary[0][0][2]
-                return color
+    // サーバーから返される色文字列 (例: "rgb(169,122,93)", "#86b300")
+    var bannerColor: String? = null
+
+    // bannerColor を Color オブジェクトとして取得
+    // bannerColor が null の場合は bannerBlurhash から計算
+    val bannerColorObject: Color?
+        get() {
+            // bannerColor が設定されている場合はそれをデコード
+            bannerColor?.let {
+                return ColorDecoder.decode(it)
             }
-            return field
+
+            // bannerBlurhash からフォールバック計算
+            val decoder = BlurHashDecoder.instance
+            val ary = decoder.decode(
+                bannerBlurhash,
+                1,
+                1,
+                1F,
+                false
+            ) ?: return null
+
+            val color = Color()
+            color.r = ary[0][0][0]
+            color.g = ary[0][0][1]
+            color.b = ary[0][0][2]
+            return color
         }
 }

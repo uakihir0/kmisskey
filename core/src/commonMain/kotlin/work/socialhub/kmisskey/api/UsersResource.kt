@@ -7,6 +7,7 @@ import work.socialhub.kmisskey.api.request.users.UsersRecommendationRequest
 import work.socialhub.kmisskey.api.request.users.UsersRelationRequest
 import work.socialhub.kmisskey.api.request.users.UsersSearchByUsernameAndHostRequest
 import work.socialhub.kmisskey.api.request.users.UsersSearchRequest
+import work.socialhub.kmisskey.api.request.users.UsersSearchWithAuthRequest
 import work.socialhub.kmisskey.api.request.users.UsersShowMultipleRequest
 import work.socialhub.kmisskey.api.request.users.UsersShowSingleRequest
 import work.socialhub.kmisskey.api.response.notes.UsersReactionsResponse
@@ -130,6 +131,19 @@ interface UsersResource {
     @JsExport.Ignore
     fun searchBlocking(
         request: UsersSearchRequest
+    ): Response<Array<UsersSearchResponse>>
+
+    /**
+     * ユーザーを検索します。（認証必須）
+     * https://misskey.io/api-doc#operation/users/search
+     */
+    suspend fun searchWithAuth(
+        request: UsersSearchWithAuthRequest
+    ): Response<Array<UsersSearchResponse>>
+
+    @JsExport.Ignore
+    fun searchWithAuthBlocking(
+        request: UsersSearchWithAuthRequest
     ): Response<Array<UsersSearchResponse>>
 
     /**

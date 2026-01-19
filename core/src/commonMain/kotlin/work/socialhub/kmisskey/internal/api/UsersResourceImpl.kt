@@ -16,6 +16,7 @@ import work.socialhub.kmisskey.api.request.users.UsersRecommendationRequest
 import work.socialhub.kmisskey.api.request.users.UsersRelationRequest
 import work.socialhub.kmisskey.api.request.users.UsersSearchByUsernameAndHostRequest
 import work.socialhub.kmisskey.api.request.users.UsersSearchRequest
+import work.socialhub.kmisskey.api.request.users.UsersSearchWithAuthRequest
 import work.socialhub.kmisskey.api.request.users.UsersShowMultipleRequest
 import work.socialhub.kmisskey.api.request.users.UsersShowSingleRequest
 import work.socialhub.kmisskey.api.response.notes.UsersReactionsResponse
@@ -192,6 +193,26 @@ class UsersResourceImpl(
     ): Response<Array<UsersSearchResponse>> {
         return toBlocking {
             search(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun searchWithAuth(
+        request: UsersSearchWithAuthRequest
+    ): Response<Array<UsersSearchResponse>> {
+        return post(UsersSearch.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun searchWithAuthBlocking(
+        request: UsersSearchWithAuthRequest
+    ): Response<Array<UsersSearchResponse>> {
+        return toBlocking {
+            searchWithAuth(request)
         }
     }
 

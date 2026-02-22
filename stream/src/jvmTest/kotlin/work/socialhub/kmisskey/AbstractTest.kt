@@ -1,9 +1,7 @@
 package work.socialhub.kmisskey
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-import work.socialhub.kmisskey.internal.Internal
-import java.io.FileReader
+import kotlinx.serialization.json.Json
+import java.io.File
 import kotlin.test.BeforeTest
 
 open class AbstractTest {
@@ -15,54 +13,67 @@ open class AbstractTest {
         var OWNED_USER_TOKEN: String? = null
     }
 
+    protected val json = Json {
+        ignoreUnknownKeys = true
+    }
+
     fun misskey(): Misskey {
         return MisskeyFactory.instance(
             HOST!!, APP_SECRET!!, USER_TOKEN!!
         )
     }
 
-    /**
-     * Read File
-     */
-    private fun readFile(file: String): String {
-        return FileReader(file).readText()
-    }
-
     @BeforeTest
     fun setupTest() {
+
         try {
-            // Get account handle and password.
-            val json = readFile("../secrets.json")
-            val props = Internal.fromJson<Secrets>(json)
-            val param = props.params[0]
+            // Get credentials from environment variables.
+            HOST = System.getenv("MISSKEY_HOST")
+                ?: System.getProperty("MISSKEY_HOST")
+                ?: HOST
+            APP_SECRET = System.getenv("MISSKEY_APP_SECRET")
+                ?: System.getProperty("MISSKEY_APP_SECRET")
+            USER_TOKEN = System.getenv("MISSKEY_USER_TOKEN")
+                ?: System.getProperty("MISSKEY_USER_TOKEN")
+            OWNED_USER_TOKEN = System.getenv("MISSKEY_OWNED_USER_TOKEN")
+                ?: System.getProperty("MISSKEY_OWNED_USER_TOKEN")
+        } catch (_: Exception) {
+        }
 
-            HOST = param.host
-            APP_SECRET = param.appSecret
-            USER_TOKEN = param.userToken
-            OWNED_USER_TOKEN = param.ownedUserToken
+        if (APP_SECRET == null || USER_TOKEN == null) {
+            try {
+                // Get credentials from secrets.json file.
+                readTestProps()?.get("misskey")?.let {
+                    HOST = it["MISSKEY_HOST"] ?: HOST
+                    APP_SECRET = it["MISSKEY_APP_SECRET"]
+                    USER_TOKEN = it["MISSKEY_USER_TOKEN"]
+                    OWNED_USER_TOKEN = it["MISSKEY_OWNED_USER_TOKEN"]
+                }
+            } catch (_: Exception) {
+            }
+        }
 
-        } catch (e: Exception) {
-            e.printStackTrace()
+        if (APP_SECRET == null || USER_TOKEN == null) {
+            throw IllegalStateException(
+                """!!!
+                No credentials exist for testing.
+                Set the environment variables MISSKEY_APP_SECRET and MISSKEY_USER_TOKEN
+                or copy the following file and describe its contents.
+                `cp secrets.json.default secrets.json`
+                !!!""".trimIndent()
+            )
         }
     }
 
-
-    @Serializable
-    class Secrets {
-        var params: List<SecretParams> = listOf()
-    }
-
-    @Serializable
-    class SecretParams {
-        var host: String? = null
-
-        @SerialName("app_secret")
-        var appSecret: String? = null
-
-        @SerialName("user_token")
-        var userToken: String? = null
-
-        @SerialName("owned_user_token")
-        var ownedUserToken: String? = null
+    /**
+     * Read Test Properties
+     */
+    private fun readTestProps(): Map<String, Map<String, String>>? {
+        return try {
+            val jsonStr = File("../secrets.json").readText()
+            json.decodeFromString<Map<String, Map<String, String>>>(jsonStr)
+        } catch (e: Exception) {
+            null
+        }
     }
 }

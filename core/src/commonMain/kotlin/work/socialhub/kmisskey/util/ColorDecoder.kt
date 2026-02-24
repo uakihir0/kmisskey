@@ -9,9 +9,15 @@ object ColorDecoder {
      */
     fun decode(color: String): Color {
 
-        // #RRGGBB または RRGGBB (6文字の16進数)
-        if (color.startsWith("#") || (color.length == 6 && color.all { it.isHexDigit() })) {
-            val hex = color.removePrefix("#")
+        // #RRGGBB, #RGB, RRGGBB, RGB (16進数)
+        if (color.startsWith("#") || (color.length == 6 && color.all { it.isHexDigit() }) || (color.length == 3 && color.all { it.isHexDigit() })) {
+            val short = color.removePrefix("#")
+            // 3文字の短縮形(#RGB)を6文字(#RRGGBB)に展開
+            val hex = if (short.length == 3) {
+                "${short[0]}${short[0]}${short[1]}${short[1]}${short[2]}${short[2]}"
+            } else {
+                short
+            }
             val r = hex.substring(0, 2).toInt(16)
             val g = hex.substring(2, 4).toInt(16)
             val b = hex.substring(4, 6).toInt(16)

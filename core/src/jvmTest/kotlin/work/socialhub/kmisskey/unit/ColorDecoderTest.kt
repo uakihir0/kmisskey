@@ -42,6 +42,34 @@ class ColorDecoderTest {
     }
 
     @Test
+    fun decodeShortHexWithPrefix() {
+        // #RGB → #RRGGBB に展開される
+        val color = ColorDecoder.decode("#fff")
+
+        assertEquals(0xff, color.r)
+        assertEquals(0xff, color.g)
+        assertEquals(0xff, color.b)
+    }
+
+    @Test
+    fun decodeShortHexWithPrefix2() {
+        val color = ColorDecoder.decode("#abc")
+
+        assertEquals(0xaa, color.r)
+        assertEquals(0xbb, color.g)
+        assertEquals(0xcc, color.b)
+    }
+
+    @Test
+    fun decodeShortHexWithoutPrefix() {
+        val color = ColorDecoder.decode("f80")
+
+        assertEquals(0xff, color.r)
+        assertEquals(0x88, color.g)
+        assertEquals(0x00, color.b)
+    }
+
+    @Test
     fun decodeRgbFormat() {
         val color = ColorDecoder.decode("rgb(169,122,93)")
 

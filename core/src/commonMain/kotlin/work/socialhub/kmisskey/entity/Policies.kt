@@ -11,4 +11,9 @@ class Policies {
     var ltlAvailable: Boolean? = null
     var canPublicNote: Boolean? = null
     var canInvite: Boolean? = null
+
+    /**
+     * Maximum upload size per file in MiB.
+     */
+    var maxFileSizeMb: Int? = null
 }

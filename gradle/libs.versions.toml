@@ -9,7 +9,6 @@ coroutines = "1.11.0"
 kmpcommon = "work.socialhub:kmpcommon:0.0.1-SNAPSHOT"
 khttpclient = "work.socialhub:khttpclient:0.0.8"
 ktor-core = "io.ktor:ktor-client-core:3.5.0"
-datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.8.0-0.6.x-compat"
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }

@@ -27,6 +27,7 @@ jobs:
 
       - name: Copy Docs to Npm Package
         run: |
+          cp ./LICENSE ./all/build/dist/js/productionLibrary/LICENSE
           cp ./docs/js/README.md ./all/build/dist/js/productionLibrary/README.md
           cp ./docs/js/README_ja.md ./all/build/dist/js/productionLibrary/README_ja.md
 

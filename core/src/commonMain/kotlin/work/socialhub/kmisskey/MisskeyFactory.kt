@@ -57,8 +57,8 @@ object MisskeyFactory {
     ): String {
         var result = url
 
-        // ホスト名だけで指定してきた場合
-        if (!result.startsWith("https://")) {
+        // プロトコル指定がない場合のみ https:// を付与
+        if (!result.startsWith("https://") && !result.startsWith("http://")) {
             result = "https://$result"
         }
         // API ディレクトリが抜けていた場合

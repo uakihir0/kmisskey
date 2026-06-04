@@ -6,13 +6,14 @@ import work.socialhub.kmisskey.stream.callback.NoteCallback
 import work.socialhub.kmisskey.stream.callback.TimelineCallback
 
 class MisskeyStream(
-    misskey: Misskey
+    misskey: Misskey,
+    streamHost: String? = null,
 ) {
     val url: String
     val client: StreamClient
 
     init {
-        val host = misskey.host
+        val host = streamHost ?: misskey.host
         val i = checkNotNull(misskey.i)
         url = "wss://$host/streaming?i=$i"
         client = StreamClient(url)

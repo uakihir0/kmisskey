@@ -13,12 +13,24 @@ class MisskeyStream(
     val client: StreamClient
 
     init {
-        val host = (streamHost ?: misskey.host)
-            .removePrefix("https://")
-            .removePrefix("http://")
-            .trimEnd('/')
+        val raw = streamHost ?: misskey.host
+        val protocol: String
+        val host: String
+        if (raw.contains("://")) {
+            val parts = raw.split("://", limit = 2)
+            protocol = when (parts[0]) {
+                "ws", "wss" -> parts[0]
+                "http" -> "ws"
+                "https" -> "wss"
+                else -> "wss"
+            }
+            host = parts[1].trimEnd('/')
+        } else {
+            protocol = "wss"
+            host = raw.trimEnd('/')
+        }
         val i = checkNotNull(misskey.i)
-        url = "wss://$host/streaming?i=$i"
+        url = "$protocol://$host/streaming?i=$i"
         client = StreamClient(url)
     }
 

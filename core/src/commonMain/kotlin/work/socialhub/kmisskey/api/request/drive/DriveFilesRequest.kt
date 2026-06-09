@@ -14,4 +14,8 @@ class DriveFilesRequest : PagingTokenRequest() {
     // MIME タイプによる絞り込み。
     // "image/jpeg" のような完全一致のほか、"image/*" 形式で前方一致 (image/ で始まるもの) も指定可能。
     var type: String? = null
+
+    // ソート順。
+    // "+createdAt", "-createdAt", "+name", "-name", "+size", "-size"
+    var sort: String? = null
 }

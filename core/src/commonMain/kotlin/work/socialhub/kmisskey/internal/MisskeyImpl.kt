@@ -10,6 +10,7 @@ import work.socialhub.kmisskey.api.AuthResource
 import work.socialhub.kmisskey.api.BlocksResource
 import work.socialhub.kmisskey.api.ChannelsResource
 import work.socialhub.kmisskey.api.ClipsResource
+import work.socialhub.kmisskey.api.DriveResource
 import work.socialhub.kmisskey.api.FavoritesResource
 import work.socialhub.kmisskey.api.FederationResource
 import work.socialhub.kmisskey.api.FilesResource
@@ -35,6 +36,7 @@ import work.socialhub.kmisskey.internal.api.AuthResourceImpl
 import work.socialhub.kmisskey.internal.api.BlocksResourceImpl
 import work.socialhub.kmisskey.internal.api.ChannelsResourceImpl
 import work.socialhub.kmisskey.internal.api.ClipsResourceImpl
+import work.socialhub.kmisskey.internal.api.DriveResourceImpl
 import work.socialhub.kmisskey.internal.api.FavoritesResourceImpl
 import work.socialhub.kmisskey.internal.api.FederationResourceImpl
 import work.socialhub.kmisskey.internal.api.FilesResourceImpl
@@ -82,6 +84,7 @@ class MisskeyImpl(
     private val polls: PollsResource = PollsResourceImpl(uri, i)
     private val messages: MessagesResource = MessagesResourceImpl(uri, i)
     private val files: FilesResource = FilesResourceImpl(uri, i)
+    private val drive: DriveResource = DriveResourceImpl(uri, i)
     private val hashtags: HashtagsResource = HashtagsResourceImpl(uri, i)
     private val webhooks: WebhooksResource = WebhooksResourceImpl(uri, i)
     private val galleries: GalleriesResource = GalleriesResourceImpl(uri, i)
@@ -109,6 +112,7 @@ class MisskeyImpl(
     override fun polls() = polls
     override fun messages() = messages
     override fun files() = files
+    override fun drive() = drive
     override fun hashtags() = hashtags
     override fun other() = other
     override fun webhook() = webhooks

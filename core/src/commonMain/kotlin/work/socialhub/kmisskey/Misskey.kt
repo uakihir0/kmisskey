@@ -9,6 +9,7 @@ import work.socialhub.kmisskey.api.AuthResource
 import work.socialhub.kmisskey.api.BlocksResource
 import work.socialhub.kmisskey.api.ChannelsResource
 import work.socialhub.kmisskey.api.ClipsResource
+import work.socialhub.kmisskey.api.DriveResource
 import work.socialhub.kmisskey.api.FavoritesResource
 import work.socialhub.kmisskey.api.FederationResource
 import work.socialhub.kmisskey.api.FilesResource
@@ -52,6 +53,7 @@ interface Misskey {
     fun polls(): PollsResource
     fun messages(): MessagesResource
     fun files(): FilesResource
+    fun drive(): DriveResource
     fun hashtags(): HashtagsResource
     fun other(): OtherResource
     fun webhook(): WebhooksResource

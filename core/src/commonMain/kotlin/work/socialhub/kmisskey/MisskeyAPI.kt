@@ -208,6 +208,9 @@ enum class MisskeyAPI(
     // ------------------------------------------ //
 
     FilesCreate("drive/files/create"),
+    DriveFiles("drive/files"),
+    DriveFilesShow("drive/files/show"),
+    DriveFolders("drive/folders"),
 
     // ------------------------------------------ //
     // Hashtags

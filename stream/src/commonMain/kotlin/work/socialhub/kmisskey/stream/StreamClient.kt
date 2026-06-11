@@ -96,7 +96,6 @@ class StreamClient(
         }
 
         val text = Internal.toJson(request)
-        println(text)
         client.sendText(text)
     }
 

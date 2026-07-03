@@ -10,5 +10,6 @@ enum class NotificationType(
     QUOTE("quote"),
     REACTION("reaction"),
     POLL_VOTE("pollVote"),
+    POLL_ENDED("pollEnded"),
     RECEIVE_FOLLOW_REQUEST("receiveFollowRequest");
 }

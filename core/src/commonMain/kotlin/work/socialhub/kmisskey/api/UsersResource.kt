@@ -8,6 +8,7 @@ import work.socialhub.kmisskey.api.request.users.UsersRelationRequest
 import work.socialhub.kmisskey.api.request.users.UsersSearchByUsernameAndHostRequest
 import work.socialhub.kmisskey.api.request.users.UsersSearchRequest
 import work.socialhub.kmisskey.api.request.users.UsersSearchWithAuthRequest
+import work.socialhub.kmisskey.api.request.users.UsersReportAbuseRequest
 import work.socialhub.kmisskey.api.request.users.UsersShowMultipleRequest
 import work.socialhub.kmisskey.api.request.users.UsersShowSingleRequest
 import work.socialhub.kmisskey.api.response.notes.UsersReactionsResponse
@@ -18,6 +19,7 @@ import work.socialhub.kmisskey.api.response.users.UsersRelationResponse
 import work.socialhub.kmisskey.api.response.users.UsersSearchByUsernameAndHostResponse
 import work.socialhub.kmisskey.api.response.users.UsersSearchResponse
 import work.socialhub.kmisskey.api.response.users.UsersShowResponse
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -158,4 +160,17 @@ interface UsersResource {
     fun searchByUsernameAndHostBlocking(
         request: UsersSearchByUsernameAndHostRequest
     ): Response<Array<UsersSearchByUsernameAndHostResponse>>
+
+    /**
+     * ユーザーを通報します。
+     * https://misskey.io/api-doc#operation/users/report-abuse
+     */
+    suspend fun reportAbuse(
+        request: UsersReportAbuseRequest
+    ): EmptyResponse
+
+    @JsExport.Ignore
+    fun reportAbuseBlocking(
+        request: UsersReportAbuseRequest
+    ): EmptyResponse
 }

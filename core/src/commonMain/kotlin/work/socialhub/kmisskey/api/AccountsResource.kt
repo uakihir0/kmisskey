@@ -1,7 +1,6 @@
 package work.socialhub.kmisskey.api
 
 import work.socialhub.kmisskey.api.request.i.IFavoritesRequest
-import work.socialhub.kmisskey.api.request.i.INotificationsMarkAllAsReadRequest
 import work.socialhub.kmisskey.api.request.i.INotificationsRequest
 import work.socialhub.kmisskey.api.request.i.IPinRequest
 import work.socialhub.kmisskey.api.request.i.IRequest
@@ -13,6 +12,7 @@ import work.socialhub.kmisskey.api.response.i.IPinResponse
 import work.socialhub.kmisskey.api.response.i.IResponse
 import work.socialhub.kmisskey.api.response.i.IUnpinResponse
 import work.socialhub.kmisskey.api.response.i.IUpdateResponse
+import work.socialhub.kmisskey.api.request.notifications.NotificationsMarkAllAsReadRequest
 import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import kotlin.js.JsExport
@@ -68,12 +68,12 @@ interface AccountsResource {
      * https://misskey.io/api-doc#operation/notifications/mark-all-as-read
      */
     suspend fun notificationsMarkAllAsRead(
-        request: INotificationsMarkAllAsReadRequest
+        request: NotificationsMarkAllAsReadRequest
     ): EmptyResponse
 
     @JsExport.Ignore
     fun notificationsMarkAllAsReadBlocking(
-        request: INotificationsMarkAllAsReadRequest
+        request: NotificationsMarkAllAsReadRequest
     ): EmptyResponse
 
     /**

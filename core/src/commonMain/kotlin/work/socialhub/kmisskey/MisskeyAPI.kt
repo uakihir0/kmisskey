@@ -70,11 +70,16 @@ enum class MisskeyAPI(
     I("i"),
     IFavorites("i/favorites"),
     INotifications("i/notifications"),
-    INotificationsMarkAllAsRead("notifications/mark-all-as-read"),
     IWebhooksUpdate("i/webhooks/update"),
     IUpdate("i/update"),
     IPin("i/pin"),
     IUnpin("i/unpin"),
+
+    // ------------------------------------------ //
+    // Notifications
+    // ------------------------------------------ //
+
+    NotificationsMarkAllAsRead("notifications/mark-all-as-read"),
 
     // ------------------------------------------ //
     // Auth

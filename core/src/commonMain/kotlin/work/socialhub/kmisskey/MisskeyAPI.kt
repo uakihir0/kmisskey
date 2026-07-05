@@ -61,6 +61,7 @@ enum class MisskeyAPI(
     UsersRelation("users/relation"),
     UsersSearch("users/search"),
     UsersSearchByUsernameAndHost("users/search-by-username-and-host"),
+    UsersReportAbuse("users/report-abuse"),
 
     // ------------------------------------------ //
     // I
@@ -73,6 +74,12 @@ enum class MisskeyAPI(
     IUpdate("i/update"),
     IPin("i/pin"),
     IUnpin("i/unpin"),
+
+    // ------------------------------------------ //
+    // Notifications
+    // ------------------------------------------ //
+
+    NotificationsMarkAllAsRead("notifications/mark-all-as-read"),
 
     // ------------------------------------------ //
     // Auth

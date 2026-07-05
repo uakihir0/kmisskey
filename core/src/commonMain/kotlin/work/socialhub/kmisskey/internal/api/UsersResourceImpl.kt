@@ -6,6 +6,7 @@ import work.socialhub.kmisskey.MisskeyAPI.UsersReactions
 import work.socialhub.kmisskey.MisskeyAPI.UsersRecommendation
 import work.socialhub.kmisskey.MisskeyAPI.UsersRelation
 import work.socialhub.kmisskey.MisskeyAPI.UsersSearch
+import work.socialhub.kmisskey.MisskeyAPI.UsersReportAbuse
 import work.socialhub.kmisskey.MisskeyAPI.UsersSearchByUsernameAndHost
 import work.socialhub.kmisskey.MisskeyAPI.UsersShow
 import work.socialhub.kmisskey.api.UsersResource
@@ -17,6 +18,7 @@ import work.socialhub.kmisskey.api.request.users.UsersRelationRequest
 import work.socialhub.kmisskey.api.request.users.UsersSearchByUsernameAndHostRequest
 import work.socialhub.kmisskey.api.request.users.UsersSearchRequest
 import work.socialhub.kmisskey.api.request.users.UsersSearchWithAuthRequest
+import work.socialhub.kmisskey.api.request.users.UsersReportAbuseRequest
 import work.socialhub.kmisskey.api.request.users.UsersShowMultipleRequest
 import work.socialhub.kmisskey.api.request.users.UsersShowSingleRequest
 import work.socialhub.kmisskey.api.response.notes.UsersReactionsResponse
@@ -27,6 +29,7 @@ import work.socialhub.kmisskey.api.response.users.UsersRelationResponse
 import work.socialhub.kmisskey.api.response.users.UsersSearchByUsernameAndHostResponse
 import work.socialhub.kmisskey.api.response.users.UsersSearchResponse
 import work.socialhub.kmisskey.api.response.users.UsersShowResponse
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.util.toBlocking
 
@@ -233,6 +236,26 @@ class UsersResourceImpl(
     ): Response<Array<UsersSearchByUsernameAndHostResponse>> {
         return toBlocking {
             searchByUsernameAndHost(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun reportAbuse(
+        request: UsersReportAbuseRequest
+    ): EmptyResponse {
+        return postUnit(UsersReportAbuse.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun reportAbuseBlocking(
+        request: UsersReportAbuseRequest
+    ): EmptyResponse {
+        return toBlocking {
+            reportAbuse(request)
         }
     }
 }

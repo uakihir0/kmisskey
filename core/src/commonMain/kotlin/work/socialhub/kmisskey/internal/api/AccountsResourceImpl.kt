@@ -14,6 +14,8 @@ import work.socialhub.kmisskey.api.response.i.IPinResponse
 import work.socialhub.kmisskey.api.response.i.IResponse
 import work.socialhub.kmisskey.api.response.i.IUnpinResponse
 import work.socialhub.kmisskey.api.response.i.IUpdateResponse
+import work.socialhub.kmisskey.api.request.notifications.NotificationsMarkAllAsReadRequest
+import work.socialhub.kmisskey.entity.share.EmptyResponse
 import work.socialhub.kmisskey.entity.share.Response
 import work.socialhub.kmisskey.util.toBlocking
 
@@ -80,6 +82,26 @@ class AccountsResourceImpl(
     ): Response<Array<INotificationsResponse>> {
         return toBlocking {
             iNotifications(request)
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override suspend fun notificationsMarkAllAsRead(
+        request: NotificationsMarkAllAsReadRequest
+    ): EmptyResponse {
+        return postUnit(MisskeyAPI.NotificationsMarkAllAsRead.path, request)
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    override fun notificationsMarkAllAsReadBlocking(
+        request: NotificationsMarkAllAsReadRequest
+    ): EmptyResponse {
+        return toBlocking {
+            notificationsMarkAllAsRead(request)
         }
     }
 

@@ -189,6 +189,14 @@ enum class MisskeyAPI(
     MutesDelete("mute/delete"),
 
     // ------------------------------------------ //
+    // Renote Mutes
+    // ------------------------------------------ //
+
+    RenoteMutesList("renote-mute/list"),
+    RenoteMutesCreate("renote-mute/create"),
+    RenoteMutesDelete("renote-mute/delete"),
+
+    // ------------------------------------------ //
     // Blocks
     // ------------------------------------------ //
 

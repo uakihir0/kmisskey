@@ -25,6 +25,7 @@ import work.socialhub.kmisskey.api.NotesResource
 import work.socialhub.kmisskey.api.OtherResource
 import work.socialhub.kmisskey.api.PollsResource
 import work.socialhub.kmisskey.api.ReactionsResource
+import work.socialhub.kmisskey.api.RenoteMutesResource
 import work.socialhub.kmisskey.api.UsersResource
 import work.socialhub.kmisskey.api.WebhooksResource
 import work.socialhub.kmisskey.internal.api.AccountsResourceImpl
@@ -51,6 +52,7 @@ import work.socialhub.kmisskey.internal.api.NotesResourceImpl
 import work.socialhub.kmisskey.internal.api.OtherResourceImpl
 import work.socialhub.kmisskey.internal.api.PollsResourceImpl
 import work.socialhub.kmisskey.internal.api.ReactionsResourceImpl
+import work.socialhub.kmisskey.internal.api.RenoteMutesResourceImpl
 import work.socialhub.kmisskey.internal.api.UsersResourceImpl
 import work.socialhub.kmisskey.internal.api.WebhooksResourceImpl
 
@@ -77,6 +79,7 @@ class MisskeyImpl(
     private val clips: ClipsResource = ClipsResourceImpl(uri, i)
     private val notes: NotesResource = NotesResourceImpl(uri, i)
     private val mutes: MutesResource = MutesResourceImpl(uri, i)
+    private val renoteMutes: RenoteMutesResource = RenoteMutesResourceImpl(uri, i)
     private val blocks: BlocksResource = BlocksResourceImpl(uri, i)
     private val reactions: ReactionsResource = ReactionsResourceImpl(uri, i)
     private val favorites: FavoritesResource = FavoritesResourceImpl(uri, i)
@@ -108,6 +111,7 @@ class MisskeyImpl(
     override fun favorites() = favorites
     override fun following() = following
     override fun mutes() = mutes
+    override fun renoteMutes() = renoteMutes
     override fun blocks() = blocks
     override fun polls() = polls
     override fun messages() = messages

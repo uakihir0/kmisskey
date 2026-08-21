@@ -24,6 +24,7 @@ import work.socialhub.kmisskey.api.NotesResource
 import work.socialhub.kmisskey.api.OtherResource
 import work.socialhub.kmisskey.api.PollsResource
 import work.socialhub.kmisskey.api.ReactionsResource
+import work.socialhub.kmisskey.api.RenoteMutesResource
 import work.socialhub.kmisskey.api.UsersResource
 import work.socialhub.kmisskey.api.WebhooksResource
 import kotlin.js.JsExport
@@ -49,6 +50,7 @@ interface Misskey {
     fun favorites(): FavoritesResource
     fun following(): FollowingResource
     fun mutes(): MutesResource
+    fun renoteMutes(): RenoteMutesResource
     fun blocks(): BlocksResource
     fun polls(): PollsResource
     fun messages(): MessagesResource

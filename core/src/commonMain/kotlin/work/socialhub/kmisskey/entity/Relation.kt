@@ -16,6 +16,7 @@ open class Relation {
     var isBlocking = false
     var isBlocked = false
     var isMuted = false
+    var isRenoteMuted = false
 
     override fun toString(): String {
         return "Relation{" +
@@ -27,6 +28,7 @@ open class Relation {
                 ", isBlocking=$isBlocking" +
                 ", isBlocked=$isBlocked" +
                 ", isMuted=$isMuted" +
+                ", isRenoteMuted=$isRenoteMuted" +
                 '}'
     }
 }

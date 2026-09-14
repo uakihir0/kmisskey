@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.4.0"
+kotlin = "2.4.20"
 dokka = "2.2.0"
 maven-publish = "0.37.0"
 serialization = "1.11.0"
@@ -7,14 +7,14 @@ coroutines = "1.11.0"
 
 [libraries]
 khttpclient = "work.socialhub:khttpclient:0.0.9"
-ktor-core = "io.ktor:ktor-client-core:3.5.1"
+ktor-core = "io.ktor:ktor-client-core:3.5.2"
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 nexus-publish = "io.github.gradle-nexus.publish-plugin:io.github.gradle-nexus.publish-plugin.gradle.plugin:2.0.0"
 maven-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish" }
 dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
-slf4j-simple = "org.slf4j:slf4j-simple:2.0.18"
+slf4j-simple = "org.slf4j:slf4j-simple:2.0.19"
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

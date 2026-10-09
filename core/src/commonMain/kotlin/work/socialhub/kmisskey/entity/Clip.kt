@@ -21,4 +21,5 @@ class Clip {
     var isPublic: Boolean = false
     var favoritedCount: Int = 0
     var isFavorited: Boolean = false
+    var notesCount: Int? = null
 }
